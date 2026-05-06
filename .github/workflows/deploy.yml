@@ -24,20 +24,22 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: 20
 
-      - name: Install dependencies
+      - name: Install deps
         run: npm ci
 
       - name: Build
         run: npm run build
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: false
+          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 
-      - name: Disable Jekyll
-        run: touch build/.no-jekyll
+      - name: Create nojekyll
+        run: touch dist/.nojekyll
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          publish_branch: gh-pages
