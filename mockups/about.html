@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Guild Presidents Leadership Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --green: #389a29; --navy: #132d82; --white: #ffffff; --black: #000000; --gold: #F5A623; --light-bg: #f0f4ff; --font-display: 'Bebas Neue', sans-serif; --font-body: 'DM Sans', sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--white); color: var(--black); line-height: 1.6; }
+    .pattern-divider { width: 100%; height: 40px; background: linear-gradient(90deg, var(--green) 0%, var(--green) 16%, var(--navy) 16%, var(--navy) 32%, var(--gold) 32%, var(--gold) 48%, var(--white) 48%, var(--white) 64%, var(--green) 64%, var(--green) 80%, var(--navy) 80%, var(--navy) 100%); }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; height: 72px; background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .logo-circle { width: 48px; height: 48px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-family: var(--font-display); font-size: 18px; }
+    .logo-text { font-family: var(--font-display); font-size: 24px; color: var(--navy); }
+    .logo-tagline { font-size: 11px; color: var(--green); font-weight: 500; letter-spacing: 0.5px; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-weight: 500; font-size: 14px; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta { background: var(--green); color: var(--white); padding: 12px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; transition: transform 0.3s, box-shadow 0.3s; }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(56,154,41,0.3); }
+    .hero { min-height: 60vh; background: var(--navy); padding: 140px 48px 80px; position: relative; overflow: hidden; }
+    .hero::after { content: ''; position: absolute; bottom: 0; right: 0; width: 40%; height: 100%; background: var(--green); clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%); }
+    .breadcrumb { color: var(--green); font-size: 14px; margin-bottom: 24px; font-weight: 500; }
+    .hero h1 { font-family: var(--font-display); font-size: 80px; color: var(--white); position: relative; z-index: 1; line-height: 1; }
+    .hero p { color: rgba(255,255,255,0.85); font-size: 20px; margin-top: 20px; max-width: 600px; position: relative; z-index: 1; }
+    .section { padding: 80px 48px; }
+    .section-light { background: var(--white); }
+    .section-alt { background: var(--light-bg); }
+    .section-navy { background: var(--navy); color: var(--white); }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .three-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .card { padding: 32px; border-top: 4px solid; }
+    .card-green { border-color: var(--green); }
+    .card-navy { border-color: var(--navy); }
+    .card-gold { border-color: var(--gold); }
+    .card h3 { font-family: var(--font-display); font-size: 24px; margin-bottom: 16px; }
+    .card-green h3 { color: var(--green); }
+    .card-navy h3 { color: var(--navy); }
+    .card-gold h3 { color: var(--gold); }
+    .card p { font-size: 16px; color: #444; line-height: 1.7; }
+    .story-section { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .story-image { background: linear-gradient(135deg, var(--navy), var(--green)); min-height: 400px; position: relative; }
+    .story-image::after { content: ''; position: absolute; top: 20px; right: 20px; width: 80px; height: 80px; background: var(--green); clip-path: polygon(100% 0, 0 0, 100% 100%); }
+    .story-content h2 { font-family: var(--font-display); font-size: 36px; color: var(--green); margin-bottom: 16px; }
+    .story-content h3 { font-family: var(--font-display); font-size: 42px; color: var(--navy); margin-bottom: 24px; line-height: 1.1; }
+    .story-content p { font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 16px; }
+    .team-section h2 { font-family: var(--font-display); font-size: 48px; color: var(--white); text-align: center; margin-bottom: 48px; }
+    .team-member { text-align: center; }
+    .team-avatar { width: 180px; height: 180px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--green)); margin: 0 auto 20px; }
+    .team-member h4 { font-family: var(--font-display); font-size: 28px; color: var(--white); }
+    .team-member p { color: var(--gold); font-size: 16px; }
+    .footer { background: var(--navy); padding: 60px 48px 30px; color: var(--white); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; max-width: 1200px; margin: 0 auto; }
+    .footer-logo { font-family: var(--font-display); font-size: 32px; margin-bottom: 12px; }
+    .footer p { opacity: 0.8; font-size: 14px; line-height: 1.7; }
+    .footer h5 { font-family: var(--font-display); font-size: 18px; margin-bottom: 20px; }
+    .footer a { display: block; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.3s; }
+    .footer a:hover { color: var(--green); }
+    .copyright { text-align: center; padding-top: 30px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; opacity: 0.6; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo">
+      <div class="logo-circle">GPLA</div>
+      <div>
+        <div class="logo-text">GPLA</div>
+        <div class="logo-tagline">Guild Presidents Leadership Academy</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="summit.html">Summit</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="#" class="nav-cta">Apply Now</a>
+  </nav>
+
+  <section class="hero">
+    <div class="breadcrumb">Home > About</div>
+    <h1>WHO WE ARE</h1>
+    <p>Rooted in Makerere. Built for East Africa.</p>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="three-cols">
+        <div class="card card-green">
+          <h3>VISION</h3>
+          <p>Empowering ethical youth leaders for democratic transformation in East Africa.</p>
+        </div>
+        <div class="card card-navy">
+          <h3>MISSION</h3>
+          <p>To equip outgoing student leaders with the knowledge, skills, and values to influence governance and public policy across East Africa.</p>
+        </div>
+        <div class="card card-gold">
+          <h3>OBJECTIVES</h3>
+          <p>1. Build leadership capacity<br>2. Promote democratic values<br>3. Foster policy engagement<br>4. Enable youth voice<br>5. Create regional networks<br>6. Drive civic participation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pattern-divider"></div>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="story-section">
+        <div class="story-image"></div>
+        <div class="story-content">
+          <h2>OUR STORY</h2>
+          <h3>From a Vision to a Regional Movement</h3>
+          <p>The Guild Presidents Leadership Academy (GPLA) was established as a flagship initiative to bridge the gap between student leadership and effective governance across East Africa.</p>
+          <p>Based at Makerere University, the birthplace of African student activism, GPLA equips outgoing Guild Presidents with the knowledge, values, and networks needed to transform governance across the region.</p>
+          <p>Since our founding, we have convened over 700 youth leaders from 6 countries, hosted sitting Vice Presidents, former Heads of State, EU Ambassadors, and Electoral Commission Chairpersons.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-navy">
+    <div class="container">
+      <h2>THE TEAM</h2>
+      <div class="three-cols" style="margin-top: 48px;">
+        <div class="team-member">
+          <div class="team-avatar"></div>
+          <h4>Demiano Masesa</h4>
+          <p>Executive Director, GPLA</p>
+        </div>
+        <div class="team-member">
+          <div class="team-avatar"></div>
+          <h4>Dr. Sarah K. Atieno</h4>
+          <p>Program Director</p>
+        </div>
+        <div class="team-member">
+          <div class="team-avatar"></div>
+          <h4>James Ochieng</h4>
+          <p>Operations Manager</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">GPLA</div>
+        <p>Empowering ethical youth leaders for democratic transformation in East Africa.</p>
+      </div>
+      <div>
+        <h5>Quick Links</h5>
+        <a href="about.html">About</a>
+        <a href="programs.html">Programs</a>
+        <a href="summit.html">Summit</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <p>Plot 158 Observatory Hill<br>Makerere University, Kampala</p>
+        <p style="margin-top: 12px;">info@guildleaders.academy</p>
+        <p>+256 779 011 22</p>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Guild Presidents Leadership Academy. All rights reserved. | guildleaders.academy</div>
+  </footer>
+</body>
+</html>

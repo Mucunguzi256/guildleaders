@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs | Guild Presidents Leadership Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --green: #389a29; --navy: #132d82; --white: #ffffff; --black: #000000; --gold: #F5A623; --light-bg: #f0f4ff; --font-display: 'Bebas Neue', sans-serif; --font-body: 'DM Sans', sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--white); color: var(--black); line-height: 1.6; }
+    .pattern-divider { width: 100%; height: 40px; background: linear-gradient(90deg, var(--green) 0%, var(--green) 16%, var(--navy) 16%, var(--navy) 32%, var(--gold) 32%, var(--gold) 48%, var(--white) 48%, var(--white) 64%, var(--green) 64%, var(--green) 80%, var(--navy) 80%, var(--navy) 100%); }
+    .pattern-divider-bold { height: 80px; background: linear-gradient(90deg, var(--green) 0%, var(--green) 12%, var(--navy) 12%, var(--navy) 24%, var(--gold) 24%, var(--gold) 36%, var(--green) 36%, var(--green) 48%, var(--white) 48%, var(--white) 60%, var(--navy) 60%, var(--navy) 72%, var(--gold) 72%, var(--gold) 84%, var(--green) 84%, var(--green) 100%); }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; height: 72px; background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .logo-circle { width: 48px; height: 48px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-family: var(--font-display); font-size: 18px; }
+    .logo-text { font-family: var(--font-display); font-size: 24px; color: var(--navy); }
+    .logo-tagline { font-size: 11px; color: var(--green); font-weight: 500; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-weight: 500; font-size: 14px; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta { background: var(--green); color: var(--white); padding: 12px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; }
+    .hero { min-height: 50vh; background: var(--green); padding: 140px 48px 80px; position: relative; }
+    .hero h1 { font-family: var(--font-display); font-size: 80px; color: var(--white); line-height: 1; }
+    .section { padding: 80px 48px; }
+    .section-light { background: var(--white); }
+    .section-alt { background: var(--light-bg); }
+    .section-navy { background: var(--navy); color: var(--white); }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .program-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .program-number { font-family: var(--font-display); font-size: 120px; color: var(--gold); line-height: 1; }
+    .program-label { color: var(--green); font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; }
+    .program h2 { font-family: var(--font-display); font-size: 42px; color: var(--navy); margin: 8px 0 20px; }
+    .program-navy h2 { color: var(--white); }
+    .program p { font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 20px; }
+    .program-navy p { color: rgba(255,255,255,0.85); }
+    .program ul { list-style: none; }
+    .program li { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.1); font-size: 15px; display: flex; align-items: center; gap: 12px; }
+    .program li::before { content: '✓'; color: var(--green); font-weight: bold; }
+    .program-navy li { border-color: rgba(255,255,255,0.1); }
+    .program-navy li::before { color: var(--gold); }
+    .program-image { background: linear-gradient(135deg, var(--navy), var(--green)); min-height: 400px; border-radius: 8px; }
+    .stats-strip { background: var(--green); padding: 48px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+    .stat-number { font-family: var(--font-display); font-size: 64px; color: var(--white); }
+    .stat-label { color: rgba(255,255,255,0.85); font-size: 14px; }
+    .footer { background: var(--navy); padding: 60px 48px 30px; color: var(--white); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; max-width: 1200px; margin: 0 auto; }
+    .footer-logo { font-family: var(--font-display); font-size: 32px; margin-bottom: 12px; }
+    .footer p { opacity: 0.8; font-size: 14px; line-height: 1.7; }
+    .footer h5 { font-family: var(--font-display); font-size: 18px; margin-bottom: 20px; }
+    .footer a { display: block; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; margin-bottom: 10px; }
+    .copyright { text-align: center; padding-top: 30px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; opacity: 0.6; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo">
+      <div class="logo-circle">GPLA</div>
+      <div><div class="logo-text">GPLA</div><div class="logo-tagline">Guild Presidents Leadership Academy</div></div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="summit.html">Summit</a><a href="news.html">News</a><a href="contact.html">Contact</a>
+    </div>
+    <a href="#" class="nav-cta">Apply Now</a>
+  </nav>
+
+  <section class="hero">
+    <h1>OUR PROGRAMS</h1>
+  </section>
+  <div class="pattern-divider-bold"></div>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="program-grid">
+        <div class="program">
+          <div class="program-number">01</div>
+          <div class="program-label">Leadership & Development</div>
+          <h2>Transformational Leadership Bootcamp</h2>
+          <p>A rigorous 5-day residential program that equips Guild Presidents with essential leadership skills for effective governance. Participants engage with world-class facilitators from public, private, and civil society sectors.</p>
+          <ul>
+            <li>Personal Leadership Vision Development</li>
+            <li>Conflict Resolution & Mediation</li>
+            <li>Strategic Planning & Execution</li>
+            <li>Mentorship with Senior Leaders</li>
+            <li>Public Speaking & Communication</li>
+          </ul>
+        </div>
+        <div class="program-image"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-navy">
+    <div class="container">
+      <div class="program-grid">
+        <div class="program-image"></div>
+        <div class="program program-navy">
+          <div class="program-number">02</div>
+          <div class="program-label">Governance & Policy</div>
+          <h2>Policy & Governance Incubation Lab</h2>
+          <p>An 8-week intensive program designed to build practical policy analysis and advocacy skills. Fellows work on real governance challenges facing East African communities.</p>
+          <ul>
+            <li>Policy Analysis Methods</li>
+            <li>Legislative Process Understanding</li>
+            <li>Budget Analysis & Monitoring</li>
+            <li>Evidence-Based Advocacy</li>
+            <li>Civic Engagement Strategies</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="program-grid">
+        <div class="program">
+          <div class="program-number">03</div>
+          <div class="program-label">Women in Leadership</div>
+          <h2>HERPower Fellowship</h2>
+          <p>A specialized fellowship for young women passionate about political leadership and civic engagement. The program addresses the unique challenges women face in East African politics.</p>
+          <ul>
+            <li>Political Campaign Management</li>
+            <li>Gender & Policy Analysis</li>
+            <li>Network Building with Women Leaders</li>
+            <li>Candidate Training</li>
+            <li>Media & Communications</li>
+          </ul>
+        </div>
+        <div class="program-image"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-navy">
+    <div class="container">
+      <div class="program-grid">
+        <div class="program-image"></div>
+        <div class="program program-navy">
+          <div class="program-number">04</div>
+          <div class="program-label">Regional Convening</div>
+          <h2>Guild Leaders' Summit & Guild Voice Initiative</h2>
+          <p>Our flagship annual gathering brings together Guild Presidents from across East Africa to discuss regional challenges, share best practices, and build lasting networks.</p>
+          <ul>
+            <li>Annual Summit at Makerere University</li>
+            <li>Cross-Border Networking</li>
+            <li>Regional Policy Dialogues</li>
+            <li>Alumni Engagement Platform</li>
+            <li>Media Training for Leaders</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div><div class="stat-number">700+</div><div class="stat-label">Former Leaders Convened</div></div>
+        <div><div class="stat-number">4</div><div class="stat-label">Flagship Programs</div></div>
+        <div><div class="stat-number">6</div><div class="stat-label">Countries Represented</div></div>
+        <div><div class="stat-number">1</div><div class="stat-label">Regional Summit Annually</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div><div class="footer-logo">GPLA</div><p>Empowering ethical youth leaders for democratic transformation in East Africa.</p></div>
+      <div><h5>Quick Links</h5><a href="about.html">About</a><a href="programs.html">Programs</a><a href="summit.html">Summit</a><a href="news.html">News</a><a href="contact.html">Contact</a></div>
+      <div><h5>Contact</h5><p>Plot 158 Observatory Hill<br>Makerere University, Kampala</p><p>info@guildleaders.academy</p><p>+256 779 011 22</p></div>
+    </div>
+    <div class="copyright">© 2026 Guild Presidents Leadership Academy. All rights reserved.</div>
+  </footer>
+</body>
+</html>

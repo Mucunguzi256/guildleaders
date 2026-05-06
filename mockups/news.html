@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News & Updates | Guild Presidents Leadership Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --green: #389a29; --navy: #132d82; --white: #ffffff; --black: #000000; --gold: #F5A623; --light-bg: #f0f4ff; --font-display: 'Bebas Neue', sans-serif; --font-body: 'DM Sans', sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-body); background: var(--white); color: var(--black); }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; height: 72px; background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .logo-circle { width: 48px; height: 48px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-family: var(--font-display); font-size: 18px; }
+    .logo-text { font-family: var(--font-display); font-size: 24px; color: var(--navy); }
+    .logo-tagline { font-size: 11px; color: var(--green); font-weight: 500; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-weight: 500; font-size: 14px; }
+    .nav-cta { background: var(--green); color: var(--white); padding: 12px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; }
+    .hero { min-height: 40vh; background: var(--green); padding: 140px 48px 60px; }
+    .hero h1 { font-family: var(--font-display); font-size: 72px; color: var(--white); }
+    .section { padding: 60px 48px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .news-card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; }
+    .news-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+    .news-image { height: 200px; background: linear-gradient(135deg, var(--navy), var(--green)); }
+    .news-content { padding: 24px; }
+    .news-category { display: inline-block; background: var(--gold); color: var(--white); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+    .news-date { color: #888; font-size: 13px; margin: 12px 0; }
+    .news-card h3 { font-family: var(--font-display); font-size: 22px; color: var(--navy); margin-bottom: 12px; line-height: 1.2; }
+    .news-card p { color: #555; font-size: 14px; line-height: 1.6; margin-bottom: 16px; }
+    .news-link { color: var(--green); font-weight: 600; text-decoration: none; font-size: 14px; }
+    .newsletter { background: var(--navy); padding: 60px 48px; text-align: center; }
+    .newsletter h2 { font-family: var(--font-display); font-size: 48px; color: var(--white); margin-bottom: 24px; }
+    .newsletter-form { display: flex; gap: 12px; justify-content: center; max-width: 500px; margin: 0 auto; }
+    .newsletter input { flex: 1; padding: 16px 24px; border: none; border-radius: 50px; font-size: 16px; }
+    .newsletter button { background: var(--green); color: var(--white); border: none; padding: 16px 32px; border-radius: 50px; font-weight: 600; font-size: 16px; cursor: pointer; }
+    .footer { background: var(--navy); padding: 60px 48px 30px; color: var(--white); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; max-width: 1200px; margin: 0 auto; }
+    .footer-logo { font-family: var(--font-display); font-size: 32px; }
+    .footer p { opacity: 0.8; font-size: 14px; }
+    .footer h5 { font-family: var(--font-display); font-size: 18px; margin-bottom: 20px; }
+    .footer a { display: block; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; margin-bottom: 10px; }
+    .copyright { text-align: center; padding-top: 30px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; opacity: 0.6; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo"><div class="logo-circle">GPLA</div><div><div class="logo-text">GPLA</div><div class="logo-tagline">Guild Presidents Leadership Academy</div></div></div>
+    <div class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="summit.html">Summit</a><a href="news.html">News</a><a href="contact.html">Contact</a></div>
+    <a href="#" class="nav-cta">Apply Now</a>
+  </nav>
+
+  <section class="hero"><h1>NEWS & UPDATES</h1></section>
+
+  <section class="section">
+    <div class="container">
+      <div class="news-grid">
+        <div class="news-card"><div class="news-image"></div><div class="news-content"><span class="news-category">Summit</span><div class="news-date">April 15, 2024</div><h3>2024 Guild Leaders' Summit Draws 700+ Attendees</h3><p>The annual summit at Makerere University brought together student leaders from across East Africa.</p><a href="#" class="news-link">Read More →</a></div></div>
+        <div class="news-card"><div class="news-image"></div><div class="news-content"><span class="news-category">Programs</span><div class="news-date">March 8, 2024</div><h3>HERPower Fellowship Applications Now Open</h3><p>Young women leaders invited to apply for the 2024 HERPower Fellowship program.</p><a href="#" class="news-link">Read More →</a></div></div>
+        <div class="news-card"><div class="news-image"></div><div class="news-content"><span class="news-category">Alumni</span><div class="news-date">February 22, 2024</div><h3>GPLA Alumni Elected to Parliament</h3><p>Congratulations to our alumni who secured seats in the recent Uganda elections.</p><a href="#" class="news-link">Read More →</a></div></div>
+        <div class="news-card"><div class="news-image"></div><div class="news-content"><span class="news-category">Programs</span><div class="news-date">January 10, 2024</div><h3>Transformational Leadership Bootcamp Dates Announced</h3><p>The 2024 TLB program scheduled for June at Lake Victoria Resort, Entebbe.</p><a href="#" class="news-link">Read More →</a></div></div>
+        <div class="news-card"><div class="news-image"></div><div class="news-content"><span class="news-category">Summit</span><div class="news-date">December 5, 2023</div><h3>Summit Report 2023 Released</h3><p>Download the comprehensive report from last year's Guild Leaders' Summit.</p><a href="#" class="news-link">Read More →</a></div></div>
+        <div class="news-card"><div class="news-image"></div><div class="news-content"><span class="news-category">Partnership</span><div class="news-date">November 18, 2023</div><h3>GPLA Partners with EU for Youth Program</h3><p>New partnership to expand leadership training across East African universities.</p><a href="#" class="news-link">Read More →</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <h2>STAY IN THE LOOP</h2>
+    <form class="newsletter-form"><input type="email" placeholder="Enter your email"><button type="submit">Subscribe</button></form>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-grid"><div><div class="footer-logo">GPLA</div><p>Empowering ethical youth leaders for democratic transformation.</p></div><div><h5>Quick Links</h5><a href="about.html">About</a><a href="programs.html">Programs</a></div><div><h5>Contact</h5><p>info@guildleaders.academy</p></div></div>
+    <div class="copyright">© 2026 Guild Presidents Leadership Academy.</div>
+  </footer>
+</body>
+</html>

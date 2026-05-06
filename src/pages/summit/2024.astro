@@ -1,0 +1,137 @@
+---
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const speakers = [
+  { name: 'HE. Jakaya Mrisho Kikwete', title: 'Chief Guest', subtitle: 'Former President, Tanzania' },
+  { name: 'HE. Jessica Alupo', title: 'Guest of Honor', subtitle: 'Vice President, Uganda' },
+  { name: 'Justice Simon Byabakama', title: 'Keynote Speaker', subtitle: 'EC Chairman, Uganda' },
+  { name: 'Rt. Hon. Ruhakana Rugunda', title: 'Panelist', subtitle: 'Former PM, Uganda' },
+  { name: 'Hon. Mathew Rukikaire', title: 'Panelist', subtitle: 'Former Minister, Kenya' },
+  { name: 'Prof. Sarah Ssali', title: 'Facilitator', subtitle: 'Makerere University' },
+  { name: 'HE. Jan Sadek', title: 'Special Guest', subtitle: 'EU Ambassador to Uganda' },
+  { name: 'Demiano Masesa', title: 'Executive Director', subtitle: 'GPLA' },
+];
+
+const outcomes = [
+  { num: '01', text: 'GPLA endorsed as the driver of transition of outgoing Guild Presidents into active political participation' },
+  { num: '02', text: 'Freedoms in Universities — allow students to freely express themselves especially along political party lines' },
+  { num: '03', text: 'Expand the summit to a regional East African initiative' },
+  { num: '04', text: 'HE. Jakaya Mrisho Kikwete to be named Patron of the Summit when it opens regionally' },
+  { num: '05', text: 'Guild Leaders to receive training before and into their leadership tenure' },
+];
+---
+
+<Base title="Summit 2024" description="Guild Leaders' Annual Summit 2024 - Full report and outcomes.">
+  <Navbar />
+  
+  <!-- Hero -->
+  <section class="min-h-[50vh] bg-gpla-navy px-12 pt-32 pb-24 relative overflow-hidden">
+    <div class="absolute bottom-0 right-0 w-[35%] h-full bg-gpla-green" style="clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);"></div>
+    <div class="max-w-6xl mx-auto relative z-10">
+      <h1 class="font-display text-white text-[64px] leading-tight">
+        GUILD LEADERS'<br />ANNUAL SUMMIT
+      </h1>
+      <div class="font-display text-[160px] text-gpla-gold absolute right-[15%] top-[40%] z-10 leading-none">2024</div>
+      <p class="text-white/85 text-xl mt-6 max-w-[600px] relative z-10">
+        "Legacy and Leadership Continuum: The Power of Knowledge and Cross-Generational Learning"
+      </p>
+    </div>
+  </section>
+
+  <!-- Pattern Divider Bold -->
+  <div class="h-20 w-full" style="background: linear-gradient(90deg, #389a29 0%, #389a29 12%, #132d82 12%, #132d82 24%, #F5A623 24%, #F5A623 36%, #389a29 36%, #389a29 48%, #ffffff 48%, #ffffff 60%, #132d82 60%, #132d82 72%, #F5A623 72%, #F5A623 84%, #389a29 84%, #389a29 100%);"></div>
+
+  <!-- Key Speakers -->
+  <section class="px-12 py-24 bg-gpla-navy">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-white text-[48px] mb-12">KEY SPEAKERS</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {speakers.map(speaker => (
+          <div class="text-center">
+            <div class="w-36 h-36 rounded-full bg-gradient-to-br from-gpla-gold to-gpla-green mx-auto mb-4"></div>
+            <h4 class="font-display text-xl text-white">{speaker.name}</h4>
+            <p class="text-gpla-gold text-sm">{speaker.title}</p>
+            <span class="text-white/60 text-xs">{speaker.subtitle}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Outcomes -->
+  <section class="px-12 py-24">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-gpla-navy text-[48px] mb-12">KEY OUTCOMES</h2>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+        {outcomes.map(outcome => (
+          <div class="bg-gpla-green p-6 rounded-lg text-center">
+            <div class="font-display text-[48px] text-white">{outcome.num}</div>
+            <p class="text-white text-sm mt-2">{outcome.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Gender Statistics -->
+  <section class="px-12 py-24 bg-gpla-light">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-gpla-navy text-[48px] mb-12">GENDER STATISTICS</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="bg-white p-8 rounded-lg">
+          <h4 class="font-display text-2xl text-gpla-navy mb-6">Guild Representation by Gender</h4>
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <span class="w-24 text-sm">Male</span>
+              <div class="flex-1 h-8 bg-gpla-navy rounded" style="width: 55.8%"></div>
+              <span class="text-sm font-medium">55.8%</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="w-24 text-sm">Female</span>
+              <div class="flex-1 h-8 bg-gpla-green rounded" style="width: 44.2%"></div>
+              <span class="text-sm font-medium">44.2%</span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white p-8 rounded-lg flex items-center gap-8">
+          <div class="w-36 h-36 rounded-full" style="background: conic-gradient(#132d82 0% 55.8%, #389a29 55.8% 100%);"></div>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-4 h-4 rounded-full bg-gpla-navy"></div>
+              <span class="text-sm">Male: 55.8%</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-4 h-4 rounded-full bg-gpla-green"></div>
+              <span class="text-sm">Female: 44.2%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Embedded PDF -->
+  <section class="px-12 py-24">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-gpla-navy text-[48px] mb-8">SUMMIT REPORT 2024</h2>
+      <iframe src="/reports/summit-2024.pdf" width="100%" height="700px" title="GPLA Summit Report 2024" class="rounded-lg border border-gray-200"></iframe>
+      <div class="mt-8">
+        <a href="/reports/summit-2024.pdf" download class="bg-gpla-green text-white px-8 py-4 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
+          Download Report 2024 →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-gpla-navy px-12 py-16 text-center">
+    <h3 class="font-display text-white text-[48px] mb-5">View 2025 Summit Report</h3>
+    <a href="/summit/2025" class="bg-gpla-green text-white px-10 py-5 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
+      View 2025 Report →
+    </a>
+  </section>
+
+  <Footer />
+</Base>

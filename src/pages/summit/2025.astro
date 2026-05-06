@@ -1,0 +1,104 @@
+---
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const speakers2025 = [
+  { name: 'HE. Paul Kagame', title: 'Chief Guest', subtitle: 'President, Rwanda' },
+  { name: 'HE. Samia Suluhu Hassan', title: 'Guest of Honor', subtitle: 'President, Tanzania' },
+  { name: 'Dr. Rebecca Joshua', title: 'Keynote Speaker', subtitle: 'EC Chairman, Kenya' },
+  { name: 'Hon. Margaret K. Nkodo', title: 'Panelist', subtitle: 'Minister, Burundi' },
+];
+---
+
+<Base title="Summit 2025" description="Guild Leaders' Annual Summit 2025 - Full report and outcomes.">
+  <Navbar />
+  
+  <!-- Hero -->
+  <section class="min-h-[50vh] bg-gpla-navy px-12 pt-32 pb-24 relative overflow-hidden">
+    <div class="absolute bottom-0 right-0 w-[35%] h-full bg-gpla-green" style="clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);"></div>
+    <div class="max-w-6xl mx-auto relative z-10">
+      <h1 class="font-display text-white text-[64px] leading-tight">
+        GUILD LEADERS'<br />ANNUAL SUMMIT
+      </h1>
+      <div class="font-display text-[160px] text-gpla-gold absolute right-[15%] top-[40%] z-10 leading-none">2025</div>
+      <p class="text-white/85 text-xl mt-6 max-w-[600px] relative z-10">
+        "Democratic Transformation: Building the leaders of tomorrow"
+      </p>
+    </div>
+  </section>
+
+  <!-- Pattern Divider Bold -->
+  <div class="h-20 w-full" style="background: linear-gradient(90deg, #389a29 0%, #389a29 12%, #132d82 12%, #132d82 24%, #F5A623 24%, #F5A623 36%, #389a29 36%, #389a29 48%, #ffffff 48%, #ffffff 60%, #132d82 60%, #132d82 72%, #F5A623 72%, #F5A623 84%, #389a29 84%, #389a29 100%);"></div>
+
+  <!-- Key Speakers -->
+  <section class="px-12 py-24 bg-gpla-navy">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-white text-[48px] mb-12">KEY SPEAKERS</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {speakers2025.map(speaker => (
+          <div class="text-center">
+            <div class="w-36 h-36 rounded-full bg-gradient-to-br from-gpla-gold to-gpla-green mx-auto mb-4"></div>
+            <h4 class="font-display text-xl text-white">{speaker.name}</h4>
+            <p class="text-gpla-gold text-sm">{speaker.title}</p>
+            <span class="text-white/60 text-xs">{speaker.subtitle}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Summit Overview -->
+  <section class="px-12 py-24">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-gpla-navy text-[48px] mb-8">ABOUT SUMMIT 2025</h2>
+      <p class="text-gray-600 text-lg leading-relaxed max-w-[800px]">
+        The 2025 Guild Leaders' Annual Summit focused on "Democratic Transformation" and brought together over 700 student leaders from across East Africa. This year's summit expanded regional representation and strengthened cross-border collaboration among Guild Presidents.
+      </p>
+    </div>
+  </section>
+
+  <!-- Key Outcomes -->
+  <section class="px-12 py-24 bg-gpla-light">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-gpla-navy text-[48px] mb-12">KEY OUTCOMES</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-gpla-navy p-6 rounded-lg text-center">
+          <div class="font-display text-[48px] text-white">01</div>
+          <p class="text-white text-sm mt-2">Regional Integration Framework</p>
+        </div>
+        <div class="bg-gpla-navy p-6 rounded-lg text-center">
+          <div class="font-display text-[48px] text-white">02</div>
+          <p class="text-white text-sm mt-2">Cross-Border Mentorship Network</p>
+        </div>
+        <div class="bg-gpla-navy p-6 rounded-lg text-center">
+          <div class="font-display text-[48px] text-white">03</div>
+          <p class="text-white text-sm mt-2">Youth Political Participation Initiative</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Embedded PDF -->
+  <section class="px-12 py-24">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-gpla-navy text-[48px] mb-8">SUMMIT REPORT 2025</h2>
+      <iframe src="/reports/summit-2025.pdf" width="100%" height="700px" title="GPLA Summit Report 2025" class="rounded-lg border border-gray-200"></iframe>
+      <div class="mt-8">
+        <a href="/reports/summit-2025.pdf" download class="bg-gpla-green text-white px-8 py-4 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
+          Download Report 2025 →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-gpla-navy px-12 py-16 text-center">
+    <h3 class="font-display text-white text-[48px] mb-5">View 2026 Summit</h3>
+    <a href="/summit/2026" class="bg-gpla-green text-white px-10 py-5 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
+      View 2026 Summit →
+    </a>
+  </section>
+
+  <Footer />
+</Base>

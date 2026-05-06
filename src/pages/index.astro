@@ -1,0 +1,181 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Home">
+  <Navbar />
+  
+  <!-- Hero -->
+  <section class="min-h-screen bg-gpla-navy px-12 py-32 relative overflow-hidden flex items-center">
+    <div class="absolute bottom-0 right-0 w-[45%] h-full bg-gpla-green" style="clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);"></div>
+    <div class="relative z-10 max-w-[55%]">
+      <p class="text-gpla-green text-sm font-semibold uppercase tracking-widest mb-4">Est. Makerere University, Kampala</p>
+      <h1 class="font-display text-white text-[96px] leading-[0.95] mb-6">
+        SHAPING<br />
+        EAST AFRICA'S<br />
+        NEXT LEADERS.
+      </h1>
+      <p class="text-white/85 text-lg max-w-[500px] mb-8 leading-relaxed">
+        Equipping outgoing Guild Presidents with the knowledge, values, and networks to transform governance across East Africa.
+      </p>
+      <div class="flex gap-4">
+        <a href="/programs" class="bg-gpla-green text-white px-8 py-4 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
+          Our Programs
+        </a>
+        <a href="/summit" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold inline-block hover:bg-white hover:text-gpla-navy transition-all">
+          2024 Summit Report
+        </a>
+      </div>
+    </div>
+    <div class="relative z-10 text-center" style="right: 8%; position: absolute; top: 50%; transform: translateY(-50%);">
+      <div class="font-display text-[140px] text-white leading-none">700+</div>
+      <div class="text-white/80 text-base">Leaders Convened</div>
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <section class="bg-gpla-green px-12 py-16">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div>
+        <div class="font-display text-[64px] text-white">700+</div>
+        <div class="text-white/85 text-sm">Former Leaders Convened</div>
+      </div>
+      <div>
+        <div class="font-display text-[64px] text-white">4</div>
+        <div class="text-white/85 text-sm">Flagship Programs</div>
+      </div>
+      <div>
+        <div class="font-display text-[64px] text-white">6</div>
+        <div class="text-white/85 text-sm">Countries Represented</div>
+      </div>
+      <div>
+        <div class="font-display text-[64px] text-white">1</div>
+        <div class="text-white/85 text-sm">Regional Summit Annually</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="px-12 py-24 bg-gpla-light">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div class="bg-gpla-navy p-12 relative">
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-gpla-green;"></div>
+        <p class="text-white text-2xl italic leading-relaxed">"History has been made."</p>
+        <cite class="block mt-6 text-gpla-gold text-base not-italic">— Demiano Masesa, Executive Director, GPLA</cite>
+      </div>
+      <div>
+        <p class="text-gpla-green text-sm font-semibold uppercase tracking-widest mb-3">WHO WE ARE</p>
+        <h2 class="font-display text-gpla-navy text-[48px] leading-tight mb-5">Forging Leaders for a Democratic East Africa</h2>
+        <p class="text-gray-600 text-base leading-relaxed mb-6">
+          The Guild Presidents Leadership Academy (GPLA) is a prestigious regional institution based at Makerere University, Uganda — the birthplace of African student activism.
+        </p>
+        <p class="text-gray-600 text-base leading-relaxed mb-6">
+          We've convened over 700 youth leaders from 6 countries, hosting sitting Vice Presidents, former Heads of State, EU Ambassadors, and Electoral Commission Chairpersons.
+        </p>
+        <a href="/about" class="text-gpla-green font-semibold inline-flex items-center gap-2">
+          Read Our Full Story →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pattern Divider Thin -->
+  <div class="h-10 w-full" style="background: linear-gradient(90deg, #389a29 0%, #389a29 16%, #132d82 16%, #132d82 32%, #F5A623 32%, #F5A623 48%, #ffffff 48%, #ffffff 64%, #389a29 64%, #389a29 80%, #132d82 80%, #132d82 100%);"></div>
+
+  <!-- Programs -->
+  <section class="px-12 py-24">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-gpla-navy text-[48px] text-center mb-16">OUR PROGRAMS</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-gpla-navy p-10 rounded-xl hover:-translate-y-1.5 hover:shadow-2xl transition-all cursor-pointer">
+          <div class="w-14 h-14 bg-white/15 rounded-lg flex items-center justify-center text-3xl mb-5">🔥</div>
+          <h3 class="font-display text-[28px] text-white mb-3">Transformational Leadership Bootcamp</h3>
+          <p class="text-white/85 text-base leading-relaxed mb-4">A rigorous 5-day residential program building essential leadership skills for effective student governance.</p>
+          <a href="/programs" class="text-white font-semibold text-sm inline-flex items-center gap-2">Learn More →</a>
+        </div>
+        <div class="bg-gpla-green p-10 rounded-xl hover:-translate-y-1.5 hover:shadow-2xl transition-all cursor-pointer">
+          <div class="w-14 h-14 bg-white/15 rounded-lg flex items-center justify-center text-3xl mb-5">⚖️</div>
+          <h3 class="font-display text-[28px] text-white mb-3">Policy & Governance Incubation Lab</h3>
+          <p class="text-white/85 text-base leading-relaxed mb-4">8-week intensive program building practical policy analysis and advocacy skills.</p>
+          <a href="/programs" class="text-white font-semibold text-sm inline-flex items-center gap-2">Learn More →</a>
+        </div>
+        <div class="bg-gpla-navy p-10 rounded-xl hover:-translate-y-1.5 hover:shadow-2xl transition-all cursor-pointer">
+          <div class="w-14 h-14 bg-white/15 rounded-lg flex items-center justify-center text-3xl mb-5">⭐</div>
+          <h3 class="font-display text-[28px] text-white mb-3">HERPower Fellowship</h3>
+          <p class="text-white/85 text-base leading-relaxed mb-4">Specialized fellowship for young women passionate about political leadership.</p>
+          <a href="/programs" class="text-white font-semibold text-sm inline-flex items-center gap-2">Learn More →</a>
+        </div>
+        <div class="bg-gpla-green p-10 rounded-xl hover:-translate-y-1.5 hover:shadow-2xl transition-all cursor-pointer">
+          <div class="w-14 h-14 bg-white/15 rounded-lg flex items-center justify-center text-3xl mb-5">🎤</div>
+          <h3 class="font-display text-[28px] text-white mb-3">Guild Leaders' Summit + Guild Voice</h3>
+          <p class="text-white/85 text-base leading-relaxed mb-4">Annual flagship gathering bringing together Guild Presidents from across East Africa.</p>
+          <a href="/summit" class="text-white font-semibold text-sm inline-flex items-center gap-2">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pattern Divider Bold -->
+  <div class="h-20 w-full" style="background: linear-gradient(90deg, #389a29 0%, #389a29 12%, #132d82 12%, #132d82 24%, #F5A623 24%, #F5A623 36%, #389a29 36%, #389a29 48%, #ffffff 48%, #ffffff 60%, #132d82 60%, #132d82 72%, #F5A623 72%, #F5A623 84%, #389a29 84%, #389a29 100%);"></div>
+
+  <!-- Summit Highlight -->
+  <section class="px-12 py-24 bg-gpla-navy relative overflow-hidden">
+    <div class="max-w-6xl mx-auto relative z-10">
+      <p class="text-gpla-gold text-sm font-semibold uppercase tracking-widest">GUILD LEADERS' ANNUAL SUMMIT</p>
+      <h2 class="font-display text-white text-[56px] leading-tight my-3">2024 SUMMIT<br />HIGHLIGHTS</h2>
+      <div class="font-display text-[140px] text-gpla-gold absolute right-[10%] top-1/2 -translate-y-1/2 opacity-30 leading-none">2024</div>
+      <p class="text-white/70 text-sm mb-10">Held at Makerere University · April 15, 2024 · 700+ Attendees</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="text-center">
+          <div class="w-24 h-24 rounded-full bg-gradient-to-br from-gpla-gold to-gpla-green mx-auto mb-3"></div>
+          <p class="text-white font-semibold text-sm">HE. Jakaya Mrisho Kikwete</p>
+          <p class="text-gpla-gold text-xs">Former President, Tanzania</p>
+        </div>
+        <div class="text-center">
+          <div class="w-24 h-24 rounded-full bg-gradient-to-br from-gpla-gold to-gpla-green mx-auto mb-3"></div>
+          <p class="text-white font-semibold text-sm">HE. Jessica Alupo</p>
+          <p class="text-gpla-gold text-xs">Vice President, Uganda</p>
+        </div>
+        <div class="text-center">
+          <div class="w-24 h-24 rounded-full bg-gradient-to-br from-gpla-gold to-gpla-green mx-auto mb-3"></div>
+          <p class="text-white font-semibold text-sm">Justice Simon Byabakama</p>
+          <p class="text-gpla-gold text-xs">EC Chairman, Uganda</p>
+        </div>
+      </div>
+      <a href="/summit" class="bg-gpla-green text-white px-8 py-4 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
+        Download Summit Report 2024 →
+      </a>
+    </div>
+  </section>
+
+  <!-- Pattern Divider Thin -->
+  <div class="h-10 w-full" style="background: linear-gradient(90deg, #389a29 0%, #389a29 16%, #132d82 16%, #132d82 32%, #F5A623 32%, #F5A623 48%, #ffffff 48%, #ffffff 64%, #389a29 64%, #389a29 80%, #132d82 80%, #132d82 100%);"></div>
+
+  <!-- Partners -->
+  <section class="px-12 py-24">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-gpla-navy text-[48px] text-center mb-12">OUR PARTNERS</h2>
+      <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
+        {['GIZ', 'EU', 'German Co.', 'ActionAid', 'WFD', 'Akina Mama', 'UYONET', 'UNiFOG', 'NEC', 'CivLegacy', 'Julius Nyerere', 'NDP'].map(partner => (
+          <div class="bg-gray-100 p-5 rounded-lg text-center font-display text-lg text-gray-400 hover:bg-gpla-navy hover:text-white transition-all">
+            {partner}
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-gray-400 text-sm mt-8">Supported by leading international development organisations</p>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="bg-gpla-green px-12 py-20 text-center">
+    <h2 class="font-display text-white text-[72px] mb-4">ARE YOU A GUILD LEADER?</h2>
+    <p class="text-white/85 text-xl mb-8">Join the movement. Apply for the next cohort.</p>
+    <a href="/contact" class="bg-white text-gpla-navy px-10 py-5 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
+      Apply Now
+    </a>
+  </section>
+
+  <Footer />
+</Base>

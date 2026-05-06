@@ -1,0 +1,159 @@
+---
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Base title="Summit 2026" description="Guild Leaders' Annual Summit 2026 - Save the date!">
+  <Navbar />
+  
+  <!-- Hero -->
+  <section class="min-h-screen bg-gpla-navy px-12 pt-32 pb-24 relative overflow-hidden flex items-center">
+    <div class="absolute bottom-0 right-0 w-[40%] h-full bg-gpla-green" style="clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);"></div>
+    <div class="max-w-6xl mx-auto relative z-10 w-full">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="bg-gpla-gold text-gpla-navy text-sm font-semibold uppercase tracking-widest px-4 py-2 rounded-full inline-block mb-4">
+            UPCOMING · JULY 2026
+          </p>
+          <h1 class="font-display text-white text-[72px] leading-tight">
+            GUILD LEADERS'<br />ANNUAL SUMMIT<br />2026
+          </h1>
+          <p class="text-white/85 text-xl mt-6 max-w-[500px]">
+            East Africa's Premier Youth Leadership Convening — bringing together Guild Presidents, policymakers, and regional leaders for a landmark summit on democratic transformation.
+          </p>
+          <p class="text-gpla-gold mt-4">Date and venue to be announced · Kampala, Uganda</p>
+        </div>
+        
+        <!-- Countdown Timer -->
+        <div class="text-center">
+          <p class="text-gpla-green text-sm font-semibold uppercase tracking-widest mb-6">COUNTDOWN</p>
+          <div class="grid grid-cols-3 gap-4">
+            <div class="bg-white/10 p-6 rounded-xl">
+              <div id="countdown-days" class="font-display text-[64px] text-white leading-none">000</div>
+              <div class="text-white/70 text-sm">Days</div>
+            </div>
+            <div class="bg-white/10 p-6 rounded-xl">
+              <div id="countdown-hours" class="font-display text-[64px] text-white leading-none">00</div>
+              <div class="text-white/70 text-sm">Hours</div>
+            </div>
+            <div class="bg-white/10 p-6 rounded-xl">
+              <div id="countdown-minutes" class="font-display text-[64px] text-white leading-none">00</div>
+              <div class="text-white/70 text-sm">Minutes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About 2026 -->
+  <section class="px-12 py-24">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-gpla-navy text-[48px] mb-8">SUMMIT 2026</h2>
+      <p class="text-gray-600 text-lg leading-relaxed max-w-[800px]">
+        The 2026 Guild Leaders' Annual Summit promises to be the biggest gathering yet. Building on the success of previous summits, we'll bring together over 700 Guild Presidents from across East Africa for a landmark event on democratic transformation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Save the Date Form -->
+  <section class="px-12 py-24 bg-gpla-green">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-display text-white text-[48px] text-center mb-4">SAVE THE DATE</h2>
+      <p class="text-white/85 text-center text-lg mb-8">Register your interest to stay updated on summit details.</p>
+      
+      <!-- TODO: replace with Formspree form ID from formspree.io -->
+      <form action="https://formspree.io/f/FORM_ID" method="POST" class="bg-white p-10 rounded-xl">
+        <input type="hidden" name="_next" value="/summit/2026?registered=true" />
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="name" class="block text-gray-600 text-sm font-medium mb-2">Full Name</label>
+            <input type="text" id="name" name="name" required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gpla-green focus:border-transparent" />
+          </div>
+          <div>
+            <label for="email" class="block text-gray-600 text-sm font-medium mb-2">Email Address</label>
+            <input type="email" id="email" name="email" required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gpla-green focus:border-transparent" />
+          </div>
+          <div>
+            <label for="institution" class="block text-gray-600 text-sm font-medium mb-2">Institution / Organization</label>
+            <input type="text" id="institution" name="institution" required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gpla-green focus:border-transparent" />
+          </div>
+          <div>
+            <label for="country" class="block text-gray-600 text-sm font-medium mb-2">Country</label>
+            <select id="country" name="country" required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gpla-green focus:border-transparent">
+              <option value="">Select Country</option>
+              <option value="Uganda">Uganda</option>
+              <option value="Kenya">Kenya</option>
+              <option value="Tanzania">Tanzania</option>
+              <option value="Rwanda">Rwanda</option>
+              <option value="Burundi">Burundi</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+        
+        <button type="submit" class="w-full bg-gpla-green text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl hover:-translate-y-0.5 transition-all">
+          Register Interest
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Thank You Banner (shown when registered) -->
+  <section id="thank-you" class="hidden px-12 py-24 bg-gpla-light">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="text-6xl mb-4">🎉</div>
+      <h2 class="font-display text-gpla-navy text-[48px] mb-4">You're Registered!</h2>
+      <p class="text-gray-600 text-lg">We'll be in touch with more details about the 2026 Summit.</p>
+    </div>
+  </section>
+
+  <!-- Back to Summits -->
+  <section class="px-12 py-16 text-center">
+    <a href="/summit" class="text-gpla-green font-semibold inline-flex items-center gap-2">
+      ← View Past Summits
+    </a>
+  </section>
+
+  <Footer />
+</Base>
+
+<script>
+  // Countdown to July 1, 2026
+  const targetDate = new Date('2026-07-01T09:00:00').getTime();
+  
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+    
+    if (distance < 0) {
+      document.getElementById('countdown-days')!.textContent = '000';
+      document.getElementById('countdown-hours')!.textContent = '00';
+      document.getElementById('countdown-minutes')!.textContent = '00';
+      return;
+    }
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    
+    document.getElementById('countdown-days')!.textContent = days.toString().padStart(3, '0');
+    document.getElementById('countdown-hours')!.textContent = hours.toString().padStart(2, '0');
+    document.getElementById('countdown-minutes')!.textContent = minutes.toString().padStart(2, '0');
+  }
+  
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+  
+  // Show thank you if registered
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('registered') === 'true') {
+    document.getElementById('thank-you')?.classList.remove('hidden');
+  }
+</script>

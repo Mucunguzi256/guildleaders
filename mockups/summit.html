@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summit | Guild Presidents Leadership Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --green: #389a29; --navy: #132d82; --white: #ffffff; --black: #000000; --gold: #F5A623; --light-bg: #f0f4ff; --font-display: 'Bebas Neue', sans-serif; --font-body: 'DM Sans', sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-body); background: var(--white); color: var(--black); }
+    .pattern-divider-bold { height: 80px; background: linear-gradient(90deg, var(--green) 0%, var(--green) 12%, var(--navy) 12%, var(--navy) 24%, var(--gold) 24%, var(--gold) 36%, var(--green) 36%, var(--green) 48%, var(--white) 48%, var(--white) 60%, var(--navy) 60%, var(--navy) 72%, var(--gold) 72%, var(--gold) 84%, var(--green) 84%, var(--green) 100%); }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; height: 72px; background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .logo-circle { width: 48px; height: 48px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-family: var(--font-display); font-size: 18px; }
+    .logo-text { font-family: var(--font-display); font-size: 24px; color: var(--navy); }
+    .logo-tagline { font-size: 11px; color: var(--green); font-weight: 500; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-weight: 500; font-size: 14px; }
+    .nav-cta { background: var(--green); color: var(--white); padding: 12px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; }
+    .hero { min-height: 80vh; background: var(--navy); padding: 140px 48px 80px; position: relative; }
+    .hero::after { content: ''; position: absolute; bottom: 0; right: 0; width: 35%; height: 100%; background: var(--green); clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%); }
+    .hero h1 { font-family: var(--font-display); font-size: 64px; color: var(--white); position: relative; z-index: 1; line-height: 1.1; }
+    .hero-year { font-family: var(--font-display); font-size: 160px; color: var(--gold); position: absolute; right: 15%; top: 40%; z-index: 1; line-height: 1; }
+    .hero-quote { font-style: italic; color: rgba(255,255,255,0.85); font-size: 20px; margin-top: 24px; max-width: 600px; position: relative; z-index: 1; }
+    .section { padding: 80px 48px; }
+    .section-navy { background: var(--navy); color: var(--white); }
+    .section-light { background: var(--white); }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section h2 { font-family: var(--font-display); font-size: 48px; color: var(--navy); margin-bottom: 40px; }
+    .section-navy h2 { color: var(--white); }
+    .speakers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+    .speaker { text-align: center; }
+    .speaker-avatar { width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--green)); margin: 0 auto 16px; }
+    .speaker h4 { font-family: var(--font-display); font-size: 20px; color: var(--navy); }
+    .speaker-navy h4 { color: var(--white); }
+    .speaker p { color: var(--green); font-size: 14px; }
+    .speaker span { color: #666; font-size: 13px; }
+    .outcomes-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
+    .outcome { background: var(--green); padding: 24px; border-radius: 8px; text-align: center; }
+    .outcome-num { font-family: var(--font-display); font-size: 48px; color: var(--white); }
+    .outcome p { color: var(--white); font-size: 14px; margin-top: 8px; }
+    .stats-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .chart-box { padding: 32px; background: var(--light-bg); border-radius: 8px; }
+    .chart-box h4 { font-family: var(--font-display); font-size: 24px; color: var(--navy); margin-bottom: 24px; }
+    .bar-chart { display: flex; flex-direction: column; gap: 12px; }
+    .bar-row { display: flex; align-items: center; gap: 12px; }
+    .bar-label { width: 120px; font-size: 14px; }
+    .bar { height: 32px; background: var(--green); border-radius: 4px; }
+    .bar-navy { background: var(--navy); }
+    .pie-chart { display: flex; align-items: center; gap: 32px; }
+    .pie { width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(var(--navy) 0% 55.8%, var(--green) 55.8% 100%); }
+    .pie-legend { display: flex; flex-direction: column; gap: 12px; }
+    .pie-legend div { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+    .pie-dot { width: 16px; height: 16px; border-radius: 50%; }
+    .cta-section { background: var(--navy); padding: 60px; text-align: center; }
+    .cta-section h3 { font-family: var(--font-display); font-size: 48px; color: var(--white); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--green); color: var(--white); padding: 16px 40px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 16px; }
+    .footer { background: var(--navy); padding: 60px 48px 30px; color: var(--white); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; max-width: 1200px; margin: 0 auto; }
+    .footer-logo { font-family: var(--font-display); font-size: 32px; }
+    .footer p { opacity: 0.8; font-size: 14px; }
+    .footer h5 { font-family: var(--font-display); font-size: 18px; margin-bottom: 20px; }
+    .footer a { display: block; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; margin-bottom: 10px; }
+    .copyright { text-align: center; padding-top: 30px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; opacity: 0.6; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo"><div class="logo-circle">GPLA</div><div><div class="logo-text">GPLA</div><div class="logo-tagline">Guild Presidents Leadership Academy</div></div></div>
+    <div class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="summit.html">Summit</a><a href="news.html">News</a><a href="contact.html">Contact</a></div>
+    <a href="#" class="nav-cta">Apply Now</a>
+  </nav>
+
+  <section class="hero">
+    <h1>GUILD LEADERS'<br>ANNUAL SUMMIT</h1>
+    <div class="hero-year">2024</div>
+    <p class="hero-quote">"Legacy and Leadership Continuum: The Power of Knowledge and Cross-Generational Learning"</p>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <h2>ABOUT THE SUMMIT</h2>
+      <p style="font-size: 18px; line-height: 1.8; max-width: 800px;">The Guild Leaders' Annual Summit is GPLA's flagship event, bringing together over 700 student leaders from across East Africa. Held annually at Makerere University, the summit serves as a platform for knowledge sharing, networking, and capacity building for the next generation of African leaders.</p>
+    </div>
+  </section>
+
+  <section class="section section-navy">
+    <div class="container">
+      <h2>KEY SPEAKERS</h2>
+      <div class="speakers-grid">
+        <div class="speaker"><div class="speaker-avatar"></div><h4>HE. Jakaya Mrisho Kikwete</h4><p>Chief Guest</p><span>Former President, Tanzania</span></div>
+        <div class="speaker"><div class="speaker-avatar"></div><h4>HE. Jessica Alupo</h4><p>Guest of Honor</p><span>Vice President, Uganda</span></div>
+        <div class="speaker"><div class="speaker-avatar"></div><h4>Justice Simon Byabakama</h4><p>Keynote Speaker</p><span>EC Chairman, Uganda</span></div>
+        <div class="speaker"><div class="speaker-avatar"></div><h4>Rt. Hon. Ruhakana Rugunda</h4><p>Panelist</p><span>Former PM, Uganda</span></div>
+        <div class="speaker"><div class="speaker-avatar"></div><h4>Hon. Mathew Rukikaire</h4><p>Panelist</p><span>Former Minister, Kenya</span></div>
+        <div class="speaker"><div class="speaker-avatar"></div><h4>Prof. Sarah Ssali</h4><p>Facilitator</p><span>Makerere University</span></div>
+        <div class="speaker"><div class="speaker-avatar"></div><h4>HE. Jan Sadek</h4><p>Special Guest</p><span>EU Ambassador to Uganda</span></div>
+        <div class="speaker"><div class="speaker-avatar"></div><h4>Demiano Masesa</h4><p>Executive Director</h4><span>GPLA</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pattern-divider-bold"></div>
+
+  <section class="section section-light">
+    <div class="container">
+      <h2>KEY OUTCOMES</h2>
+      <div class="outcomes-grid">
+        <div class="outcome"><div class="outcome-num">01</div><p>Regional Youth Policy Framework</p></div>
+        <div class="outcome"><div class="outcome-num">02</div><p>Cross-Border Leadership Network</p></div>
+        <div class="outcome"><div class="outcome-num">03</div><p>Civic Engagement Toolkit</p></div>
+        <div class="outcome"><div class="outcome-num">04</div><p>Mentorship Program Launch</p></div>
+        <div class="outcome"><div class="outcome-num">05</div><p>Annual Action Plan</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <h2>GENDER STATISTICS</h2>
+      <div class="stats-charts">
+        <div class="chart-box"><h4>Guild Representation by Gender</h4><div class="bar-chart"><div class="bar-row"><span class="bar-label">Male</span><div class="bar bar-navy" style="width: 55.8%"></div><span>55.8%</span></div><div class="bar-row"><span class="bar-label">Female</span><div class="bar" style="width: 44.2%"></div><span>44.2%</span></div></div></div>
+        <div class="chart-box"><h4>Total Gender Distribution</h4><div class="pie-chart"><div class="pie"></div><div class="pie-legend"><div><div class="pie-dot" style="background: var(--navy)"></div><span>Male: 55.8%</span></div><div><div class="pie-dot" style="background: var(--green)"></div><span>Female: 44.2%</span></div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h3>Download the Full Summit Report</h3>
+    <a href="#" class="cta-btn">Download Report 2024 →</a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-grid"><div><div class="footer-logo">GPLA</div><p>Empowering ethical youth leaders for democratic transformation.</p></div><div><h5>Quick Links</h5><a href="about.html">About</a><a href="programs.html">Programs</a></div><div><h5>Contact</h5><p>info@guildleaders.academy</p></div></div>
+    <div class="copyright">© 2026 Guild Presidents Leadership Academy.</div>
+  </footer>
+</body>
+</html>

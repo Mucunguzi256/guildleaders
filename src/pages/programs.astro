@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const programs = [
+  {
+    icon: '🔥',
+    title: 'Transformational Leadership Bootcamp',
+    description: 'A rigorous 5-day residential program building essential leadership skills for effective student governance.',
+    color: 'navy'
+  },
+  {
+    icon: '⚖️',
+    title: 'Policy & Governance Incubation Lab',
+    description: '8-week intensive program building practical policy analysis and advocacy skills.',
+    color: 'green'
+  },
+  {
+    icon: '⭐',
+    title: 'HERPower Fellowship',
+    description: 'Specialized fellowship for young women passionate about political leadership.',
+    color: 'navy'
+  },
+  {
+    icon: '🎤',
+    title: "Guild Leaders' Summit + Guild Voice",
+    description: 'Annual flagship gathering bringing together Guild Presidents from across East Africa.',
+    color: 'green'
+  }
+];
+---
+
+<Base title="Programs" description="Our flagship programs that shape East Africa's next democratic leaders.">
+  <Navbar />
+  
+  <!-- Hero -->
+  <section class="min-h-[60vh] bg-gpla-navy px-12 pt-32 pb-24 relative overflow-hidden">
+    <div class="absolute bottom-0 right-0 w-[45%] h-full bg-gpla-green" style="clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);"></div>
+    <div class="max-w-6xl mx-auto relative z-10">
+      <p class="text-gpla-green text-sm font-semibold uppercase tracking-widest mb-4">PROGRAMS</p>
+      <h1 class="font-display text-white text-[72px] leading-tight">
+        Shape Your<br />
+        Leadership Future
+      </h1>
+    </div>
+  </section>
+
+  <!-- Programs Grid -->
+  <section class="px-12 py-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {programs.map(program => (
+          <div class={`p-10 rounded-xl hover:-translate-y-1.5 hover:shadow-2xl transition-all cursor-pointer ${program.color === 'navy' ? 'bg-gpla-navy' : 'bg-gpla-green'}`}>
+            <div class="w-14 h-14 bg-white/15 rounded-lg flex items-center justify-center text-3xl mb-5">{program.icon}</div>
+            <h3 class="font-display text-[28px] text-white mb-3">{program.title}</h3>
+            <p class="text-white/85 text-base leading-relaxed mb-4">{program.description}</p>
+            <span class="text-white font-semibold text-sm inline-flex items-center gap-2">Learn More →</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-gpla-green px-12 py-20 text-center">
+    <h2 class="font-display text-white text-[56px] mb-4">Ready to Lead?</h2>
+    <p class="text-white/85 text-xl mb-8">Apply for the next cohort and transform your leadership journey.</p>
+    <a href="/contact" class="bg-white text-gpla-navy px-10 py-5 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
+      Apply Now
+    </a>
+  </section>
+
+  <Footer />
+</Base>
