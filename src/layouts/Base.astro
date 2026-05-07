@@ -301,6 +301,34 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       .outcomes-list li { padding: 6px 0; font-size: 14px; display: flex; align-items: flex-start; gap: 8px; }
       .outcomes-list li::before { content: '✓'; color: #F5A623; }
       
+      /* Auto-advancing Carousel - STEP 3 */
+      .gpla-carousel { position: relative; width: 100%; }
+      .gpla-carousel__track { position: relative; width: 100%; min-height: 320px; }
+      @media (min-width: 768px) { .gpla-carousel__track { min-height: 380px; } }
+      
+      .gpla-carousel__slide {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(1.04);
+        transition: opacity 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: opacity, transform;
+      }
+      .gpla-carousel__slide.is-active { opacity: 1; pointer-events: auto; transform: scale(1); z-index: 1; }
+      .gpla-carousel__slide.is-leaving { opacity: 0; transform: scale(1.04); z-index: 0; pointer-events: none; }
+      
+      .gpla-carousel__dots { display: flex; justify-content: center; gap: 8px; margin-top: 28px; padding-bottom: 4px; }
+      .gpla-carousel__dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; border: none; cursor: pointer; padding: 0; transition: background 300ms ease, width 300ms ease, border-radius 300ms ease; }
+      .gpla-carousel__dot.is-active { background: #132d82; width: 24px; border-radius: 4px; }
+      .gpla-carousel:hover .gpla-carousel__dot.is-active { box-shadow: 0 0 0 2px rgba(19, 45, 130, 0.25); }
+      
+      @media (prefers-reduced-motion: reduce) {
+        .gpla-carousel__slide { transition: opacity 200ms ease; transform: none !important; }
+        .gpla-carousel__slide.is-leaving { transform: none !important; }
+      }
+      
       /* Click-based Tabs (CrewAI Style) - TASK 1 */
       .summits-tabs-section { background: #F7F6F3; }
       .summit-tabs-nav {
