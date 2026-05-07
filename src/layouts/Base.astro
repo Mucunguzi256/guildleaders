@@ -85,33 +85,94 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       .section-heading { font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1.1; color: #132d82; margin-bottom: 48px; }
       .summits-right { position: relative; overflow: hidden; }
       
-      .summit-panel { position: absolute; inset: 0; background: #132d82; color: #fff; opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease; display: flex; align-items: center; padding: 60px; pointer-events: none; }
-      .summit-panel.active { opacity: 1; transform: translateY(0); pointer-events: all; }
+      /* Summit Panel Transitions - slower, smoother with cubic-bezier */
+      .summit-panel { 
+        position: absolute; inset: 0; 
+        color: #fff; 
+        opacity: 0; transform: translateY(30px) scale(0.98); 
+        transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), background 0.6s ease;
+        display: flex; align-items: center; padding: 60px; 
+        pointer-events: none; 
+      }
+      .summit-panel.active { 
+        opacity: 1; transform: translateY(0) scale(1); 
+        pointer-events: all; 
+      }
+      
+      /* Distinct colors per summit - professional, varied palette */
+      #summit-2026 { background: linear-gradient(135deg, #0a1628 0%, #132d82 60%, #1a3d5c 100%); }
+      #summit-2025 { background: linear-gradient(135deg, #0d2818 0%, #1a4d2e 50%, #389a29 100%); }
+      #summit-2024 { background: linear-gradient(135deg, #2d1f0d 0%, #5c3d12 50%, #8b5a2b 100%); }
       
       .panel-inner { max-width: 600px; }
       .panel-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; display: block; margin-bottom: 16px; }
       .panel-title { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1.05; margin-bottom: 20px; }
       .panel-theme { font-size: 18px; font-style: italic; opacity: 0.85; margin-bottom: 32px; line-height: 1.5; }
-      .panel-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; padding: 24px; background: rgba(255,255,255,0.1); border-radius: 12px; }
+      .panel-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; padding: 24px; background: rgba(255,255,255,0.08); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
       .meta-label { font-size: 11px; opacity: 0.6; display: block; letter-spacing: 0.08em; text-transform: uppercase; }
       .meta-value { font-family: 'Bebas Neue', sans-serif; font-size: 24px; display: block; margin: 4px 0 2px; }
       .meta-sub { font-size: 13px; opacity: 0.7; display: block; }
       .panel-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-      .panel-cta { padding: 12px 28px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; transition: transform 0.2s ease, opacity 0.2s ease; }
-      .panel-cta:hover { transform: translateY(-2px); opacity: 0.9; }
+      .panel-cta { padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, opacity 0.3s ease; }
+      .panel-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,0.25); }
       .panel-cta.primary { background: #F5A623; color: #132d82; }
-      .panel-cta.ghost { border: 2px solid rgba(255,255,255,0.4); color: #fff; }
+      .panel-cta.ghost { border: 2px solid rgba(255,255,255,0.5); color: #fff; background: rgba(255,255,255,0.05); }
+      .panel-cta.ghost:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
       
-      .summit-indicators { display: flex; flex-direction: column; gap: 8px; }
-      .summit-indicator { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; opacity: 0.4; transition: opacity 0.4s ease; cursor: pointer; }
-      .summit-indicator.active { opacity: 1; }
-      .indicator-line { width: 3px; height: 50px; background: #ddd; border-radius: 2px; transition: background 0.4s ease; flex-shrink: 0; margin-top: 4px; }
-      .summit-indicator.active .indicator-line { background: #389a29; }
-      .indicator-year { font-family: 'Bebas Neue', sans-serif; font-size: 36px; line-height: 1; color: #132d82; display: block; }
+      /* Summit Navigation - clearer, more tactile */
+      .summit-indicators { display: flex; flex-direction: column; gap: 4px; }
+      .summit-indicator { 
+        display: flex; align-items: flex-start; gap: 16px; 
+        padding: 20px 16px; 
+        opacity: 0.35; 
+        transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, transform 0.3s ease;
+        cursor: pointer; 
+        border-radius: 12px;
+        margin: 0 -8px;
+      }
+      .summit-indicator:hover { 
+        opacity: 0.6; 
+        background: rgba(19, 45, 130, 0.04);
+        transform: translateX(4px);
+      }
+      .summit-indicator.active { 
+        opacity: 1; 
+        background: rgba(56, 154, 41, 0.08);
+        transform: translateX(8px);
+      }
+      .indicator-line { 
+        width: 4px; height: 48px; 
+        background: #d0d0d0; 
+        border-radius: 3px; 
+        transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1), width 0.3s ease;
+        flex-shrink: 0; 
+        margin-top: 4px; 
+      }
+      .summit-indicator.active .indicator-line { 
+        background: #389a29; 
+        width: 5px;
+        box-shadow: 0 0 12px rgba(56, 154, 41, 0.4);
+      }
+      .indicator-year { 
+        font-family: 'Bebas Neue', sans-serif; font-size: 38px; line-height: 1; 
+        color: #132d82; display: block; 
+        transition: color 0.4s ease;
+      }
       .summit-indicator.active .indicator-year { color: #389a29; }
       .indicator-name { font-size: 13px; color: #5C5C52; display: block; margin-top: 4px; }
-      .indicator-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 999px; margin-top: 6px; }
+      .indicator-badge { 
+        display: inline-block; font-size: 9px; font-weight: 700; 
+        letter-spacing: 0.08em; padding: 4px 10px; border-radius: 999px; margin-top: 8px; 
+        transition: transform 0.3s ease;
+      }
       .indicator-badge.upcoming { background: #F5A623; color: #132d82; }
+      .summit-indicator.active .indicator-badge.upcoming { 
+        animation: badge-pulse 2s ease-in-out infinite;
+      }
+      @keyframes badge-pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
       .summits-spacer { height: 100vh; }
       
       /* Scroll-driven Programs Section */
@@ -120,12 +181,25 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       .programs-left { background: #F7F6F3; padding: 60px 40px; display: flex; flex-direction: column; justify-content: center; }
       .programs-right { position: relative; overflow: hidden; }
       
-      .program-panel { position: absolute; inset: 0; background: #132d82; color: #fff; opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease, background 0.6s ease; display: flex; align-items: center; padding: 60px; pointer-events: none; }
-      .program-panel.active { opacity: 1; transform: translateY(0); pointer-events: all; }
-      #program-tlb { background: #132d82; }
-      #program-pgil { background: #389a29; }
-      #program-herpower { background: #7B1FA2; }
-      #program-summit { background: #0D3B27; }
+      /* Program Panel Transitions */
+      .program-panel { 
+        position: absolute; inset: 0; 
+        color: #fff; 
+        opacity: 0; transform: translateY(30px) scale(0.98); 
+        transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), background 0.6s ease;
+        display: flex; align-items: center; padding: 60px; 
+        pointer-events: none; 
+      }
+      .program-panel.active { 
+        opacity: 1; transform: translateY(0) scale(1); 
+        pointer-events: all; 
+      }
+      
+      /* Distinct professional color schemes for programs */
+      #program-tlb { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #132d82 100%); }
+      #program-pgil { background: linear-gradient(135deg, #14532d 0%, #15803d 50%, #22c55e 100%); }
+      #program-herpower { background: linear-gradient(135deg, #4a1d4e 0%, #7c3aed 50%, #a855f7 100%); }
+      #program-summit { background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #10b981 100%); }
       
       .program-tags { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
       .program-tag { background: rgba(255,255,255,0.15); padding: 6px 14px; border-radius: 999px; font-size: 12px; }
@@ -135,11 +209,36 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       .outcomes-list { list-style: none; padding: 0; margin: 0; }
       .outcomes-list li { padding: 6px 0; font-size: 14px; }
       
-      .program-indicators { display: flex; flex-direction: column; gap: 8px; }
-      .program-indicator { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; opacity: 0.4; transition: opacity 0.4s ease; cursor: pointer; }
-      .program-indicator.active { opacity: 1; }
-      .program-indicator .indicator-line { background: #ddd; }
-      .program-indicator.active .indicator-line { background: #F5A623; }
+      /* Program Navigation */
+      .program-indicators { display: flex; flex-direction: column; gap: 4px; }
+      .program-indicator { 
+        display: flex; align-items: flex-start; gap: 16px; 
+        padding: 20px 16px; 
+        opacity: 0.35; 
+        transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, transform 0.3s ease;
+        cursor: pointer; 
+        border-radius: 12px;
+        margin: 0 -8px;
+      }
+      .program-indicator:hover { 
+        opacity: 0.6; 
+        background: rgba(19, 45, 130, 0.04);
+        transform: translateX(4px);
+      }
+      .program-indicator.active { 
+        opacity: 1; 
+        background: rgba(245, 166, 35, 0.1);
+        transform: translateX(8px);
+      }
+      .program-indicator .indicator-line { 
+        background: #d0d0d0; 
+        transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1), width 0.3s ease;
+      }
+      .program-indicator.active .indicator-line { 
+        background: #F5A623; 
+        width: 5px;
+        box-shadow: 0 0 12px rgba(245, 166, 35, 0.4);
+      }
       .indicator-icon { font-size: 24px; display: block; margin-bottom: 4px; }
       .indicator-sub { font-size: 11px; color: #5C5C52; display: block; }
       .programs-spacer { height: 100vh; }
@@ -167,16 +266,105 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; }
       .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
       
-      /* Mobile */
+      /* Mobile Responsive */
       @media (max-width: 768px) {
         .summits-scroll-section, .programs-scroll-section { height: auto; }
-        .summits-sticky, .programs-sticky { position: static; grid-template-columns: 1fr; height: auto; }
-        .summits-right, .programs-right { height: 500px; position: relative; }
-        .summit-panel, .program-panel { padding: 32px 24px; }
-        .panel-title { font-size: 36px; }
-        .section-heading { font-size: 40px; }
-        .panel-meta { grid-template-columns: 1fr; }
+        .summits-sticky, .programs-sticky { 
+          position: static; 
+          grid-template-columns: 1fr; 
+          height: auto; 
+        }
+        
+        /* Left panel - navigation stacked */
+        .summits-left, .programs-left { 
+          padding: 32px 20px; 
+          order: 1;
+        }
+        .section-heading { font-size: 36px; margin-bottom: 24px; }
+        .section-label { font-size: 11px; }
+        
+        /* Indicators - horizontal scroll on mobile */
+        .summit-indicators, .program-indicators { 
+          flex-direction: row; 
+          overflow-x: auto; 
+          gap: 8px;
+          padding-bottom: 8px;
+          -webkit-overflow-scrolling: touch;
+          scroll-snap-type: x mandatory;
+        }
+        .summit-indicator, .program-indicator { 
+          flex: 0 0 auto;
+          min-width: 100px;
+          padding: 12px 16px;
+          scroll-snap-align: start;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .indicator-line { 
+          width: 32px; height: 3px; 
+          margin-top: 0;
+        }
+        .summit-indicator.active .indicator-line, 
+        .program-indicator.active .indicator-line { width: 32px; }
+        .indicator-year { font-size: 28px; }
+        .indicator-name { font-size: 11px; margin-top: 2px; }
+        .indicator-badge { font-size: 8px; padding: 2px 6px; margin-top: 4px; }
+        
+        /* Right panel - content */
+        .summits-right, .programs-right { 
+          height: 520px; 
+          position: relative; 
+          order: 2;
+        }
+        .summit-panel, .program-panel { 
+          padding: 28px 20px; 
+          display: flex;
+          align-items: flex-start;
+        }
+        .panel-inner { max-width: 100%; }
+        .panel-title { font-size: 28px; margin-bottom: 12px; }
+        .panel-tag { font-size: 10px; margin-bottom: 12px; }
+        .panel-theme { font-size: 14px; margin-bottom: 20px; }
+        .panel-meta { 
+          grid-template-columns: 1fr; 
+          gap: 16px; 
+          padding: 16px; 
+          margin-bottom: 20px;
+        }
+        .meta-value { font-size: 18px; }
+        .meta-label, .meta-sub { font-size: 10px; }
+        .panel-actions { flex-direction: column; gap: 10px; }
+        .panel-cta { 
+          padding: 12px 24px; 
+          font-size: 14px; 
+          text-align: center;
+        }
+        
+        /* Spacer */
+        .summits-spacer, .programs-spacer { height: 50vh; }
+        
+        /* Gallery */
         .gallery-grid { columns: 1; }
+      }
+      
+      /* Extra small devices */
+      @media (max-width: 480px) {
+        .summits-right, .programs-right { height: 480px; }
+        .panel-title { font-size: 24px; }
+        .section-heading { font-size: 28px; }
+      }
+      
+      /* Touch devices - larger tap targets */
+      @media (hover: none) {
+        .summit-indicator, .program-indicator { 
+          padding: 16px 20px; 
+        }
+        .panel-cta { 
+          min-height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
       }
     </style>
   </head>
