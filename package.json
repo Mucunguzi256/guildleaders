@@ -12,7 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/tailwind": "^5.1.5",
+    "@astrojs/tailwind": "^6.0.2",
     "astro": "^6.2.2",
     "pdfplumber": "^0.0.1-security",
     "tailwindcss": "^3.4.19"
