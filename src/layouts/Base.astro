@@ -29,8 +29,128 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style is:global>
+      :root {
+        --bg-base: #F7F6F3;
+        --bg-section-alt: #EFEDE8;
+        --bg-dark: #132d82;
+        --bg-green: #389a29;
+        --text-primary: #0D1B0A;
+        --text-muted: #5C5C52;
+      }
+      body { background-color: var(--bg-base); color: var(--text-primary); }
+      .bg-gpla-light { background-color: var(--bg-section-alt); }
+      
+      /* Ticker */
+      .announcement-ticker {
+        background: #389a29;
+        color: #fff;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 8px 0;
+        position: relative;
+        z-index: 60;
+      }
+      .ticker-track {
+        display: inline-flex;
+        animation: ticker-scroll 35s linear infinite;
+      }
+      .ticker-track:hover { animation-play-state: paused; }
+      @keyframes ticker-scroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+      
+      /* Scroll Animations */
+      [data-animate] { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+      [data-animate].animate-in { opacity: 1; transform: translateY(0); }
+      
+      /* Summit Tab */
+      .summit-tab, .program-tab {
+        border-left: 3px solid transparent;
+        padding: 20px 24px;
+        text-align: left;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        background: transparent;
+      }
+      .summit-tab.active { border-left-color: #389a29; background: rgba(56,154,41,0.06); }
+      .summit-tab .tab-year { color: #ccc; transition: color 0.2s; }
+      .summit-tab.active .tab-year { color: #132d82; }
+      
+      .program-tab.active { border-left-color: #F5A623; background: rgba(245,166,35,0.1); }
+      
+      /* Panels */
+      .summit-panel, .program-panel { opacity: 0; transform: translateY(8px); transition: opacity 0.25s ease, transform 0.25s ease; }
+      .summit-panel.active, .program-panel.active { opacity: 1; transform: translateY(0); }
+      
+      /* Hero Grain */
+      .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        opacity: 0.4;
+        z-index: 1;
+      }
+      
+      /* Summit 2026 Nav */
+      .summit-2026-nav-link {
+        background: #389a29;
+        color: white !important;
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 13px;
+        animation: pulse-glow 2s ease-in-out infinite;
+        text-decoration: none;
+      }
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(56,154,41,0.4); }
+        50% { box-shadow: 0 0 0 8px rgba(56,154,41,0); }
+      }
+      
+      /* Countdown */
+      .countdown-card {
+        background: linear-gradient(135deg, #0a1647 0%, #132d82 100%);
+        border-top: 3px solid #389a29;
+        position: relative;
+      }
+      .countdown-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 20px 20px;
+        pointer-events: none;
+      }
+      .flip { animation: flip-card 0.15s ease-in-out; }
+      @keyframes flip-card {
+        0% { transform: rotateX(0deg); }
+        50% { transform: rotateX(90deg); }
+        100% { transform: rotateX(0deg); }
+      }
+    </style>
   </head>
   <body class="font-body text-gray-900 bg-[var(--bg-base)] overflow-x-hidden">
     <slot />
+    <script>
+      const animateOnScroll = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const delay = entry.target.dataset.delay || 0;
+            setTimeout(() => {
+              entry.target.classList.add('animate-in');
+            }, parseInt(delay));
+            animateOnScroll.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('[data-animate]').forEach(el => animateOnScroll.observe(el));
+    </script>
   </body>
 </html>
