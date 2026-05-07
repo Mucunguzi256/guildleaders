@@ -1,0 +1,21 @@
+{
+  "name": "Guild Presidents Leadership Academy",
+  "short_name": "GPLA",
+  "description": "Empowering ethical youth leaders for democratic transformation in East Africa",
+  "start_url": "/guildleaders/",
+  "display": "standalone",
+  "background_color": "#132d82",
+  "theme_color": "#132d82",
+  "icons": [
+    {
+      "src": "/guildleaders/assets/images/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/guildleaders/assets/images/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
