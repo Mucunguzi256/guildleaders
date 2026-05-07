@@ -175,7 +175,7 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       }
       .summits-spacer { height: 100vh; }
       
-      /* Click-based Tabs (CrewAI Style) */
+      /* Click-based Tabs (CrewAI Style) - TASK 1 */
       .summits-tabs-section { background: #F7F6F3; }
       .summit-tabs-nav {
         display: flex;
@@ -199,6 +199,8 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
         transition: all 0.3s ease;
         position: relative;
         top: 2px;
+        min-height: 44px;
+        min-width: 64px;
       }
       .summit-tab::after {
         content: '';
@@ -213,35 +215,46 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       }
       .summit-tab:hover::after { transform: scaleX(0.5); }
       .summit-tab.active::after { transform: scaleX(1); }
-      .summit-tab.active { background: rgba(56, 154, 41, 0.05); }
-      .tab-year { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: #132d82; line-height: 1; }
-      .summit-tab.active .tab-year { color: #389a29; }
-      .tab-label { font-size: 12px; color: #5C5C52; }
+      .summit-tab.active { background: #389a29; color: #fff; border-radius: 8px 8px 0 0; }
+      .summit-tab.active .tab-year { color: #fff; }
+      .summit-tab.active .tab-label { color: rgba(255,255,255,0.8); }
+      .summit-tab.active .tab-badge { background: #fff; color: #389a29; }
+      .tab-year { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: #132d82; line-height: 1; transition: color 0.3s; }
+      .tab-label { font-size: 12px; color: #5C5C52; transition: color 0.3s; }
       .tab-badge { 
         font-size: 9px; font-weight: 700; letter-spacing: 0.08em; 
         background: #F5A623; color: #132d82; 
         padding: 2px 8px; border-radius: 999px; 
       }
       .summit-panels { position: relative; }
+      /* Cross-fade transitions - TASK 1 */
       .summit-panel-tab {
-        display: none;
-        animation: tab-fade 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        transform: translateY(-6px);
+        transition: opacity 200ms ease-in, transform 200ms ease-in;
+        pointer-events: none;
+        visibility: hidden;
       }
-      .summit-panel-tab.active { display: block; }
-      @keyframes tab-fade {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+      .summit-panel-tab.active {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 300ms ease-out, transform 300ms ease-out;
+        pointer-events: all;
+        visibility: visible;
       }
       
-      /* Tab Panel Content Styling */
+      /* Tab Panel Content Styling - TASK 1 & 5 */
       .summit-panel-tab {
         background: #132d82;
         border-radius: 16px;
         padding: 40px;
         color: #fff;
-        display: none;
+        min-height: 400px;
       }
-      .summit-panel-tab.active { display: block; }
       #panel-2026 { background: linear-gradient(135deg, #0a1628 0%, #132d82 60%, #1a3d5c 100%); }
       #panel-2025 { background: linear-gradient(135deg, #0d2818 0%, #1a4d2e 50%, #389a29 100%); }
       #panel-2024 { background: linear-gradient(135deg, #2d1f0d 0%, #5c3d12 50%, #8b5a2b 100%); }
@@ -254,12 +267,18 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       .summit-panel-tab .meta-value { font-family: 'Bebas Neue', sans-serif; font-size: 20px; display: block; margin: 4px 0 2px; }
       .summit-panel-tab .meta-sub { font-size: 12px; opacity: 0.7; display: block; }
       .summit-panel-tab .panel-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-      .summit-panel-tab .panel-cta { padding: 12px 28px; border-radius: 999px; font-weight: 600; font-size: 14px; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+      .summit-panel-tab .panel-cta { padding: 12px 28px; border-radius: 999px; font-weight: 600; font-size: 14px; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; min-height: 44px; display: inline-flex; align-items: center; }
       .summit-panel-tab .panel-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
       .summit-panel-tab .panel-cta.primary { background: #F5A623; color: #132d82; }
       .summit-panel-tab .panel-cta.ghost { border: 2px solid rgba(255,255,255,0.5); color: #fff; }
+      /* Mobile stacking for buttons - TASK 5 */
+      @media (max-width: 480px) {
+        .summit-panel-tab .panel-actions { flex-direction: column; }
+        .summit-panel-tab .panel-cta { width: 100%; text-align: center; justify-content: center; }
+        .summit-panel-tab .panel-meta { grid-template-columns: 1fr; }
+      }
       
-      /* Program Tabs */
+      /* Program Tabs - TASK 2 */
       .programs-tabs-section { background: #fff; }
       .program-tabs-nav {
         display: flex;
@@ -271,6 +290,21 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
         margin-left: auto;
         margin-right: auto;
         flex-wrap: wrap;
+        position: relative;
+      }
+      /* Mobile horizontal scroll with fade - TASK 2 */
+      @media (max-width: 640px) {
+        .program-tabs-nav {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          justify-content: flex-start;
+          padding: 0 16px;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          mask-image: linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent);
+        }
+        .program-tabs-nav::-webkit-scrollbar { display: none; }
       }
       .program-tab {
         display: flex;
@@ -284,6 +318,9 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
         transition: all 0.3s ease;
         position: relative;
         top: 2px;
+        min-height: 44px;
+        min-width: 64px;
+        flex-shrink: 0;
       }
       .program-tab::after {
         content: '';
@@ -298,17 +335,36 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       }
       .program-tab:hover::after { transform: scaleX(0.5); }
       .program-tab.active::after { transform: scaleX(1); }
-      .program-tab.active { background: rgba(245, 166, 35, 0.08); }
+      .program-tab.active { background: #F5A623; color: #132d82; border-radius: 8px 8px 0 0; }
+      .program-tab.active .tab-name { color: #132d82; }
       .tab-icon { font-size: 24px; line-height: 1; }
       .tab-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #132d82; }
-      .program-tab.active .tab-name { color: #F5A623; }
       .tab-sub { font-size: 11px; color: #5C5C52; }
-      .program-panels { position: relative; }
-      .program-panel-tab {
-        display: none;
-        animation: tab-fade 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      /* Short labels on mobile - TASK 2 */
+      @media (max-width: 640px) {
+        .program-tab .tab-sub { display: none; }
+        .program-tab { padding: 12px 16px; min-width: auto; }
       }
-      .program-panel-tab.active { display: block; }
+      .program-panels { position: relative; }
+      /* Cross-fade for programs - TASK 2 */
+      .program-panel-tab {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        transform: translateY(-6px);
+        transition: opacity 200ms ease-in, transform 200ms ease-in;
+        pointer-events: none;
+        visibility: hidden;
+      }
+      .program-panel-tab.active {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 300ms ease-out, transform 300ms ease-out;
+        pointer-events: all;
+        visibility: visible;
+      }
       
       /* Program Panel Styling */
       .program-panel-tab {
@@ -527,45 +583,169 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
           justify-content: center;
         }
       }
+      
+      /* Scroll Animations - TASK 3 */
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 400ms ease-out, transform 400ms ease-out;
+        will-change: opacity, transform;
+      }
+      .fade-in-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Stagger delays */
+      .stagger-1 { transition-delay: 80ms; }
+      .stagger-2 { transition-delay: 160ms; }
+      .stagger-3 { transition-delay: 240ms; }
+      .stagger-4 { transition-delay: 320ms; }
+      .stagger-5 { transition-delay: 400ms; }
+      .stagger-6 { transition-delay: 480ms; }
+      
+      /* Stats Counter - TASK 4 */
+      .stats-counter {
+        will-change: transform;
+      }
+      
+      /* Announcement Marquee Mobile - TASK 8 */
+      @media (max-width: 480px) {
+        .announcement-ticker {
+          font-size: 12px;
+          padding: 6px 0;
+        }
+      }
+      
+      /* Partner logos marquee - TASK 8 */
+      .partners-marquee {
+        display: flex;
+        will-change: transform;
+      }
+      
+      /* Mobile nav smooth open - TASK 8 */
+      #mobile-menu {
+        transition: opacity 200ms ease, transform 200ms ease;
+      }
+      #mobile-menu.hidden {
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+      }
+      #mobile-menu:not(.hidden) {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* Countdown Timer - TASK 7 */
+      .countdown-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+      .countdown-unit {
+        background: rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 16px 8px;
+        text-align: center;
+        min-width: 72px;
+      }
+      .countdown-number {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(2rem, 8vw, 3.5rem);
+        line-height: 1;
+        display: block;
+      }
+      .countdown-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.7;
+        display: block;
+        margin-top: 4px;
+      }
+      @media (max-width: 400px) {
+        .countdown-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
+      }
+      
+      /* prefers-reduced-motion - TASK 3 */
+      @media (prefers-reduced-motion: reduce) {
+        .fade-in-up {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+        .summit-panel-tab, .program-panel-tab {
+          transition: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
     </style>
   </head>
   <body class="font-body text-gray-900 bg-[var(--bg-base)] overflow-x-hidden">
     <slot />
     <script>
-      // Global scroll-triggered fade-up animations
-      const scrollAnimator = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const delay = parseInt(entry.target.dataset.delay) || 0;
-          setTimeout(() => {
-            entry.target.classList.add('animate-in');
-          }, delay);
-          scrollAnimator.unobserve(entry.target);
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      document.querySelectorAll('[data-animate]').forEach(el => scrollAnimator.observe(el));
+      // TASK 3: Scroll-triggered fade-up animations with prefers-reduced-motion check
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       
-      // Animated stats counting
-      const countObserver = new IntersectionObserver((entries) => {
+      if (!prefersReducedMotion) {
+        const scrollAnimator = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            // Add will-change before animation
+            entry.target.style.willChange = 'transform, opacity';
+            const delay = parseInt(entry.target.dataset.delay) || 0;
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+              // Remove will-change after animation completes
+              setTimeout(() => {
+                entry.target.style.willChange = '';
+              }, 400);
+            }, delay);
+            scrollAnimator.unobserve(entry.target);
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('[data-animate], .fade-in-up').forEach(el => scrollAnimator.observe(el));
+      } else {
+        // Immediately show elements if reduced motion preferred
+        document.querySelectorAll('[data-animate], .fade-in-up').forEach(el => {
+          el.classList.add('visible');
+        });
+      }
+      
+      // TASK 4: Stats counter with easeOutQuart over 1800ms
+      const statsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (!entry.isIntersecting || entry.target.dataset.counted) return;
           entry.target.dataset.counted = 'true';
+          entry.target.style.willChange = 'transform';
+          
           const target = parseInt(entry.target.dataset.count);
           const suffix = entry.target.dataset.suffix || '';
-          const duration = 2200;
+          const duration = 1800;
           const startTime = performance.now();
-          const easeOut = t => 1 - Math.pow(1 - t, 3);
+          
+          // easeOutQuart: 1 - (1 - t)^4
+          const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
+          
           const tick = (now) => {
             const elapsed = now - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            const current = Math.floor(easeOut(progress) * target);
+            const current = Math.floor(easeOutQuart(progress) * target);
             entry.target.textContent = current + suffix;
-            if (progress < 1) requestAnimationFrame(tick);
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              entry.target.style.willChange = '';
+            }
           };
           requestAnimationFrame(tick);
         });
-      }, { threshold: 0.5 });
-      document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+      }, { threshold: 0.3 });
+      document.querySelectorAll('[data-count]').forEach(el => statsObserver.observe(el));
     </script>
   </body>
 </html>

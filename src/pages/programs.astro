@@ -7,26 +7,38 @@ const programs = [
   {
     icon: '🔥',
     title: 'Transformational Leadership Bootcamp',
+    shortName: 'TLB',
     description: 'A rigorous 5-day residential program building essential leadership skills for effective student governance.',
+    tags: ['5 Days', 'Residential', 'Intensive'],
+    outcomes: ['Personal leadership vision creation with actionable steps', 'Conflict resolution and strategic planning skills', 'Mentorship with public, private, and civil society leaders'],
     color: 'navy'
   },
   {
     icon: '⚖️',
     title: 'Policy & Governance Incubation Lab',
+    shortName: 'PGIL',
     description: '8-week intensive program building practical policy analysis and advocacy skills.',
+    tags: ['8 Weeks', 'Hybrid', 'Research-Focused'],
+    outcomes: ['Public policy analysis and budgeting competency', 'Real-time review of national development plans', 'Policy briefs and campus-based governance initiatives'],
     color: 'green'
   },
   {
     icon: '⭐',
     title: 'HERPower Fellowship',
+    shortName: 'HERPower',
     description: 'Specialized fellowship for young women passionate about political leadership.',
-    color: 'navy'
+    tags: ['Ongoing', 'Mentorship', 'Women Only'],
+    outcomes: ['Feminist leadership and political organizing skills', 'Mentorship from women leaders in public office', 'Network of women committed to democratic leadership'],
+    color: 'purple'
   },
   {
     icon: '🎤',
     title: "Guild Leaders' Summit + Guild Voice",
+    shortName: 'Summit',
     description: 'Annual flagship gathering bringing together Guild Presidents from across East Africa.',
-    color: 'green'
+    tags: ['Annual', '2 Days', '700+ Attendees'],
+    outcomes: ['Pan-East African student leader network', 'Cross-border policy dialogue and advocacy', 'Regional integration agenda co-creation'],
+    color: 'teal'
   }
 ];
 ---
@@ -46,16 +58,51 @@ const programs = [
     </div>
   </section>
 
-  <!-- Programs Grid -->
+  <!-- Hero Strip - TASK 6 -->
+  <section class="bg-gpla-light px-4 md:px-12 py-8 md:py-12">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="font-display text-3xl md:text-4xl text-gpla-navy mb-3">OUR FLAGSHIP PROGRAMS</h2>
+      <p class="text-gpla-navy/70 text-lg mb-4">Four pathways. One goal: democratic East Africa.</p>
+      <div class="flex flex-wrap justify-center gap-4 text-sm text-gpla-navy/60">
+        <span>5-Day Bootcamp</span>
+        <span class="hidden md:inline">·</span>
+        <span>8-Week Policy Lab</span>
+        <span class="hidden md:inline">·</span>
+        <span>Women's Fellowship</span>
+        <span class="hidden md:inline">·</span>
+        <span>Annual Summit</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Grid - TASK 6 -->
   <section class="px-4 md:px-12 py-12 md:py-24">
     <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        {programs.map(program => (
-          <div class={`p-8 md:p-10 rounded-xl hover:-translate-y-1.5 hover:shadow-2xl transition-all cursor-pointer ${program.color === 'navy' ? 'bg-gpla-navy' : 'bg-gpla-green'}`}>
+        {programs.map((program, idx) => (
+          <div class={`p-8 md:p-10 rounded-xl hover:-translate-y-1.5 hover:shadow-2xl transition-all cursor-pointer fade-in-up stagger-${idx + 1} ${program.color === 'navy' ? 'bg-gpla-navy border-l-4 border-gpla-green' : program.color === 'purple' ? 'bg-[#7c3aed] border-l-4 border-[#a855f7]' : 'bg-gpla-green border-l-4 border-gpla-navy'}`} data-animate>
             <div class="w-12 md:w-14 h-12 md:h-14 bg-white/15 rounded-lg flex items-center justify-center text-2xl md:text-3xl mb-4 md:mb-5">{program.icon}</div>
-            <h3 class="font-display text-[24px] md:text-[28px] text-white mb-3">{program.title}</h3>
+            <div class="flex items-center gap-3 mb-2">
+              <h3 class="font-display text-[24px] md:text-[28px] text-white">{program.title}</h3>
+              <span class="text-xs font-bold bg-white/20 text-white px-2 py-1 rounded">{program.shortName}</span>
+            </div>
             <p class="text-white/85 text-base leading-relaxed mb-4">{program.description}</p>
-            <span class="text-white font-semibold text-sm inline-flex items-center gap-2">Learn More →</span>
+            <div class="flex flex-wrap gap-2 mb-5">
+              {program.tags.map(tag => (
+                <span class="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full">{tag}</span>
+              ))}
+            </div>
+            <div class="border-t border-white/20 pt-4 mt-4">
+              <p class="text-xs text-white/50 uppercase tracking-wider mb-2">Key Outcomes</p>
+              <ul class="space-y-1">
+                {program.outcomes.map(outcome => (
+                  <li class="text-sm text-white/90 flex items-start gap-2">
+                    <span class="text-gpla-gold">✓</span>
+                    {outcome}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         ))}
       </div>

@@ -54,26 +54,27 @@ import Footer from '../../components/Footer.astro';
     </div>
   </section>
 
-  <!-- Countdown Timer -->
+  <!-- Countdown Timer - TASK 7 -->
   <section class="px-4 md:px-12 py-12 bg-gpla-navy">
     <div class="max-w-4xl mx-auto">
       <p class="text-gpla-green text-sm font-semibold uppercase tracking-widest mb-8 text-center">COUNTDOWN TO THE SUMMIT</p>
-      <div class="grid grid-cols-4 gap-3 md:gap-6">
-        <div class="countdown-card rounded-xl p-4 md:p-6 text-center">
-          <div id="count-days" class="font-display text-[40px] md:text-[64px] text-white leading-none">00</div>
-          <div class="text-white/70 text-xs md:text-sm mt-2">Days</div>
+      <!-- 2x2 grid on mobile <400px, 4-col on larger -->
+      <div class="countdown-grid">
+        <div class="countdown-unit">
+          <span id="count-days" class="countdown-number">00</span>
+          <span class="countdown-label">Days</span>
         </div>
-        <div class="countdown-card rounded-xl p-4 md:p-6 text-center">
-          <div id="count-hours" class="font-display text-[40px] md:text-[64px] text-white leading-none">00</div>
-          <div class="text-white/70 text-xs md:text-sm mt-2">Hours</div>
+        <div class="countdown-unit">
+          <span id="count-hours" class="countdown-number">00</span>
+          <span class="countdown-label">Hours</span>
         </div>
-        <div class="countdown-card rounded-xl p-4 md:p-6 text-center">
-          <div id="count-mins" class="font-display text-[40px] md:text-[64px] text-white leading-none">00</div>
-          <div class="text-white/70 text-xs md:text-sm mt-2">Minutes</div>
+        <div class="countdown-unit">
+          <span id="count-mins" class="countdown-number">00</span>
+          <span class="countdown-label">Minutes</span>
         </div>
-        <div class="countdown-card rounded-xl p-4 md:p-6 text-center">
-          <div id="count-secs" class="font-display text-[40px] md:text-[64px] text-white leading-none">00</div>
-          <div class="text-white/70 text-xs md:text-sm mt-2">Seconds</div>
+        <div class="countdown-unit">
+          <span id="count-secs" class="countdown-number">00</span>
+          <span class="countdown-label">Seconds</span>
         </div>
       </div>
     </div>
