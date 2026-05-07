@@ -4,6 +4,22 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 ---
 
+<style is:global>
+  .gpla-carousel { position: relative; width: 100%; }
+  .gpla-carousel__track { position: relative; width: 100%; min-height: 320px; overflow: hidden; }
+  @media (min-width: 768px) { .gpla-carousel__track { min-height: 380px; } }
+  .gpla-carousel__slide { position: absolute; inset: 0; width: 100%; opacity: 0; transition: opacity 400ms ease; transform: translateX(0); pointer-events: none; }
+  .gpla-carousel__slide.is-active { opacity: 1; pointer-events: auto; }
+  .gpla-carousel__dots { display: flex; justify-content: center; gap: 8px; margin-top: 28px; padding-bottom: 4px; }
+  .gpla-carousel__dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; border: none; cursor: pointer; padding: 0; transition: all 300ms ease; }
+  .gpla-carousel__dot.is-active { background: #132d82; width: 24px; border-radius: 4px; }
+  @media (max-width: 640px) {
+    .gpla-carousel__track { min-height: auto; }
+    .gpla-carousel__slide { position: relative; opacity: 1; pointer-events: auto; display: none; }
+    .gpla-carousel__slide.is-active { display: block; }
+  }
+</style>
+
 <Base title="Home">
   <Navbar />
 
