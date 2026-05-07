@@ -41,51 +41,9 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       body { background-color: var(--bg-base); color: var(--text-primary); }
       .bg-gpla-light { background-color: var(--bg-section-alt); }
       
-      /* Ticker */
-      .announcement-ticker {
-        background: #389a29;
-        color: #fff;
-        font-family: 'DM Sans', sans-serif;
-        font-size: 13px;
-        font-weight: 500;
-        overflow: hidden;
-        white-space: nowrap;
-        padding: 8px 0;
-        position: relative;
-        z-index: 60;
-      }
-      .ticker-track {
-        display: inline-flex;
-        animation: ticker-scroll 35s linear infinite;
-      }
-      .ticker-track:hover { animation-play-state: paused; }
-      @keyframes ticker-scroll {
-        from { transform: translateX(0); }
-        to { transform: translateX(-50%); }
-      }
-      
-      /* Scroll Animations */
-      [data-animate] { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+      /* Global Scroll Animations */
+      [data-animate] { opacity: 0; transform: translateY(28px); transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1); }
       [data-animate].animate-in { opacity: 1; transform: translateY(0); }
-      
-      /* Summit Tab */
-      .summit-tab, .program-tab {
-        border-left: 3px solid transparent;
-        padding: 20px 24px;
-        text-align: left;
-        transition: all 0.2s ease;
-        cursor: pointer;
-        background: transparent;
-      }
-      .summit-tab.active { border-left-color: #389a29; background: rgba(56,154,41,0.06); }
-      .summit-tab .tab-year { color: #ccc; transition: color 0.2s; }
-      .summit-tab.active .tab-year { color: #132d82; }
-      
-      .program-tab.active { border-left-color: #F5A623; background: rgba(245,166,35,0.1); }
-      
-      /* Panels */
-      .summit-panel, .program-panel { opacity: 0; transform: translateY(8px); transition: opacity 0.25s ease, transform 0.25s ease; }
-      .summit-panel.active, .program-panel.active { opacity: 1; transform: translateY(0); }
       
       /* Hero Grain */
       .hero::after {
@@ -96,22 +54,6 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
         pointer-events: none;
         opacity: 0.4;
         z-index: 1;
-      }
-      
-      /* Summit 2026 Nav */
-      .summit-2026-nav-link {
-        background: #389a29;
-        color: white !important;
-        padding: 6px 16px;
-        border-radius: 999px;
-        font-weight: 600;
-        font-size: 13px;
-        animation: pulse-glow 2s ease-in-out infinite;
-        text-decoration: none;
-      }
-      @keyframes pulse-glow {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(56,154,41,0.4); }
-        50% { box-shadow: 0 0 0 8px rgba(56,154,41,0); }
       }
       
       /* Countdown */
@@ -134,23 +76,147 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
         50% { transform: rotateX(90deg); }
         100% { transform: rotateX(0deg); }
       }
+      
+      /* Scroll-driven Summits Section */
+      .summits-scroll-section { position: relative; height: 280vh; }
+      .summits-sticky { position: sticky; top: 80px; height: calc(100vh - 80px); display: grid; grid-template-columns: 380px 1fr; overflow: hidden; }
+      .summits-left { background: #F7F6F3; padding: 60px 40px; display: flex; flex-direction: column; justify-content: center; }
+      .section-label { color: #389a29; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+      .section-heading { font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1.1; color: #132d82; margin-bottom: 48px; }
+      .summits-right { position: relative; overflow: hidden; }
+      
+      .summit-panel { position: absolute; inset: 0; background: #132d82; color: #fff; opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease; display: flex; align-items: center; padding: 60px; pointer-events: none; }
+      .summit-panel.active { opacity: 1; transform: translateY(0); pointer-events: all; }
+      
+      .panel-inner { max-width: 600px; }
+      .panel-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; display: block; margin-bottom: 16px; }
+      .panel-title { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1.05; margin-bottom: 20px; }
+      .panel-theme { font-size: 18px; font-style: italic; opacity: 0.85; margin-bottom: 32px; line-height: 1.5; }
+      .panel-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; padding: 24px; background: rgba(255,255,255,0.1); border-radius: 12px; }
+      .meta-label { font-size: 11px; opacity: 0.6; display: block; letter-spacing: 0.08em; text-transform: uppercase; }
+      .meta-value { font-family: 'Bebas Neue', sans-serif; font-size: 24px; display: block; margin: 4px 0 2px; }
+      .meta-sub { font-size: 13px; opacity: 0.7; display: block; }
+      .panel-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+      .panel-cta { padding: 12px 28px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; transition: transform 0.2s ease, opacity 0.2s ease; }
+      .panel-cta:hover { transform: translateY(-2px); opacity: 0.9; }
+      .panel-cta.primary { background: #F5A623; color: #132d82; }
+      .panel-cta.ghost { border: 2px solid rgba(255,255,255,0.4); color: #fff; }
+      
+      .summit-indicators { display: flex; flex-direction: column; gap: 8px; }
+      .summit-indicator { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; opacity: 0.4; transition: opacity 0.4s ease; cursor: pointer; }
+      .summit-indicator.active { opacity: 1; }
+      .indicator-line { width: 3px; height: 50px; background: #ddd; border-radius: 2px; transition: background 0.4s ease; flex-shrink: 0; margin-top: 4px; }
+      .summit-indicator.active .indicator-line { background: #389a29; }
+      .indicator-year { font-family: 'Bebas Neue', sans-serif; font-size: 36px; line-height: 1; color: #132d82; display: block; }
+      .summit-indicator.active .indicator-year { color: #389a29; }
+      .indicator-name { font-size: 13px; color: #5C5C52; display: block; margin-top: 4px; }
+      .indicator-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 999px; margin-top: 6px; }
+      .indicator-badge.upcoming { background: #F5A623; color: #132d82; }
+      .summits-spacer { height: 100vh; }
+      
+      /* Scroll-driven Programs Section */
+      .programs-scroll-section { position: relative; height: 320vh; }
+      .programs-sticky { position: sticky; top: 80px; height: calc(100vh - 80px); display: grid; grid-template-columns: 380px 1fr; overflow: hidden; }
+      .programs-left { background: #F7F6F3; padding: 60px 40px; display: flex; flex-direction: column; justify-content: center; }
+      .programs-right { position: relative; overflow: hidden; }
+      
+      .program-panel { position: absolute; inset: 0; background: #132d82; color: #fff; opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease, background 0.6s ease; display: flex; align-items: center; padding: 60px; pointer-events: none; }
+      .program-panel.active { opacity: 1; transform: translateY(0); pointer-events: all; }
+      #program-tlb { background: #132d82; }
+      #program-pgil { background: #389a29; }
+      #program-herpower { background: #7B1FA2; }
+      #program-summit { background: #0D3B27; }
+      
+      .program-tags { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+      .program-tag { background: rgba(255,255,255,0.15); padding: 6px 14px; border-radius: 999px; font-size: 12px; }
+      .panel-desc { font-size: 16px; line-height: 1.6; margin-bottom: 24px; opacity: 0.9; }
+      .panel-outcomes { margin-bottom: 32px; }
+      .outcomes-title { color: #F5A623; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+      .outcomes-list { list-style: none; padding: 0; margin: 0; }
+      .outcomes-list li { padding: 6px 0; font-size: 14px; }
+      
+      .program-indicators { display: flex; flex-direction: column; gap: 8px; }
+      .program-indicator { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; opacity: 0.4; transition: opacity 0.4s ease; cursor: pointer; }
+      .program-indicator.active { opacity: 1; }
+      .program-indicator .indicator-line { background: #ddd; }
+      .program-indicator.active .indicator-line { background: #F5A623; }
+      .indicator-icon { font-size: 24px; display: block; margin-bottom: 4px; }
+      .indicator-sub { font-size: 11px; color: #5C5C52; display: block; }
+      .programs-spacer { height: 100vh; }
+      
+      /* Gallery */
+      .gallery-filters { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+      .filter-btn { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 8px 20px; border-radius: 999px; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+      .filter-btn.active, .filter-btn:hover { background: #389a29; border-color: #389a29; }
+      .gallery-grid { columns: 3 300px; column-gap: 12px; }
+      .gallery-item { break-inside: avoid; margin-bottom: 12px; overflow: hidden; border-radius: 8px; cursor: pointer; }
+      .gallery-img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
+      .gallery-item:hover .gallery-img { transform: scale(1.04); }
+      
+      .gallery-placeholder { background: linear-gradient(135deg, #132d82, #389a29); border-radius: 8px; padding: 40px 20px; text-align: center; break-inside: avoid; margin-bottom: 12px; }
+      .gallery-placeholder p { color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 18px; }
+      .gallery-placeholder span { color: rgba(255,255,255,0.5); font-size: 11px; }
+      
+      .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; display: flex; align-items: center; justify-content: center; }
+      .lightbox.hidden { display: none; }
+      .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+      .lightbox-close { position: absolute; top: 24px; right: 24px; color: white; font-size: 28px; background: none; border: none; cursor: pointer; }
+      
+      /* Video */
+      .video-section { background: #132d82; }
+      .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; }
+      .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+      
+      /* Mobile */
+      @media (max-width: 768px) {
+        .summits-scroll-section, .programs-scroll-section { height: auto; }
+        .summits-sticky, .programs-sticky { position: static; grid-template-columns: 1fr; height: auto; }
+        .summits-right, .programs-right { height: 500px; position: relative; }
+        .summit-panel, .program-panel { padding: 32px 24px; }
+        .panel-title { font-size: 36px; }
+        .section-heading { font-size: 40px; }
+        .panel-meta { grid-template-columns: 1fr; }
+        .gallery-grid { columns: 1; }
+      }
     </style>
   </head>
   <body class="font-body text-gray-900 bg-[var(--bg-base)] overflow-x-hidden">
     <slot />
     <script>
-      const animateOnScroll = new IntersectionObserver((entries) => {
+      // Global scroll-triggered fade-up animations
+      const scrollAnimator = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const delay = entry.target.dataset.delay || 0;
-            setTimeout(() => {
-              entry.target.classList.add('animate-in');
-            }, parseInt(delay));
-            animateOnScroll.unobserve(entry.target);
-          }
+          if (!entry.isIntersecting) return;
+          const delay = parseInt(entry.target.dataset.delay) || 0;
+          setTimeout(() => {
+            entry.target.classList.add('animate-in');
+          }, delay);
+          scrollAnimator.unobserve(entry.target);
         });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('[data-animate]').forEach(el => animateOnScroll.observe(el));
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('[data-animate]').forEach(el => scrollAnimator.observe(el));
+      
+      // Animated stats counting
+      const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting || entry.target.dataset.counted) return;
+          entry.target.dataset.counted = 'true';
+          const target = parseInt(entry.target.dataset.count);
+          const suffix = entry.target.dataset.suffix || '';
+          const duration = 2200;
+          const startTime = performance.now();
+          const easeOut = t => 1 - Math.pow(1 - t, 3);
+          const tick = (now) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const current = Math.floor(easeOut(progress) * target);
+            entry.target.textContent = current + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
     </script>
   </body>
 </html>

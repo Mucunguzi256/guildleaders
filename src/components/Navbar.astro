@@ -10,52 +10,145 @@ const links = [
 ];
 ---
 
-<div class="announcement-ticker" role="marquee" aria-label="Upcoming event">
-  <div class="ticker-track">
-    <span>🗓️ 3rd Annual East African Guild Leaders' Summit — 23–24 July 2026 · Freedom Square, Makerere University · Chief Guest: H.E. Yoweri Kaguta Museveni · #TheGuildLeadersSummit2026 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
-    <span>🗓️ 3rd Annual East African Guild Leaders' Summit — 23–24 July 2026 · Freedom Square, Makerere University · Chief Guest: H.E. Yoweri Kaguta Museveni · #TheGuildLeadersSummit2026 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+<div class="site-header">
+  <!-- Announcement Ticker -->
+  <div class="announcement-ticker">
+    <div class="ticker-track">
+      <span>📅 3rd Annual East African Guild Leaders' Summit · 23–24 July 2026 · Freedom Square, Makerere University · Chief Guest: H.E. Yoweri Kaguta Museveni &nbsp;&nbsp;|&nbsp;&nbsp; #TheGuildLeadersSummit2026 &nbsp;&nbsp;|&nbsp;&nbsp; #GPLASummit &nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span>📅 3rd Annual East African Guild Leaders' Summit · 23–24 July 2026 · Freedom Square, Makerere University · Chief Guest: H.E. Yoweri Kaguta Museveni &nbsp;&nbsp;|&nbsp;&nbsp; #TheGuildLeadersSummit2026 &nbsp;&nbsp;|&nbsp;&nbsp; #GPLASummit &nbsp;&nbsp;&nbsp;&nbsp;</span>
+    </div>
   </div>
+
+  <!-- Navbar -->
+  <nav id="navbar" class="h-20 bg-white flex items-center justify-between px-4 md:px-12">
+    <a href="/guildleaders/" class="flex items-center">
+      <img src="/guildleaders/images/gpla-logo-new.png" alt="Guild Leaders" class="h-10 md:h-14 w-auto object-contain" style="width: auto; height: 56px; object-fit: contain; image-rendering: -webkit-optimize-contrast;" />
+    </a>
+    
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex gap-6 lg:gap-8 items-center">
+      {links.map(link => (
+        <a href={link.href} class="text-gpla-navy font-medium text-sm hover:text-gpla-green transition-colors">
+          {link.label}
+        </a>
+      ))}
+      <a href="/guildleaders/summit/2026" class="summit-pill">
+        <span class="pulse-dot"></span> Summit 2026
+      </a>
+    </div>
+    
+    <!-- Desktop CTA -->
+    <a href="/guildleaders/contact" class="hidden md:inline-block bg-gpla-green text-white px-5 md:px-7 py-2 md:py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:-translate-y-0.5 transition-all">
+      Apply Now
+    </a>
+    
+    <!-- Mobile Header Actions -->
+    <div class="mobile-header-actions md:hidden">
+      <a href="/guildleaders/summit/2026" class="summit-pill-mobile">
+        <span class="pulse-dot"></span> Summit 2026
+      </a>
+      <button id="mobile-menu-btn" class="p-2" aria-label="Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </nav>
 </div>
 
-<nav id="navbar" class="fixed top-[40px] left-0 right-0 h-20 bg-white flex items-center justify-between px-4 md:px-12 z-50 transition-shadow duration-300">
-  <a href="/guildleaders/" class="flex items-center">
-    <img src="/guildleaders/images/gpla-logo-new.png" alt="Guild Leaders" class="h-10 md:h-14 w-auto object-contain" style="width: auto; height: 56px; object-fit: contain; image-rendering: -webkit-optimize-contrast;" />
-  </a>
-  
-  <div class="hidden md:flex gap-6 lg:gap-8 items-center">
-    {links.map(link => (
-      <a href={link.href} class="text-gpla-navy font-medium text-sm hover:text-gpla-green transition-colors">
-        {link.label}
-      </a>
-    ))}
-    <a href="/guildleaders/summit/2026" class="summit-2026-nav-link">
-      🔴 Summit 2026
-    </a>
-  </div>
-  
-  <a href="/guildleaders/contact" class="hidden md:inline-block bg-gpla-green text-white px-5 md:px-7 py-2 md:py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:-translate-y-0.5 transition-all">
-    Apply Now
-  </a>
-  
-  <button id="mobile-menu-btn" class="md:hidden p-2" aria-label="Menu">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-  </button>
-</nav>
-
-<div id="mobile-menu" class="fixed inset-0 top-[40px] bg-gpla-navy z-40 hidden">
-  <div class="flex flex-col items-center justify-center h-full gap-8">
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 bg-gpla-navy z-40 hidden">
+  <div class="flex flex-col items-center justify-center h-full gap-8 pt-16">
     {links.map(link => (
       <a href={link.href} class="text-white font-display text-3xl hover:text-gpla-green transition-colors">
         {link.label}
       </a>
     ))}
+    <a href="/guildleaders/summit/2026" class="summit-pill-mobile mt-4">
+      <span class="pulse-dot"></span> Summit 2026
+    </a>
     <a href="/guildleaders/contact" class="bg-gpla-green text-white px-8 py-4 rounded-full font-semibold text-lg mt-8">
       Apply Now
     </a>
   </div>
 </div>
+
+<style is:global>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .announcement-ticker {
+    background: #132d82;
+    color: #F5A623;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 7px 0;
+  }
+  
+  .ticker-track {
+    display: inline-flex;
+    animation: ticker 40s linear infinite;
+  }
+  
+  .ticker-track:hover { animation-play-state: paused; }
+  
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  
+  .summit-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #389a29;
+    color: white;
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  .summit-pill-mobile {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #389a29;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  
+  .mobile-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .pulse-dot {
+    width: 7px;
+    height: 7px;
+    background: #F5A623;
+    border-radius: 50%;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+</style>
 
 <script>
   const menuBtn = document.getElementById('mobile-menu-btn');

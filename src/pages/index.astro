@@ -98,301 +98,342 @@ import Footer from '../components/Footer.astro';
   <!-- Pattern Divider Thin -->
   <div class="h-10 w-full" style="background: linear-gradient(90deg, #389a29 0%, #389a29 16%, #132d82 16%, #132d82 32%, #F5A623 32%, #F5A623 48%, #ffffff 48%, #ffffff 64%, #389a29 64%, #389a29 80%, #132d82 80%, #132d82 100%);"></div>
 
-  <!-- Our Summits — Interactive CrewAI Style -->
-  <section class="summits-interactive py-24 bg-[var(--bg-section-alt)]" data-animate>
-    <div class="container mx-auto px-6">
-      
-      <p class="text-gpla-green font-semibold uppercase tracking-widest text-sm mb-2">Our Summits</p>
-      <h2 class="font-display text-5xl text-gpla-navy mb-16">
-        THREE YEARS. ONE MOVEMENT.
-      </h2>
-
-      <div class="flex flex-col lg:flex-row gap-16 items-start">
+  <!-- Our Summits — Scroll-driven -->
+  <section class="summits-scroll-section">
+    <div class="summits-sticky">
+      <div class="summits-left">
+        <p class="section-label">Our Summits</p>
+        <h2 class="section-heading">THREE YEARS.<br/>ONE MOVEMENT.</h2>
         
-        <!-- Tab list — left -->
-        <div class="tab-list flex flex-col gap-0 w-64 flex-shrink-0">
-          
-          <button class="summit-tab active" data-tab="2026">
-            <span class="tab-year font-display text-4xl">2026</span>
-            <span class="tab-label">3rd Annual Summit</span>
-            <span class="tab-badge upcoming">UPCOMING</span>
-          </button>
-          
-          <button class="summit-tab" data-tab="2025">
-            <span class="tab-year font-display text-4xl">2025</span>
-            <span class="tab-label">2nd Annual Summit</span>
-          </button>
-          
-          <button class="summit-tab" data-tab="2024">
-            <span class="tab-year font-display text-4xl">2024</span>
-            <span class="tab-label">Inaugural Summit</span>
-          </button>
-          
+        <div class="summit-indicators">
+          <div class="summit-indicator active" data-summit="2026">
+            <div class="indicator-line"></div>
+            <div class="indicator-content">
+              <span class="indicator-year">2026</span>
+              <span class="indicator-name">3rd Annual Summit</span>
+              <span class="indicator-badge upcoming">UPCOMING</span>
+            </div>
+          </div>
+          <div class="summit-indicator" data-summit="2025">
+            <div class="indicator-line"></div>
+            <div class="indicator-content">
+              <span class="indicator-year">2025</span>
+              <span class="indicator-name">2nd Annual Summit</span>
+            </div>
+          </div>
+          <div class="summit-indicator" data-summit="2024">
+            <div class="indicator-line"></div>
+            <div class="indicator-content">
+              <span class="indicator-year">2024</span>
+              <span class="indicator-name">Inaugural Summit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="summits-right">
+        <div class="summit-panel active" id="summit-2026">
+          <div class="panel-inner">
+            <span class="panel-tag" style="color: #F5A623;">UPCOMING · 23–24 JULY 2026</span>
+            <h3 class="panel-title">3RD ANNUAL EAST AFRICAN GUILD LEADERS' SUMMIT</h3>
+            <p class="panel-theme">"Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order"</p>
+            <div class="panel-meta">
+              <div class="meta-block">
+                <span class="meta-label">Chief Guest</span>
+                <span class="meta-value">H.E. Yoweri Kaguta Museveni</span>
+                <span class="meta-sub">President of Uganda & EAC Chairperson</span>
+              </div>
+              <div class="meta-block">
+                <span class="meta-label">Venue</span>
+                <span class="meta-value">Freedom Square</span>
+                <span class="meta-sub">Makerere University, Kampala</span>
+              </div>
+            </div>
+            <div class="panel-actions">
+              <a href="/guildleaders/summit/2026" class="panel-cta primary">Register Interest →</a>
+              <a href="/guildleaders/summit/2026#partner" class="panel-cta ghost">Partner With Us →</a>
+            </div>
+          </div>
         </div>
 
-        <!-- Content panels — right -->
-        <div class="tab-content flex-1">
-          
-          <div id="panel-2026" class="summit-panel active">
-            <span class="text-gpla-gold font-bold uppercase tracking-widest text-xs">Upcoming · 23–24 July 2026</span>
-            <h3 class="font-display text-4xl text-gpla-navy mt-2 mb-4">
-              3RD ANNUAL EAST AFRICAN GUILD LEADERS' SUMMIT
-            </h3>
-            <p class="text-lg text-[var(--text-muted)] mb-6">
-              Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order
-            </p>
-            <div class="summit-meta grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-              <div class="meta-item">
-                <span class="label text-xs font-bold uppercase tracking-widest text-gpla-green">Chief Guest</span>
-                <span class="value block text-gpla-navy font-semibold text-lg">H.E. Yoweri Kaguta Museveni</span>
-                <span class="sub text-[var(--text-muted)] text-sm">President of Uganda & EAC Chairperson</span>
+        <div class="summit-panel" id="summit-2025">
+          <div class="panel-inner">
+            <span class="panel-tag" style="color: #F5A623;">2025 · MAKERERE UNIVERSITY</span>
+            <h3 class="panel-title">2ND ANNUAL GUILD LEADERS' SUMMIT</h3>
+            <p class="panel-theme">"Democratic Governance and People-to-People Integration"</p>
+            <div class="panel-meta">
+              <div class="meta-block">
+                <span class="meta-label">Chief Guest</span>
+                <span class="meta-value">HE. Uhuru Kenyatta</span>
+                <span class="meta-sub">Former President, Republic of Kenya</span>
               </div>
-              <div class="meta-item">
-                <span class="label text-xs font-bold uppercase tracking-widest text-gpla-green">Venue</span>
-                <span class="value block text-gpla-navy font-semibold text-lg">Freedom Square</span>
-                <span class="sub text-[var(--text-muted)] text-sm">Makerere University, Kampala</span>
+              <div class="meta-block">
+                <span class="meta-label">Attendees</span>
+                <span class="meta-value">700+</span>
+                <span class="meta-sub">Leaders from across East Africa</span>
               </div>
             </div>
-            <div class="flex flex-wrap gap-4">
-              <a href="/guildleaders/summit/2026" class="bg-gpla-green text-white px-6 py-3 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">Register Interest →</a>
-              <a href="/guildleaders/summit/2026#partner" class="border-2 border-gpla-navy text-gpla-navy px-6 py-3 rounded-full font-semibold inline-block hover:bg-gpla-navy hover:text-white transition-all">Become a Partner →</a>
+            <div class="panel-actions">
+              <a href="/guildleaders/summit/2025" class="panel-cta primary">View Full Report →</a>
             </div>
           </div>
+        </div>
 
-          <div id="panel-2025" class="summit-panel hidden">
-            <span class="text-gpla-green font-bold uppercase tracking-widest text-xs">2025 · Makerere University</span>
-            <h3 class="font-display text-4xl text-gpla-navy mt-2 mb-4">
-              2ND ANNUAL GUILD LEADERS' SUMMIT
-            </h3>
-            <p class="text-lg text-[var(--text-muted)] mb-6">
-              Democratic Governance and People-to-People Integration
-            </p>
-            <div class="summit-meta grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-              <div class="meta-item">
-                <span class="label text-xs font-bold uppercase tracking-widest text-gpla-green">Chief Guest</span>
-                <span class="value block text-gpla-navy font-semibold text-lg">HE. Uhuru Kenyatta</span>
-                <span class="sub text-[var(--text-muted)] text-sm">Former President, Kenya</span>
+        <div class="summit-panel" id="summit-2024">
+          <div class="panel-inner">
+            <span class="panel-tag" style="color: #F5A623;">APRIL 15, 2024 · MAKERERE UNIVERSITY</span>
+            <h3 class="panel-title">INAUGURAL GUILD LEADERS' SUMMIT</h3>
+            <p class="panel-theme">"Legacy and Leadership Continuum: The Power of Knowledge and Cross-Generational Learning"</p>
+            <div class="panel-meta">
+              <div class="meta-block">
+                <span class="meta-label">Chief Guest</span>
+                <span class="meta-value">HE. Jakaya Mrisho Kikwete</span>
+                <span class="meta-sub">Former President, Tanzania · Now Summit Patron</span>
               </div>
-              <div class="meta-item">
-                <span class="label text-xs font-bold uppercase tracking-widest text-gpla-green">Attendees</span>
-                <span class="value block text-gpla-navy font-semibold text-lg">700+</span>
-                <span class="sub text-[var(--text-muted)] text-sm">Leaders from 6 countries</span>
+              <div class="meta-block">
+                <span class="meta-label">Attendees</span>
+                <span class="meta-value">700+</span>
+                <span class="meta-sub">Historic first convening</span>
               </div>
             </div>
-            <a href="/guildleaders/summit/2025" class="bg-gpla-green text-white px-6 py-3 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">View Full Report →</a>
-          </div>
-
-          <div id="panel-2024" class="summit-panel hidden">
-            <span class="text-gpla-green font-bold uppercase tracking-widest text-xs">April 15, 2024 · Makerere University</span>
-            <h3 class="font-display text-4xl text-gpla-navy mt-2 mb-4">
-              INAUGURAL GUILD LEADERS' SUMMIT
-            </h3>
-            <p class="text-lg text-[var(--text-muted)] mb-6">
-              Legacy and Leadership Continuum: The Power of Knowledge and Cross-Generational Learning
-            </p>
-            <div class="summit-meta grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-              <div class="meta-item">
-                <span class="label text-xs font-bold uppercase tracking-widest text-gpla-green">Chief Guest</span>
-                <span class="value block text-gpla-navy font-semibold text-lg">HE. Jakaya Mrisho Kikwete</span>
-                <span class="sub text-[var(--text-muted)] text-sm">Former President, Tanzania · Now Patron</span>
-              </div>
-              <div class="meta-item">
-                <span class="label text-xs font-bold uppercase tracking-widest text-gpla-green">Attendees</span>
-                <span class="value block text-gpla-navy font-semibold text-lg">700+</span>
-                <span class="sub text-[var(--text-muted)] text-sm">Historic first convening</span>
-              </div>
+            <div class="panel-actions">
+              <a href="/guildleaders/summit/2024" class="panel-cta primary">View Full Report →</a>
             </div>
-            <a href="/guildleaders/summit/2024" class="bg-gpla-green text-white px-6 py-3 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">View Full Report →</a>
           </div>
-          
         </div>
       </div>
     </div>
+    <div class="summits-spacer"></div>
   </section>
 
   <script>
-    document.querySelectorAll('.summit-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        const target = tab.dataset.tab;
-        document.querySelectorAll('.summit-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.summit-panel').forEach(p => { p.classList.add('hidden'); p.classList.remove('active'); });
-        tab.classList.add('active');
-        const panel = document.getElementById('panel-' + target);
-        panel.classList.remove('hidden');
-        requestAnimationFrame(() => panel.classList.add('active'));
+    const initSummitScroll = () => {
+      const section = document.querySelector('.summits-scroll-section');
+      if (!section) return;
+      
+      const summits = ['2026', '2025', '2024'];
+      const totalScrollDistance = section.offsetHeight - window.innerHeight;
+      const segmentSize = totalScrollDistance / summits.length;
+      
+      const activateSummit = (index) => {
+        document.querySelectorAll('.summit-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.summit-indicator').forEach(i => i.classList.remove('active'));
+        
+        const targetId = 'summit-' + summits[index];
+        const panel = document.getElementById(targetId);
+        const indicator = document.querySelector('[data-summit="' + summits[index] + '"]');
+        
+        if (panel) panel.classList.add('active');
+        if (indicator) indicator.classList.add('active');
+      };
+
+      let currentIndex = 0;
+      activateSummit(0);
+
+      window.addEventListener('scroll', () => {
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        const scrolled = window.scrollY - sectionTop;
+        
+        if (scrolled < 0) { activateSummit(0); return; }
+        
+        const newIndex = Math.min(Math.floor(scrolled / segmentSize), summits.length - 1);
+        
+        if (newIndex !== currentIndex) {
+          currentIndex = newIndex;
+          activateSummit(currentIndex);
+        }
+      }, { passive: true });
+
+      document.querySelectorAll('.summit-indicator').forEach((indicator, i) => {
+        indicator.addEventListener('click', () => {
+          const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+          const targetScroll = sectionTop + (i * segmentSize) + 10;
+          window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+        });
       });
-    });
+    };
+    initSummitScroll();
   </script>
 
-  <!-- Programs — Interactive -->
-  <section class="programs-interactive py-24 bg-gpla-navy" data-animate>
-    <div class="container mx-auto px-6">
-      
-      <p class="text-gpla-green font-semibold uppercase tracking-widest text-sm mb-2">Our Programs</p>
-      <h2 class="font-display text-5xl text-white mb-16">
-        BUILD YOUR LEADERSHIP TOOLKIT
-      </h2>
-
-      <div class="flex flex-col lg:flex-row gap-16 items-start">
+  <!-- Programs — Scroll-driven -->
+  <section class="programs-scroll-section">
+    <div class="programs-sticky">
+      <div class="programs-left">
+        <p class="section-label">Our Programs</p>
+        <h2 class="section-heading">BUILD YOUR<br/>LEADERSHIP TOOLKIT</h2>
         
-        <!-- Tab list — left -->
-        <div class="tab-list flex flex-col gap-0 w-64 flex-shrink-0">
-          
-          <button class="program-tab active" data-tab="t lb">
-            <span class="tab-icon w-10 h-10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75l-6 4.5V6l6 6.75z" fill="#F5A623" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75l6 4.5V6l-6 6.75z" />
-              </svg>
-            </span>
-            <span class="tab-label text-white">TLB</span>
-            <span class="tab-sub text-white/50 text-sm">Leadership Bootcamp</span>
-          </button>
-          
-          <button class="program-tab" data-tab="pgil">
-            <span class="tab-icon w-10 h-10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-              </svg>
-            </span>
-            <span class="tab-label text-white">PGIL</span>
-            <span class="tab-sub text-white/50 text-sm">Policy Lab</span>
-          </button>
-          
-          <button class="program-tab" data-tab="herpower">
-            <span class="tab-icon w-10 h-10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" fill="#F5A623" />
-              </svg>
-            </span>
-            <span class="tab-label text-white">HERPower</span>
-            <span class="tab-sub text-white/50 text-sm">Women's Fellowship</span>
-          </button>
-          
-          <button class="program-tab" data-tab="summit">
-            <span class="tab-icon w-10 h-10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-              </svg>
-            </span>
-            <span class="tab-label text-white">Summit</span>
-            <span class="tab-sub text-white/50 text-sm">Annual Gathering</span>
-          </button>
-          
+        <div class="program-indicators">
+          <div class="program-indicator active" data-program="tlb">
+            <div class="indicator-line"></div>
+            <div class="indicator-content">
+              <span class="indicator-icon">⭐</span>
+              <span class="indicator-name">TLB</span>
+              <span class="indicator-sub">Leadership Bootcamp</span>
+            </div>
+          </div>
+          <div class="program-indicator" data-program="pgil">
+            <div class="indicator-line"></div>
+            <div class="indicator-content">
+              <span class="indicator-icon">⚖️</span>
+              <span class="indicator-name">PGIL</span>
+              <span class="indicator-sub">Policy Lab</span>
+            </div>
+          </div>
+          <div class="program-indicator" data-program="herpower">
+            <div class="indicator-line"></div>
+            <div class="indicator-content">
+              <span class="indicator-icon">👑</span>
+              <span class="indicator-name">HERPower</span>
+              <span class="indicator-sub">Women's Fellowship</span>
+            </div>
+          </div>
+          <div class="program-indicator" data-program="summit">
+            <div class="indicator-line"></div>
+            <div class="indicator-content">
+              <span class="indicator-icon">🎤</span>
+              <span class="indicator-name">Summit</span>
+              <span class="indicator-sub">Annual Gathering</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="programs-right">
+        <div class="program-panel active" id="program-tlb">
+          <div class="panel-inner">
+            <h3 class="panel-title">Transformational Leadership Bootcamp (TLB)</h3>
+            <div class="program-tags">
+              <span class="program-tag">5 Days</span>
+              <span class="program-tag">Residential</span>
+              <span class="program-tag">Intensive</span>
+            </div>
+            <p class="panel-desc">A rigorous 5-day residential program building essential leadership skills for effective student governance. Participants engage in strategic planning, public speaking, crisis management, and team dynamics training.</p>
+            <div class="panel-outcomes">
+              <h4 class="outcomes-title">Key Outcomes</h4>
+              <ul class="outcomes-list">
+                <li>✓ Personal leadership vision creation with actionable steps</li>
+                <li>✓ Conflict resolution and strategic planning skills</li>
+                <li>✓ Mentorship with public, private, and civil society leaders</li>
+              </ul>
+            </div>
+            <a href="/guildleaders/programs" class="panel-cta primary">Learn More →</a>
+          </div>
         </div>
 
-        <!-- Content panels — right -->
-        <div class="tab-content flex-1">
-          
-          <div id="panel-tlb" class="program-panel active">
-            <h3 class="font-display text-4xl text-white mt-2 mb-4">
-              Transformational Leadership Bootcamp (TLB)
-            </h3>
-            <div class="flex gap-4 mb-6 text-sm text-white/70">
-              <span class="bg-white/10 px-3 py-1 rounded-full">5 Days</span>
-              <span class="bg-white/10 px-3 py-1 rounded-full">Residential</span>
-              <span class="bg-white/10 px-3 py-1 rounded-full">Intensive</span>
+        <div class="program-panel" id="program-pgil">
+          <div class="panel-inner">
+            <h3 class="panel-title">Policy & Governance Incubation Lab (PGIL)</h3>
+            <div class="program-tags">
+              <span class="program-tag">8 Weeks</span>
+              <span class="program-tag">Hybrid</span>
+              <span class="program-tag">Research-Focused</span>
             </div>
-            <p class="text-lg text-white/80 mb-6">
-              A rigorous 5-day residential program building essential leadership skills for effective student governance. Participants engage in strategic planning, public speaking, crisis management, and team dynamics training.
-            </p>
-            <div class="mb-8">
-              <h4 class="text-gpla-gold font-semibold uppercase tracking-widest text-sm mb-3">Key Outcomes</h4>
-              <ul class="space-y-2 text-white/80">
-                <li class="flex items-start gap-2"><span class="text-gpla-green">✓</span> Master strategic planning and decision-making frameworks</li>
-                <li class="flex items-start gap-2"><span class="text-gpla-green">✓</span> Develop crisis management and conflict resolution skills</li>
-                <li class="flex items-start gap-2"><span class="text-gpla-green">✓</span> Build a lifelong network of 100+ fellow guild leaders</li>
+            <p class="panel-desc">8-week intensive program building practical policy analysis and advocacy skills. Fellows work on real policy challenges facing East Africa, producing actionable research for regional institutions.</p>
+            <div class="panel-outcomes">
+              <h4 class="outcomes-title">Key Outcomes</h4>
+              <ul class="outcomes-list">
+                <li>✓ Public policy analysis and budgeting competency</li>
+                <li>✓ Real-time review of national development plans</li>
+                <li>✓ Policy briefs and campus-based governance initiatives</li>
               </ul>
             </div>
-            <a href="/guildleaders/programs" class="bg-gpla-green text-white px-6 py-3 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">Learn More →</a>
+            <a href="/guildleaders/programs" class="panel-cta primary">Learn More →</a>
           </div>
+        </div>
 
-          <div id="panel-pgil" class="program-panel hidden">
-            <h3 class="font-display text-4xl text-white mt-2 mb-4">
-              Policy & Governance Incubation Lab (PGIL)
-            </h3>
-            <div class="flex gap-4 mb-6 text-sm text-white/70">
-              <span class="bg-white/10 px-3 py-1 rounded-full">8 Weeks</span>
-              <span class="bg-white/10 px-3 py-1 rounded-full">Hybrid</span>
-              <span class="bg-white/10 px-3 py-1 rounded-full">Research-Focused</span>
+        <div class="program-panel" id="program-herpower">
+          <div class="panel-inner">
+            <h3 class="panel-title">HERPower Fellowship</h3>
+            <div class="program-tags">
+              <span class="program-tag">Ongoing</span>
+              <span class="program-tag">Mentorship</span>
+              <span class="program-tag">Women Only</span>
             </div>
-            <p class="text-lg text-white/80 mb-6">
-              8-week intensive program building practical policy analysis and advocacy skills. Fellows work on real policy challenges facing East Africa, producing actionable research for regional institutions.
-            </p>
-            <div class="mb-8">
-              <h4 class="text-gpla-gold font-semibold uppercase tracking-widest text-sm mb-3">Key Outcomes</h4>
-              <ul class="space-y-2 text-white/80">
-                <li class="flex items-start gap-2"><span class="text-gpla-green">✓</span> Produce a publishable policy brief on a regional issue</li>
-                <li class="flex items-start gap-2"><span class="text-gpla-green">✓</span> Present research to senior policymakers and diplomats</li>
-                <li class="flex items-start gap-2"><span class="text-gpla-green">✓</span> Join the alumni network of policy practitioners</li>
+            <p class="panel-desc">Specialized fellowship for young women passionate about political leadership. HERPower provides mentorship, networking, and capacity building to increase women's representation in student governance and beyond.</p>
+            <div class="panel-outcomes">
+              <h4 class="outcomes-title">Key Outcomes</h4>
+              <ul class="outcomes-list">
+                <li>✓ Feminist leadership and political organizing skills</li>
+                <li>✓ Mentorship from women leaders in public office</li>
+                <li>✓ Network of women committed to democratic leadership</li>
               </ul>
             </div>
-            <a href="/guildleaders/programs" class="bg-gpla-green text-white px-6 py-3 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">Learn More →</a>
+            <a href="/guildleaders/programs" class="panel-cta primary">Learn More →</a>
           </div>
+        </div>
 
-          <div id="panel-herpower" class="program-panel hidden">
-            <h3 class="font-display text-4xl text-white mt-2 mb-4">
-              HERPower Fellowship
-            </h3>
-            <div class="flex gap-4 mb-6 text-sm text-white/70">
-              <span class="bg-white/10 px-3 py-1 rounded-full">6 Months</span>
-              <span class="bg-white/10 px-3 py-1 rounded-full">Mentorship</span>
-              <span class="bg-white/10 px-3 py-1 rounded-full">Women Only</span>
+        <div class="program-panel" id="program-summit">
+          <div class="panel-inner">
+            <h3 class="panel-title">Guild Leaders' Summit + Guild Voice</h3>
+            <div class="program-tags">
+              <span class="program-tag">Annual</span>
+              <span class="program-tag">2 Days</span>
+              <span class="program-tag">700+ Attendees</span>
             </div>
-            <p class="text-lg text-white/80 mb-6">
-              Specialized fellowship for young women passionate about political leadership. HERPower provides mentorship, networking, and capacity building to increase women's representation in student governance and beyond.
-            </p>
-            <div class="mb-8">
-              <h4 class="text-gpla-gold font-semibold uppercase tracking-widest text-sm mb-3">Key Outcomes</h4>
-              <ul class="space-y-2 text-white/80">
-                <li class="flex items-start gap-2"><span class="text-gpla-green">✓</span> 1-on-1 mentorship from established female leaders</li>
-                <li class="flex items-start gap-2"><span class="text-gpla-green">✓</span> Leadership coaching and personal branding training</li>
-                <li class="flex items-start gap-2"><span class="text-gpla-green">✓</span> Access to HERPower alumnae network of 200+ women</li>
+            <p class="panel-desc">Annual flagship gathering bringing together Guild Presidents from across East Africa. The Summit features high-level plenary sessions, workshops, and the Guild Voice policy platform where youth voices are amplified.</p>
+            <div class="panel-outcomes">
+              <h4 class="outcomes-title">Key Outcomes</h4>
+              <ul class="outcomes-list">
+                <li>✓ Pan-East African student leader network</li>
+                <li>✓ Cross-border policy dialogue and advocacy</li>
+                <li>✓ Regional integration agenda co-creation</li>
               </ul>
             </div>
-            <a href="/guildleaders/programs" class="bg-gpla-green text-white px-6 py-3 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">Learn More →</a>
+            <a href="/guildleaders/summit" class="panel-cta primary">Learn More →</a>
           </div>
-
-          <div id="panel-summit" class="program-panel hidden">
-            <h3 class="font-display text-4xl text-white mt-2 mb-4">
-              Guild Leaders' Summit + Guild Voice
-            </h3>
-            <div class="flex gap-4 mb-6 text-sm text-white/70">
-              <span class="bg-white/10 px-3 py-1 rounded-full">2 Days</span>
-              <span class="bg-white/10 px-3 py-1 rounded-full">Annual</span>
-              <span class="bg-white/10 px-3 py-1 rounded-full">700+ Attendees</span>
-            </div>
-            <p class="text-lg text-white/80 mb-6">
-              Annual flagship gathering bringing together Guild Presidents from across East Africa. The Summit features high-level plenary sessions, workshops, and the Guild Voice policy platform where youth voices are amplified.
-            </p>
-            <div class="mb-8">
-              <h4 class="text-gpla-gold font-semibold uppercase tracking-widest text-sm mb-3">Key Outcomes</h4>
-              <ul class="space-y-2 text-white/80">
-                <li class="flex items-start gap-2"><span class="text-gpla-green">✓</span> Address heads of state, ministers, and regional leaders</li>
-                <li class="flex items-start gap-2"><span class="text-gpla-green">✓</span> Publish the Guild Voice Declaration for EAC policymakers</li>
-                <li class="flex items-start gap-2"><span class="text-gpla-green">✓</span> Build cross-border networks with 700+ peer leaders</li>
-              </ul>
-            </div>
-            <a href="/guildleaders/summit" class="bg-gpla-green text-white px-6 py-3 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">Learn More →</a>
-          </div>
-          
         </div>
       </div>
     </div>
+    <div class="programs-spacer"></div>
   </section>
 
   <script>
-    document.querySelectorAll('.program-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        const target = tab.dataset.tab;
-        document.querySelectorAll('.program-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.program-panel').forEach(p => { p.classList.add('hidden'); p.classList.remove('active'); });
-        tab.classList.add('active');
-        const panel = document.getElementById('panel-' + target);
-        panel.classList.remove('hidden');
-        requestAnimationFrame(() => panel.classList.add('active'));
+    const initProgramScroll = () => {
+      const section = document.querySelector('.programs-scroll-section');
+      if (!section) return;
+      
+      const programs = ['tlb', 'pgil', 'herpower', 'summit'];
+      const totalScrollDistance = section.offsetHeight - window.innerHeight;
+      const segmentSize = totalScrollDistance / programs.length;
+      
+      const activateProgram = (index) => {
+        document.querySelectorAll('.program-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.program-indicator').forEach(i => i.classList.remove('active'));
+        
+        const targetId = 'program-' + programs[index];
+        const panel = document.getElementById(targetId);
+        const indicator = document.querySelector('[data-program="' + programs[index] + '"]');
+        
+        if (panel) panel.classList.add('active');
+        if (indicator) indicator.classList.add('active');
+      };
+
+      let currentIndex = 0;
+      activateProgram(0);
+
+      window.addEventListener('scroll', () => {
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        const scrolled = window.scrollY - sectionTop;
+        
+        if (scrolled < 0) { activateProgram(0); return; }
+        
+        const newIndex = Math.min(Math.floor(scrolled / segmentSize), programs.length - 1);
+        
+        if (newIndex !== currentIndex) {
+          currentIndex = newIndex;
+          activateProgram(currentIndex);
+        }
+      }, { passive: true });
+
+      document.querySelectorAll('.program-indicator').forEach((indicator, i) => {
+        indicator.addEventListener('click', () => {
+          const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+          const targetScroll = sectionTop + (i * segmentSize) + 10;
+          window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+        });
       });
-    });
+    };
+    initProgramScroll();
   </script>
 
   <!-- Gallery Section -->
@@ -408,7 +449,7 @@ import Footer from '../components/Footer.astro';
     </div>
     
     <!-- Masonry-style grid — 3 cols desktop, 2 tablet, 1 mobile -->
-    <div class="gallery-grid px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="gallery-grid px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" data-animate>
       <!-- 
         GALLERY PLACEHOLDER GRID
         Client to replace gradient boxes with real summit photos.
@@ -459,6 +500,12 @@ import Footer from '../components/Footer.astro';
 
     <div class="text-center mt-12 px-6">
       <a href="/guildleaders/gallery" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold inline-block hover:bg-white hover:text-gpla-navy transition-all">View Full Gallery →</a>
+    </div>
+
+    <!-- Lightbox (hidden by default) -->
+    <div id="gallery-lightbox" class="lightbox hidden" role="dialog" aria-modal="true">
+      <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+      <img src="" alt="Gallery image" class="lightbox-img max-w-[90vw] max-h-[90vh] object-contain rounded-lg" />
     </div>
   </section>
 
@@ -530,6 +577,42 @@ import Footer from '../components/Footer.astro';
 
     document.querySelectorAll('[data-animate]')
       .forEach(el => animateOnScroll.observe(el));
+
+    // Gallery Lightbox
+    const initLightbox = () => {
+      const lightbox = document.getElementById('gallery-lightbox');
+      const lightboxImg = lightbox?.querySelector('.lightbox-img');
+      const closeBtn = lightbox?.querySelector('.lightbox-close');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      
+      if (!lightbox || !lightboxImg || galleryItems.length === 0) return;
+      
+      galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const img = item.querySelector('img');
+          if (img) {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt || 'Gallery image';
+            lightbox.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      });
+      
+      const closeLightbox = () => {
+        lightbox.classList.add('hidden');
+        document.body.style.overflow = '';
+      };
+      
+      closeBtn?.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+      });
+    };
+    initLightbox();
   </script>
 
   <Footer />
