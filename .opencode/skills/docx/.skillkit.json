@@ -1,0 +1,10 @@
+{
+  "name": "docx",
+  "description": "",
+  "source": "/Users/mac/.agents/skills/docx",
+  "sourceType": "local",
+  "subpath": "docx",
+  "installedAt": "2026-05-06T11:19:36.911Z",
+  "enabled": true,
+  "checksum": "cfbabd72b1aec7df"
+}

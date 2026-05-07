@@ -1,0 +1,10 @@
+{
+  "name": "xlsx",
+  "description": "",
+  "source": "/Users/mac/.agents/skills/xlsx",
+  "sourceType": "local",
+  "subpath": "xlsx",
+  "installedAt": "2026-05-06T11:19:38.293Z",
+  "enabled": true,
+  "checksum": "dd316db7785a6be1"
+}

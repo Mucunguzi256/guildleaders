@@ -1,0 +1,10 @@
+{
+  "name": "pdf",
+  "description": "",
+  "source": "/Users/mac/.agents/skills/pdf",
+  "sourceType": "local",
+  "subpath": "pdf",
+  "installedAt": "2026-05-06T11:19:37.127Z",
+  "enabled": true,
+  "checksum": "9f78b8359fbd4943"
+}

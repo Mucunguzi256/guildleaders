@@ -1,0 +1,67 @@
+version: 1
+skills:
+  - source: /Users/mac/.agents/skills/open-design
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/frontend-design
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/vercel-react-best-practices
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/vercel-composition-patterns
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/docx
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/pdf
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/pptx
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/xlsx
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/colosseum-copilot
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/deploy-to-vercel
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/find-skills
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/skill-creator
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/vercel-cli-with-tokens
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/vercel-react-native-skills
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/vercel-react-view-transitions
+    agents:
+      - opencode
+    enabled: true
+  - source: /Users/mac/.agents/skills/web-design-guidelines
+    agents:
+      - opencode
+    enabled: true
+updatedAt: 2026-05-06T11:26:03.452Z
