@@ -259,6 +259,83 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       .summit-panel-tab .panel-cta.primary { background: #F5A623; color: #132d82; }
       .summit-panel-tab .panel-cta.ghost { border: 2px solid rgba(255,255,255,0.5); color: #fff; }
       
+      /* Program Tabs */
+      .programs-tabs-section { background: #fff; }
+      .program-tabs-nav {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        margin-bottom: 40px;
+        border-bottom: 2px solid #e5e5e5;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        flex-wrap: wrap;
+      }
+      .program-tab {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 16px 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        top: 2px;
+      }
+      .program-tab::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: #F5A623;
+        transform: scaleX(0);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .program-tab:hover::after { transform: scaleX(0.5); }
+      .program-tab.active::after { transform: scaleX(1); }
+      .program-tab.active { background: rgba(245, 166, 35, 0.08); }
+      .tab-icon { font-size: 24px; line-height: 1; }
+      .tab-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #132d82; }
+      .program-tab.active .tab-name { color: #F5A623; }
+      .tab-sub { font-size: 11px; color: #5C5C52; }
+      .program-panels { position: relative; }
+      .program-panel-tab {
+        display: none;
+        animation: tab-fade 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .program-panel-tab.active { display: block; }
+      
+      /* Program Panel Styling */
+      .program-panel-tab {
+        background: #132d82;
+        border-radius: 16px;
+        padding: 40px;
+        color: #fff;
+      }
+      .program-panel-tab .panel-content { max-width: 700px; margin: 0 auto; }
+      .program-panel-tab .panel-title { font-family: 'Bebas Neue', sans-serif; font-size: 36px; line-height: 1.1; margin-bottom: 16px; }
+      .program-panel-tab .program-tags { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
+      .program-panel-tab .program-tag { background: rgba(255,255,255,0.15); padding: 6px 14px; border-radius: 999px; font-size: 12px; }
+      .program-panel-tab .panel-desc { font-size: 16px; line-height: 1.6; margin-bottom: 24px; opacity: 0.9; text-align: center; }
+      .program-panel-tab .panel-outcomes { margin-bottom: 32px; }
+      .program-panel-tab .outcomes-title { color: #F5A623; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; text-align: center; }
+      .program-panel-tab .outcomes-list { list-style: none; padding: 0; margin: 0; text-align: center; }
+      .program-panel-tab .outcomes-list li { padding: 8px 0; font-size: 14px; }
+      .program-panel-tab .panel-cta { display: inline-block; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center; }
+      .program-panel-tab .panel-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,0.25); }
+      .program-panel-tab .panel-cta.primary { background: #F5A623; color: #132d82; }
+      
+      /* Distinct colors per program */
+      #prog-tlb { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #132d82 100%); }
+      #prog-pgil { background: linear-gradient(135deg, #14532d 0%, #15803d 50%, #22c55e 100%); }
+      #prog-herpower { background: linear-gradient(135deg, #4a1d4e 0%, #7c3aed 50%, #a855f7 100%); }
+      #prog-summit { background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #10b981 100%); }
+      
       /* Scroll-driven Programs Section */
       .programs-scroll-section { position: relative; height: 320vh; }
       .programs-sticky { position: sticky; top: 80px; height: calc(100vh - 80px); display: grid; grid-template-columns: 380px 1fr; overflow: hidden; }
