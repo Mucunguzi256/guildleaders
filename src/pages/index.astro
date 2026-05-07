@@ -98,43 +98,36 @@ import Footer from '../components/Footer.astro';
   <!-- Pattern Divider Thin -->
   <div class="h-10 w-full" style="background: linear-gradient(90deg, #389a29 0%, #389a29 16%, #132d82 16%, #132d82 32%, #F5A623 32%, #F5A623 48%, #ffffff 48%, #ffffff 64%, #389a29 64%, #389a29 80%, #132d82 80%, #132d82 100%);"></div>
 
-  <!-- Our Summits — Scroll-driven -->
-  <section class="summits-scroll-section">
-    <div class="summits-sticky">
-      <div class="summits-left">
-        <p class="section-label">Our Summits</p>
-        <h2 class="section-heading">THREE YEARS.<br/>ONE MOVEMENT.</h2>
-        
-        <div class="summit-indicators">
-          <div class="summit-indicator active" data-summit="2026">
-            <div class="indicator-line"></div>
-            <div class="indicator-content">
-              <span class="indicator-year">2026</span>
-              <span class="indicator-name">3rd Annual Summit</span>
-              <span class="indicator-badge upcoming">UPCOMING</span>
-            </div>
-          </div>
-          <div class="summit-indicator" data-summit="2025">
-            <div class="indicator-line"></div>
-            <div class="indicator-content">
-              <span class="indicator-year">2025</span>
-              <span class="indicator-name">2nd Annual Summit</span>
-            </div>
-          </div>
-          <div class="summit-indicator" data-summit="2024">
-            <div class="indicator-line"></div>
-            <div class="indicator-content">
-              <span class="indicator-year">2024</span>
-              <span class="indicator-name">Inaugural Summit</span>
-            </div>
-          </div>
-        </div>
+  <!-- Our Summits — Click Tabs (CrewAI Style) -->
+  <section class="summits-tabs-section" data-animate>
+    <div class="max-w-7xl mx-auto px-4 md:px-12 py-16 md:py-24">
+      <div class="text-center mb-12">
+        <p class="text-gpla-green font-semibold uppercase tracking-widest text-sm mb-3">Our Summits</p>
+        <h2 class="font-display text-4xl md:text-5xl text-gpla-navy">THREE YEARS. ONE MOVEMENT.</h2>
       </div>
-
-      <div class="summits-right">
-        <div class="summit-panel active" id="summit-2026">
-          <div class="panel-inner">
-            <span class="panel-tag" style="color: #F5A623;">UPCOMING · 23–24 JULY 2026</span>
+      
+      <!-- Tab Navigation -->
+      <div class="summit-tabs-nav">
+        <button class="summit-tab active" data-tab="2026">
+          <span class="tab-year">2026</span>
+          <span class="tab-label">3rd Annual</span>
+          <span class="tab-badge">UPCOMING</span>
+        </button>
+        <button class="summit-tab" data-tab="2025">
+          <span class="tab-year">2025</span>
+          <span class="tab-label">2nd Annual</span>
+        </button>
+        <button class="summit-tab" data-tab="2024">
+          <span class="tab-year">2024</span>
+          <span class="tab-label">Inaugural</span>
+        </button>
+      </div>
+      
+      <!-- Tab Panels -->
+      <div class="summit-panels">
+        <div class="summit-panel-tab active" id="panel-2026">
+          <div class="panel-content">
+            <span class="panel-tag">UPCOMING · 23–24 JULY 2026</span>
             <h3 class="panel-title">3RD ANNUAL EAST AFRICAN GUILD LEADERS' SUMMIT</h3>
             <p class="panel-theme">"Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order"</p>
             <div class="panel-meta">
@@ -156,7 +149,7 @@ import Footer from '../components/Footer.astro';
           </div>
         </div>
 
-        <div class="summit-panel" id="summit-2025">
+        <div class="summit-panel-tab" id="panel-2025">
           <div class="panel-inner">
             <span class="panel-tag" style="color: #F5A623;">2025 · MAKERERE UNIVERSITY</span>
             <h3 class="panel-title">2ND ANNUAL GUILD LEADERS' SUMMIT</h3>
@@ -179,7 +172,7 @@ import Footer from '../components/Footer.astro';
           </div>
         </div>
 
-        <div class="summit-panel" id="summit-2024">
+        <div class="summit-panel-tab" id="panel-2024">
           <div class="panel-inner">
             <span class="panel-tag" style="color: #F5A623;">APRIL 15, 2024 · MAKERERE UNIVERSITY</span>
             <h3 class="panel-title">INAUGURAL GUILD LEADERS' SUMMIT</h3>
@@ -207,52 +200,32 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <script>
-    const initSummitScroll = () => {
-      const section = document.querySelector('.summits-scroll-section');
-      if (!section) return;
+    // Click-based Summit Tabs (CrewAI Style)
+    const initSummitTabs = () => {
+      const tabs = document.querySelectorAll('.summit-tab');
+      const panels = document.querySelectorAll('.summit-panel-tab');
       
-      const summits = ['2026', '2025', '2024'];
-      const totalScrollDistance = section.offsetHeight - window.innerHeight;
-      const segmentSize = totalScrollDistance / summits.length;
+      if (tabs.length === 0) return;
       
-      const activateSummit = (index) => {
-        document.querySelectorAll('.summit-panel').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('.summit-indicator').forEach(i => i.classList.remove('active'));
-        
-        const targetId = 'summit-' + summits[index];
-        const panel = document.getElementById(targetId);
-        const indicator = document.querySelector('[data-summit="' + summits[index] + '"]');
-        
-        if (panel) panel.classList.add('active');
-        if (indicator) indicator.classList.add('active');
-      };
-
-      let currentIndex = 0;
-      activateSummit(0);
-
-      window.addEventListener('scroll', () => {
-        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-        const scrolled = window.scrollY - sectionTop;
-        
-        if (scrolled < 0) { activateSummit(0); return; }
-        
-        const newIndex = Math.min(Math.floor(scrolled / segmentSize), summits.length - 1);
-        
-        if (newIndex !== currentIndex) {
-          currentIndex = newIndex;
-          activateSummit(currentIndex);
-        }
-      }, { passive: true });
-
-      document.querySelectorAll('.summit-indicator').forEach((indicator, i) => {
-        indicator.addEventListener('click', () => {
-          const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-          const targetScroll = sectionTop + (i * segmentSize) + 10;
-          window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.tab;
+          
+          // Update tabs
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          
+          // Update panels
+          panels.forEach(p => {
+            p.classList.remove('active');
+            if (p.id === 'panel-' + target) {
+              p.classList.add('active');
+            }
+          });
         });
       });
     };
-    initSummitScroll();
+    initSummitTabs();
   </script>
 
   <!-- Programs — Scroll-driven -->
