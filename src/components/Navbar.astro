@@ -1,28 +1,39 @@
 ---
 const links = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/programs', label: 'Programs' },
-  { href: '/summit', label: 'Summit' },
-  { href: '/news', label: 'News' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/guildleaders/', label: 'Home' },
+  { href: '/guildleaders/about', label: 'About' },
+  { href: '/guildleaders/programs', label: 'Programs' },
+  { href: '/guildleaders/summit', label: 'Summit' },
+  { href: '/guildleaders/gallery', label: 'Gallery' },
+  { href: '/guildleaders/news', label: 'News' },
+  { href: '/guildleaders/contact', label: 'Contact' },
 ];
 ---
 
-<nav id="navbar" class="fixed top-0 left-0 right-0 h-20 bg-white flex items-center justify-between px-12 z-50 transition-shadow duration-300">
-  <a href="/">
-    <img src="/images/gpla-logo.jpg" alt="GPLA" class="h-16 w-auto object-contain" />
+<div class="announcement-ticker" role="marquee" aria-label="Upcoming event">
+  <div class="ticker-track">
+    <span>🗓️ 3rd Annual East African Guild Leaders' Summit — 23–24 July 2026 · Freedom Square, Makerere University · Chief Guest: H.E. Yoweri Kaguta Museveni · #TheGuildLeadersSummit2026 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+    <span>🗓️ 3rd Annual East African Guild Leaders' Summit — 23–24 July 2026 · Freedom Square, Makerere University · Chief Guest: H.E. Yoweri Kaguta Museveni · #TheGuildLeadersSummit2026 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+  </div>
+</div>
+
+<nav id="navbar" class="fixed top-[40px] left-0 right-0 h-20 bg-white flex items-center justify-between px-4 md:px-12 z-50 transition-shadow duration-300">
+  <a href="/guildleaders/" class="flex items-center">
+    <img src="/guildleaders/images/gpla-logo-new.png" alt="Guild Leaders" class="h-10 md:h-14 w-auto object-contain" style="width: auto; height: 56px; object-fit: contain; image-rendering: -webkit-optimize-contrast;" />
   </a>
   
-  <div class="hidden md:flex gap-8">
+  <div class="hidden md:flex gap-6 lg:gap-8 items-center">
     {links.map(link => (
       <a href={link.href} class="text-gpla-navy font-medium text-sm hover:text-gpla-green transition-colors">
         {link.label}
       </a>
     ))}
+    <a href="/guildleaders/summit/2026" class="summit-2026-nav-link">
+      🔴 Summit 2026
+    </a>
   </div>
   
-  <a href="/contact" class="hidden md:inline-block bg-gpla-green text-white px-7 py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:-translate-y-0.5 transition-all">
+  <a href="/guildleaders/contact" class="hidden md:inline-block bg-gpla-green text-white px-5 md:px-7 py-2 md:py-3 rounded-full font-semibold text-sm hover:shadow-lg hover:-translate-y-0.5 transition-all">
     Apply Now
   </a>
   
@@ -33,14 +44,14 @@ const links = [
   </button>
 </nav>
 
-<div id="mobile-menu" class="fixed inset-0 bg-gpla-navy z-40 hidden">
+<div id="mobile-menu" class="fixed inset-0 top-[40px] bg-gpla-navy z-40 hidden">
   <div class="flex flex-col items-center justify-center h-full gap-8">
     {links.map(link => (
       <a href={link.href} class="text-white font-display text-3xl hover:text-gpla-green transition-colors">
         {link.label}
       </a>
     ))}
-    <a href="/contact" class="bg-gpla-green text-white px-8 py-4 rounded-full font-semibold text-lg mt-8">
+    <a href="/guildleaders/contact" class="bg-gpla-green text-white px-8 py-4 rounded-full font-semibold text-lg mt-8">
       Apply Now
     </a>
   </div>

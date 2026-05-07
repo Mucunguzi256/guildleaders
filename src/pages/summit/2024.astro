@@ -27,32 +27,32 @@ const outcomes = [
   <Navbar />
   
   <!-- Hero -->
-  <section class="min-h-[50vh] bg-gpla-navy px-12 pt-32 pb-24 relative overflow-hidden">
+  <section class="min-h-[50vh] md:min-h-[50vh] bg-gpla-navy px-4 md:px-12 pt-28 md:pt-32 pb-16 md:pb-24 relative overflow-hidden">
     <div class="absolute bottom-0 right-0 w-[35%] h-full bg-gpla-green" style="clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);"></div>
     <div class="max-w-6xl mx-auto relative z-10">
-      <h1 class="font-display text-white text-[64px] leading-tight">
+      <h1 class="font-display text-white text-[36px] md:text-[48px] md:text-[64px] leading-tight">
         GUILD LEADERS'<br />ANNUAL SUMMIT
       </h1>
-      <div class="font-display text-[160px] text-gpla-gold absolute right-[15%] top-[40%] z-10 leading-none">2024</div>
-      <p class="text-white/85 text-xl mt-6 max-w-[600px] relative z-10">
+      <div class="font-display text-[80px] md:text-[160px] text-gpla-gold absolute right-[5%] md:right-[15%] top-[40%] z-10 leading-none hidden md:block">2024</div>
+      <p class="text-white/85 text-lg md:text-xl mt-4 md:mt-6 max-w-[600px] relative z-10">
         "Legacy and Leadership Continuum: The Power of Knowledge and Cross-Generational Learning"
       </p>
     </div>
   </section>
 
   <!-- Pattern Divider Bold -->
-  <div class="h-20 w-full" style="background: linear-gradient(90deg, #389a29 0%, #389a29 12%, #132d82 12%, #132d82 24%, #F5A623 24%, #F5A623 36%, #389a29 36%, #389a29 48%, #ffffff 48%, #ffffff 60%, #132d82 60%, #132d82 72%, #F5A623 72%, #F5A623 84%, #389a29 84%, #389a29 100%);"></div>
+  <div class="h-12 md:h-20 w-full" style="background: linear-gradient(90deg, #389a29 0%, #389a29 12%, #132d82 12%, #132d82 24%, #F5A623 24%, #F5A623 36%, #389a29 36%, #389a29 48%, #ffffff 48%, #ffffff 60%, #132d82 60%, #132d82 72%, #F5A623 72%, #F5A623 84%, #389a29 84%, #389a29 100%);"></div>
 
   <!-- Key Speakers -->
-  <section class="px-12 py-24 bg-gpla-navy">
+  <section class="px-4 md:px-12 py-12 md:py-24 bg-gpla-navy">
     <div class="max-w-6xl mx-auto">
-      <h2 class="font-display text-white text-[48px] mb-12">KEY SPEAKERS</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <h2 class="font-display text-white text-[28px] md:text-[48px] mb-8 md:12">KEY SPEAKERS</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
         {speakers.map(speaker => (
           <div class="text-center">
-            <div class="w-36 h-36 rounded-full bg-gradient-to-br from-gpla-gold to-gpla-green mx-auto mb-4"></div>
-            <h4 class="font-display text-xl text-white">{speaker.name}</h4>
-            <p class="text-gpla-gold text-sm">{speaker.title}</p>
+            <div class="w-20 md:w-36 h-20 md:h-36 rounded-full bg-gradient-to-br from-gpla-gold to-gpla-green mx-auto mb-4"></div>
+            <h4 class="font-display text-sm md:text-xl text-white">{speaker.name}</h4>
+            <p class="text-gpla-gold text-xs md:text-sm">{speaker.title}</p>
             <span class="text-white/60 text-xs">{speaker.subtitle}</span>
           </div>
         ))}
