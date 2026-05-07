@@ -98,35 +98,17 @@ import Footer from '../components/Footer.astro';
   <!-- Pattern Divider Thin -->
   <div class="h-10 w-full" style="background: linear-gradient(90deg, #389a29 0%, #389a29 16%, #132d82 16%, #132d82 32%, #F5A623 32%, #F5A623 48%, #ffffff 48%, #ffffff 64%, #389a29 64%, #389a29 80%, #132d82 80%, #132d82 100%);"></div>
 
-  <!-- Our Summits — Click Tabs (CrewAI Style) -->
-  <section class="summits-tabs-section" data-animate>
-    <div class="max-w-7xl mx-auto px-4 md:px-12 py-16 md:py-24">
-      <div class="text-center mb-12">
-        <p class="text-gpla-green font-semibold uppercase tracking-widest text-sm mb-3">Our Summits</p>
-        <h2 class="font-display text-4xl md:text-5xl text-gpla-navy">THREE YEARS. ONE MOVEMENT.</h2>
+<!-- SUMMITS SECTION - Scroll-driven Sticky Panels -->
+  <section class="scroll-feature scroll-feature--summits" id="summits-scroll" data-animate>
+    <div class="scroll-feature__sticky">
+      <div class="scroll-feature__nav">
+        <button class="scroll-feature__nav-item is-active" data-index="0">2026 · Upcoming</button>
+        <button class="scroll-feature__nav-item" data-index="1">2025 · 2nd Annual</button>
+        <button class="scroll-feature__nav-item" data-index="2">2024 · Inaugural</button>
       </div>
-      
-      <!-- Tab Navigation -->
-      <div class="summit-tabs-nav">
-        <button class="summit-tab active" data-tab="2026">
-          <span class="tab-year">2026</span>
-          <span class="tab-label">3rd Annual</span>
-          <span class="tab-badge">UPCOMING</span>
-        </button>
-        <button class="summit-tab" data-tab="2025">
-          <span class="tab-year">2025</span>
-          <span class="tab-label">2nd Annual</span>
-        </button>
-        <button class="summit-tab" data-tab="2024">
-          <span class="tab-year">2024</span>
-          <span class="tab-label">Inaugural</span>
-        </button>
-      </div>
-      
-      <!-- Tab Panels -->
-      <div class="summit-panels">
-        <div class="summit-panel-tab active" id="panel-2026">
-          <div class="panel-content">
+      <div class="scroll-feature__panels">
+        <div class="scroll-feature__panel is-active" data-index="0">
+          <div class="summit-panel-content" data-index="0">
             <span class="panel-tag">UPCOMING · 23–24 JULY 2026</span>
             <h3 class="panel-title">3RD ANNUAL EAST AFRICAN GUILD LEADERS' SUMMIT</h3>
             <p class="panel-theme">"Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order"</p>
@@ -148,10 +130,9 @@ import Footer from '../components/Footer.astro';
             </div>
           </div>
         </div>
-
-        <div class="summit-panel-tab" id="panel-2025">
-          <div class="panel-inner">
-            <span class="panel-tag" style="color: #F5A623;">2025 · MAKERERE UNIVERSITY</span>
+        <div class="scroll-feature__panel" data-index="1">
+          <div class="summit-panel-content" data-index="1">
+            <span class="panel-tag">2025 · MAKERERE UNIVERSITY</span>
             <h3 class="panel-title">2ND ANNUAL GUILD LEADERS' SUMMIT</h3>
             <p class="panel-theme">"Democratic Governance and People-to-People Integration"</p>
             <div class="panel-meta">
@@ -163,7 +144,7 @@ import Footer from '../components/Footer.astro';
               <div class="meta-block">
                 <span class="meta-label">Attendees</span>
                 <span class="meta-value">700+</span>
-                <span class="meta-sub">Leaders from across East Africa</span>
+                <span class="meta-sub">Leaders from 6 countries</span>
               </div>
             </div>
             <div class="panel-actions">
@@ -171,10 +152,9 @@ import Footer from '../components/Footer.astro';
             </div>
           </div>
         </div>
-
-        <div class="summit-panel-tab" id="panel-2024">
-          <div class="panel-inner">
-            <span class="panel-tag" style="color: #F5A623;">APRIL 15, 2024 · MAKERERE UNIVERSITY</span>
+        <div class="scroll-feature__panel" data-index="2">
+          <div class="summit-panel-content" data-index="2">
+            <span class="panel-tag">APRIL 15, 2024 · MAKERERE UNIVERSITY</span>
             <h3 class="panel-title">INAUGURAL GUILD LEADERS' SUMMIT</h3>
             <p class="panel-theme">"Legacy and Leadership Continuum: The Power of Knowledge and Cross-Generational Learning"</p>
             <div class="panel-meta">
@@ -196,82 +176,29 @@ import Footer from '../components/Footer.astro';
         </div>
       </div>
     </div>
+    <!-- Scroll sentinels -->
+    <div class="scroll-sentinel" data-index="0"></div>
+    <div class="scroll-sentinel" data-index="1"></div>
+    <div class="scroll-sentinel" data-index="2"></div>
   </section>
 
   <!-- Pattern Divider -->
   <div class="h-8 w-full" style="background: linear-gradient(90deg, #132d82 0%, #132d82 25%, #389a29 25%, #389a29 50%, #F5A623 50%, #F5A623 75%, #132d82 75%, #132d82 100%);"></div>
 
-  <script>
-    // Click-based Summit Tabs (CrewAI Style)
-    const initSummitTabs = () => {
-      const tabs = document.querySelectorAll('.summit-tab');
-      const panels = document.querySelectorAll('.summit-panel-tab');
-      
-      if (tabs.length === 0) return;
-      
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          const target = tab.dataset.tab;
-          
-          // Update tabs
-          tabs.forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-          
-          // Update panels
-          panels.forEach(p => {
-            p.classList.remove('active');
-            if (p.id === 'panel-' + target) {
-              p.classList.add('active');
-            }
-          });
-        });
-      });
-    };
-    initSummitTabs();
-  </script>
-
-  <!-- Programs — Click Tabs (CrewAI Style) -->
-  <section class="programs-tabs-section" data-animate>
-    <div class="max-w-7xl mx-auto px-4 md:px-12 py-16 md:py-24">
-      <div class="text-center mb-12">
-        <p class="text-gpla-green font-semibold uppercase tracking-widest text-sm mb-3">Our Programs</p>
-        <h2 class="font-display text-4xl md:text-5xl text-gpla-navy">BUILD YOUR LEADERSHIP TOOLKIT</h2>
+  <!-- PROGRAMS SECTION - Scroll-driven Sticky Panels -->
+  <section class="scroll-feature scroll-feature--programs" id="programs-scroll" data-animate>
+    <div class="scroll-feature__sticky">
+      <div class="scroll-feature__nav">
+        <button class="scroll-feature__nav-item is-active" data-index="0">TLB · Leadership Bootcamp</button>
+        <button class="scroll-feature__nav-item" data-index="1">PGIL · Policy Lab</button>
+        <button class="scroll-feature__nav-item" data-index="2">HERPower · Women's Fellowship</button>
+        <button class="scroll-feature__nav-item" data-index="3">Summit · Annual Gathering</button>
       </div>
-      
-      <!-- Tab Navigation -->
-      <div class="program-tabs-nav">
-        <button class="program-tab active" data-tab="tlb">
-          <span class="tab-icon">⭐</span>
-          <span class="tab-name">TLB</span>
-          <span class="tab-sub">Leadership Bootcamp</span>
-        </button>
-        <button class="program-tab" data-tab="pgil">
-          <span class="tab-icon">⚖️</span>
-          <span class="tab-name">PGIL</span>
-          <span class="tab-sub">Policy Lab</span>
-        </button>
-        <button class="program-tab" data-tab="herpower">
-          <span class="tab-icon">👑</span>
-          <span class="tab-name">HERPower</span>
-          <span class="tab-sub">Women's Fellowship</span>
-        </button>
-        <button class="program-tab" data-tab="summit">
-          <span class="tab-icon">🎤</span>
-          <span class="tab-name">Summit</span>
-          <span class="tab-sub">Annual Gathering</span>
-        </button>
-      </div>
-      
-      <!-- Tab Panels -->
-      <div class="program-panels">
-        <div class="program-panel-tab active" id="prog-tlb">
-          <div class="panel-content">
+      <div class="scroll-feature__panels">
+        <div class="scroll-feature__panel is-active" data-index="0">
+          <div class="program-panel-content" data-index="0">
+            <span class="panel-tag">5 Days · Residential</span>
             <h3 class="panel-title">Transformational Leadership Bootcamp (TLB)</h3>
-            <div class="program-tags">
-              <span class="program-tag">5 Days</span>
-              <span class="program-tag">Residential</span>
-              <span class="program-tag">Intensive</span>
-            </div>
             <p class="panel-desc">A rigorous 5-day residential program building essential leadership skills for effective student governance.</p>
             <div class="panel-outcomes">
               <h4 class="outcomes-title">Key Outcomes</h4>
@@ -281,18 +208,13 @@ import Footer from '../components/Footer.astro';
                 <li>✓ Mentorship with public, private, and civil society leaders</li>
               </ul>
             </div>
-            <a href="/guildleaders/programs" class="panel-cta primary">Learn More →</a>
+            <a href="/guildleaders/programs" class="panel-cta primary">Apply for TLB →</a>
           </div>
         </div>
-
-        <div class="program-panel-tab" id="prog-pgil">
-          <div class="panel-content">
+        <div class="scroll-feature__panel" data-index="1">
+          <div class="program-panel-content" data-index="1">
+            <span class="panel-tag">8 Weeks · Hybrid</span>
             <h3 class="panel-title">Policy & Governance Incubation Lab (PGIL)</h3>
-            <div class="program-tags">
-              <span class="program-tag">8 Weeks</span>
-              <span class="program-tag">Hybrid</span>
-              <span class="program-tag">Research-Focused</span>
-            </div>
             <p class="panel-desc">8-week intensive program building practical policy analysis and advocacy skills for East Africa.</p>
             <div class="panel-outcomes">
               <h4 class="outcomes-title">Key Outcomes</h4>
@@ -302,18 +224,13 @@ import Footer from '../components/Footer.astro';
                 <li>✓ Policy briefs and campus-based governance initiatives</li>
               </ul>
             </div>
-            <a href="/guildleaders/programs" class="panel-cta primary">Learn More →</a>
+            <a href="/guildleaders/programs" class="panel-cta primary">Apply for PGIL →</a>
           </div>
         </div>
-
-        <div class="program-panel-tab" id="prog-herpower">
-          <div class="panel-content">
+        <div class="scroll-feature__panel" data-index="2">
+          <div class="program-panel-content" data-index="2">
+            <span class="panel-tag">Ongoing · Mentorship</span>
             <h3 class="panel-title">HERPower Fellowship</h3>
-            <div class="program-tags">
-              <span class="program-tag">Ongoing</span>
-              <span class="program-tag">Mentorship</span>
-              <span class="program-tag">Women Only</span>
-            </div>
             <p class="panel-desc">Specialized fellowship for young women passionate about political leadership.</p>
             <div class="panel-outcomes">
               <h4 class="outcomes-title">Key Outcomes</h4>
@@ -323,18 +240,13 @@ import Footer from '../components/Footer.astro';
                 <li>✓ Network of women committed to democratic leadership</li>
               </ul>
             </div>
-            <a href="/guildleaders/programs" class="panel-cta primary">Learn More →</a>
+            <a href="/guildleaders/programs" class="panel-cta primary">Apply for HERPower →</a>
           </div>
         </div>
-
-        <div class="program-panel-tab" id="prog-summit">
-          <div class="panel-content">
+        <div class="scroll-feature__panel" data-index="3">
+          <div class="program-panel-content" data-index="3">
+            <span class="panel-tag">Annual · 2 Days</span>
             <h3 class="panel-title">Guild Leaders' Summit + Guild Voice</h3>
-            <div class="program-tags">
-              <span class="program-tag">Annual</span>
-              <span class="program-tag">2 Days</span>
-              <span class="program-tag">700+ Attendees</span>
-            </div>
             <p class="panel-desc">Annual flagship gathering bringing together Guild Presidents from across East Africa.</p>
             <div class="panel-outcomes">
               <h4 class="outcomes-title">Key Outcomes</h4>
@@ -344,39 +256,17 @@ import Footer from '../components/Footer.astro';
                 <li>✓ Regional integration agenda co-creation</li>
               </ul>
             </div>
-            <a href="/guildleaders/summit" class="panel-cta primary">Learn More →</a>
+            <a href="/guildleaders/summit" class="panel-cta primary">Register for Summit →</a>
           </div>
         </div>
       </div>
     </div>
+    <!-- Scroll sentinels -->
+    <div class="scroll-sentinel" data-index="0"></div>
+    <div class="scroll-sentinel" data-index="1"></div>
+    <div class="scroll-sentinel" data-index="2"></div>
+    <div class="scroll-sentinel" data-index="3"></div>
   </section>
-
-  <script>
-    // Click-based Program Tabs (CrewAI Style)
-    const initProgramTabs = () => {
-      const tabs = document.querySelectorAll('.program-tab');
-      const panels = document.querySelectorAll('.program-panel-tab');
-      
-      if (tabs.length === 0) return;
-      
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          const target = tab.dataset.tab;
-          
-          tabs.forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-          
-          panels.forEach(p => {
-            p.classList.remove('active');
-            if (p.id === 'prog-' + target) {
-              p.classList.add('active');
-            }
-          });
-        });
-      });
-    };
-    initProgramTabs();
-  </script>
 
   <!-- Gallery Section -->
   <section class="gallery-section py-24 bg-gpla-navy overflow-hidden" data-animate>
@@ -558,4 +448,52 @@ import Footer from '../components/Footer.astro';
   </script>
 
   <Footer />
+
+<script>
+  // Scroll-driven sticky panels - scoped to each section independently
+  function initScrollFeature(sectionEl) {
+    const navItems = sectionEl.querySelectorAll('.scroll-feature__nav-item');
+    const panels = sectionEl.querySelectorAll('.scroll-feature__panel');
+    const sentinels = sectionEl.querySelectorAll('.scroll-sentinel');
+
+    function setActive(index) {
+      navItems.forEach((el, i) => el.classList.toggle('is-active', i === index));
+      panels.forEach((el, i) => el.classList.toggle('is-active', i === index));
+    }
+    setActive(0); // default first active
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActive(Number(entry.target.dataset.index));
+        }
+      });
+    }, { threshold: 0.5 });
+
+    sentinels.forEach(s => observer.observe(s));
+
+    // Click nav items to jump scroll
+    navItems.forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        sentinels[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+  }
+
+  // Desktop: Initialize both scroll features with sentinels
+  document.querySelectorAll('.scroll-feature').forEach(initScrollFeature);
+
+  // Mobile (< 1024px): Stacked cards with scroll-in animation
+  if (window.innerWidth < 1024) {
+    const mobileObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          mobileObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.scroll-feature__panel').forEach(p => mobileObserver.observe(p));
+  }
+</script>
 </Base>

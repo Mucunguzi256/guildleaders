@@ -175,6 +175,132 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       }
       .summits-spacer { height: 100vh; }
       
+      /* Scroll-driven Sticky Panels (replaces tabs) */
+      .scroll-feature {
+        position: relative;
+        isolation: isolate;
+      }
+      .scroll-feature--summits { height: calc(3 * 80vh); }
+      .scroll-feature--programs { height: calc(4 * 80vh); }
+      
+      .scroll-feature__sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 48px;
+        align-items: center;
+        padding: 0 clamp(24px, 6vw, 80px);
+        overflow: hidden;
+        isolation: isolate;
+      }
+      
+      .scroll-feature__nav {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .scroll-feature__nav-item {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 16px 20px;
+        border: none;
+        background: none;
+        border-left: 3px solid transparent;
+        cursor: pointer;
+        transition: border-color 250ms ease, color 250ms ease, background 250ms ease;
+        font-size: 1rem;
+        color: #6b7280;
+        font-family: 'DM Sans', sans-serif;
+      }
+      .scroll-feature__nav-item:hover {
+        color: #132d82;
+        background: rgba(19, 45, 130, 0.04);
+      }
+      .scroll-feature__nav-item.is-active {
+        border-left-color: #132d82;
+        color: #132d82;
+        background: rgba(19, 45, 130, 0.06);
+        font-weight: 600;
+      }
+      
+      .scroll-feature__panels {
+        position: relative;
+        height: 100%;
+      }
+      
+      .scroll-feature__panel {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: translateX(24px);
+        transition: opacity 350ms ease-out, transform 350ms ease-out;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 24px;
+      }
+      .scroll-feature__panel.is-active {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+      }
+      
+      .scroll-sentinel {
+        position: absolute;
+        top: 0;
+        height: 80vh;
+        width: 100%;
+        pointer-events: none;
+      }
+      
+      /* Summit Panel Content */
+      .summit-panel-content {
+        background: #132d82;
+        border-radius: 16px;
+        padding: 40px;
+        color: #fff;
+      }
+      .summit-panel-content[data-index="0"] { background: linear-gradient(135deg, #0a1628 0%, #132d82 60%, #1a3d5c 100%); }
+      .summit-panel-content[data-index="1"] { background: linear-gradient(135deg, #0d2818 0%, #1a4d2e 50%, #389a29 100%); }
+      .summit-panel-content[data-index="2"] { background: linear-gradient(135deg, #2d1f0d 0%, #5c3d12 50%, #8b5a2b 100%); }
+      
+      /* Program Panel Content */
+      .program-panel-content {
+        background: #132d82;
+        border-radius: 16px;
+        padding: 40px;
+        color: #fff;
+      }
+      .program-panel-content[data-index="0"] { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #132d82 100%); }
+      .program-panel-content[data-index="1"] { background: linear-gradient(135deg, #14532d 0%, #15803d 50%, #22c55e 100%); }
+      .program-panel-content[data-index="2"] { background: linear-gradient(135deg, #4a1d4e 0%, #7c3aed 50%, #a855f7 100%); }
+      .program-panel-content[data-index="3"] { background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #10b981 100%); }
+      
+      /* Panel Content Styling */
+      .panel-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; display: block; margin-bottom: 16px; color: #F5A623; }
+      .panel-title { font-family: 'Bebas Neue', sans-serif; font-size: 42px; line-height: 1.1; margin-bottom: 16px; }
+      .panel-theme { font-size: 16px; font-style: italic; opacity: 0.85; margin-bottom: 24px; line-height: 1.5; }
+      .panel-desc { font-size: 16px; line-height: 1.6; margin-bottom: 24px; opacity: 0.9; }
+      .panel-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; padding: 20px; background: rgba(255,255,255,0.08); border-radius: 12px; }
+      .meta-label { font-size: 11px; opacity: 0.6; display: block; letter-spacing: 0.08em; text-transform: uppercase; }
+      .meta-value { font-family: 'Bebas Neue', sans-serif; font-size: 20px; display: block; margin: 4px 0 2px; }
+      .meta-sub { font-size: 12px; opacity: 0.7; display: block; }
+      .panel-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+      .panel-cta { padding: 12px 28px; border-radius: 999px; font-weight: 600; font-size: 14px; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; min-height: 44px; display: inline-flex; align-items: center; }
+      .panel-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+      .panel-cta.primary { background: #F5A623; color: #132d82; }
+      .panel-cta.ghost { border: 2px solid rgba(255,255,255,0.5); color: #fff; }
+      .panel-outcomes { margin-bottom: 32px; }
+      .outcomes-title { color: #F5A623; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+      .outcomes-list { list-style: none; padding: 0; margin: 0; }
+      .outcomes-list li { padding: 6px 0; font-size: 14px; display: flex; align-items: flex-start; gap: 8px; }
+      .outcomes-list li::before { content: '✓'; color: #F5A623; }
+      
       /* Click-based Tabs (CrewAI Style) - TASK 1 */
       .summits-tabs-section { background: #F7F6F3; }
       .summit-tabs-nav {
@@ -569,6 +695,79 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
         .summits-right, .programs-right { height: 480px; }
         .panel-title { font-size: 24px; }
         .section-heading { font-size: 28px; }
+      }
+      
+      /* Mobile layout for scroll feature (< 1024px) */
+      @media (max-width: 1023px) {
+        .scroll-feature--summits, .scroll-feature--programs {
+          height: auto;
+        }
+        .scroll-feature__sticky {
+          position: static;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          padding: 0;
+          height: auto;
+          overflow: visible;
+        }
+        .scroll-feature__nav {
+          display: none;
+        }
+        .scroll-feature__panels {
+          position: static;
+          height: auto;
+        }
+        .scroll-feature__panel {
+          position: static;
+          opacity: 0;
+          transform: translateY(32px);
+          transition: opacity 400ms ease-out, transform 400ms ease-out;
+          pointer-events: auto;
+          padding: 24px 20px;
+          margin-bottom: 16px;
+          border: 1px solid rgba(19, 45, 130, 0.12);
+          border-radius: 12px;
+          background: #fff;
+        }
+        .scroll-feature__panel.is-active {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .scroll-feature__panel.is-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        /* Mobile card styles */
+        .summit-panel-content, .program-panel-content {
+          padding: 24px 20px;
+          border-radius: 12px;
+          background: #132d82;
+        }
+        .summit-panel-content[data-index="0"], .program-panel-content[data-index="0"] { background: linear-gradient(135deg, #0a1628 0%, #132d82 100%); }
+        .summit-panel-content[data-index="1"], .program-panel-content[data-index="1"] { background: linear-gradient(135deg, #0d2818 0%, #1a4d2e 100%); }
+        .summit-panel-content[data-index="2"], .program-panel-content[data-index="2"] { background: linear-gradient(135deg, #14532d 0%, #15803d 100%); }
+        .program-panel-content[data-index="3"] { background: linear-gradient(135deg, #064e3b 0%, #065f46 100%); }
+        
+        /* Stagger delays for mobile cards */
+        .scroll-feature__panel:nth-child(1) { transition-delay: 0ms; }
+        .scroll-feature__panel:nth-child(2) { transition-delay: 100ms; }
+        .scroll-feature__panel:nth-child(3) { transition-delay: 200ms; }
+        .scroll-feature__panel:nth-child(4) { transition-delay: 300ms; }
+      }
+      
+      /* Reduced motion */
+      @media (prefers-reduced-motion: no-preference) {
+        .scroll-feature__panel {
+          will-change: transform, opacity;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .scroll-feature__panel {
+          transition: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
       }
       
       /* Touch devices - larger tap targets */
