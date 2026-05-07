@@ -12,8 +12,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/tailwind": "^6.0.2",
-    "astro": "^6.2.2",
+    "@astrojs/tailwind": "^5.1.5",
+    "astro": "^5.2.5",
     "pdfplumber": "^0.0.1-security",
     "tailwindcss": "^3.4.19"
   }
