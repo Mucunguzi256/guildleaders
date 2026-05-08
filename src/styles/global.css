@@ -42,14 +42,7 @@ body {
 }
 
 .summit-panel {
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.summit-panel.active {
-  opacity: 1;
-  transform: translateY(0);
+  /* panels always visible */
 }
 
 .summit-tab {
@@ -90,14 +83,7 @@ body {
 }
 
 .program-panel {
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.program-panel.active {
-  opacity: 1;
-  transform: translateY(0);
+  /* panels always visible */
 }
 
 @keyframes ticker-scroll {
