@@ -590,53 +590,18 @@ import Footer from '../components/Footer.astro';
     startTimer();
   }
 
-  // ── FIND THE RIGHT PANELS FOR EACH SECTION ─────────────────
-  // We locate sections by their heading text, then grab the
-  // direct children that are the content panels.
-  // This works regardless of what class names Astro generated.
-
-  function getSectionByHeading(text) {
-    const headings = Array.from(document.querySelectorAll('h2, h3'));
-    const h = headings.find(el => el.textContent.trim().includes(text));
-    return h ? h.closest('section, div[class*="section"], div[class*="Section"]') || h.parentElement.parentElement : null;
-  }
-
   // ── SUMMITS ─────────────────────────────────────────────────
-  // The 3 summit panels each contain an h3 with "SUMMIT" in the text.
-  // We find them, hide the old tab buttons, then run the carousel.
-
-  const summitSection = getSectionByHeading('THREE YEARS');
-  if (summitSection) {
-    // Hide the old year tab buttons (we don't need them)
-    const tabButtons = summitSection.querySelectorAll('button, [role="tab"]');
-    tabButtons.forEach(b => { b.style.display = 'none'; });
-
-    // The summit panels are siblings that each contain an h3
-    const summitPanels = Array.from(
-      summitSection.querySelectorAll('div')
-    ).filter(el => {
-      const h3 = el.querySelector('h3');
-      return h3 && el.parentElement === el.parentElement && !el.querySelector('div > h3');
-    });
-
-    // Fallback: grab direct div children of the panel container
-    // that each have an h3 inside
-    const allDivs = summitSection.querySelectorAll(':scope > * > div, :scope > div');
-    const panels3 = Array.from(allDivs).filter(d => d.querySelector('h3'));
-
-    buildCarousel(panels3.length >= 2 ? panels3 : summitPanels, 5000);
+  const summitCarousel = document.querySelector('#carousel-summits');
+  if (summitCarousel) {
+    const panels = summitCarousel.querySelectorAll('.gpla-carousel__slide');
+    if (panels.length >= 2) buildCarousel(Array.from(panels), 5000);
   }
 
   // ── PROGRAMS ────────────────────────────────────────────────
-  const programsSection = getSectionByHeading('BUILD YOUR LEADERSHIP');
-  if (programsSection) {
-    const tabButtons = programsSection.querySelectorAll('button, [role="tab"]');
-    tabButtons.forEach(b => { b.style.display = 'none'; });
-
-    const allDivs = programsSection.querySelectorAll(':scope > * > div, :scope > div');
-    const panels4 = Array.from(allDivs).filter(d => d.querySelector('h3'));
-
-    buildCarousel(panels4, 6000);
+  const programsCarousel = document.querySelector('#carousel-programs');
+  if (programsCarousel) {
+    const panels = programsCarousel.querySelectorAll('.gpla-carousel__slide');
+    if (panels.length >= 2) buildCarousel(Array.from(panels), 6000);
   }
 
 })();
