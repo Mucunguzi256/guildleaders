@@ -87,16 +87,14 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       
       /* Summit Panel Transitions - slower, smoother with cubic-bezier */
       .summit-panel { 
-        position: absolute; inset: 0; 
+        position: relative; 
         color: #fff; 
-        opacity: 0; transform: translateY(30px) scale(0.98); 
-        transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), background 0.6s ease;
-        display: flex; align-items: center; padding: 60px; 
-        pointer-events: none; 
+        display: block; 
+        padding: 32px; 
+        margin-bottom: 24px;
       }
       .summit-panel.active { 
-        opacity: 1; transform: translateY(0) scale(1); 
-        pointer-events: all; 
+        /* always visible */
       }
       
       /* Distinct colors per summit - professional, varied palette */
@@ -554,16 +552,14 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       
       /* Program Panel Transitions */
       .program-panel { 
-        position: absolute; inset: 0; 
+        position: relative; 
         color: #fff; 
-        opacity: 0; transform: translateY(30px) scale(0.98); 
-        transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), background 0.6s ease;
-        display: flex; align-items: center; padding: 60px; 
-        pointer-events: none; 
+        display: block; 
+        padding: 32px; 
+        margin-bottom: 24px;
       }
       .program-panel.active { 
-        opacity: 1; transform: translateY(0) scale(1); 
-        pointer-events: all; 
+        /* always visible */
       }
       
       /* Distinct professional color schemes for programs */
