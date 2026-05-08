@@ -5,18 +5,11 @@ import Footer from '../components/Footer.astro';
 ---
 
 <style is:global>
-  .gpla-carousel { position: relative; width: 100%; }
-  .gpla-carousel__track { position: relative; width: 100%; min-height: 320px; overflow: hidden; }
-  @media (min-width: 768px) { .gpla-carousel__track { min-height: 380px; } }
-  .gpla-carousel__slide { position: absolute; inset: 0; width: 100%; opacity: 0; transition: opacity 400ms ease; transform: translateX(0); pointer-events: none; }
-  .gpla-carousel__slide.is-active { opacity: 1; pointer-events: auto; }
-  .gpla-carousel__dots { display: flex; justify-content: center; gap: 8px; margin-top: 28px; padding-bottom: 4px; }
-  .gpla-carousel__dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; border: none; cursor: pointer; padding: 0; transition: all 300ms ease; }
-  .gpla-carousel__dot.is-active { background: #132d82; width: 24px; border-radius: 4px; }
-  @media (max-width: 640px) {
-    .gpla-carousel__track { min-height: auto; }
-    .gpla-carousel__slide { position: relative; opacity: 1; pointer-events: auto; display: none; }
-    .gpla-carousel__slide.is-active { display: block; }
+  .summit-panel + .summit-panel,
+  .program-panel + .program-panel {
+    border-top: 1px solid rgba(19, 45, 130, 0.12);
+    margin-top: 2rem;
+    padding-top: 2rem;
   }
 </style>
 
@@ -114,7 +107,7 @@ import Footer from '../components/Footer.astro';
   <!-- Pattern Divider Thin -->
   <div class="h-10 w-full" style="background: linear-gradient(90deg, #389a29 0%, #389a29 16%, #132d82 16%, #132d82 32%, #F5A623 32%, #F5A623 48%, #ffffff 48%, #ffffff 64%, #389a29 64%, #389a29 80%, #132d82 80%, #132d82 100%);"></div>
 
-<!-- SUMMITS SECTION - Auto-advancing Carousel -->
+<!-- SUMMITS SECTION -->
   <section class="px-4 md:px-12 py-16 md:py-24 bg-gpla-light" data-animate>
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-8">
@@ -122,77 +115,74 @@ import Footer from '../components/Footer.astro';
         <h2 class="font-display text-4xl md:text-5xl text-gpla-navy">THREE YEARS. ONE MOVEMENT.</h2>
       </div>
       
-      <div class="gpla-carousel" id="carousel-summits" data-interval="5000">
-        <div class="gpla-carousel__track">
-          <div class="gpla-carousel__slide">
-            <div class="summit-panel-content" data-index="0">
-              <span class="panel-tag">UPCOMING · 23–24 JULY 2026</span>
-              <h3 class="panel-title">3RD ANNUAL EAST AFRICAN GUILD LEADERS' SUMMIT</h3>
-              <p class="panel-theme">"Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order"</p>
-              <div class="panel-meta">
-                <div class="meta-block">
-                  <span class="meta-label">Chief Guest</span>
-                  <span class="meta-value">H.E. Yoweri Kaguta Museveni</span>
-                  <span class="meta-sub">President of Uganda & EAC Chairperson</span>
-                </div>
-                <div class="meta-block">
-                  <span class="meta-label">Venue</span>
-                  <span class="meta-value">Freedom Square</span>
-                  <span class="meta-sub">Makerere University, Kampala</span>
-                </div>
-              </div>
-              <div class="panel-actions">
-                <a href="/guildleaders/summit/2026" class="panel-cta primary">Register Interest →</a>
-                <a href="/guildleaders/summit/2026#partner" class="panel-cta ghost">Partner With Us →</a>
-              </div>
+      <div class="summit-panel">
+        <div class="summit-panel-content">
+          <span class="panel-tag">UPCOMING · 23–24 JULY 2026</span>
+          <h3 class="panel-title">3RD ANNUAL EAST AFRICAN GUILD LEADERS' SUMMIT</h3>
+          <p class="panel-theme">"Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order"</p>
+          <div class="panel-meta">
+            <div class="meta-block">
+              <span class="meta-label">Chief Guest</span>
+              <span class="meta-value">H.E. Yoweri Kaguta Museveni</span>
+              <span class="meta-sub">President of Uganda & EAC Chairperson</span>
+            </div>
+            <div class="meta-block">
+              <span class="meta-label">Venue</span>
+              <span class="meta-value">Freedom Square</span>
+              <span class="meta-sub">Makerere University, Kampala</span>
             </div>
           </div>
-          <div class="gpla-carousel__slide">
-            <div class="summit-panel-content" data-index="1">
-              <span class="panel-tag">2025 · MAKERERE UNIVERSITY</span>
-              <h3 class="panel-title">2ND ANNUAL GUILD LEADERS' SUMMIT</h3>
-              <p class="panel-theme">"Democratic Governance and People-to-People Integration"</p>
-              <div class="panel-meta">
-                <div class="meta-block">
-                  <span class="meta-label">Chief Guest</span>
-                  <span class="meta-value">HE. Uhuru Kenyatta</span>
-                  <span class="meta-sub">Former President, Republic of Kenya</span>
-                </div>
-                <div class="meta-block">
-                  <span class="meta-label">Attendees</span>
-                  <span class="meta-value">700+</span>
-                  <span class="meta-sub">Leaders from 6 countries</span>
-                </div>
-              </div>
-              <div class="panel-actions">
-                <a href="/guildleaders/summit/2025" class="panel-cta primary">View Full Report →</a>
-              </div>
-            </div>
-          </div>
-          <div class="gpla-carousel__slide">
-            <div class="summit-panel-content" data-index="2">
-              <span class="panel-tag">APRIL 15, 2024 · MAKERERE UNIVERSITY</span>
-              <h3 class="panel-title">INAUGURAL GUILD LEADERS' SUMMIT</h3>
-              <p class="panel-theme">"Legacy and Leadership Continuum: The Power of Knowledge and Cross-Generational Learning"</p>
-              <div class="panel-meta">
-                <div class="meta-block">
-                  <span class="meta-label">Chief Guest</span>
-                  <span class="meta-value">HE. Jakaya Mrisho Kikwete</span>
-                  <span class="meta-sub">Former President, Tanzania · Now Summit Patron</span>
-                </div>
-                <div class="meta-block">
-                  <span class="meta-label">Attendees</span>
-                  <span class="meta-value">700+</span>
-                  <span class="meta-sub">Historic first convening</span>
-                </div>
-              </div>
-              <div class="panel-actions">
-                <a href="/guildleaders/summit/2024" class="panel-cta primary">View Full Report →</a>
-              </div>
-            </div>
+          <div class="panel-actions">
+            <a href="/guildleaders/summit/2026" class="panel-cta primary">Register Interest →</a>
+            <a href="/guildleaders/summit/2026#partner" class="panel-cta ghost">Partner With Us →</a>
           </div>
         </div>
-        <div class="gpla-carousel__dots" role="tablist" aria-label="Summit year"></div>
+      </div>
+      
+      <div class="summit-panel">
+        <div class="summit-panel-content">
+          <span class="panel-tag">2025 · MAKERERE UNIVERSITY</span>
+          <h3 class="panel-title">2ND ANNUAL GUILD LEADERS' SUMMIT</h3>
+          <p class="panel-theme">"Democratic Governance and People-to-People Integration"</p>
+          <div class="panel-meta">
+            <div class="meta-block">
+              <span class="meta-label">Chief Guest</span>
+              <span class="meta-value">HE. Uhuru Kenyatta</span>
+              <span class="meta-sub">Former President, Republic of Kenya</span>
+            </div>
+            <div class="meta-block">
+              <span class="meta-label">Attendees</span>
+              <span class="meta-value">700+</span>
+              <span class="meta-sub">Leaders from 6 countries</span>
+            </div>
+          </div>
+          <div class="panel-actions">
+            <a href="/guildleaders/summit/2025" class="panel-cta primary">View Full Report →</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="summit-panel">
+        <div class="summit-panel-content">
+          <span class="panel-tag">APRIL 15, 2024 · MAKERERE UNIVERSITY</span>
+          <h3 class="panel-title">INAUGURAL GUILD LEADERS' SUMMIT</h3>
+          <p class="panel-theme">"Legacy and Leadership Continuum: The Power of Knowledge and Cross-Generational Learning"</p>
+          <div class="panel-meta">
+            <div class="meta-block">
+              <span class="meta-label">Chief Guest</span>
+              <span class="meta-value">HE. Jakaya Mrisho Kikwete</span>
+              <span class="meta-sub">Former President, Tanzania · Now Summit Patron</span>
+            </div>
+            <div class="meta-block">
+              <span class="meta-label">Attendees</span>
+              <span class="meta-value">700+</span>
+              <span class="meta-sub">Historic first convening</span>
+            </div>
+          </div>
+          <div class="panel-actions">
+            <a href="/guildleaders/summit/2024" class="panel-cta primary">View Full Report →</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -200,7 +190,7 @@ import Footer from '../components/Footer.astro';
   <!-- Pattern Divider -->
   <div class="h-8 w-full" style="background: linear-gradient(90deg, #132d82 0%, #132d82 25%, #389a29 25%, #389a29 50%, #F5A623 50%, #F5A623 75%, #132d82 75%, #132d82 100%);"></div>
 
-  <!-- PROGRAMS SECTION - Auto-advancing Carousel -->
+  <!-- PROGRAMS SECTION -->
   <section class="px-4 md:px-12 py-16 md:py-24 bg-white" data-animate>
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-8">
@@ -208,74 +198,72 @@ import Footer from '../components/Footer.astro';
         <h2 class="font-display text-4xl md:text-5xl text-gpla-navy">BUILD YOUR LEADERSHIP TOOLKIT</h2>
       </div>
       
-      <div class="gpla-carousel" id="carousel-programs" data-interval="6000">
-        <div class="gpla-carousel__track">
-          <div class="gpla-carousel__slide">
-            <div class="program-panel-content" data-index="0">
-              <span class="panel-tag">5 Days · Residential</span>
-              <h3 class="panel-title">Transformational Leadership Bootcamp (TLB)</h3>
-              <p class="panel-desc">A rigorous 5-day residential program building essential leadership skills for effective student governance.</p>
-              <div class="panel-outcomes">
-                <h4 class="outcomes-title">Key Outcomes</h4>
-                <ul class="outcomes-list">
-                  <li>✓ Personal leadership vision creation with actionable steps</li>
-                  <li>✓ Conflict resolution and strategic planning skills</li>
-                  <li>✓ Mentorship with public, private, and civil society leaders</li>
-                </ul>
-              </div>
-              <a href="/guildleaders/programs" class="panel-cta primary">Apply for TLB →</a>
-            </div>
+      <div class="program-panel">
+        <div class="program-panel-content">
+          <span class="panel-tag">5 Days · Residential</span>
+          <h3 class="panel-title">Transformational Leadership Bootcamp (TLB)</h3>
+          <p class="panel-desc">A rigorous 5-day residential program building essential leadership skills for effective student governance.</p>
+          <div class="panel-outcomes">
+            <h4 class="outcomes-title">Key Outcomes</h4>
+            <ul class="outcomes-list">
+              <li>✓ Personal leadership vision creation with actionable steps</li>
+              <li>✓ Conflict resolution and strategic planning skills</li>
+              <li>✓ Mentorship with public, private, and civil society leaders</li>
+            </ul>
           </div>
-          <div class="gpla-carousel__slide">
-            <div class="program-panel-content" data-index="1">
-              <span class="panel-tag">8 Weeks · Hybrid</span>
-              <h3 class="panel-title">Policy & Governance Incubation Lab (PGIL)</h3>
-              <p class="panel-desc">8-week intensive program building practical policy analysis and advocacy skills for East Africa.</p>
-              <div class="panel-outcomes">
-                <h4 class="outcomes-title">Key Outcomes</h4>
-                <ul class="outcomes-list">
-                  <li>✓ Public policy analysis and budgeting competency</li>
-                  <li>✓ Real-time review of national development plans</li>
-                  <li>✓ Policy briefs and campus-based governance initiatives</li>
-                </ul>
-              </div>
-              <a href="/guildleaders/programs" class="panel-cta primary">Apply for PGIL →</a>
-            </div>
-          </div>
-          <div class="gpla-carousel__slide">
-            <div class="program-panel-content" data-index="2">
-              <span class="panel-tag">Ongoing · Mentorship</span>
-              <h3 class="panel-title">HERPower Fellowship</h3>
-              <p class="panel-desc">Specialized fellowship for young women passionate about political leadership.</p>
-              <div class="panel-outcomes">
-                <h4 class="outcomes-title">Key Outcomes</h4>
-                <ul class="outcomes-list">
-                  <li>✓ Feminist leadership and political organizing skills</li>
-                  <li>✓ Mentorship from women leaders in public office</li>
-                  <li>✓ Network of women committed to democratic leadership</li>
-                </ul>
-              </div>
-              <a href="/guildleaders/programs" class="panel-cta primary">Apply for HERPower →</a>
-            </div>
-          </div>
-          <div class="gpla-carousel__slide">
-            <div class="program-panel-content" data-index="3">
-              <span class="panel-tag">Annual · 2 Days</span>
-              <h3 class="panel-title">Guild Leaders' Summit + Guild Voice</h3>
-              <p class="panel-desc">Annual flagship gathering bringing together Guild Presidents from across East Africa.</p>
-              <div class="panel-outcomes">
-                <h4 class="outcomes-title">Key Outcomes</h4>
-                <ul class="outcomes-list">
-                  <li>✓ Pan-East African student leader network</li>
-                  <li>✓ Cross-border policy dialogue and advocacy</li>
-                  <li>✓ Regional integration agenda co-creation</li>
-                </ul>
-              </div>
-              <a href="/guildleaders/summit" class="panel-cta primary">Register for Summit →</a>
-            </div>
-          </div>
+          <a href="/guildleaders/programs" class="panel-cta primary">Apply for TLB →</a>
         </div>
-        <div class="gpla-carousel__dots" role="tablist" aria-label="Program"></div>
+      </div>
+      
+      <div class="program-panel">
+        <div class="program-panel-content">
+          <span class="panel-tag">8 Weeks · Hybrid</span>
+          <h3 class="panel-title">Policy & Governance Incubation Lab (PGIL)</h3>
+          <p class="panel-desc">8-week intensive program building practical policy analysis and advocacy skills for East Africa.</p>
+          <div class="panel-outcomes">
+            <h4 class="outcomes-title">Key Outcomes</h4>
+            <ul class="outcomes-list">
+              <li>✓ Public policy analysis and budgeting competency</li>
+              <li>✓ Real-time review of national development plans</li>
+              <li>✓ Policy briefs and campus-based governance initiatives</li>
+            </ul>
+          </div>
+          <a href="/guildleaders/programs" class="panel-cta primary">Apply for PGIL →</a>
+        </div>
+      </div>
+      
+      <div class="program-panel">
+        <div class="program-panel-content">
+          <span class="panel-tag">Ongoing · Mentorship</span>
+          <h3 class="panel-title">HERPower Fellowship</h3>
+          <p class="panel-desc">Specialized fellowship for young women passionate about political leadership.</p>
+          <div class="panel-outcomes">
+            <h4 class="outcomes-title">Key Outcomes</h4>
+            <ul class="outcomes-list">
+              <li>✓ Feminist leadership and political organizing skills</li>
+              <li>✓ Mentorship from women leaders in public office</li>
+              <li>✓ Network of women committed to democratic leadership</li>
+            </ul>
+          </div>
+          <a href="/guildleaders/programs" class="panel-cta primary">Apply for HERPower →</a>
+        </div>
+      </div>
+      
+      <div class="program-panel">
+        <div class="program-panel-content">
+          <span class="panel-tag">Annual · 2 Days</span>
+          <h3 class="panel-title">Guild Leaders' Summit + Guild Voice</h3>
+          <p class="panel-desc">Annual flagship gathering bringing together Guild Presidents from across East Africa.</p>
+          <div class="panel-outcomes">
+            <h4 class="outcomes-title">Key Outcomes</h4>
+            <ul class="outcomes-list">
+              <li>✓ Pan-East African student leader network</li>
+              <li>✓ Cross-border policy dialogue and advocacy</li>
+              <li>✓ Regional integration agenda co-creation</li>
+            </ul>
+          </div>
+          <a href="/guildleaders/summit" class="panel-cta primary">Register for Summit →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -460,150 +448,4 @@ import Footer from '../components/Footer.astro';
   </script>
 
   <Footer />
-
-<script>
-(function () {
-  // ── CAROUSEL ENGINE ──────────────────────────────────────────
-  // Finds the panels inside each section, stacks them in the same
-  // space, and auto-cycles them. Zero HTML changes required.
-
-  function buildCarousel(panelEls, intervalMs) {
-    if (!panelEls || panelEls.length < 2) return;
-
-    // Find the shared parent of all panels
-    const parent = panelEls[0].parentElement;
-
-    // Inject base styles once
-    if (!document.getElementById('gpla-carousel-style')) {
-      const style = document.createElement('style');
-      style.id = 'gpla-carousel-style';
-      style.textContent = `
-        .gpla-c-wrap {
-          position: relative;
-          overflow: hidden;
-          width: 100%;
-        }
-        .gpla-c-slide {
-          position: absolute;
-          top: 0; left: 0;
-          width: 100%;
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity 700ms ease, transform 700ms ease;
-          transform: translateY(12px);
-        }
-        .gpla-c-slide.active {
-          opacity: 1;
-          pointer-events: auto;
-          transform: translateY(0);
-          position: relative;
-        }
-        .gpla-c-slide.leaving {
-          opacity: 0;
-          transform: translateY(-8px);
-          position: absolute;
-        }
-        .gpla-c-dots {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 8px;
-          margin-top: 24px;
-        }
-        .gpla-c-dot {
-          height: 8px;
-          width: 8px;
-          border-radius: 50%;
-          background: #cbd5e1;
-          border: none;
-          cursor: pointer;
-          padding: 0;
-          transition: width 300ms ease, background 300ms ease, border-radius 300ms ease;
-        }
-        .gpla-c-dot.active {
-          background: #132d82;
-          width: 24px;
-          border-radius: 4px;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .gpla-c-slide { transition: opacity 200ms ease; transform: none !important; }
-        }
-      `;
-      document.head.appendChild(style);
-    }
-
-    // Wrap parent in carousel wrapper
-    const wrap = document.createElement('div');
-    wrap.className = 'gpla-c-wrap';
-    parent.parentNode.insertBefore(wrap, parent);
-    wrap.appendChild(parent);
-
-    // Tag all panels
-    panelEls.forEach(el => el.classList.add('gpla-c-slide'));
-
-    // Build dot nav
-    const dotsEl = document.createElement('div');
-    dotsEl.className = 'gpla-c-dots';
-    wrap.appendChild(dotsEl);
-
-    panelEls.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'gpla-c-dot';
-      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-      dot.addEventListener('click', () => { goTo(i); resetTimer(); });
-      dotsEl.appendChild(dot);
-    });
-
-    const dots = Array.from(dotsEl.querySelectorAll('.gpla-c-dot'));
-    let current = 0;
-    let timer;
-    let busy = false;
-
-    function goTo(next) {
-      if (busy || next === current) return;
-      busy = true;
-      const leaving = panelEls[current];
-      const coming = panelEls[next];
-
-      leaving.classList.remove('active');
-      leaving.classList.add('leaving');
-      setTimeout(() => leaving.classList.remove('leaving'), 750);
-
-      coming.classList.add('active');
-      dots.forEach((d, i) => d.classList.toggle('active', i === next));
-      current = next;
-      setTimeout(() => { busy = false; }, 750);
-    }
-
-    function next() { goTo((current + 1) % panelEls.length); }
-    function startTimer() { timer = setInterval(next, intervalMs); }
-    function resetTimer() { clearInterval(timer); startTimer(); }
-
-    wrap.addEventListener('mouseenter', () => clearInterval(timer));
-    wrap.addEventListener('focusin',    () => clearInterval(timer));
-    wrap.addEventListener('mouseleave', startTimer);
-    wrap.addEventListener('focusout',   startTimer);
-
-    // Activate first
-    panelEls[0].classList.add('active');
-    dots[0].classList.add('active');
-    startTimer();
-  }
-
-  // ── SUMMITS ─────────────────────────────────────────────────
-  const summitCarousel = document.querySelector('#carousel-summits');
-  if (summitCarousel) {
-    const panels = summitCarousel.querySelectorAll('.gpla-carousel__slide');
-    if (panels.length >= 2) buildCarousel(Array.from(panels), 5000);
-  }
-
-  // ── PROGRAMS ────────────────────────────────────────────────
-  const programsCarousel = document.querySelector('#carousel-programs');
-  if (programsCarousel) {
-    const panels = programsCarousel.querySelectorAll('.gpla-carousel__slide');
-    if (panels.length >= 2) buildCarousel(Array.from(panels), 6000);
-  }
-
-})();
-</script>
 </Base>
