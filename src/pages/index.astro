@@ -462,64 +462,183 @@ import Footer from '../components/Footer.astro';
   <Footer />
 
 <script>
-  // Auto-advancing carousel - independent per instance
-  document.querySelectorAll('.gpla-carousel').forEach(carousel => {
-    const track = carousel.querySelector('.gpla-carousel__track');
-    const slides = carousel.querySelectorAll('.gpla-carousel__slide');
-    const dotsContainer = carousel.querySelector('.gpla-carousel__dots');
-    const intervalMs = Number(carousel.dataset.interval) || 5000;
-    
-    let currentIndex = 0;
-    let autoPlayInterval = null;
-    
-    // Create dots
-    slides.forEach((_, i) => {
+(function () {
+  // ── CAROUSEL ENGINE ──────────────────────────────────────────
+  // Finds the panels inside each section, stacks them in the same
+  // space, and auto-cycles them. Zero HTML changes required.
+
+  function buildCarousel(panelEls, intervalMs) {
+    if (!panelEls || panelEls.length < 2) return;
+
+    // Find the shared parent of all panels
+    const parent = panelEls[0].parentElement;
+
+    // Inject base styles once
+    if (!document.getElementById('gpla-carousel-style')) {
+      const style = document.createElement('style');
+      style.id = 'gpla-carousel-style';
+      style.textContent = `
+        .gpla-c-wrap {
+          position: relative;
+          overflow: hidden;
+          width: 100%;
+        }
+        .gpla-c-slide {
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 700ms ease, transform 700ms ease;
+          transform: translateY(12px);
+        }
+        .gpla-c-slide.active {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateY(0);
+          position: relative;
+        }
+        .gpla-c-slide.leaving {
+          opacity: 0;
+          transform: translateY(-8px);
+          position: absolute;
+        }
+        .gpla-c-dots {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+          margin-top: 24px;
+        }
+        .gpla-c-dot {
+          height: 8px;
+          width: 8px;
+          border-radius: 50%;
+          background: #cbd5e1;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          transition: width 300ms ease, background 300ms ease, border-radius 300ms ease;
+        }
+        .gpla-c-dot.active {
+          background: #132d82;
+          width: 24px;
+          border-radius: 4px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .gpla-c-slide { transition: opacity 200ms ease; transform: none !important; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    // Wrap parent in carousel wrapper
+    const wrap = document.createElement('div');
+    wrap.className = 'gpla-c-wrap';
+    parent.parentNode.insertBefore(wrap, parent);
+    wrap.appendChild(parent);
+
+    // Tag all panels
+    panelEls.forEach(el => el.classList.add('gpla-c-slide'));
+
+    // Build dot nav
+    const dotsEl = document.createElement('div');
+    dotsEl.className = 'gpla-c-dots';
+    wrap.appendChild(dotsEl);
+
+    panelEls.forEach((_, i) => {
       const dot = document.createElement('button');
-      dot.className = 'gpla-carousel__dot';
-      dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-label', `Slide ${i + 1}`);
-      dot.addEventListener('click', () => goToSlide(i));
-      dotsContainer.appendChild(dot);
+      dot.className = 'gpla-c-dot';
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dot.addEventListener('click', () => { goTo(i); resetTimer(); });
+      dotsEl.appendChild(dot);
     });
-    
-    const dots = dotsContainer.querySelectorAll('.gpla-carousel__dot');
-    
-    function goToSlide(index) {
-      currentIndex = index;
-      track.style.transform = `translateX(-${index * 100}%)`;
-      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
-      slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+
+    const dots = Array.from(dotsEl.querySelectorAll('.gpla-c-dot'));
+    let current = 0;
+    let timer;
+    let busy = false;
+
+    function goTo(next) {
+      if (busy || next === current) return;
+      busy = true;
+      const leaving = panelEls[current];
+      const coming = panelEls[next];
+
+      leaving.classList.remove('active');
+      leaving.classList.add('leaving');
+      setTimeout(() => leaving.classList.remove('leaving'), 750);
+
+      coming.classList.add('active');
+      dots.forEach((d, i) => d.classList.toggle('active', i === next));
+      current = next;
+      setTimeout(() => { busy = false; }, 750);
     }
-    
-    function nextSlide() {
-      goToSlide((currentIndex + 1) % slides.length);
-    }
-    
-    function startAutoPlay() {
-      autoPlayInterval = setInterval(nextSlide, intervalMs);
-    }
-    
-    function stopAutoPlay() {
-      clearInterval(autoPlayInterval);
-    }
-    
-    // Initialize
-    goToSlide(0);
-    startAutoPlay();
-    
-    // Pause on hover
-    carousel.addEventListener('mouseenter', stopAutoPlay);
-    carousel.addEventListener('mouseleave', startAutoPlay);
-    
-    // Touch/swipe support
-    let touchStartX = 0;
-    track.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
-    track.addEventListener('touchend', e => {
-      const diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) {
-        diff > 0 ? goToSlide((currentIndex + 1) % slides.length) : goToSlide((currentIndex - 1 + slides.length) % slides.length);
-      }
+
+    function next() { goTo((current + 1) % panelEls.length); }
+    function startTimer() { timer = setInterval(next, intervalMs); }
+    function resetTimer() { clearInterval(timer); startTimer(); }
+
+    wrap.addEventListener('mouseenter', () => clearInterval(timer));
+    wrap.addEventListener('focusin',    () => clearInterval(timer));
+    wrap.addEventListener('mouseleave', startTimer);
+    wrap.addEventListener('focusout',   startTimer);
+
+    // Activate first
+    panelEls[0].classList.add('active');
+    dots[0].classList.add('active');
+    startTimer();
+  }
+
+  // ── FIND THE RIGHT PANELS FOR EACH SECTION ─────────────────
+  // We locate sections by their heading text, then grab the
+  // direct children that are the content panels.
+  // This works regardless of what class names Astro generated.
+
+  function getSectionByHeading(text) {
+    const headings = Array.from(document.querySelectorAll('h2, h3'));
+    const h = headings.find(el => el.textContent.trim().includes(text));
+    return h ? h.closest('section, div[class*="section"], div[class*="Section"]') || h.parentElement.parentElement : null;
+  }
+
+  // ── SUMMITS ─────────────────────────────────────────────────
+  // The 3 summit panels each contain an h3 with "SUMMIT" in the text.
+  // We find them, hide the old tab buttons, then run the carousel.
+
+  const summitSection = getSectionByHeading('THREE YEARS');
+  if (summitSection) {
+    // Hide the old year tab buttons (we don't need them)
+    const tabButtons = summitSection.querySelectorAll('button, [role="tab"]');
+    tabButtons.forEach(b => { b.style.display = 'none'; });
+
+    // The summit panels are siblings that each contain an h3
+    const summitPanels = Array.from(
+      summitSection.querySelectorAll('div')
+    ).filter(el => {
+      const h3 = el.querySelector('h3');
+      return h3 && el.parentElement === el.parentElement && !el.querySelector('div > h3');
     });
-  });
+
+    // Fallback: grab direct div children of the panel container
+    // that each have an h3 inside
+    const allDivs = summitSection.querySelectorAll(':scope > * > div, :scope > div');
+    const panels3 = Array.from(allDivs).filter(d => d.querySelector('h3'));
+
+    buildCarousel(panels3.length >= 2 ? panels3 : summitPanels, 5000);
+  }
+
+  // ── PROGRAMS ────────────────────────────────────────────────
+  const programsSection = getSectionByHeading('BUILD YOUR LEADERSHIP');
+  if (programsSection) {
+    const tabButtons = programsSection.querySelectorAll('button, [role="tab"]');
+    tabButtons.forEach(b => { b.style.display = 'none'; });
+
+    const allDivs = programsSection.querySelectorAll(':scope > * > div, :scope > div');
+    const panels4 = Array.from(allDivs).filter(d => d.querySelector('h3'));
+
+    buildCarousel(panels4, 6000);
+  }
+
+})();
 </script>
 </Base>
