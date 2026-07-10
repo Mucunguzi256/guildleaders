@@ -9,17 +9,8 @@ import Footer from '../../components/Footer.astro';
   
   <!-- Hero Section with Video Background -->
   <section class="hero relative min-h-[70vh] md:min-h-[80vh] overflow-hidden flex items-center">
-    <!-- VIDEO BACKGROUND — client to provide video file -->
     <div class="hero-video-wrapper absolute inset-0 z-0">
-      <video 
-        autoplay 
-        muted 
-        loop 
-        playsinline
-        class="w-full h-full object-cover opacity-30"
-        poster="/images/hero-poster.jpg"
-      >
-        <!-- Client to add: <source src="/videos/hero-bg.mp4" type="video/mp4"> -->
+      <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30" poster="/images/hero-poster.jpg">
       </video>
       <div class="absolute inset-0 bg-gradient-to-r from-[#132d82]/95 via-[#132d82]/80 to-[#389a29]/60"></div>
     </div>
@@ -38,8 +29,8 @@ import Footer from '../../components/Footer.astro';
             Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order
           </p>
           <div class="flex flex-wrap gap-4 mb-6">
-            <a href="#register" class="bg-gpla-green text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
-              Register Interest
+            <a href="https://lu.ma/5tuheo2m" target="_blank" rel="noopener noreferrer" class="bg-gpla-green text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
+              Apply to Join →
             </a>
             <a href="#partner" class="border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-block hover:bg-white hover:text-gpla-navy transition-all">
               Partner With Us
@@ -54,11 +45,10 @@ import Footer from '../../components/Footer.astro';
     </div>
   </section>
 
-  <!-- Countdown Timer - TASK 7 -->
+  <!-- Countdown Timer -->
   <section class="px-4 md:px-12 py-12 bg-gpla-navy">
     <div class="max-w-4xl mx-auto">
       <p class="text-gpla-green text-sm font-semibold uppercase tracking-widest mb-8 text-center">COUNTDOWN TO THE SUMMIT</p>
-      <!-- 2x2 grid on mobile <400px, 4-col on larger -->
       <div class="countdown-grid">
         <div class="countdown-unit">
           <span id="count-days" class="countdown-number">00</span>
@@ -150,6 +140,29 @@ import Footer from '../../components/Footer.astro';
     </div>
   </section>
 
+  <!-- Luma Event Embed Section -->
+  <section class="bg-gpla-navy px-4 md:px-12 py-16 md:py-24">
+    <div class="max-w-5xl mx-auto text-center">
+      <span class="bg-gpla-gold text-gpla-navy text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full inline-block mb-4">Register on Luma</span>
+      <h2 class="font-display text-white text-[32px] md:text-[48px] mb-3">SECURE YOUR SPOT</h2>
+      <p class="text-white/60 text-base mb-8 max-w-xl mx-auto">
+        Confirm your participation for the 3rd Annual East African Guild Leaders' Summit. Registration is via Luma.
+      </p>
+      <div class="bg-white/5 rounded-xl overflow-hidden border border-white/10 inline-block w-full max-w-[600px]">
+        <iframe
+          src="https://luma.com/embed/event/evt-jz3DM2lZIpMEaV1/simple"
+          width="100%"
+          height="520"
+          frameborder="0"
+          style="display: block; border: none;"
+          allow="fullscreen; payment"
+          aria-hidden="false"
+          tabindex="0"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
   <!-- Speaker Applications CTA -->
   <section class="cta-speak bg-gpla-gold py-20 px-4 md:px-12">
     <div class="container mx-auto text-center">
@@ -159,8 +172,8 @@ import Footer from '../../components/Footer.astro';
       <p class="text-gpla-navy/80 text-lg mb-8 max-w-2xl mx-auto">
         Are you a policymaker, entrepreneur, academic, or regional leader with a message for East Africa's next generation? Apply to address the 3rd Annual East African Guild Leaders' Summit.
       </p>
-      <a href="https://formspree.io/f/SPEAKER_FORM_ID" class="bg-gpla-navy text-white px-8 py-4 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
-        Apply to Speak →
+      <a href="https://lu.ma/5tuheo2m" target="_blank" rel="noopener noreferrer" class="bg-gpla-navy text-white px-8 py-4 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
+        Apply via Luma →
       </a>
     </div>
   </section>
@@ -182,6 +195,18 @@ import Footer from '../../components/Footer.astro';
             <li class="flex items-center gap-3"><span class="text-gpla-green text-xl">✓</span> Co-branding on Summit materials and reports</li>
             <li class="flex items-center gap-3"><span class="text-gpla-green text-xl">✓</span> Panel and speaking opportunities</li>
           </ul>
+          <div class="mt-6">
+            <iframe
+              src="https://luma.com/embed/event/evt-jz3DM2lZIpMEaV1/simple"
+              width="100%"
+              height="450"
+              frameborder="0"
+              style="display: block; border: 1px solid #bfcbda88; border-radius: 8px;"
+              allow="fullscreen; payment"
+              aria-hidden="false"
+              tabindex="0"
+            ></iframe>
+          </div>
         </div>
         <div class="partner-form bg-white/5 p-6 md:p-8 rounded-xl">
           <h3 class="text-white font-display text-2xl mb-6">
@@ -212,54 +237,17 @@ import Footer from '../../components/Footer.astro';
     </div>
   </section>
 
-  <!-- Save the Date / Register Interest -->
-  <section id="register" class="bg-gpla-green px-4 md:px-12 py-16 md:py-24 text-center">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="font-display text-white text-[40px] md:text-[56px] mb-4">SAVE THE DATE</h2>
-      <p class="text-white text-lg md:text-xl italic mb-8 max-w-[600px] mx-auto">
-        "The Future of East Africa Will Not Be Inherited. It Will Be Built. And the Builders Are Here."
+  <!-- Register Interest Section -->
+  <section id="register" class="bg-gpla-green px-4 md:px-12 py-16 md:py-24">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="font-display text-white text-[40px] md:text-[56px] mb-4">REGISTER ON LUMA</h2>
+      <p class="text-white/80 text-lg mb-8 max-w-xl mx-auto">
+        Click the button below to register for the 3rd Annual East African Guild Leaders' Summit via Luma.
       </p>
-      <form action="https://formspree.io/f/REGISTER_FORM_ID" method="POST" class="max-w-md mx-auto bg-white p-8 rounded-xl">
-        <input type="hidden" name="_next" value="/guildleaders/summit/2026?registered=true" />
-        <div class="space-y-4">
-          <div>
-            <label for="name" class="block text-gray-600 text-sm font-medium mb-2">Full Name</label>
-            <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gpla-green focus:border-transparent" />
-          </div>
-          <div>
-            <label for="email" class="block text-gray-600 text-sm font-medium mb-2">Email Address</label>
-            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gpla-green focus:border-transparent" />
-          </div>
-          <div>
-            <label for="institution" class="block text-gray-600 text-sm font-medium mb-2">Institution / Organization</label>
-            <input type="text" id="institution" name="institution" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gpla-green focus:border-transparent" />
-          </div>
-          <div>
-            <label for="country" class="block text-gray-600 text-sm font-medium mb-2">Country</label>
-            <select id="country" name="country" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gpla-green focus:border-transparent">
-              <option value="">Select Country</option>
-              <option value="Uganda">Uganda</option>
-              <option value="Kenya">Kenya</option>
-              <option value="Tanzania">Tanzania</option>
-              <option value="Rwanda">Rwanda</option>
-              <option value="Burundi">Burundi</option>
-              <option value="South Sudan">South Sudan</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <button type="submit" class="w-full bg-gpla-navy text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl hover:-translate-y-0.5 transition-all">
-            Register Interest
-          </button>
-        </div>
-      </form>
+      <a href="https://lu.ma/5tuheo2m" target="_blank" rel="noopener noreferrer" class="bg-white text-gpla-navy px-10 py-5 rounded-full font-bold text-lg inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
+        Apply to Join on Luma →
+      </a>
     </div>
-  </section>
-
-  <!-- Thank You (shown when registered) -->
-  <section id="thank-you" class="hidden px-4 md:px-12 py-12 md:py-20 bg-[var(--bg-section-alt)] text-center">
-    <div class="text-6xl mb-4">🎉</div>
-    <h2 class="font-display text-gpla-navy text-[40px] mb-4">You're Registered!</h2>
-    <p class="text-[var(--text-muted)] text-lg">We'll be in touch with more details about the 2026 Summit.</p>
   </section>
 
   <Footer />
@@ -274,7 +262,7 @@ import Footer from '../../components/Footer.astro';
     const diff = target - now;
     
     if (diff <= 0) {
-      document.querySelector('.countdown')!.innerHTML = '<p class="text-gpla-gold text-2xl font-display">THE SUMMIT IS LIVE</p>';
+      document.querySelectorAll('.countdown-number').forEach(el => { el.textContent = '00'; });
       return;
     }
     
@@ -283,26 +271,14 @@ import Footer from '../../components/Footer.astro';
     const mins = Math.floor((diff % 3600000) / 60000);
     const secs = Math.floor((diff % 60000) / 1000);
     
-    const units = [
-      { id: 'count-days', val: days },
-      { id: 'count-hours', val: hours },
-      { id: 'count-mins', val: mins },
-      { id: 'count-secs', val: secs }
-    ];
-    
-    units.forEach(unit => {
-      const el = document.getElementById(unit.id);
-      if (el) {
-        const newVal = String(unit.val).padStart(2, '0');
-        if (el.textContent !== newVal) {
-          el.classList.add('flip');
-          setTimeout(() => { 
-            el.textContent = newVal;
-            el.classList.remove('flip');
-          }, 150);
-        }
-      }
-    });
+    const update = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = String(val).padStart(2, '0');
+    };
+    update('count-days', days);
+    update('count-hours', hours);
+    update('count-mins', mins);
+    update('count-secs', secs);
   }
   
   setInterval(updateCountdown, 1000);
@@ -312,20 +288,14 @@ import Footer from '../../components/Footer.astro';
   const animateOnScroll = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const delay = entry.target.dataset.delay || 0;
+        const delay = parseInt(entry.target.dataset.delay) || 0;
         setTimeout(() => {
           entry.target.classList.add('animate-in');
-        }, parseInt(delay));
+        }, delay);
         animateOnScroll.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
 
   document.querySelectorAll('[data-animate]').forEach(el => animateOnScroll.observe(el));
-
-  // Show thank you if registered
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('registered') === 'true') {
-    document.getElementById('thank-you')?.classList.remove('hidden');
-  }
 </script>
