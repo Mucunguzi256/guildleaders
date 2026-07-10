@@ -14,10 +14,34 @@
 body {
   background-color: var(--bg-base);
   color: var(--text-primary);
+  background-image:
+    /* Fine grid — navy @ 2.5% */
+    linear-gradient(90deg, rgba(19,45,130,0.025) 1px, transparent 1px),
+    linear-gradient(rgba(19,45,130,0.025) 1px, transparent 1px),
+    /* Major grid — navy @ 4.5% */
+    linear-gradient(90deg, rgba(19,45,130,0.045) 1px, transparent 1px),
+    linear-gradient(rgba(19,45,130,0.045) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 160px 160px, 160px 160px;
 }
 
 .bg-gpla-light {
   background-color: var(--bg-section-alt);
+  background-image:
+    linear-gradient(90deg, rgba(19,45,130,0.025) 1px, transparent 1px),
+    linear-gradient(rgba(19,45,130,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19,45,130,0.04) 1px, transparent 1px),
+    linear-gradient(rgba(19,45,130,0.04) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 160px 160px, 160px 160px;
+}
+
+.bg-gpla-dark-bg,
+.bg-gpla-navy {
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 160px 160px, 160px 160px;
 }
 
 .hero::after {

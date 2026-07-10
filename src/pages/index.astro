@@ -90,6 +90,9 @@ import Footer from '../components/Footer.astro';
     .parallax-card.sticky { min-height: 560px; }
   }
 
+  /* Fix z-index stacking — higher z-index on TOP cards, lower on BOTTOM cards */
+  .parallax-card.sticky { z-index: auto; }
+  
   /* Card color variants */
   .parallax-card--2026 { background: linear-gradient(135deg, #0a1628 0%, #132d82 50%, #1a3d5c 100%); }
   .parallax-card--2025 { background: linear-gradient(135deg, #0d2818 0%, #1a4d2e 50%, #2d6b3f 100%); }
@@ -206,7 +209,7 @@ import Footer from '../components/Footer.astro';
     .parallax-content .meta-grid { grid-template-columns: 1fr; }
     .parallax-content .panel-actions { flex-direction: column; }
     .parallax-content .panel-cta { width: 100%; text-align: center; }
-    .parallax-card.sticky { position: relative; top: auto !important; min-height: auto; margin-bottom: 16px; }
+    .parallax-card.sticky { position: relative; top: auto !important; min-height: auto; margin-bottom: 16px; z-index: auto !important; }
     .parallax-card-inner { min-height: auto; }
   }
 
@@ -346,7 +349,7 @@ import Footer from '../components/Footer.astro';
       </div>
       <div class="parallax-card-grid">
         <!-- 2026 -->
-        <div class="parallax-card sticky parallax-card--2026" style="top: 88px; z-index: 3;">
+        <div class="parallax-card sticky parallax-card--2026" style="top: 88px;">
           <div class="parallax-card-inner">
             <div class="parallax-content">
               <span class="tagline">Upcoming · 23–24 July 2026</span>
@@ -373,7 +376,7 @@ import Footer from '../components/Footer.astro';
           </div>
         </div>
         <!-- 2025 -->
-        <div class="parallax-card sticky parallax-card--2025" style="top: 108px; z-index: 2;">
+        <div class="parallax-card sticky parallax-card--2025" style="top: 108px;">
           <div class="parallax-card-inner">
             <div class="parallax-content">
               <span class="tagline">2025 · Makerere University</span>
@@ -399,7 +402,7 @@ import Footer from '../components/Footer.astro';
           </div>
         </div>
         <!-- 2024 -->
-        <div class="parallax-card sticky parallax-card--2024" style="top: 128px; z-index: 1;">
+        <div class="parallax-card sticky parallax-card--2024" style="top: 128px;">
           <div class="parallax-card-inner">
             <div class="parallax-content">
               <span class="tagline">April 15, 2024 · Makerere University</span>
@@ -440,7 +443,7 @@ import Footer from '../components/Footer.astro';
       </div>
       <div class="parallax-card-grid">
         <!-- TLB -->
-        <div class="parallax-card sticky parallax-card--tlb" style="top: 88px; z-index: 4;">
+        <div class="parallax-card sticky parallax-card--tlb" style="top: 88px;">
           <div class="parallax-card-inner">
             <div class="parallax-content">
               <span class="tagline">5 Days · Residential</span>
@@ -468,7 +471,7 @@ import Footer from '../components/Footer.astro';
           </div>
         </div>
         <!-- PGIL -->
-        <div class="parallax-card sticky parallax-card--pgil" style="top: 108px; z-index: 3;">
+        <div class="parallax-card sticky parallax-card--pgil" style="top: 108px;">
           <div class="parallax-card-inner">
             <div class="parallax-content">
               <span class="tagline">8 Weeks · Hybrid</span>
@@ -496,7 +499,7 @@ import Footer from '../components/Footer.astro';
           </div>
         </div>
         <!-- HERPower -->
-        <div class="parallax-card sticky parallax-card--herpower" style="top: 128px; z-index: 2;">
+        <div class="parallax-card sticky parallax-card--herpower" style="top: 128px;">
           <div class="parallax-card-inner">
             <div class="parallax-content">
               <span class="tagline">Ongoing · Mentorship</span>
@@ -524,7 +527,7 @@ import Footer from '../components/Footer.astro';
           </div>
         </div>
         <!-- Summit -->
-        <div class="parallax-card sticky parallax-card--summit" style="top: 148px; z-index: 1;">
+        <div class="parallax-card sticky parallax-card--summit" style="top: 148px;">
           <div class="parallax-card-inner">
             <div class="parallax-content">
               <span class="tagline">Annual · 2 Days</span>

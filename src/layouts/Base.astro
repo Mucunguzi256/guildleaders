@@ -19,6 +19,7 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
     <title>{title} | Guild Presidents Leadership Academy</title>
     
     <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/guildleaders/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/guildleaders/assets/images/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/guildleaders/assets/images/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/guildleaders/assets/images/favicon-16x16.png" />
@@ -38,8 +39,17 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
         --text-primary: #0D1B0A;
         --text-muted: #5C5C52;
       }
-      body { background-color: var(--bg-base); color: var(--text-primary); }
-      .bg-gpla-light { background-color: var(--bg-section-alt); }
+      body {
+        background-color: var(--bg-base);
+        color: var(--text-primary);
+        background-image:
+          linear-gradient(90deg, rgba(19,45,130,0.025) 1px, transparent 1px),
+          linear-gradient(rgba(19,45,130,0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(19,45,130,0.045) 1px, transparent 1px),
+          linear-gradient(rgba(19,45,130,0.045) 1px, transparent 1px);
+        background-size: 20px 20px, 20px 20px, 160px 160px, 160px 160px;
+      }
+      .bg-gpla-light { background-color: var(--bg-section-alt); background-image: linear-gradient(90deg, rgba(19,45,130,0.025) 1px, transparent 1px), linear-gradient(rgba(19,45,130,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(19,45,130,0.04) 1px, transparent 1px), linear-gradient(rgba(19,45,130,0.04) 1px, transparent 1px); background-size: 20px 20px, 20px 20px, 160px 160px, 160px 160px; }
       
       /* Global Scroll Animations */
       [data-animate] { opacity: 0; transform: translateY(28px); transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1); }
@@ -54,6 +64,35 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
         pointer-events: none;
         opacity: 0.4;
         z-index: 1;
+      }
+      
+      /* Grid background on light sections */
+      .bg-gpla-light {
+        background-color: var(--bg-section-alt);
+        background-image:
+          linear-gradient(90deg, rgba(19,45,130,0.025) 1px, transparent 1px),
+          linear-gradient(rgba(19,45,130,0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(19,45,130,0.04) 1px, transparent 1px),
+          linear-gradient(rgba(19,45,130,0.04) 1px, transparent 1px);
+        background-size: 20px 20px, 20px 20px, 160px 160px, 160px 160px;
+      }
+      
+      /* Dark sections — subtle reverse grid for depth */
+      .bg-gpla-navy,
+      section.bg-gpla-navy,
+      [class*="bg-gpla-navy"] {
+        background-image:
+          linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px),
+          linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px),
+          linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+        background-size: 20px 20px, 20px 20px, 160px 160px, 160px 160px;
+      }
+      
+      /* Ensemble Summit & Program panel content — dark gradient backgrounds keep grid */
+      .summit-panel-content,
+      .program-panel-content {
+        background-blend-mode: overlay;
       }
       
       /* Countdown */
