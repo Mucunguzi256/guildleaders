@@ -4,6 +4,126 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 ---
 
+<style is:global>
+  .parallax-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .parallax-card.sticky {
+    position: sticky;
+    top: 88px;
+    min-height: 480px;
+  }
+  @media (min-width: 1024px) {
+    .parallax-card.sticky { min-height: 520px; }
+  }
+  .parallax-card--2026 { background: linear-gradient(135deg, #0a1628 0%, #132d82 50%, #1a3d5c 100%); }
+  .parallax-card--2025 { background: linear-gradient(135deg, #0d2818 0%, #1a4d2e 50%, #2d6b3f 100%); }
+  .parallax-card--2024 { background: linear-gradient(135deg, #2d1f0d 0%, #5c3d12 50%, #8b5a2b 100%); }
+
+  .parallax-card-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .parallax-card-inner {
+    display: flex;
+    flex-direction: column;
+  }
+  @media (min-width: 1024px) {
+    .parallax-card-inner { flex-direction: row; align-items: center; min-height: 520px; }
+  }
+
+  .parallax-media { position: relative; display: flex; align-items: center; justify-content: center; order: -1; }
+  @media (min-width: 1024px) { .parallax-media { width: 40%; order: 2; padding: 24px 24px 24px 0; } }
+
+  .parallax-media-badge {
+    position: relative;
+    width: 100%;
+    max-width: 260px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .parallax-media-badge .year-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 10vw, 120px);
+    line-height: 1;
+    color: rgba(255,255,255,0.06);
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .parallax-media-badge .program-icon {
+    font-size: clamp(48px, 6vw, 72px);
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.2));
+  }
+  .parallax-media-badge .badge-ring {
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .parallax-media-badge .badge-ring:nth-child(2) { transform: scale(0.75); }
+  .parallax-media-badge .badge-ring:nth-child(3) { transform: scale(0.5); border-color: rgba(245,166,35,0.12); }
+
+  @media (max-width: 1023px) {
+    .parallax-media { padding: 28px 28px 0; }
+    .parallax-media-badge { max-width: 160px; }
+    .parallax-media-badge .year-number { font-size: 56px; }
+    .parallax-media-badge .program-icon { font-size: 40px; }
+  }
+
+  .parallax-content { padding: 24px 28px 36px; }
+  @media (min-width: 1024px) { .parallax-content { width: 60%; padding: 48px 0 48px 48px; } }
+  @media (min-width: 1280px) { .parallax-content { padding-left: 64px; } }
+
+  .parallax-content .tagline {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #F5A623; display: block; margin-bottom: 8px;
+  }
+  .parallax-content h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(26px, 3.5vw, 40px); line-height: 1.1;
+    color: #fff; margin-bottom: 12px;
+  }
+  .parallax-content .desc {
+    font-size: clamp(14px, 1.1vw, 16px); line-height: 1.6;
+    color: rgba(255,255,255,0.8); margin-bottom: 20px;
+  }
+  .parallax-content .meta-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin-bottom: 20px; padding: 16px;
+    background: rgba(255,255,255,0.05); border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .parallax-content .meta-label { font-size: 10px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.08em; display: block; }
+  .parallax-content .meta-value { font-family: 'Bebas Neue', sans-serif; font-size: clamp(18px, 1.5vw, 22px); display: block; margin: 2px 0; color: #fff; }
+  .parallax-content .meta-sub { font-size: 11px; opacity: 0.6; display: block; color: rgba(255,255,255,0.7); }
+  .parallax-content .panel-cta {
+    display: inline-block; padding: 12px 28px; border-radius: 999px; font-weight: 600; font-size: 14px;
+    text-decoration: none; transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+    background: #F5A623; color: #132d82; min-height: 44px;
+  }
+  .parallax-content .panel-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .parallax-content .panel-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  @media (max-width: 1023px) {
+    .parallax-content .meta-grid { grid-template-columns: 1fr; }
+    .parallax-content .panel-actions { flex-direction: column; }
+    .parallax-content .panel-cta { width: 100%; text-align: center; }
+    .parallax-card.sticky { position: relative; top: auto !important; min-height: auto; margin-bottom: 16px; z-index: auto !important; }
+    .parallax-card-inner { min-height: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) { .parallax-card { transition: none !important; } }
+</style>
+
 <Base title="Summit" description="The Guild Leaders' Annual Summit - East Africa's premier youth leadership gathering.">
   <Navbar />
   
@@ -21,39 +141,88 @@ import Footer from '../../components/Footer.astro';
     </div>
   </section>
 
-  <!-- Summit Cards -->
-  <section class="px-4 md:px-12 py-12 md:py-24 bg-gpla-light">
-    <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        <!-- 2024 -->
-        <div class="bg-gpla-navy p-8 md:p-10 rounded-xl">
-          <div class="font-display text-[64px] md:text-[80px] text-white/30 leading-none">2024</div>
-          <p class="bg-gray-500 text-white text-xs font-semibold uppercase tracking-widest mt-[-20px] mb-4 px-3 py-1 inline-block rounded-full w-fit">Past Summit</p>
-          <h3 class="font-display text-[24px] md:text-[28px] text-white mb-3">Guild Leaders' Summit 2024</h3>
-          <p class="text-white/70 text-sm mb-2">"Legacy and Leadership Continuum"</p>
-          <p class="text-white/70 text-xs mb-4">April 15, 2024 · Makerere University · 700+ Attendees</p>
-          <p class="text-gpla-gold text-sm font-semibold mb-4">Chief Guest: HE. Jakaya Mrisho Kikwete<br/>Former President, Tanzania</p>
-          <a href="/guildleaders/summit/2024" class="text-white font-semibold text-sm inline-flex items-center gap-2">View Full Report →</a>
+  <!-- n8n-style Parallax Summit Cards -->
+  <section class="px-4 md:px-12 py-16 md:py-24 bg-gpla-light">
+    <div class="max-w-5xl mx-auto">
+      <div class="parallax-card-grid">
+        <!-- 2026 -->
+        <div class="parallax-card sticky parallax-card--2026" style="top: 88px;">
+          <div class="parallax-card-inner">
+            <div class="parallax-content">
+              <span class="tagline">Upcoming · 23–24 July 2026</span>
+              <h2>3RD ANNUAL EAST AFRICAN GUILD LEADERS' SUMMIT</h2>
+              <p class="desc"><em>"Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order"</em></p>
+              <div class="meta-grid">
+                <div><span class="meta-label">Chief Guest</span><span class="meta-value">H.E. Yoweri Kaguta Museveni</span><span class="meta-sub">President of Uganda & EAC Chairperson</span></div>
+                <div><span class="meta-label">Venue</span><span class="meta-value">Freedom Square</span><span class="meta-sub">Makerere University, Kampala</span></div>
+              </div>
+              <div class="panel-actions">
+                <a href="https://lu.ma/5tuheo2m" target="_blank" rel="noopener noreferrer" class="panel-cta">Apply to Join →</a>
+                <a href="/guildleaders/summit/2026" class="panel-cta" style="background: transparent; border: 2px solid rgba(255,255,255,0.4); color: #fff;">Learn More →</a>
+              </div>
+            </div>
+            <div class="parallax-media">
+              <div class="parallax-media-badge">
+                <div class="badge-ring"></div>
+                <div class="badge-ring"></div>
+                <div class="badge-ring"></div>
+                <span class="year-number">2026</span>
+                <span class="program-icon">🎤</span>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- 2025 -->
-        <div class="bg-gpla-navy p-8 md:p-10 rounded-xl">
-          <div class="font-display text-[64px] md:text-[80px] text-white/30 leading-none">2025</div>
-          <p class="bg-gray-500 text-white text-xs font-semibold uppercase tracking-widest mt-[-20px] mb-4 px-3 py-1 inline-block rounded-full w-fit">Past Summit</p>
-          <h3 class="font-display text-[24px] md:text-[28px] text-white mb-3">Guild Leaders' Summit 2025</h3>
-          <p class="text-white/70 text-sm mb-2">"Democratic Governance and People-to-People Integration"</p>
-          <p class="text-white/70 text-xs mb-4">2025 · Makerere University · 700+ Attendees</p>
-          <p class="text-gpla-gold text-sm font-semibold mb-4">Chief Guest: HE. Uhuru Kenyatta<br/>Former President, Kenya</p>
-          <a href="/guildleaders/summit/2025" class="text-white font-semibold text-sm inline-flex items-center gap-2">View Full Report →</a>
+        <div class="parallax-card sticky parallax-card--2025" style="top: 108px;">
+          <div class="parallax-card-inner">
+            <div class="parallax-content">
+              <span class="tagline">2025 · Makerere University</span>
+              <h2>2ND ANNUAL GUILD LEADERS' SUMMIT</h2>
+              <p class="desc"><em>"Democratic Governance and People-to-People Integration"</em></p>
+              <div class="meta-grid">
+                <div><span class="meta-label">Chief Guest</span><span class="meta-value">HE. Uhuru Kenyatta</span><span class="meta-sub">Former President, Republic of Kenya</span></div>
+                <div><span class="meta-label">Attendees</span><span class="meta-value">700+</span><span class="meta-sub">Leaders from 6 countries</span></div>
+              </div>
+              <div class="panel-actions">
+                <a href="/guildleaders/summit/2025" class="panel-cta">View Full Report →</a>
+              </div>
+            </div>
+            <div class="parallax-media">
+              <div class="parallax-media-badge">
+                <div class="badge-ring"></div>
+                <div class="badge-ring"></div>
+                <div class="badge-ring"></div>
+                <span class="year-number">2025</span>
+                <span class="program-icon">🎤</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <!-- 2026 -->
-        <div class="bg-gpla-navy p-8 md:p-10 rounded-xl border-2 border-gpla-gold">
-          <div class="font-display text-[64px] md:text-[80px] text-gpla-gold/30 leading-none">2026</div>
-          <p class="bg-gpla-gold text-gpla-navy text-xs font-semibold uppercase tracking-widest mt-[-20px] mb-4 px-3 py-1 inline-block rounded-full w-fit">UPCOMING · 23–24 JULY 2026</p>
-          <h3 class="font-display text-[24px] md:text-[28px] text-white mb-3">3rd Annual East African Guild Leaders' Summit</h3>
-          <p class="text-white/70 text-sm mb-2">"Youth Leadership, Production, and Regional Integration"</p>
-          <p class="text-white/70 text-xs mb-4">23–24 July 2026 · Makerere University, Kampala</p>
-          <p class="text-gpla-gold text-sm font-semibold mb-4">Chief Guest: H.E. Yoweri Kaguta Museveni<br/>President of Uganda & EAC Chairperson</p>
-          <a href="/guildleaders/summit/2026" class="text-gpla-gold font-semibold text-sm inline-flex items-center gap-2">Register Interest →</a>
+        <!-- 2024 -->
+        <div class="parallax-card sticky parallax-card--2024" style="top: 128px;">
+          <div class="parallax-card-inner">
+            <div class="parallax-content">
+              <span class="tagline">April 15, 2024 · Makerere University</span>
+              <h2>INAUGURAL GUILD LEADERS' SUMMIT</h2>
+              <p class="desc"><em>"Legacy and Leadership Continuum: The Power of Knowledge and Cross-Generational Learning"</em></p>
+              <div class="meta-grid">
+                <div><span class="meta-label">Chief Guest</span><span class="meta-value">HE. Jakaya Mrisho Kikwete</span><span class="meta-sub">Former President, Tanzania · Summit Patron</span></div>
+                <div><span class="meta-label">Attendees</span><span class="meta-value">700+</span><span class="meta-sub">Historic first convening</span></div>
+              </div>
+              <div class="panel-actions">
+                <a href="/guildleaders/summit/2024" class="panel-cta">View Full Report →</a>
+              </div>
+            </div>
+            <div class="parallax-media">
+              <div class="parallax-media-badge">
+                <div class="badge-ring"></div>
+                <div class="badge-ring"></div>
+                <div class="badge-ring"></div>
+                <span class="year-number">2024</span>
+                <span class="program-icon">🎤</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
