@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPLA Digital Strategy & Event Systems Brief</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           EXPANDED AFRICAN-INSPIRED COLOR PALETTE
+           ============================================
+           Core brand colors + vibrant African accent tones
+        */
+        :root {
+            /* --- Core Brand Colors --- */
+            --navy: #0B1D3A;           /* Deep background */
+            --gold: #D4A02A;            /* Warm gold accent (adjusted for richer tone) */
+            --white: #FFFFFF;
+            --body-text-light: rgba(255,255,255,0.9);
+            --body-text-dark: #1E1E1E;
+            
+            /* --- NEW: African-Inspired Palette --- */
+            --terracotta: #C1665B;      /* Earthy red-orange, traditional pigment */
+            --ochre: #D49A2E;           /* Rich golden yellow, like natural dye */
+            --green: #2A7F62;           /* Deep forest green, African landscapes */
+            --warm-cream: #FDF6E3;      /* Soft cream, like natural textiles */
+            --deep-red: #8B1E1E;        /* Rich crimson, Kente cloth inspired */
+            --teal: #1A6B6B;            /* Deep teal, Ethiopian cross motif */
+            --bronze: #CD7F32;          /* Warm bronze accent */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ============================================
+           AFRICAN GEOMETRIC BACKGROUND PATTERN
+           Subtle diamond/lozenge pattern inspired by 
+           traditional African textiles (Kente, Ankara)
+           ============================================ */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            /* Very subtle opacity to not distract from content */
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='%23D4A02A' stroke-width='1'/%3E%3Cpath d='M30 10L50 30L30 50L10 30Z' fill='none' stroke='%23C1665B' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        /* Cover page with more prominent pattern */
+        .cover-pattern::before {
+            opacity: 0.06;
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z' fill='none' stroke='%23D4A02A' stroke-width='1.5'/%3E%3Cpath d='M40 15L65 40L40 65L15 40Z' fill='none' stroke='%23C1665B' stroke-width='1'/%3E%3Cpath d='M40 28L55 40L40 52L25 40Z' fill='none' stroke='%232A7F62' stroke-width='0.75'/%3E%3C/svg%3E");
+            background-size: 80px 80px;
+        }
+
+        /* headings use Lemon Milk – fallback to heavy sans-serif if font not installed */
+        h1, h2, h3, .lemon-milk {
+            font-family: 'Lemon Milk', 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .page {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            page-break-after: always;
+            /* Layer above background pattern */
+            position: relative;
+            z-index: 1;
+        }
+
+        .page:last-child { page-break-after: auto; }
+
+        .logo-top-right {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            max-height: 50px;
+            opacity: 0.9;
+        }
+
+        .logo-bottom-right {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            max-height: 35px;
+            opacity: 0.6;
+        }
+
+        /* ============================================
+           CARD COMPONENT STYLING
+           White cards with accent borders
+           ============================================ */
+        .card {
+            background: var(--white);
+            color: var(--body-text-dark);
+            border-radius: 16px;
+            padding: 36px;
+            margin: 28px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Alternating accent borders: gold, terracotta, green, ochre */
+        .card.gold-accent {
+            border-left: 8px solid var(--gold);
+            padding-left: 30px;
+        }
+        /* NEW: Additional card accent classes for variety */
+        .card.terracotta-accent {
+            border-left: 8px solid var(--terracotta);
+            border-radius: 16px;
+        }
+        .card.green-accent {
+            border-left: 8px solid var(--green);
+            border-radius: 16px;
+        }
+        .card.ochre-accent {
+            border-left: 8px solid var(--ochre);
+            border-radius: 16px;
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 0.3em; }
+        h2 { font-size: 2rem; margin-bottom: 0.8em; color: var(--gold); }
+        /* NEW: Section headers with varied accent colors */
+        h2.terracotta { color: var(--terracotta); }
+        h2.green { color: var(--green); }
+        h2.ochre { color: var(--ochre); }
+        h3 { font-size: 1.3rem; margin-bottom: 0.4em; color: var(--gold); }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .gold-line {
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--ochre), var(--gold));
+            width: 80px;
+            margin: 40px auto;
+            border-radius: 2px;
+        }
+
+        .two-columns {
+            display: flex;
+            gap: 40px;
+            margin: 32px 0;
+            flex-wrap: wrap;
+        }
+        .two-columns > * { flex: 1 1 280px; }
+
+        .bullet-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 20px 0;
+        }
+        .bullet-list li {
+            padding: 6px 0 6px 28px;
+            position: relative;
+            color: inherit;
+        }
+        /* NEW: Varied bullet colors */
+        .bullet-list li::before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: var(--gold);
+            font-weight: bold;
+        }
+        .bullet-list.terracotta li::before { color: var(--terracotta); }
+        .bullet-list.green li::before { color: var(--green); }
+        .bullet-list.ochre li::before { color: var(--ochre); }
+
+        .btn-gold {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            font-weight: bold;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .btn-gold:hover {
+            background: var(--ochre);
+            transform: translateY(-2px);
+        }
+
+        /* NEW: Additional button variants */
+        .btn-terracotta {
+            background: var(--terracotta);
+            color: var(--white);
+        }
+        .btn-terracotta:hover {
+            background: var(--deep-red);
+        }
+        .btn-green {
+            background: var(--green);
+            color: var(--white);
+        }
+        .btn-green:hover {
+            background: var(--teal);
+        }
+
+        /* ============================================
+           ATTENDEE JOURNEY FLOW
+           Each step has a unique color from the
+           African palette for visual variety
+           ============================================ */
+        .journey-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            gap: 20px;
+        }
+        .journey-step {
+            text-align: center;
+            flex: 1 1 100px;
+        }
+        .step-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-family: 'Lemon Milk', 'Montserrat', sans-serif;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .step-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        /* Journey step colors: gold → terracotta → ochre → green → deep-red → teal */
+        .journey-step:nth-child(1) .step-circle { background: var(--gold); color: var(--navy); }
+        .journey-step:nth-child(3) .step-circle { background: var(--terracotta); color: var(--white); }
+        .journey-step:nth-child(5) .step-circle { background: var(--ochre); color: var(--navy); }
+        .journey-step:nth-child(7) .step-circle { background: var(--green); color: var(--white); }
+        .journey-step:nth-child(9) .step-circle { background: var(--deep-red); color: var(--white); }
+        .journey-step:nth-child(11) .step-circle { background: var(--teal); color: var(--white); }
+
+        .journey-step p {
+            font-size: 0.9rem;
+            color: var(--body-text-light);
+            line-height: 1.3;
+        }
+        .journey-arrow {
+            font-size: 2rem;
+            color: var(--gold);
+            padding: 0 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ============================================
+           DELIVERABLES GRID
+           Dynamic card borders alternating between
+           gold, terracotta, and ochre
+           ============================================ */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin: 30px 0;
+        }
+        .deliverables-grid .dl-card {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 24px;
+            color: var(--white);
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+        .deliverables-grid .dl-card:hover {
+            transform: translateY(-4px);
+        }
+        /* Alternating border colors for deliverables */
+        .deliverables-grid .dl-card:nth-child(1) { border-color: var(--gold); }
+        .deliverables-grid .dl-card:nth-child(2) { border-color: var(--terracotta); }
+        .deliverables-grid .dl-card:nth-child(3) { border-color: var(--ochre); }
+        .deliverables-grid .dl-card:nth-child(4) { border-color: var(--green); }
+
+        .dl-card h4 {
+            color: var(--gold);
+            margin-bottom: 12px;
+            font-family: 'Lemon Milk', sans-serif;
+            font-size: 1.1rem;
+        }
+        /* Match h4 color to card border */
+        .dl-card:nth-child(2) h4 { color: var(--terracotta); }
+        .dl-card:nth-child(3) h4 { color: var(--ochre); }
+        .dl-card:nth-child(4) h4 { color: var(--green); }
+
+        /* ============================================
+           CALLOUT / HIGHLIGHT BOX
+           Soft warm-cream background for contrast
+           ============================================ */
+        .callout {
+            background: var(--warm-cream);
+            color: var(--navy);
+            font-weight: bold;
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin: 20px 0;
+            display: inline-block;
+            border-left: 4px solid var(--ochre);
+        }
+
+        /* NEW: Varied callout styles */
+        .callout.terracotta { border-color: var(--terracotta); }
+        .callout.green { border-color: var(--green); }
+        .callout.gold { background: var(--gold); color: var(--navy); border-color: var(--bronze); }
+        .callout.deep-red { background: var(--deep-red); color: var(--white); border-color: var(--terracotta); }
+
+        .footer-logo {
+            margin-top: auto;
+            text-align: center;
+            opacity: 0.5;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           ADDITIONAL DECORATIVE ELEMENTS
+           ============================================ */
+        /* Accent line with gradient */
+        .accent-line {
+            height: 4px;
+            background: linear-gradient(90deg, var(--terracotta), var(--gold), var(--green));
+            border-radius: 2px;
+            margin: 30px 0;
+        }
+
+        /* Text highlight */
+        .highlight {
+            background: linear-gradient(180deg, transparent 50%, var(--ochre) 50%);
+            padding: 0 4px;
+        }
+
+        /* Badge/tag styling */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .badge-gold { background: var(--gold); color: var(--navy); }
+        .badge-terracotta { background: var(--terracotta); color: var(--white); }
+        .badge-green { background: var(--green); color: var(--white); }
+        .badge-ochre { background: var(--ochre); color: var(--navy); }
+
+        /* Wireframe placeholder styling */
+        .wireframe-box {
+            background: linear-gradient(135deg, rgba(42, 59, 90, 0.8), rgba(62, 81, 122, 0.6));
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .wireframe-box > div {
+            background: rgba(62, 81, 122, 0.7);
+            border-radius: 4px;
+            padding: 8px;
+            margin: 6px 0;
+            color: var(--white);
+            border-left: 3px solid var(--gold);
+        }
+        .wireframe-box > div:nth-child(2) { border-color: var(--terracotta); }
+        .wireframe-box > div:nth-child(3) { border-color: var(--ochre); }
+        .wireframe-box > div:nth-child(4) { border-color: var(--green); }
+        .wireframe-box > div:nth-child(5) { border-color: var(--deep-red); }
+
+        /* Role tag styling for volunteer section */
+        .role-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            font-weight: bold;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 4px;
+            transition: all 0.3s ease;
+        }
+        .role-tag:hover {
+            background: var(--ochre);
+            transform: scale(1.05);
+        }
+
+        /* Card with top accent border */
+        .card-top-accent {
+            border-top: 6px solid var(--green);
+            border-radius: 16px;
+        }
+        .card-top-accent.terracotta { border-color: var(--terracotta); }
+        .card-top-accent.ochre { border-color: var(--ochre); }
+
+        @media print {
+            body { background: var(--navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page { min-height: 100vh; padding: 40px; }
+            body::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ======== COVER PAGE ======== -->
+<div class="page cover-pattern" style="text-align: center;">
+    <img src="GPLA.jpg" alt="GPLA Logo" class="logo-top-right" style="position:relative; top:auto; right:auto; margin:0 auto 30px; display:block; max-height:80px;">
+    <h1>Digital Strategy &<br>Event Systems Brief</h1>
+    <p class="subtitle">From Website to Event Execution</p>
+    <div class="gold-line"></div>
+    <p style="max-width:600px; margin:0 auto; color: var(--body-text-light);">
+        The website is now live:<br>
+        <a href="https://mucunguzi256.github.io/guildleaders/" style="color:var(--gold); text-decoration:underline;">mucunguzi256.github.io/guildleaders/</a><br>
+        We are now moving from website setup into event operations and attendee engagement.
+    </p>
+    <img src="GPLA.jpg" class="logo-bottom-right" style="position:absolute; bottom:30px; right:30px;">
+</div>
+
+<!-- ======== PAGE 2: Luma ======== -->
+<div class="page">
+    <img src="GPLA.jpg" alt="GPLA" class="logo-top-right">
+    <h2>1. Event Management Platform — Luma</h2>
+    <div class="card gold-accent">
+        <p style="margin-bottom:18px;"><strong>Primary tool: Luma</strong></p>
+        <h3 style="color: var(--gold); margin-bottom:12px;">Registration fields needed from the team:</h3>
+        <ul class="bullet-list">
+            <li>Full Name</li>
+            <li>Email Address</li>
+            <li>Phone Number / WhatsApp</li>
+            <li>Country & City</li>
+            <li>Institution</li>
+            <li>Role</li>
+            <li>Expectations from the Summit</li>
+            <li>Consent to receive updates</li>
+            <li>Consent for media/photos during the event</li>
+        </ul>
+        <div class="callout">Note: Additional custom fields may be added for sponsorship, networking, or community goals.</div>
+    </div>
+</div>
+
+<!-- ======== PAGE 3: Attendee Card Generator ======== -->
+<div class="page">
+    <img src="GPLA.jpg" alt="GPLA" class="logo-top-right">
+    <h2>2. Auto Event Attendee Card / Flyer Generator</h2>
+    <div class="two-columns">
+        <div class="card" style="background: rgba(255,255,255,0.08); color: white; border:1px solid var(--gold); text-align:center;">
+            <p style="margin-bottom:18px; font-weight:bold;">Blueprint Wireframe</p>
+            <div class="wireframe-box">
+                <div>📷 Attendee Photo</div>
+                <div>👤 Name</div>
+                <div>🏫 Institution</div>
+                <div>📅 Date & Location</div>
+                <div>🔳 QR Code / Reg Link</div>
+            </div>
+            <p style="font-size:0.9rem;">Square · Story · Wide</p>
+        </div>
+        <div>
+            <p style="font-size:1.2rem; margin-bottom:20px;">Let attendees upload a photo and generate a personalised "I'm Attending" card to share on social media.</p>
+            <p><strong>Reference:</strong><br><a href="https://ethnile.ar.io/generate-dpa" target="_blank" class="btn-gold">ethnile.ar.io/generate-dpa</a></p>
+            <div class="callout" style="margin-top:25px;">Designer deliverable needed: flyer/card blueprint with dynamic placeholders</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======== PAGE 4: Community & Volunteer ======== -->
+<div class="page">
+    <img src="GPLA.jpg" alt="GPLA" class="logo-top-right">
+    <h2 class="terracotta">3. Community & Attendee Support Channel</h2>
+    <div class="card terracotta-accent">
+        <p><strong>Proposed:</strong> Telegram Group, Telegram Channel, or WhatsApp Community.</p>
+        <p style="margin-top:12px;">❓ Status: Team must confirm if a channel already exists.</p>
+        <ul class="bullet-list terracotta" style="margin-top:8px;">
+            <li>If yes → share links, define moderators/admins, define comms structure</li>
+            <li>If not → establish immediately before registrations scale</li>
+        </ul>
+    </div>
+
+    <h2 class="green" style="margin-top:55px;">4. Volunteer Program & Event Support Team</h2>
+    <div class="card green-accent">
+        <p><strong>Clarification needed:</strong> Will there be an official volunteer program?</p>
+        <p style="margin-top:14px;"><strong>Potential roles:</strong></p>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin:14px 0;">
+            <span class="role-tag">Ushers</span>
+            <span class="role-tag">Registration Desk</span>
+            <span class="role-tag">Attendee Coordination</span>
+            <span class="role-tag">Community Support</span>
+            <span class="role-tag">Technical/Setup</span>
+            <span class="role-tag">Media/Content</span>
+            <span class="role-tag">Stage/Session Coordination</span>
+        </div>
+        <p><strong>If approved, suggested volunteer application fields:</strong></p>
+        <ul class="bullet-list green">
+            <li>Full Name, Contact Info, Institution</li>
+            <li>Availability, Preferred Role</li>
+            <li>Previous Event Experience, Languages Spoken</li>
+            <li>T‑Shirt Size (optional)</li>
+        </ul>
+        <div class="callout green">Recommendation: Use a separate volunteer registration/application form.</div>
+    </div>
+</div>
+
+<!-- ======== PAGE 5: Immediate Deliverables ======== -->
+<div class="page">
+    <img src="GPLA.jpg" alt="GPLA" class="logo-top-right">
+    <h2>Immediate Deliverables by Team</h2>
+    <div class="deliverables-grid">
+        <div class="dl-card">
+            <h4>Ops</h4>
+            <ul class="bullet-list">
+                <li>Final registration questions</li>
+                <li>Event logistics</li>
+                <li>Communication workflow</li>
+            </ul>
+        </div>
+        <div class="dl-card">
+            <h4>Design</h4>
+            <ul class="bullet-list terracotta">
+                <li>Attendee flyer blueprint</li>
+                <li>Event branding assets</li>
+                <li>Social card templates</li>
+            </ul>
+        </div>
+        <div class="dl-card">
+            <h4>Community</h4>
+            <ul class="bullet-list ochre">
+                <li>Platform setup/status</li>
+                <li>Support structure</li>
+                <li>Moderation plan</li>
+            </ul>
+        </div>
+        <div class="dl-card">
+            <h4>Volunteer</h4>
+            <ul class="bullet-list green">
+                <li>Programme confirmation</li>
+                <li>Onboarding workflow</li>
+                <li>Role allocation</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ======== PAGE 6: Attendee Journey ======== -->
+<div class="page">
+    <img src="GPLA.jpg" alt="GPLA" class="logo-top-right">
+    <h2>Strategic Objective: Attendee Journey</h2>
+    <div class="journey-flow">
+        <div class="journey-step">
+            <div class="step-circle">1</div>
+            <p>Discover event</p>
+        </div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step">
+            <div class="step-circle">2</div>
+            <p>Register via Luma</p>
+        </div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step">
+            <div class="step-circle">3</div>
+            <p>Join community channel</p>
+        </div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step">
+            <div class="step-circle">4</div>
+            <p>Generate event card</p>
+        </div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step">
+            <div class="step-circle">5</div>
+            <p>Share socially</p>
+        </div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step">
+            <div class="step-circle">6</div>
+            <p>Participate in summit</p>
+        </div>
+    </div>
+    <div class="gold-line"></div>
+    <p style="text-align:center; max-width:600px; margin:0 auto; color: var(--body-text-light);">
+        This creates both operational efficiency and organic event marketing through community-driven promotion.
+    </p>
+</div>
+
+<!-- ======== PAGE 7: Thank You ======== -->
+<div class="page" style="text-align:center;">
+    <img src="GPLA.jpg" alt="GPLA" class="logo-top-right" style="position:relative; top:auto; right:auto; margin:0 auto 30px; display:block; max-height:70px;">
+    <h1 style="font-size:3.5rem;">Let's Build the<br>Summit Experience</h1>
+    <div class="gold-line"></div>
+    <p style="color: var(--body-text-light);">Guild Presidents Leadership Academy</p>
+    <div style="margin-top: 40px;">
+        <span class="badge badge-gold">Summit 2026</span>
+        <span class="badge badge-terracotta">Leadership</span>
+        <span class="badge badge-green">Community</span>
+    </div>
+</div>
+
+</body>
+</html>

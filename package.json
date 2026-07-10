@@ -16,5 +16,8 @@
     "astro": "^5.2.5",
     "pdfplumber": "^0.0.1-security",
     "tailwindcss": "^3.4.19"
+  },
+  "devDependencies": {
+    "playwright": "^1.61.0"
   }
 }

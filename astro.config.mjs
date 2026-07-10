@@ -4,8 +4,8 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mucunguzi256.github.io',
-  base: '/guildleaders',
+  site: 'https://guildleaders.academy',
+  base: '/',
   integrations: [tailwind()],
   output: 'static',
   build: {
