@@ -188,15 +188,86 @@ import Footer from '../../components/Footer.astro';
     </section>
 
     <!-- Speaker Applications CTA -->
-    <section class="bg-gpla-gold py-20 px-4 md:px-12">
+    <!-- Special Invitation Form -->
+    <section id="special-invitation" class="bg-gpla-gold py-20 px-4 md:px-12">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+          <span class="bg-gpla-navy text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full inline-block mb-4">By Invitation Only</span>
+          <h2 class="font-display text-gpla-navy text-[40px] md:text-[56px] mb-3">SPECIAL INVITATION</h2>
+          <p class="text-gpla-navy/70 text-lg max-w-2xl mx-auto">
+            You are cordially invited to the <strong>3rd Annual East African Guild Leaders' Summit</strong>. Kindly confirm your attendance by filling the form below.
+          </p>
+        </div>
+        <div class="bg-white/90 backdrop-blur-sm p-6 md:p-10 rounded-xl shadow-xl border border-gpla-navy/10">
+          <form method="POST" action="https://formspree.io/f/mrbpnnaz">
+            <input type="hidden" name="form-name" value="special-invitation" />
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-gpla-navy text-sm font-semibold mb-1.5">Full Name <span class="text-red-500">*</span></label>
+                <input type="text" name="full_name" placeholder="e.g. Mutesa II of Buganda" required class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gpla-green focus:ring-2 focus:ring-gpla-green/20 transition-all" />
+              </div>
+              <div>
+                <label class="block text-gpla-navy text-sm font-semibold mb-1.5">Country <span class="text-red-500">*</span></label>
+                <select name="country" required class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:border-gpla-green focus:ring-2 focus:ring-gpla-green/20 transition-all">
+                  <option value="">Select your country</option>
+                  <option value="Uganda">Uganda</option>
+                  <option value="Kenya">Kenya</option>
+                  <option value="Tanzania">Tanzania</option>
+                  <option value="Rwanda">Rwanda</option>
+                  <option value="Burundi">Burundi</option>
+                  <option value="South Sudan">South Sudan</option>
+                  <option value="DR Congo">DR Congo</option>
+                  <option value="Ethiopia">Ethiopia</option>
+                  <option value="Somalia">Somalia</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-gpla-navy text-sm font-semibold mb-1.5">National ID / Passport Number <span class="text-red-500">*</span></label>
+                <input type="text" name="national_id" placeholder="e.g. CM12345678 or UG1234567" required class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gpla-green focus:ring-2 focus:ring-gpla-green/20 transition-all" />
+              </div>
+              <div>
+                <label class="block text-gpla-navy text-sm font-semibold mb-1.5">Profession <span class="text-red-500">*</span></label>
+                <input type="text" name="profession" placeholder="e.g. Student Leader, Lawyer, Policy Analyst" required class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gpla-green focus:ring-2 focus:ring-gpla-green/20 transition-all" />
+              </div>
+              <div class="md:col-span-2">
+                <label class="block text-gpla-navy text-sm font-semibold mb-1.5">Institution / Organization <span class="text-red-500">*</span></label>
+                <input type="text" name="institution" placeholder="e.g. Makerere University, Parliament of Uganda, UNDP" required class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gpla-green focus:ring-2 focus:ring-gpla-green/20 transition-all" />
+              </div>
+              <div class="md:col-span-2">
+                <label class="block text-gpla-navy text-sm font-semibold mb-1.5">Email Address <span class="text-red-500">*</span></label>
+                <input type="email" name="email" placeholder="you@example.com" required class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gpla-green focus:ring-2 focus:ring-gpla-green/20 transition-all" />
+              </div>
+              <div class="md:col-span-2">
+                <label class="block text-gpla-navy text-sm font-semibold mb-1.5">Phone Number (with country code)</label>
+                <input type="tel" name="phone" placeholder="e.g. +256 779 011 22" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gpla-green focus:ring-2 focus:ring-gpla-green/20 transition-all" />
+              </div>
+              <div class="md:col-span-2">
+                <label class="block text-gpla-navy text-sm font-semibold mb-1.5">Additional Notes / Dietary Requirements</label>
+                <textarea name="notes" placeholder="Any special accommodations, dietary restrictions, or questions..." rows="3" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gpla-green focus:ring-2 focus:ring-gpla-green/20 transition-all"></textarea>
+              </div>
+            </div>
+            <div class="mt-8 text-center">
+              <button type="submit" class="bg-gpla-navy text-white px-10 py-4 rounded-full font-bold text-base inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all min-w-[240px]">
+                Confirm My Attendance →
+              </button>
+              <p class="text-gpla-navy/50 text-xs mt-3">Responses will be sent to GPLA Summit Secretariat</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Speaker Applications CTA -->
+    <section class="bg-gpla-navy py-20 px-4 md:px-12">
       <div class="container mx-auto text-center">
-        <h2 class="font-display text-gpla-navy text-[40px] md:text-[56px] mb-4">
+        <h2 class="font-display text-white text-[40px] md:text-[56px] mb-4">
           APPLY TO SPEAK
         </h2>
-        <p class="text-gpla-navy/80 text-lg mb-8 max-w-2xl mx-auto">
+        <p class="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
           Are you a policymaker, entrepreneur, academic, or regional leader with a message for East Africa's next generation? Apply to address the 3rd Annual East African Guild Leaders' Summit.
         </p>
-        <a href="https://lu.ma/5tuheo2m" target="_blank" rel="noopener noreferrer" class="bg-gpla-navy text-white px-8 py-4 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
+        <a href="https://lu.ma/5tuheo2m" target="_blank" rel="noopener noreferrer" class="bg-gpla-gold text-gpla-navy px-8 py-4 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
           Apply via Luma →
         </a>
       </div>
