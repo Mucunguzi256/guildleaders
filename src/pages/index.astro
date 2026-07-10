@@ -84,10 +84,10 @@ import Footer from '../components/Footer.astro';
   .parallax-card.sticky {
     position: sticky;
     top: 88px;
-    min-height: 520px;
+    min-height: 560px;
   }
   @media (min-width: 1024px) {
-    .parallax-card.sticky { min-height: 560px; }
+    .parallax-card.sticky { min-height: 600px; }
   }
 
   /* Fix z-index stacking — higher z-index on TOP cards, lower on BOTTOM cards */
@@ -113,12 +113,12 @@ import Footer from '../components/Footer.astro';
     gap: 0;
   }
   @media (min-width: 1024px) {
-    .parallax-card-inner { flex-direction: row; align-items: center; min-height: 560px; }
+    .parallax-card-inner { flex-direction: row; align-items: center; min-height: 600px; }
   }
 
   /* Media column */
   .parallax-media { position: relative; display: flex; align-items: center; justify-content: center; padding: 0; order: -1; }
-  @media (min-width: 1024px) { .parallax-media { width: 50%; order: 2; padding: 24px 32px 24px 0; } }
+  @media (min-width: 1024px) { .parallax-media { width: 45%; order: 2; padding: 24px 32px 24px 0; } }
 
   .parallax-media-badge {
     position: relative;
@@ -164,8 +164,8 @@ import Footer from '../components/Footer.astro';
   }
 
   /* Content column */
-  .parallax-content { padding: 24px 28px 36px; }
-  @media (min-width: 1024px) { .parallax-content { width: 50%; padding: 48px 0 48px 48px; } }
+  .parallax-content { padding: 32px 32px 40px; }
+  @media (min-width: 1024px) { .parallax-content { width: 55%; padding: 56px 0 56px 56px; } }
   @media (min-width: 1280px) { .parallax-content { padding-left: 80px; } }
 
   .parallax-content .tagline {
@@ -174,8 +174,8 @@ import Footer from '../components/Footer.astro';
   }
   .parallax-content h2 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(24px, 3.5vw, 36px); line-height: 1.1;
-    color: #fff; margin-bottom: 12px;
+    font-size: clamp(28px, 4vw, 44px); line-height: 1.05;
+    color: #fff; margin-bottom: 14px;
   }
   .parallax-content .desc {
     font-size: clamp(14px, 1.1vw, 16px); line-height: 1.6;
@@ -213,10 +213,44 @@ import Footer from '../components/Footer.astro';
     .parallax-card-inner { min-height: auto; }
   }
 
-  /* Section heading */
-  .parallax-section-heading { text-align: center; margin-bottom: 40px; }
-  .parallax-section-heading .label { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #389a29; display: block; margin-bottom: 4px; }
-  .parallax-section-heading h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px, 4vw, 48px); color: #132d82; line-height: 1.1; }
+  /* Section heading — enlarged, commanding */
+  .parallax-section-heading {
+    text-align: center;
+    margin-bottom: 48px;
+    padding: 0 20px;
+    position: relative;
+  }
+  .parallax-section-heading::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #389a29;
+    margin: 16px auto 0;
+    border-radius: 2px;
+  }
+  .parallax-section-heading .label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #389a29;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .parallax-section-heading h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 72px);
+    color: #132d82;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  /* Dark section heading variant */
+  .parallax-section-heading--dark h2 { color: #fff; }
+  .parallax-section-heading--dark::after { background: #F5A623; }
+  .parallax-section-heading--dark .label { color: #F5A623; }
 
   @media (prefers-reduced-motion: reduce) { .parallax-card { transition: none !important; } }
 </style>
@@ -228,7 +262,7 @@ import Footer from '../components/Footer.astro';
   <section class="hero relative min-h-screen overflow-hidden flex items-center">
     <div class="hero-video-wrapper absolute inset-0 z-0">
       <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30" poster="/guildleaders/assets/hero-poster.jpg">
-        <source src="/guildleaders/assets/GLP Short Video.mp4" type="video/mp4">
+        <source src="/guildleaders/assets/hero-bg-compressed.mp4" type="video/mp4"><source src="/guildleaders/assets/GLP Short Video.mp4" type="video/mp4">
       </video>
       <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(19,45,130,0.92) 0%, rgba(19,45,130,0.85) 30%, rgba(56,154,41,0.40) 55%, transparent 70%, transparent 100%);"></div>
     </div>
