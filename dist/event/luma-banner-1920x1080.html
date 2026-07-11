@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>East African Guild Leaders Summit 2026 — Landscape Banner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy-deep: #0a1628;
+      --navy-mid: #132d82;
+      --navy-teal: #1a3d5c;
+      --green: #389a29;
+      --green-bright: #4db83a;
+      --gold: #F5A623;
+      --cream: #f4f1ea;
+      --white: #ffffff;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .banner {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-mid) 45%, var(--navy-teal) 100%);
+      color: var(--cream);
+    }
+
+    /* Green grid overlay */
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(56, 154, 41, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 154, 41, 0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+    }
+
+    /* Gold corner accent top-right */
+    .corner-accent {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 260px;
+      height: 260px;
+      pointer-events: none;
+    }
+    .corner-accent::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(225deg, rgba(245, 166, 35, 0.35) 0%, transparent 70%);
+      clip-path: polygon(100% 0, 0 0, 100% 100%);
+    }
+    .corner-accent::after {
+      content: '';
+      position: absolute;
+      top: 38px;
+      right: 38px;
+      width: 90px;
+      height: 90px;
+      border-top: 3px solid var(--gold);
+      border-right: 3px solid var(--gold);
+    }
+
+    /* Top accent strip */
+    .top-strip {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--green-bright) 35%, var(--navy-deep) 70%, var(--navy-teal) 100%);
+    }
+
+    /* Bottom accent strip */
+    .bottom-strip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 10px;
+      display: flex;
+    }
+    .bottom-strip .seg-green { flex: 2; background: var(--green); }
+    .bottom-strip .seg-navy { flex: 3; background: var(--navy-deep); }
+    .bottom-strip .seg-gold { flex: 1.5; background: var(--gold); }
+
+    /* Content container */
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      padding: 64px 90px 70px 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Header row */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(245, 166, 35, 0.45);
+      border-radius: 999px;
+      padding: 12px 26px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      backdrop-filter: blur(6px);
+    }
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px rgba(56, 154, 41, 0.7);
+    }
+
+    .date-venue {
+      text-align: right;
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      line-height: 1.6;
+      color: rgba(244, 241, 234, 0.85);
+    }
+    .date-venue strong {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* Main body */
+    .main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 70px;
+      flex: 1;
+      margin-top: 20px;
+    }
+
+    .title-block {
+      flex: 1.25;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 152px;
+      line-height: 0.88;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+      text-shadow: 0 6px 40px rgba(0, 0, 0, 0.35);
+    }
+    h1 .green { color: var(--green); }
+
+    .theme-line {
+      margin-top: 32px;
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(244, 241, 234, 0.9);
+      max-width: 720px;
+      line-height: 1.45;
+    }
+
+    .theme-line::before {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: var(--green);
+      margin-bottom: 22px;
+    }
+
+    /* Chief guest */
+    .chief-guest {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 22px;
+    }
+
+    .photo-ring {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      padding: 4px;
+      background: var(--gold);
+      box-shadow: 0 12px 60px rgba(0, 0, 0, 0.4);
+    }
+    .photo-ring img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .guest-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .guest-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1.1;
+      margin-top: 4px;
+    }
+
+    .guest-title {
+      font-size: 17px;
+      font-weight: 500;
+      color: rgba(244, 241, 234, 0.75);
+      margin-top: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .tagline {
+      font-size: 20px;
+      font-weight: 700;
+      font-style: italic;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      max-width: 620px;
+      line-height: 1.45;
+    }
+
+    .hashtags {
+      text-align: right;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--green-bright);
+      line-height: 1.6;
+    }
+
+    /* Decorative stamp */
+    .stamp {
+      position: absolute;
+      bottom: 80px;
+      right: 90px;
+      z-index: 3;
+      transform: rotate(-12deg);
+      border: 2px solid rgba(245, 166, 35, 0.55);
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(244, 241, 234, 0.65);
+      pointer-events: none;
+    }
+
+    /* Subtle vignette */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 0%, rgba(10, 22, 40, 0.35) 100%);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <div class="grid-overlay"></div>
+    <div class="vignette"></div>
+    <div class="corner-accent"></div>
+    <div class="top-strip"></div>
+    <div class="bottom-strip">
+      <div class="seg-green"></div>
+      <div class="seg-navy"></div>
+      <div class="seg-gold"></div>
+    </div>
+
+    <div class="content">
+      <div class="header">
+        <div class="badge"><span class="badge-dot"></span> 3rd Annual · GPLA Summit 2026</div>
+        <div class="date-venue">
+          <strong>23-24 July 2026</strong><br>
+          Freedom Square, Makerere University
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="title-block">
+        <h1>
+            EAST AFRICAN<br>
+            GUILD LEADERS<br>
+            <span class="green">SUMMIT</span>
+          </h1>
+          <div class="theme-line">
+            Youth Leadership, Production, and Regional Integration
+          </div>
+        </div>
+
+        <div class="chief-guest">
+          <div class="photo-ring">
+            <img src="chief-guest.png" alt="H.E. Yoweri Kaguta Museveni">
+          </div>
+          <div>
+            <div class="guest-label">Chief Guest</div>
+            <div class="guest-name">H.E. YOWERI KAGUTA MUSEVENI</div>
+            <div class="guest-title">President of Uganda &amp; EAC Chairperson</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="tagline">
+          “The Future of East Africa will not be Inherited. It will be Built.”
+        </div>
+        <div class="hashtags">
+          #TheGuildLeadersSummit2026<br>
+          #GPLASummit
+        </div>
+      </div>
+    </div>
+
+    <div class="stamp">Est. 2024 · Makerere</div>
+  </div>
+</body>
+</html>
