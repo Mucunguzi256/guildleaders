@@ -2,6 +2,34 @@
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+
+// Gallery images sorted by number (filenames like 001.jpg, 002.jpg etc.)
+// IMG_6439.JPG is a large file — placed at end
+const galleryImages = [
+  { src: "/assets/images/gallery/001.jpg", alt: "Summit 2024", label: "Summit 2025", sub: "Opening Ceremony" },
+  { src: "/assets/images/gallery/003.jpg", alt: "Summit 2024", label: "Summit 2025", sub: "Delegates" },
+  { src: "/assets/images/gallery/004.jpg", alt: "Summit 2024", label: "Summit 2025", sub: "Panel Session" },
+  { src: "/assets/images/gallery/007.jpg", alt: "Summit 2024", label: "Inaugural Summit", sub: "HE. Jakaya Kikwete" },
+  { src: "/assets/images/gallery/008.jpg", alt: "Summit 2024", label: "Inaugural Summit", sub: "Keynote Address" },
+  { src: "/assets/images/gallery/009.jpg", alt: "Summit 2024", label: "Inaugural Summit", sub: "Group Photo" },
+  { src: "/assets/images/gallery/013.jpg", alt: "Summit", label: "Summit", sub: "Participants" },
+  { src: "/assets/images/gallery/015.jpg", alt: "Summit", label: "Summit", sub: "Discussion" },
+  { src: "/assets/images/gallery/016.jpg", alt: "Summit", label: "Summit", sub: "Networking" },
+  { src: "/assets/images/gallery/017.jpg", alt: "Summit", label: "Summit", sub: "Presentation" },
+  { src: "/assets/images/gallery/018.jpg", alt: "Summit", label: "Summit", sub: "Workshop" },
+  { src: "/assets/images/gallery/019.jpg", alt: "Summit", label: "Summit", sub: "Breakout Session" },
+  { src: "/assets/images/gallery/020.jpg", alt: "Summit 2025", label: "2nd Annual Summit", sub: "HE. Uhuru Kenyatta" },
+  { src: "/assets/images/gallery/022.jpg", alt: "Summit 2025", label: "2nd Annual Summit", sub: "Policy Dialogue" },
+  { src: "/assets/images/gallery/023.jpg", alt: "Summit 2025", label: "2nd Annual Summit", sub: "Delegates" },
+  { src: "/assets/images/gallery/024.jpg", alt: "Summit", label: "Summit", sub: "Moments" },
+  { src: "/assets/images/gallery/025.jpg", alt: "Summit", label: "Summit", sub: "Moments" },
+  { src: "/assets/images/gallery/026.jpg", alt: "Summit", label: "Summit", sub: "Closing Ceremony" },
+  { src: "/assets/images/gallery/027.jpg", alt: "Summit", label: "Summit", sub: "Group" },
+  { src: "/assets/images/gallery/028.jpg", alt: "Summit", label: "Summit", sub: "Award" },
+  { src: "/assets/images/gallery/029.jpg", alt: "Summit", label: "Summit", sub: "HerPower Fellowship" },
+];
+
+const IMG_6439 = { src: "/assets/images/gallery/IMG_6439.JPG", alt: "Summit Group", label: "Summit", sub: "Group Photo" };
 ---
 
 <Base title="Gallery" description="View moments from the Guild Leaders' Summits across East Africa.">
@@ -24,155 +52,25 @@ import Footer from '../components/Footer.astro';
   <!-- Gallery Grid -->
   <section class="px-4 md:px-12 py-16 md:py-24 bg-[var(--bg-section-alt)]">
     <div class="max-w-6xl mx-auto">
-      <div class="gallery-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- 
-          GALLERY PLACEHOLDER GRID
-          Client to replace gradient boxes with real summit photos.
-          Recommended photo dimensions: 
-            Large: 800x600px 
-            Portrait: 400x600px
-            Square: 500x500px
-          Place all gallery images in /public/images/gallery/
-          Naming: summit-2024-01.jpg, summit-2025-01.jpg etc.
-        -->
-        
-        <!-- 2024 Summits -->
-        <div class="gallery-item group relative rounded-xl overflow-hidden min-h-[300px] bg-gradient-to-br from-[#132d82] to-[#389a29]">
-          <div class="absolute inset-0 flex flex-col items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white/30 mb-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span class="text-white/50 text-sm">Summit 2024</span>
-          </div>
-          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <div>
-              <span class="text-gpla-green text-xs font-bold uppercase tracking-widest">Inaugural Summit</span>
-              <p class="text-white font-display text-xl mt-1">April 15, 2024</p>
-              <p class="text-white/70 text-sm">Makerere University</p>
+      <div class="gallery-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {galleryImages.map((img) => (
+          <div class="gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#132d82] to-[#389a29] cursor-pointer" onclick="openLightbox('img.src}')">
+            <img src={img.src} alt={img.alt} loading="lazy" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5">
+              <div>
+                <span class="text-gpla-green text-xs font-bold uppercase tracking-widest">{img.label}</span>
+                <p class="text-white font-display text-lg mt-0.5">{img.sub}</p>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="gallery-item group relative rounded-xl overflow-hidden min-h-[300px] bg-gradient-to-br from-[#389a29] to-[#132d82]">
-          <div class="absolute inset-0 flex flex-col items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white/30 mb-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span class="text-white/50 text-sm">Opening Ceremony</span>
-          </div>
-          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+        ))}
+        <!-- Large group photo -->
+        <div class="gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#389a29] to-[#132d82] cursor-pointer md:col-span-2 lg:col-span-2" onclick="openLightbox('IMG_6439.src}')">
+          <img src={IMG_6439.src} alt={IMG_6439.alt} loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5">
             <div>
-              <span class="text-gpla-green text-xs font-bold uppercase tracking-widest">Inaugural Summit</span>
-              <p class="text-white font-display text-xl mt-1">700+ Attendees</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-item group relative rounded-xl overflow-hidden min-h-[300px] bg-gradient-to-br from-[#F5A623] to-[#132d82]">
-          <div class="absolute inset-0 flex flex-col items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white/30 mb-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span class="text-white/50 text-sm">Keynote Address</span>
-          </div>
-          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <div>
-              <span class="text-gpla-gold text-xs font-bold uppercase tracking-widest">HE. Jakaya Mrisho Kikwete</span>
-              <p class="text-white font-display text-xl mt-1">Former President, Tanzania</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2025 Summits -->
-        <div class="gallery-item group relative rounded-xl overflow-hidden min-h-[300px] bg-gradient-to-br from-[#132d82] to-[#F5A623]">
-          <div class="absolute inset-0 flex flex-col items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white/30 mb-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span class="text-white/50 text-sm">Summit 2025</span>
-          </div>
-          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <div>
-              <span class="text-gpla-green text-xs font-bold uppercase tracking-widest">2nd Annual Summit</span>
-              <p class="text-white font-display text-xl mt-1">2025</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-item group relative rounded-xl overflow-hidden min-h-[300px] bg-gradient-to-br from-[#389a29] to-[#F5A623]">
-          <div class="absolute inset-0 flex flex-col items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white/30 mb-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span class="text-white/50 text-sm">Panel Session</span>
-          </div>
-          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <div>
-              <span class="text-gpla-green text-xs font-bold uppercase tracking-widest">Democratic Governance</span>
-              <p class="text-white font-display text-xl mt-1">Policy Discussion</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-item group relative rounded-xl overflow-hidden min-h-[300px] bg-gradient-to-br from-[#F5A623] to-[#389a29]">
-          <div class="absolute inset-0 flex flex-col items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white/30 mb-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span class="text-white/50 text-sm">Networking</span>
-          </div>
-          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <div>
-              <span class="text-gpla-gold text-xs font-bold uppercase tracking-widest">HE. Uhuru Kenyatta</span>
-              <p class="text-white font-display text-xl mt-1">Chief Guest</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2026 -->
-        <div class="gallery-item group relative rounded-xl overflow-hidden min-h-[300px] bg-gradient-to-br from-[#132d82] to-[#389a29]">
-          <div class="absolute inset-0 flex flex-col items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white/30 mb-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span class="text-white/50 text-sm">Summit 2026</span>
-          </div>
-          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <div>
-              <span class="text-gpla-gold text-xs font-bold uppercase tracking-widest">3rd Annual Summit</span>
-              <p class="text-white font-display text-xl mt-1">Coming July 23–24, 2026</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- HERPower -->
-        <div class="gallery-item group relative rounded-xl overflow-hidden min-h-[300px] bg-gradient-to-br from-[#389a29] to-[#132d82]">
-          <div class="absolute inset-0 flex flex-col items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white/30 mb-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span class="text-white/50 text-sm">HERPower</span>
-          </div>
-          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <div>
-              <span class="text-gpla-gold text-xs font-bold uppercase tracking-widest">Women's Leadership</span>
-              <p class="text-white font-display text-xl mt-1">Empowering the next generation</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- TLB -->
-        <div class="gallery-item group relative rounded-xl overflow-hidden min-h-[300px] bg-gradient-to-br from-[#F5A623] to-[#389a29]">
-          <div class="absolute inset-0 flex flex-col items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white/30 mb-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span class="text-white/50 text-sm">Leadership Bootcamp</span>
-          </div>
-          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <div>
-              <span class="text-gpla-green text-xs font-bold uppercase tracking-widest">Transformational</span>
-              <p class="text-white font-display text-xl mt-1">5-Day Intensive Program</p>
+              <span class="text-gpla-green text-xs font-bold uppercase tracking-widest">{IMG_6439.label}</span>
+              <p class="text-white font-display text-lg mt-0.5">{IMG_6439.sub}</p>
             </div>
           </div>
         </div>
@@ -180,33 +78,70 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
+  <!-- Lightbox -->
+  <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center" onclick="closeLightbox(event)">
+    <button class="absolute top-6 right-6 text-white text-3xl hover:text-gpla-gold transition-colors z-10" onclick="closeLightbox()">&times;</button>
+    <img id="lightbox-img" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg" src="" alt="" />
+  </div>
+
   <Footer />
 </Base>
 
 <script>
-  const animateOnScroll = new IntersectionObserver((entries) => {
+  // Lightbox
+  function openLightbox(src) {
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    if (lb && img) {
+      img.src = src;
+      lb.classList.remove('hidden');
+      lb.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  window.openLightbox = openLightbox;
+
+  function closeLightbox(e) {
+    if (e && e.target !== e.currentTarget) return;
+    const lb = document.getElementById('lightbox');
+    if (lb) {
+      lb.classList.add('hidden');
+      lb.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+  }
+  
+  window.closeLightbox = closeLightbox;
+
+  // Keyboard escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const lb = document.getElementById('lightbox');
+      if (lb && !lb.classList.contains('hidden')) {
+        lb.classList.add('hidden');
+        lb.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+    }
+  });
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('animate-in');
-        animateOnScroll.unobserve(entry.target);
+        (entry.target).style.opacity = '1';
+        (entry.target).style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.gallery-item').forEach((el, i) => {
-    (el as HTMLElement).style.opacity = '0';
-    (el as HTMLElement).style.transform = 'translateY(20px)';
-    (el as HTMLElement).style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    (el as HTMLElement).style.transitionDelay = `${i * 0.05}s`;
-    animateOnScroll.observe(el);
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)';
+    el.style.transitionDelay = `${(i % 6) * 0.08}s`;
+    observer.observe(el);
   });
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        (entry.target as HTMLElement).style.opacity = '1';
-        (entry.target as HTMLElement).style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
 </script>
