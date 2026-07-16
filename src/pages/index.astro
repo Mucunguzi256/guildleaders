@@ -209,8 +209,19 @@ import Footer from '../components/Footer.astro';
     .parallax-content .meta-grid { grid-template-columns: 1fr; }
     .parallax-content .panel-actions { flex-direction: column; }
     .parallax-content .panel-cta { width: 100%; text-align: center; }
-    .parallax-card.sticky { position: relative; top: auto !important; min-height: auto; margin-bottom: 16px; z-index: auto !important; }
+    .parallax-card.sticky { position: relative; top: auto !important; min-height: auto; margin-bottom: 24px; z-index: auto !important; }
     .parallax-card-inner { min-height: auto; }
+    
+    /* Mobile slide-in animation */
+    .parallax-card {
+      transform: translateY(32px);
+      opacity: 0;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .parallax-card.mobile-visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
   /* Section heading — enlarged, commanding */
@@ -252,7 +263,21 @@ import Footer from '../components/Footer.astro';
   .parallax-section-heading--dark::after { background: #F5A623; }
   .parallax-section-heading--dark .label { color: #F5A623; }
 
+  /* Navy section heading variant */
+  .parallax-section-heading--navy h2 { color: #fff; }
+  .parallax-section-heading--navy::after { background: #389a29; }
+  .parallax-section-heading--navy .label { color: #389a29; }
+
   @media (prefers-reduced-motion: reduce) { .parallax-card { transition: none !important; } }
+
+  /* Partner marquee */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .partners-marquee:hover {
+    animation-play-state: paused;
+  }
 </style>
 
 <Base title="Home">
@@ -269,7 +294,7 @@ import Footer from '../components/Footer.astro';
 
     <div class="relative z-10 max-w-[55%] px-4 md:px-12 py-20 md:py-32">
       <p class="text-gpla-green text-sm font-semibold uppercase tracking-widest mb-4">Est. Makerere University, Kampala</p>
-      <h1 class="font-display text-white text-[48px] md:text-[72px] lg:text-[96px] leading-[0.95] mb-6">
+      <h1 class="font-display text-white text-[56px] md:text-[84px] lg:text-[110px] leading-[0.92] mb-6" style="font-family: 'Oswald', sans-serif; font-weight: 700;">
         ETHICAL<br />
         VISIONARY<br />
         LEADERS.
@@ -326,23 +351,23 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <!-- Stats Strip -->
-  <section class="bg-gpla-green px-4 md:px-12 py-10 md:py-16" data-animate>
+  <section class="bg-gpla-green px-4 md:px-12 py-12 md:py-20" data-animate>
     <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
       <div>
-        <div class="font-display text-[32px] md:text-[64px] text-white"><span data-count="700" data-suffix="+" class="stat-number">0+</span></div>
-        <div class="text-white/85 text-xs md:text-sm">Former Leaders Convened</div>
+        <div class="font-display text-[32px] md:text-[64px] text-white"><span data-count="1000" data-suffix="+" class="stat-number">0+</span></div>
+        <div class="text-white/85 text-xs md:text-sm font-body tracking-normal uppercase">Former Leaders Convened</div>
       </div>
       <div>
-        <div class="font-display text-[32px] md:text-[64px] text-white"><span data-count="6" class="stat-number">0</span></div>
-        <div class="text-white/85 text-xs md:text-sm">Flagship Programs</div>
+        <div class="font-display text-[32px] md:text-[64px] text-white"><span data-count="4" class="stat-number">0</span></div>
+        <div class="text-white/85 text-xs md:text-sm font-body tracking-normal uppercase">Flagship Programs</div>
       </div>
       <div>
-        <div class="font-display text-[32px] md:text-[64px] text-white"><span data-count="6" class="stat-number">0</span></div>
-        <div class="text-white/85 text-xs md:text-sm">Countries Represented</div>
+        <div class="font-display text-[32px] md:text-[64px] text-white"><span data-count="8" class="stat-number">0</span></div>
+        <div class="text-white/85 text-xs md:text-sm font-body tracking-normal uppercase">Countries Represented</div>
       </div>
       <div>
         <div class="font-display text-[32px] md:text-[64px] text-white"><span data-count="1" class="stat-number">0</span></div>
-        <div class="text-white/85 text-xs md:text-sm">Regional Summit Annually</div>
+        <div class="text-white/85 text-xs md:text-sm font-body tracking-normal uppercase">Regional Summit Annually</div>
       </div>
     </div>
   </section>
@@ -377,10 +402,10 @@ import Footer from '../components/Footer.astro';
   <!-- Pattern Divider -->
   <div class="h-10 w-full" style="background: linear-gradient(90deg, #389a29 0%, #389a29 16%, #132d82 16%, #132d82 32%, #F5A623 32%, #F5A623 48%, #ffffff 48%, #ffffff 64%, #389a29 64%, #389a29 80%, #132d82 80%, #132d82 100%);"></div>
 
-  <!-- ===== n8n-STYLE SUMMITS SECTION ===== -->
-  <section class="px-4 md:px-12 py-16 md:py-24 bg-gpla-light">
+  <!-- ===== SUMMITS SECTION ===== -->
+  <section class="px-4 md:px-12 py-16 md:py-24 bg-gpla-navy">
     <div class="max-w-7xl mx-auto">
-      <div class="parallax-section-heading">
+      <div class="parallax-section-heading parallax-section-heading--navy">
         <span class="label">Our Summits</span>
         <h2>THREE YEARS. ONE MOVEMENT.</h2>
       </div>
@@ -506,10 +531,10 @@ import Footer from '../components/Footer.astro';
   <!-- Pattern Divider -->
   <div class="h-8 w-full" style="background: linear-gradient(90deg, #132d82 0%, #132d82 25%, #389a29 25%, #389a29 50%, #F5A623 50%, #F5A623 75%, #132d82 75%, #132d82 100%);"></div>
 
-  <!-- ===== n8n-STYLE PROGRAMS SECTION ===== -->
-  <section class="px-4 md:px-12 py-16 md:py-24 bg-white">
+  <!-- ===== PROGRAMS SECTION ===== -->
+  <section class="px-4 md:px-12 py-16 md:py-24 bg-gpla-navy">
     <div class="max-w-7xl mx-auto">
-      <div class="parallax-section-heading">
+      <div class="parallax-section-heading parallax-section-heading--navy">
         <span class="label">Our Programs</span>
         <h2>SIX PATHWAYS TO TRANSFORM EAST AFRICA</h2>
       </div>
@@ -717,17 +742,22 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <!-- Partners -->
-  <section class="px-4 md:px-12 py-12 md:py-24 bg-white" data-animate>
+  <section class="px-4 md:px-12 py-16 md:py-24 bg-[#0A0F1E] border-t border-white/5" data-animate>
     <div class="max-w-6xl mx-auto">
-      <h2 class="font-display text-gpla-navy text-[32px] md:text-[48px] text-center mb-8 md:12">OUR PARTNERS</h2>
-      <div class="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-4">
-        {['GIZ', 'EU', 'German Co.', 'ActionAid', 'WFD', 'Akina Mama', 'UYONET', 'UNiFOG', 'NEC', 'CivLegacy', 'Julius Nyerere', 'NDP'].map(partner => (
-          <div class="bg-gray-100 p-4 md:p-5 rounded-lg text-center font-display text-sm md:text-lg text-gray-400 hover:bg-gpla-navy hover:text-white transition-all">
-            {partner}
-          </div>
-        ))}
+      <div class="text-center mb-12">
+        <span class="text-gpla-green text-xs font-semibold uppercase tracking-widest font-display">Supported By</span>
+        <h2 class="font-display text-white text-[32px] md:text-[48px] mt-2">OUR PARTNERS</h2>
       </div>
-      <p class="text-center text-gray-400 text-sm mt-6 md:mt-8">Supported by leading international development organisations</p>
+      <div class="overflow-hidden">
+        <div class="partners-marquee flex gap-8 md:gap-12 items-center" style="animation: marquee 30s linear infinite;">
+          {['GIZ', 'EU', 'German Co.', 'ActionAid', 'WFD', 'Akina Mama', 'UYONET', 'UNiFOG', 'NEC', 'CivLegacy', 'Julius Nyerere', 'NDP', 'GIZ', 'EU', 'German Co.', 'ActionAid', 'WFD', 'Akina Mama', 'UYONET', 'UNiFOG', 'NEC', 'CivLegacy', 'Julius Nyerere', 'NDP'].map(partner => (
+            <div class="flex-shrink-0 px-6 md:px-8 py-4 md:py-5 border border-white/10 rounded-lg bg-white/5 backdrop-blur-sm">
+              <span class="font-display text-lg md:text-xl text-white/60 hover:text-gpla-green transition-colors whitespace-nowrap">{partner}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <p class="text-center text-white/30 text-sm mt-8 font-body">Supported by leading international development organisations</p>
     </div>
   </section>
 
@@ -810,4 +840,24 @@ import Footer from '../components/Footer.astro';
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('[data-animate]').forEach(el => animateOnScroll.observe(el));
+
+  // ===== MOBILE CARD SLIDE-IN =====
+  if (window.innerWidth < 1024) {
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = parseInt(entry.target.dataset.delay) || 0;
+          setTimeout(() => {
+            entry.target.classList.add('mobile-visible');
+          }, delay);
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.parallax-card').forEach((el, i) => {
+      el.dataset.delay = String(i * 100);
+      cardObserver.observe(el);
+    });
+  }
 </script>

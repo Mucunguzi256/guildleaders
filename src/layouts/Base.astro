@@ -29,25 +29,42 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
     
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Book+Antiqua&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <style is:global>
       :root {
-        --bg-base: #F7F6F3;
-        --bg-section-alt: #EFEDE8;
+        --bg-base: #0A0F1E;
+        --bg-section-alt: #111827;
         --bg-dark: #132d82;
         --bg-green: #389a29;
-        --text-primary: #0D1B0A;
-        --text-muted: #5C5C52;
+        --text-primary: #F1F5F9;
+        --text-muted: #94A3B8;
+        --font-display: 'Oswald', sans-serif;
+        --font-body: 'Book Antiqua', 'Georgia', serif;
+        --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      html {
+        scroll-behavior: smooth;
       }
       body {
         background-color: var(--bg-base);
         color: var(--text-primary);
-        background-image:
-          linear-gradient(90deg, rgba(19,45,130,0.025) 1px, transparent 1px),
-          linear-gradient(rgba(19,45,130,0.025) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(19,45,130,0.045) 1px, transparent 1px),
-          linear-gradient(rgba(19,45,130,0.045) 1px, transparent 1px);
-        background-size: 20px 20px, 20px 20px, 160px 160px, 160px 160px;
+        font-family: var(--font-body);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+      .font-display {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+      .font-body {
+        font-family: var(--font-body);
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        line-height: 1.1;
       }
       .bg-gpla-light { background-color: var(--bg-section-alt); background-image: linear-gradient(90deg, rgba(19,45,130,0.025) 1px, transparent 1px), linear-gradient(rgba(19,45,130,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(19,45,130,0.04) 1px, transparent 1px), linear-gradient(rgba(19,45,130,0.04) 1px, transparent 1px); background-size: 20px 20px, 20px 20px, 160px 160px, 160px 160px; }
       
@@ -947,9 +964,25 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       }
     </style>
   </head>
-  <body class="font-body text-gray-900 bg-[var(--bg-base)] overflow-x-hidden">
+  <body class="font-body text-gray-900 bg-[var(--bg-base)] overflow-x-hidden" data-lenis-prevent>
     <slot />
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@v1.0.24/bundled/lenis.min.js"></script>
     <script>
+      // LENIS SMOOTH SCROLL
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const lenis = new Lenis({
+          duration: 2.5,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+          wheelMultiplier: 0.8,
+        });
+        function lenisRaf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(lenisRaf);
+        }
+        requestAnimationFrame(lenisRaf);
+      }
+
       // TASK 3: Scroll-triggered fade-up animations with prefers-reduced-motion check
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       
