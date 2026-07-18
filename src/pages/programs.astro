@@ -8,39 +8,41 @@ import Footer from '../components/Footer.astro';
   <Navbar />
   
   <!-- Hero -->
-  <section class="min-h-[50vh] bg-[#0A0F1E] px-4 md:px-12 pt-32 pb-20 relative overflow-hidden flex items-center">
+  <section class="min-h-[50vh] bg-[#0A0F1E] section-padding relative overflow-hidden flex items-center" style="padding-top: 8rem;">
     <div class="absolute inset-0 bg-gradient-to-r from-[#0A0F1E] via-[#132d82]/40 to-[#389a29]/20"></div>
-    <div class="relative z-10 max-w-4xl mx-auto text-center">
-      <p class="text-gpla-green text-sm font-semibold uppercase tracking-widest mb-4 font-display">Our Programmes</p>
-      <h1 class="font-display text-white text-[42px] md:text-[64px] md:text-[80px] leading-tight" style="font-weight: 700;">
-        FOUR FLAGSHIP<br />
-        PROGRAMMES
-      </h1>
+    <div class="relative z-10 w-full">
+      <div class="section-container text-center">
+        <p class="section-label section-label--gold" data-animate>Our Programmes</p>
+        <h1 class="font-display text-white text-[clamp(2.5rem,7vw,5rem)] leading-[0.95]" data-animate data-delay="100">
+          FOUR FLAGSHIP<br />
+          PROGRAMMES
+        </h1>
+      </div>
     </div>
   </section>
 
   <!-- Intro Strip -->
-  <section class="bg-[#111827] px-4 md:px-12 py-10 md:py-14 border-t border-white/5">
-    <div class="max-w-4xl mx-auto">
-      <p class="text-white/70 text-base md:text-lg leading-relaxed font-body" style="text-align: justify;">
+  <section class="section-alt section-padding border-t border-white/5">
+    <div class="section-container section-container--narrow">
+      <p class="content-text content-text--muted" style="text-align: justify;" data-animate>
         Through these four flagship programmes, GPLA develops ethical and capable leaders, advances East African integration, promotes youth innovation and productive enterprise, strengthens governance and institutional leadership, connects young leaders with experienced statespersons and professionals, and transforms leadership potential into practical national and regional impact.
       </p>
     </div>
   </section>
 
   <!-- Program 1: East African Guild Leaders Summit -->
-  <section class="px-4 md:px-12 py-16 md:py-24 bg-[#0A0F1E] border-t border-white/5">
-    <div class="max-w-5xl mx-auto">
-      <div class="flex items-start gap-4 mb-6">
-        <span class="text-gpla-green font-display text-sm tracking-wider mt-1">01</span>
+  <section class="section-padding section-dark border-t border-white/5">
+    <div class="section-container section-container--narrow">
+      <div class="flex items-start gap-5 mb-6" data-animate>
+        <span class="program-number">01</span>
         <div>
-          <span class="text-gpla-green text-xs font-semibold uppercase tracking-widest font-display mb-2 block">Flagship Programme</span>
-          <h2 class="font-display text-white text-[32px] md:text-[44px] leading-tight" style="font-weight: 600;">EAST AFRICAN GUILD LEADERS SUMMIT</h2>
-          <p class="text-gpla-gold font-display text-lg md:text-xl mt-2 tracking-wider">Advancing Youth Leadership and East African Integration</p>
+          <span class="section-label section-label--gold mb-2">Flagship Programme</span>
+          <h2 class="font-display text-white text-[clamp(1.8rem,4vw,3rem)] leading-tight">EAST AFRICAN GUILD LEADERS SUMMIT</h2>
+          <p class="text-gpla-gold font-display text-xl md:text-2xl mt-3 tracking-wider">Advancing Youth Leadership and East African Integration</p>
         </div>
       </div>
 
-      <div class="text-white/70 leading-relaxed font-body space-y-5 mt-8" style="text-align: justify;">
+      <div class="content-text mt-8 space-y-5" style="text-align: justify;" data-animate data-delay="100">
         <p>The East African Guild Leaders Summit is GPLA's flagship regional convening platform, bringing together university guild leaders, policymakers, academic leaders, development partners, private-sector actors and distinguished statespersons from across East Africa.</p>
         <p>The Summit develops young leaders' understanding of East African integration while creating a platform for dialogue on governance, education, technology, regional trade, youth employment, peace, mobility and sustainable development.</p>
         <p>It also connects current student leaders with experienced national and regional leaders, strengthening intergenerational learning and building a network of young people committed to a united, peaceful and prosperous East Africa.</p>
@@ -80,18 +82,18 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <!-- Program 2: Uganda National Science Park and Innovation Area Initiative -->
-  <section class="px-4 md:px-12 py-16 md:py-24 bg-[#111827] border-t border-white/5">
-    <div class="max-w-5xl mx-auto">
-      <div class="flex items-start gap-4 mb-6">
-        <span class="text-gpla-green font-display text-sm tracking-wider mt-1">02</span>
+  <section class="section-padding section-alt border-t border-white/5">
+    <div class="section-container section-container--narrow">
+      <div class="flex items-start gap-5 mb-6" data-animate>
+        <span class="program-number">02</span>
         <div>
-          <span class="text-gpla-green text-xs font-semibold uppercase tracking-widest font-display mb-2 block">Flagship Programme</span>
-          <h2 class="font-display text-white text-[32px] md:text-[44px] leading-tight" style="font-weight: 600;">UGANDA NATIONAL SCIENCE PARK AND INNOVATION AREA INITIATIVE</h2>
-          <p class="text-gpla-gold font-display text-lg md:text-xl mt-2 tracking-wider">Harnessing Youth Innovation for Production and National Transformation</p>
+          <span class="section-label section-label--gold mb-2">Flagship Programme</span>
+          <h2 class="font-display text-white text-[clamp(1.8rem,4vw,3rem)] leading-tight">UGANDA NATIONAL SCIENCE PARK AND INNOVATION AREA INITIATIVE</h2>
+          <p class="text-gpla-gold font-display text-xl md:text-2xl mt-3 tracking-wider">Harnessing Youth Innovation for Production and National Transformation</p>
         </div>
       </div>
 
-      <div class="text-white/70 leading-relaxed font-body space-y-5 mt-8" style="text-align: justify;">
+      <div class="content-text mt-8 space-y-5" style="text-align: justify;" data-animate data-delay="100">
         <p>The Uganda National Science Park and Innovation Area Initiative is GPLA's flagship programme for advancing science, technology, innovation, enterprise development and productive youth participation in Uganda's economy.</p>
         <p>The Initiative seeks to establish a nationally supported ecosystem where universities, researchers, innovators, entrepreneurs, industries, investors and government institutions can collaborate to transform ideas and research into commercially viable products, enterprises and employment opportunities.</p>
         <p>It will provide a platform for incubation, research commercialisation, industrial production, skills development, technology transfer and investment in sectors that are critical to Uganda's development.</p>
@@ -147,18 +149,18 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <!-- Program 3: GPLA Executive Master Classes -->
-  <section class="px-4 md:px-12 py-16 md:py-24 bg-[#0A0F1E] border-t border-white/5">
-    <div class="max-w-5xl mx-auto">
-      <div class="flex items-start gap-4 mb-6">
-        <span class="text-gpla-green font-display text-sm tracking-wider mt-1">03</span>
+  <section class="section-padding section-dark border-t border-white/5">
+    <div class="section-container section-container--narrow">
+      <div class="flex items-start gap-5 mb-6" data-animate>
+        <span class="program-number">03</span>
         <div>
-          <span class="text-gpla-green text-xs font-semibold uppercase tracking-widest font-display mb-2 block">Flagship Programme</span>
-          <h2 class="font-display text-white text-[32px] md:text-[44px] leading-tight" style="font-weight: 600;">GPLA EXECUTIVE MASTER CLASSES</h2>
-          <p class="text-gpla-gold font-display text-lg md:text-xl mt-2 tracking-wider">Developing Ethical, Strategic and Transformational Leaders</p>
+          <span class="section-label section-label--gold mb-2">Flagship Programme</span>
+          <h2 class="font-display text-white text-[clamp(1.8rem,4vw,3rem)] leading-tight">GPLA EXECUTIVE MASTER CLASSES</h2>
+          <p class="text-gpla-gold font-display text-xl md:text-2xl mt-3 tracking-wider">Developing Ethical, Strategic and Transformational Leaders</p>
         </div>
       </div>
 
-      <div class="text-white/70 leading-relaxed font-body space-y-5 mt-8" style="text-align: justify;">
+      <div class="content-text mt-8 space-y-5" style="text-align: justify;" data-animate data-delay="100">
         <p>The GPLA Executive Master Classes are high-level leadership development programmes designed for public officials, institutional administrators, political leaders, professionals, civil society executives, private-sector managers and emerging leaders.</p>
         <p>The programme brings together distinguished statespersons, experienced public servants, diplomats, academics, business leaders and governance practitioners to share practical knowledge, leadership experience and institutional lessons.</p>
         <p>The Master Classes focus on the real challenges of leadership, including managing public trust, making difficult decisions, leading during crises, strengthening institutions and delivering results in complex environments.</p>
@@ -214,18 +216,18 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <!-- Program 4: Guild Leadership Development and Mentorship Programme -->
-  <section class="px-4 md:px-12 py-16 md:py-24 bg-[#111827] border-t border-white/5">
-    <div class="max-w-5xl mx-auto">
-      <div class="flex items-start gap-4 mb-6">
-        <span class="text-gpla-green font-display text-sm tracking-wider mt-1">04</span>
+  <section class="section-padding section-alt border-t border-white/5">
+    <div class="section-container section-container--narrow">
+      <div class="flex items-start gap-5 mb-6" data-animate>
+        <span class="program-number">04</span>
         <div>
-          <span class="text-gpla-green text-xs font-semibold uppercase tracking-widest font-display mb-2 block">Flagship Programme</span>
-          <h2 class="font-display text-white text-[32px] md:text-[44px] leading-tight" style="font-weight: 600;">GUILD LEADERSHIP DEVELOPMENT AND MENTORSHIP PROGRAMME</h2>
-          <p class="text-gpla-gold font-display text-lg md:text-xl mt-2 tracking-wider">Preparing Student Leaders for Responsible Service and Future Leadership</p>
+          <span class="section-label section-label--gold mb-2">Flagship Programme</span>
+          <h2 class="font-display text-white text-[clamp(1.8rem,4vw,3rem)] leading-tight">GUILD LEADERSHIP DEVELOPMENT AND MENTORSHIP PROGRAMME</h2>
+          <p class="text-gpla-gold font-display text-xl md:text-2xl mt-3 tracking-wider">Preparing Student Leaders for Responsible Service and Future Leadership</p>
         </div>
       </div>
 
-      <div class="text-white/70 leading-relaxed font-body space-y-5 mt-8" style="text-align: justify;">
+      <div class="content-text mt-8 space-y-5" style="text-align: justify;" data-animate data-delay="100">
         <p>The Guild Leadership Development and Mentorship Programme is GPLA's foundational programme for strengthening leadership, governance and institutional management among university guild leaders.</p>
         <p>The programme provides newly elected and serving student leaders with practical training in ethical leadership, financial accountability, negotiation, communication, conflict resolution, policy engagement and responsible representation.</p>
         <p>It also supports leadership transition, institutional continuity and mentorship by connecting current guild leaders with former guild presidents, public officials, professionals and experienced national leaders.</p>
@@ -297,13 +299,20 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-gpla-green px-4 md:px-12 py-16 md:py-20 text-center">
-    <h2 class="font-display text-white text-[36px] md:text-[56px] mb-4" style="font-weight: 700;">Ready to Lead?</h2>
-    <p class="text-white/85 text-lg md:text-xl mb-6 md:mb-8 font-body">Join the next cohort and transform your leadership journey.</p>
-    <a href="https://lu.ma/5tuheo2m" target="_blank" rel="noopener noreferrer" class="bg-white text-gpla-navy px-8 md:px-10 py-4 md:py-5 rounded-full font-display font-semibold tracking-wider inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
-      Apply on Luma →
-    </a>
+  <!-- Masterclasses CTA (replaces old 'Ready to Lead?') -->
+  <section class="bg-gpla-green section-padding text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.06),transparent_60%)] pointer-events-none"></div>
+    <div class="section-container relative z-10">
+      <h2 class="font-display text-white text-[clamp(2rem,5vw,3.5rem)] mb-4">Join Our Masterclasses</h2>
+      <p class="text-white/85 text-lg md:text-xl mb-8 max-w-2xl mx-auto font-body">
+        Elevate your leadership journey with our Executive Master Classes — designed for emerging and established leaders across East Africa.
+      </p>
+      <a href="/contact" class="btn btn-gold btn-lg inline-flex">
+        Apply to Join
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+      <p class="text-white/40 text-sm mt-4 font-body italic">[Application details coming soon — placeholder]</p>
+    </div>
   </section>
 
   <Footer />

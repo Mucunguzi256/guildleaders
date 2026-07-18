@@ -11,60 +11,60 @@ const links = [
 ---
 
 <div class="site-header">
-  <!-- Announcement Ticker -->
+  <!-- Announcement Ticker — redesigned -->
   <div class="announcement-ticker">
     <div class="ticker-track">
-      <span>📅 3rd Annual East African Guild Leaders' Summit · 23–24 July 2026 · Freedom Square, Makerere University · Chief Guest: H.E. Yoweri Kaguta Museveni &nbsp;&nbsp;|&nbsp;&nbsp; #TheGuildLeadersSummit2026 &nbsp;&nbsp;|&nbsp;&nbsp; #GPLASummit &nbsp;&nbsp;&nbsp;&nbsp;</span>
-      <span>📅 3rd Annual East African Guild Leaders' Summit · 23–24 July 2026 · Freedom Square, Makerere University · Chief Guest: H.E. Yoweri Kaguta Museveni &nbsp;&nbsp;|&nbsp;&nbsp; #TheGuildLeadersSummit2026 &nbsp;&nbsp;|&nbsp;&nbsp; #GPLASummit &nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span>⚡ 3rd Annual East African Guild Leaders' Summit · 23–24 July 2026 · Freedom Square, Makerere University · Chief Guest: H.E. Yoweri Kaguta Museveni &nbsp;·&nbsp; #TheGuildLeadersSummit2026 &nbsp;·&nbsp; #GPLASummit &nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span>⚡ 3rd Annual East African Guild Leaders' Summit · 23–24 July 2026 · Freedom Square, Makerere University · Chief Guest: H.E. Yoweri Kaguta Museveni &nbsp;·&nbsp; #TheGuildLeadersSummit2026 &nbsp;·&nbsp; #GPLASummit &nbsp;&nbsp;&nbsp;&nbsp;</span>
     </div>
   </div>
 
   <!-- Navbar -->
-  <nav id="navbar" class="h-24 bg-[#0A0F1E]/90 backdrop-blur-lg flex items-center justify-between px-4 md:px-12 border-b border-white/5">
-    <a href="/" class="flex items-center">
-      <img src="/images/gpla-logo-new.png" alt="Guild Leaders" class="h-12 md:h-16 w-auto" style="width: auto; height: 64px;" />
+  <nav id="navbar" class="h-28 bg-[#0A0F1E]/95 backdrop-blur-xl flex items-center justify-between px-6 md:px-12 border-b border-white/5">
+    <a href="/" class="flex items-center shrink-0">
+      <img src="/images/gpla-logo-new.png" alt="Guild Leaders" class="h-14 md:h-[72px] w-auto" style="width: auto; height: 72px;" />
     </a>
     
-    <!-- Desktop Nav -->
-    <div class="hidden md:flex gap-6 lg:gap-8 items-center">
+    <!-- Desktop Nav — BIGGER FONTS -->
+    <div class="hidden md:flex gap-8 lg:gap-10 xl:gap-12 items-center">
       {links.map(link => (
-        <a href={link.href} class="nav-link text-white">
+        <a href={link.href} class="nav-link text-white/90 hover:text-white font-display text-lg lg:text-xl tracking-wider hover:text-gpla-green transition-all duration-300">
           {link.label}
         </a>
       ))}
     </div>
     
     <!-- Desktop CTA Group -->
-    <div class="hidden md:flex items-center gap-4">
+    <div class="hidden md:flex items-center gap-5">
       <a href="/summit/2026" class="summit-pill">
         <span class="pulse-dot"></span> Summit 2026
       </a>
-      <a href="https://lu.ma/5tuheo2m" target="_blank" rel="noopener noreferrer" class="bg-gpla-green text-white px-6 md:px-8 py-3 md:py-3.5 rounded-full font-semibold text-sm font-display tracking-wider hover:shadow-lg hover:-translate-y-0.5 transition-all">
+      <a href="https://luma.com/5tuheo2m" target="_blank" rel="noopener noreferrer" class="btn btn-primary text-base px-8 py-3.5">
         Apply Now
       </a>
     </div>
     
     <!-- Mobile Menu Toggle -->
-    <button id="mobile-menu-btn" class="md:hidden p-2" aria-label="Menu">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <button id="mobile-menu-btn" class="md:hidden p-2 text-white" aria-label="Menu">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
   </nav>
 </div>
 
-<!-- Mobile Menu -->
+<!-- Mobile Menu — BIGGER FONTS -->
 <div id="mobile-menu" class="fixed inset-0 bg-[#0A0F1E]/98 backdrop-blur-xl z-40 hidden">
-  <div class="flex flex-col items-center justify-center h-full gap-8 pt-16">
+  <div class="flex flex-col items-center justify-center h-full gap-10 pt-16">
     {links.map(link => (
-      <a href={link.href} class="text-white font-display text-4xl hover:text-gpla-green transition-colors tracking-wider">
+      <a href={link.href} class="text-white font-display text-5xl hover:text-gpla-green transition-colors tracking-wider">
         {link.label}
       </a>
     ))}
-    <a href="/summit/2026" class="summit-pill-mobile mt-6">
+    <a href="/summit/2026" class="summit-pill-mobile mt-4">
       <span class="pulse-dot"></span> Summit 2026
     </a>
-    <a href="https://lu.ma/5tuheo2m" target="_blank" rel="noopener noreferrer" class="bg-gpla-green text-white px-10 py-4 rounded-full font-display text-lg tracking-wider mt-8 hover:shadow-xl transition-all">
+    <a href="https://luma.com/5tuheo2m" target="_blank" rel="noopener noreferrer" class="btn btn-primary text-xl px-12 py-5 mt-6">
       Apply Now
     </a>
   </div>
@@ -77,30 +77,67 @@ const links = [
     z-index: 100;
   }
   
+  /* === REDESIGNED TICKER === */
   .announcement-ticker {
-    background: linear-gradient(90deg, #0A0F1E 0%, #132d82 30%, #389a29 70%, #0A0F1E 100%);
-    color: #F5A623;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
+    background: linear-gradient(90deg, #0A1628 0%, #132d82 25%, #389a29 75%, #0A1628 100%);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
     overflow: hidden;
     white-space: nowrap;
-    padding: 10px 0;
-    font-family: 'Oswald', sans-serif;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 12px 0;
+    font-family: 'Book Antiqua', 'Georgia', serif;
+    border-bottom: 2px solid rgba(245,166,35,0.15);
+    position: relative;
+  }
+  .announcement-ticker::before,
+  .announcement-ticker::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .announcement-ticker::before {
+    left: 0;
+    background: linear-gradient(90deg, #0A1628 0%, transparent 100%);
+  }
+  .announcement-ticker::after {
+    right: 0;
+    background: linear-gradient(270deg, #0A1628 0%, transparent 100%);
   }
   
   .ticker-track {
     display: inline-flex;
-    animation: ticker 40s linear infinite;
+    animation: ticker 45s linear infinite;
   }
-  
   .ticker-track:hover { animation-play-state: paused; }
   
   @keyframes ticker {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
+  }
+  
+  /* === NAV LINKS === */
+  .nav-link {
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gpla-green, #389a29);
+    transition: width 0.3s var(--transition-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+  }
+  .nav-link:hover::after {
+    width: 100%;
   }
   
   .summit-pill {
@@ -109,14 +146,14 @@ const links = [
     gap: 8px;
     background: linear-gradient(135deg, #389a29, #2d7a20);
     color: white;
-    padding: 8px 18px;
+    padding: 10px 22px;
     border-radius: 999px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     text-decoration: none;
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     border: 1px solid rgba(255,255,255,0.1);
     transition: all 0.3s var(--transition-smooth);
   }
@@ -128,18 +165,18 @@ const links = [
   .summit-pill-mobile {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     background: linear-gradient(135deg, #389a29, #2d7a20);
     color: white;
-    padding: 6px 14px;
+    padding: 8px 18px;
     border-radius: 999px;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 500;
     text-decoration: none;
     white-space: nowrap;
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
   }
   
   .pulse-dot {
@@ -152,45 +189,30 @@ const links = [
   
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.4); }
+    50% { opacity: 0.5; transform: scale(0.8); }
   }
   
-  /* Navbar link hover effect */
-  .nav-link {
-    position: relative;
-    font-family: 'Oswald', sans-serif;
-    font-size: 15px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 4px 0;
-    transition: color 0.3s ease;
-  }
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #389a29;
-    transition: width 0.3s var(--transition-smooth);
-  }
-  .nav-link:hover::after {
-    width: 100%;
+  #navbar {
+    transition: background 0.3s ease;
   }
 </style>
 
 <script>
+  // Mobile menu toggle
   const menuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
-  
-  menuBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-  });
-  
-  mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.add('hidden');
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', !isHidden);
+      document.body.style.overflow = isHidden ? 'hidden' : '';
     });
-  });
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+      });
+    });
+  }
 </script>
