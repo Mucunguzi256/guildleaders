@@ -1,6 +1,6 @@
 ---
 import PatternRibbon from './PatternRibbon.astro';
-import { socialLinks } from '../data/site';
+import { contactEmail, socialLinks } from '../data/site';
 import { socialLinkIcons } from '../data/social-icons';
 
 const currentYear = new Date().getFullYear();
@@ -42,7 +42,9 @@ const currentYear = new Date().getFullYear();
           Plot 158 Observatory Hill<br />
           Makerere University, Kampala
         </p>
-        <p class="text-white/45 text-sm mt-3 font-body">info@guildleaders.academy</p>
+        <p class="text-white/45 text-sm mt-3 font-body">
+          <a href={`mailto:${contactEmail}`} class="hover:text-gpla-green transition-colors">{contactEmail}</a>
+        </p>
         <div class="mt-6">
           <a href="/contact" class="inline-flex items-center gap-2 px-5 py-2.5 border border-gpla-green/50 text-gpla-green rounded-full text-sm font-display tracking-wider hover:bg-gpla-green hover:text-white transition-all duration-300">
             Get In Touch

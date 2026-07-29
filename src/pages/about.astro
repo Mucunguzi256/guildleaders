@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import PatternDivider from '../components/PatternDivider.astro';
 import PatternBackdrop from '../components/PatternBackdrop.astro';
-import { executiveDirector } from '../data/site';
+import { executiveDirector, teamMembers } from '../data/site';
 ---
 
 <Base title="About" description="Learn about the Guild Presidents Leadership Academy - East Africa's premier youth leadership institution.">
@@ -186,30 +186,19 @@ import { executiveDirector } from '../data/site';
             </p>
           </div>
         </div>
-        <div class="group african-zigzag-top" data-animate data-delay="100">
-          <div class="aspect-[3/4] bg-gradient-to-br from-gpla-green/20 to-gpla-navy/10 rounded-2xl mb-5 overflow-hidden relative">
-            <div class="w-full h-full flex items-center justify-center">
-              <span class="font-display text-gpla-navy/15 text-6xl">SK</span>
+        {teamMembers.map((member, index) => (
+          <div class="group african-zigzag-top" data-animate data-delay={(index + 1) * 100}>
+            <div class="aspect-[3/4] bg-gradient-to-br from-gpla-green/20 to-gpla-navy/10 rounded-2xl mb-5 overflow-hidden relative">
+              <div class="w-full h-full flex items-center justify-center">
+                <span class="font-display text-gpla-navy/15 text-6xl">{member.initials}</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display text-2xl text-gpla-navy">{member.name}</h3>
+              <p class="text-gpla-navy/60 text-sm font-body">{member.title}</p>
             </div>
           </div>
-          <div>
-            <h3 class="font-display text-2xl text-gpla-navy">Dr. Sarah Kemigisa</h3>
-            <p class="text-gpla-navy/60 text-sm font-body">Programs Director</p>
-            <p class="text-gpla-navy/40 text-xs mt-2 font-body leading-relaxed">Equipping young leaders with the skills to transform governance.</p>
-          </div>
-        </div>
-        <div class="group african-zigzag-top" data-animate data-delay="200">
-          <div class="aspect-[3/4] bg-gradient-to-br from-gpla-navy/10 to-gpla-gold/15 rounded-2xl mb-5 overflow-hidden relative">
-            <div class="w-full h-full flex items-center justify-center">
-              <span class="font-display text-gpla-navy/15 text-6xl">JO</span>
-            </div>
-          </div>
-          <div>
-            <h3 class="font-display text-2xl text-gpla-navy">James Ochieng</h3>
-            <p class="text-gpla-navy/60 text-sm font-body">Operations Manager</p>
-            <p class="text-gpla-navy/40 text-xs mt-2 font-body leading-relaxed">Ensuring excellence in delivery across all programs.</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
