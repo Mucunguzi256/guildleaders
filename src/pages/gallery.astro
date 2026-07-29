@@ -7,30 +7,30 @@ import PatternRibbon from '../components/PatternRibbon.astro';
 // Gallery images sorted by number (filenames like 001.jpg, 002.jpg etc.)
 // IMG_6439.JPG is a large file — placed at end
 const galleryImages = [
-  { src: "/assets/images/gallery/001.jpg", alt: "Summit 2024", label: "Summit 2025", sub: "Opening Ceremony" },
-  { src: "/assets/images/gallery/003.jpg", alt: "Summit 2024", label: "Summit 2025", sub: "Delegates" },
-  { src: "/assets/images/gallery/004.jpg", alt: "Summit 2024", label: "Summit 2025", sub: "Panel Session" },
-  { src: "/assets/images/gallery/007.jpg", alt: "Summit 2024", label: "Inaugural Summit", sub: "HE. Jakaya Kikwete" },
-  { src: "/assets/images/gallery/008.jpg", alt: "Summit 2024", label: "Inaugural Summit", sub: "Keynote Address" },
-  { src: "/assets/images/gallery/009.jpg", alt: "Summit 2024", label: "Inaugural Summit", sub: "Group Photo" },
-  { src: "/assets/images/gallery/013.jpg", alt: "Summit", label: "Summit", sub: "Participants" },
-  { src: "/assets/images/gallery/015.jpg", alt: "Summit", label: "Summit", sub: "Discussion" },
-  { src: "/assets/images/gallery/016.jpg", alt: "Summit", label: "Summit", sub: "Networking" },
-  { src: "/assets/images/gallery/017.jpg", alt: "Summit", label: "Summit", sub: "Presentation" },
-  { src: "/assets/images/gallery/018.jpg", alt: "Summit", label: "Summit", sub: "Workshop" },
-  { src: "/assets/images/gallery/019.jpg", alt: "Summit", label: "Summit", sub: "Breakout Session" },
-  { src: "/assets/images/gallery/020.jpg", alt: "Summit 2025", label: "2nd Annual Summit", sub: "HE. Uhuru Kenyatta" },
-  { src: "/assets/images/gallery/022.jpg", alt: "Summit 2025", label: "2nd Annual Summit", sub: "Policy Dialogue" },
-  { src: "/assets/images/gallery/023.jpg", alt: "Summit 2025", label: "2nd Annual Summit", sub: "Delegates" },
-  { src: "/assets/images/gallery/024.jpg", alt: "Summit", label: "Summit", sub: "Moments" },
-  { src: "/assets/images/gallery/025.jpg", alt: "Summit", label: "Summit", sub: "Moments" },
-  { src: "/assets/images/gallery/026.jpg", alt: "Summit", label: "Summit", sub: "Closing Ceremony" },
-  { src: "/assets/images/gallery/027.jpg", alt: "Summit", label: "Summit", sub: "Group" },
-  { src: "/assets/images/gallery/028.jpg", alt: "Summit", label: "Summit", sub: "Award" },
-  { src: "/assets/images/gallery/029.jpg", alt: "Summit", label: "Summit", sub: "HerPower Fellowship" },
+  { src: "/assets/images/gallery/001.jpg", alt: "Summit 2024 — opening ceremony" },
+  { src: "/assets/images/gallery/003.jpg", alt: "Summit 2024 — delegates" },
+  { src: "/assets/images/gallery/004.jpg", alt: "Summit 2024 — panel session" },
+  { src: "/assets/images/gallery/007.jpg", alt: "Inaugural Summit — keynote" },
+  { src: "/assets/images/gallery/008.jpg", alt: "Inaugural Summit — keynote address" },
+  { src: "/assets/images/gallery/009.jpg", alt: "Inaugural Summit — group photo" },
+  { src: "/assets/images/gallery/013.jpg", alt: "Summit — participants" },
+  { src: "/assets/images/gallery/015.jpg", alt: "Summit — discussion" },
+  { src: "/assets/images/gallery/016.jpg", alt: "Summit — networking" },
+  { src: "/assets/images/gallery/017.jpg", alt: "Summit — presentation" },
+  { src: "/assets/images/gallery/018.jpg", alt: "Summit — workshop" },
+  { src: "/assets/images/gallery/019.jpg", alt: "Summit — breakout session" },
+  { src: "/assets/images/gallery/020.jpg", alt: "Summit 2025 — keynote" },
+  { src: "/assets/images/gallery/022.jpg", alt: "Summit 2025 — policy dialogue" },
+  { src: "/assets/images/gallery/023.jpg", alt: "Summit 2025 — delegates" },
+  { src: "/assets/images/gallery/024.jpg", alt: "Summit moments" },
+  { src: "/assets/images/gallery/025.jpg", alt: "Summit moments" },
+  { src: "/assets/images/gallery/026.jpg", alt: "Summit — closing ceremony" },
+  { src: "/assets/images/gallery/027.jpg", alt: "Summit — group" },
+  { src: "/assets/images/gallery/028.jpg", alt: "Summit — award" },
+  { src: "/assets/images/gallery/029.jpg", alt: "HerPower Fellowship at summit" },
 ];
 
-const IMG_6439 = { src: "/assets/images/gallery/IMG_6439.JPG", alt: "Summit Group", label: "Summit", sub: "Group Photo" };
+const IMG_6439 = { src: "/assets/images/gallery/IMG_6439.JPG", alt: "Summit group photo" };
 ---
 
 <Base title="Gallery" description="View moments from the Guild Leaders' Summits across East Africa.">
@@ -59,25 +59,15 @@ const IMG_6439 = { src: "/assets/images/gallery/IMG_6439.JPG", alt: "Summit Grou
     <div class="max-w-6xl mx-auto">
       <div class="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
         {galleryImages.map((img) => (
-          <div class="card-lift gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#132d82] to-[#389a29] cursor-pointer" onclick="openLightbox('img.src}')">
+          <div class="card-lift gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#132d82] to-[#389a29] cursor-pointer" onclick={`openLightbox('${img.src}')`}>
             <img src={img.src} alt={img.alt} loading="lazy" class="w-full h-56 md:h-72 object-cover transition-transform duration-500 group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5">
-              <div>
-                <span class="text-gpla-green text-xs font-bold uppercase tracking-widest">{img.label}</span>
-                <p class="text-white font-display text-lg mt-0.5">{img.sub}</p>
-              </div>
-            </div>
+            <div class="gallery-overlay"><span>GPLA</span></div>
           </div>
         ))}
         <!-- Large group photo -->
-        <div class="gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#389a29] to-[#132d82] cursor-pointer sm:col-span-2 lg:col-span-2" onclick="openLightbox('IMG_6439.src}')">
+        <div class="gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#389a29] to-[#132d82] cursor-pointer sm:col-span-2 lg:col-span-2" onclick={`openLightbox('${IMG_6439.src}')`}>
           <img src={IMG_6439.src} alt={IMG_6439.alt} loading="lazy" class="w-full h-56 md:h-80 object-cover transition-transform duration-500 group-hover:scale-105" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5">
-            <div>
-              <span class="text-gpla-green text-xs font-bold uppercase tracking-widest">{IMG_6439.label}</span>
-              <p class="text-white font-display text-lg mt-0.5">{IMG_6439.sub}</p>
-            </div>
-          </div>
+          <div class="gallery-overlay"><span>GPLA</span></div>
         </div>
       </div>
     </div>
@@ -104,7 +94,7 @@ const IMG_6439 = { src: "/assets/images/gallery/IMG_6439.JPG", alt: "Summit Grou
       document.body.style.overflow = 'hidden';
     }
   }
-  
+
   window.openLightbox = openLightbox;
 
   function closeLightbox(e) {
@@ -116,7 +106,7 @@ const IMG_6439 = { src: "/assets/images/gallery/IMG_6439.JPG", alt: "Summit Grou
       document.body.style.overflow = '';
     }
   }
-  
+
   window.closeLightbox = closeLightbox;
 
   // Keyboard escape

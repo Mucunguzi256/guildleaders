@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import PatternDivider from '../components/PatternDivider.astro';
 import PatternBackdrop from '../components/PatternBackdrop.astro';
 import { executiveDirector, teamMembers } from '../data/site';
+import { socialLinkIcons } from '../data/social-icons';
 ---
 
 <Base title="About" description="Learn about the Guild Presidents Leadership Academy - East Africa's premier youth leadership institution.">
@@ -181,21 +182,64 @@ import { executiveDirector, teamMembers } from '../data/site';
           <div>
             <h3 class="font-display text-2xl text-gpla-navy">{executiveDirector.name}</h3>
             <p class="text-gpla-navy/60 text-sm font-body">{executiveDirector.title}</p>
-            <p class="text-gpla-navy/40 text-xs mt-2 font-body leading-relaxed">
+            <p class="text-gpla-navy/60 text-xs mt-2 font-body leading-relaxed">
               Guild Presidents Leadership Academy
             </p>
           </div>
         </div>
         {teamMembers.map((member, index) => (
           <div class="group african-zigzag-top" data-animate data-delay={(index + 1) * 100}>
-            <div class="aspect-[3/4] bg-gradient-to-br from-gpla-green/20 to-gpla-navy/10 rounded-2xl mb-5 overflow-hidden relative">
-              <div class="w-full h-full flex items-center justify-center">
-                <span class="font-display text-gpla-navy/15 text-6xl">{member.initials}</span>
-              </div>
+            <div class={`aspect-[3/4] rounded-2xl mb-5 overflow-hidden relative ${member.photo ? 'bg-gray-100' : 'bg-gradient-to-br from-gpla-green/20 to-gpla-navy/10'}`}>
+              {member.photo ? (
+                <>
+                  <img
+                    src={member.photo}
+                    alt={member.photoAlt ?? member.name}
+                    class="w-full h-full object-cover object-top"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+                </>
+              ) : (
+                <div class="w-full h-full flex items-center justify-center">
+                  <span class="font-display text-gpla-navy/15 text-6xl">{member.initials}</span>
+                </div>
+              )}
             </div>
             <div>
               <h3 class="font-display text-2xl text-gpla-navy">{member.name}</h3>
               <p class="text-gpla-navy/60 text-sm font-body">{member.title}</p>
+              {member.bio && (
+                <div class="mt-3 space-y-3 text-gpla-navy/70 text-sm font-body leading-relaxed">
+                  {member.bio.split('\n\n').map((paragraph) => (
+                    <p>{paragraph}</p>
+                  ))}
+                </div>
+              )}
+              {((member.socials && member.socials.length > 0) || member.email) && (
+                <div class="flex flex-wrap items-center gap-2 mt-4">
+                  {member.socials?.map((social) => (
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="w-9 h-9 rounded-full bg-gpla-navy/8 text-gpla-navy flex items-center justify-center hover:bg-gpla-green hover:text-white transition-all duration-300"
+                      aria-label={`${member.name} on ${social.label}`}
+                    >
+                      <Fragment set:html={socialLinkIcons[social.label]} />
+                    </a>
+                  ))}
+                  {member.email && (
+                    <a
+                      href={`mailto:${member.email}`}
+                      class="w-9 h-9 rounded-full bg-gpla-navy/8 text-gpla-navy flex items-center justify-center hover:bg-gpla-green hover:text-white transition-all duration-300"
+                      aria-label={`Email ${member.name}`}
+                    >
+                      <Fragment set:html={socialLinkIcons.Email} />
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         ))}
