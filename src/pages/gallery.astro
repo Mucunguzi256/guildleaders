@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import PatternRibbon from '../components/PatternRibbon.astro';
 
 // Gallery images sorted by number (filenames like 001.jpg, 002.jpg etc.)
 // IMG_6439.JPG is a large file — placed at end
@@ -47,16 +48,19 @@ const IMG_6439 = { src: "/assets/images/gallery/IMG_6439.JPG", alt: "Summit Grou
       <p class="text-white/80 text-lg md:text-xl max-w-2xl mx-auto font-body" data-animate data-delay="150">
         700+ leaders. 6 countries. 3 summits. Witness the moments that shaped a movement.
       </p>
+      </div>
     </div>
   </section>
 
+  <PatternRibbon height={24} />
+
   <!-- Gallery Grid -->
-  <section class="px-4 md:px-12 py-16 md:py-24 bg-[var(--bg-section-alt)]">
+  <section class="px-4 md:px-12 py-16 md:py-24 section-alt section-kente-surface african-gallery-weave">
     <div class="max-w-6xl mx-auto">
-      <div class="gallery-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
         {galleryImages.map((img) => (
-          <div class="gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#132d82] to-[#389a29] cursor-pointer" onclick="openLightbox('img.src}')">
-            <img src={img.src} alt={img.alt} loading="lazy" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="card-lift gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#132d82] to-[#389a29] cursor-pointer" onclick="openLightbox('img.src}')">
+            <img src={img.src} alt={img.alt} loading="lazy" class="w-full h-56 md:h-72 object-cover transition-transform duration-500 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5">
               <div>
                 <span class="text-gpla-green text-xs font-bold uppercase tracking-widest">{img.label}</span>
@@ -66,8 +70,8 @@ const IMG_6439 = { src: "/assets/images/gallery/IMG_6439.JPG", alt: "Summit Grou
           </div>
         ))}
         <!-- Large group photo -->
-        <div class="gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#389a29] to-[#132d82] cursor-pointer md:col-span-2 lg:col-span-2" onclick="openLightbox('IMG_6439.src}')">
-          <img src={IMG_6439.src} alt={IMG_6439.alt} loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" />
+        <div class="gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#389a29] to-[#132d82] cursor-pointer sm:col-span-2 lg:col-span-2" onclick="openLightbox('IMG_6439.src}')">
+          <img src={IMG_6439.src} alt={IMG_6439.alt} loading="lazy" class="w-full h-56 md:h-80 object-cover transition-transform duration-500 group-hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5">
             <div>
               <span class="text-gpla-green text-xs font-bold uppercase tracking-widest">{IMG_6439.label}</span>

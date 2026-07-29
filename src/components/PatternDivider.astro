@@ -1,0 +1,23 @@
+---
+import PatternRibbon from './PatternRibbon.astro';
+
+interface Props {
+  bold?: boolean;
+  class?: string;
+}
+const { bold = false, class: className = '' } = Astro.props;
+---
+
+<div class:list={['gpla-pattern-divider', bold && 'gpla-pattern-divider--bold', className]} aria-hidden="true">
+  <PatternRibbon height={bold ? 40 : 28} />
+</div>
+
+<style>
+  .gpla-pattern-divider {
+    width: 100%;
+    line-height: 0;
+  }
+  .gpla-pattern-divider--bold {
+    box-shadow: 0 4px 24px rgba(19, 45, 130, 0.15);
+  }
+</style>

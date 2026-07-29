@@ -2,6 +2,9 @@
 import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import PatternDivider from '../../components/PatternDivider.astro';
+import PatternBackdrop from '../../components/PatternBackdrop.astro';
+import PatternRail from '../../components/PatternRail.astro';
 ---
 
 <Base title="Summit 2026" description="3rd Annual East African Guild Leaders' Summit - July 23-24, 2026">
@@ -34,18 +37,21 @@ import Footer from '../../components/Footer.astro';
   <div class="summit-2026-layout">
     <!-- Hero Section -->
     <section class="hero relative min-h-[70vh] md:min-h-[80vh] overflow-hidden flex items-center">
+      <PatternRail class="hidden md:block z-[2]" />
       <div class="hero-video-wrapper absolute inset-0 z-0">
-        <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30" poster="/assets/hero-poster.jpg">
-          <source src="/assets/hero-bg-compressed.mp4" type="video/mp4"><source src="/assets/GLP Short Video.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-40" poster="/assets/hero-poster.jpg">
+          <source src="/assets/hero-bg-compressed.mp4" type="video/mp4">
+          <source src="/assets/GLP Short Video.mp4" type="video/mp4">
         </video>
-        <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(19,45,130,0.92) 0%, rgba(19,45,130,0.85) 30%, rgba(56,154,41,0.40) 55%, transparent 70%, transparent 100%);"></div>
+        <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(19,45,130,0.88) 0%, rgba(19,45,130,0.75) 35%, rgba(56,154,41,0.35) 60%, transparent 78%);"></div>
       </div>
+      <PatternBackdrop variant="navy" />
 
       <div class="relative z-10 max-w-6xl mx-auto px-4 md:px-12 py-20 md:py-32 w-full">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>
-            <p class="bg-gpla-gold text-gpla-navy text-sm font-semibold uppercase tracking-widest px-4 py-2 rounded-full inline-block mb-6">UPCOMING · 23–24 JULY 2026</p>
-            <h1 class="font-display text-white text-[42px] md:text-[56px] lg:text-[72px] leading-[0.95] mb-6">
+            <p class="bg-gpla-gold text-gpla-navy text-sm font-semibold uppercase tracking-widest px-4 py-2 rounded-full inline-block mb-6">COMPLETED · 23–24 JULY 2026</p>
+            <h1 class="font-display text-white text-[28px] sm:text-[42px] md:text-[56px] lg:text-[72px] leading-[0.95] mb-6">
               <span class="block" data-animate>3RD ANNUAL</span>
               <span class="block" data-animate data-delay="100">EAST AFRICAN</span>
               <span class="block" data-animate data-delay="200">GUILD LEADERS'</span>
@@ -55,25 +61,29 @@ import Footer from '../../components/Footer.astro';
               Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order
             </p>
             <div class="flex flex-wrap gap-4 mb-6">
-              <a href="https://luma.com/5tuheo2m" target="_blank" rel="noopener noreferrer" class="bg-gpla-green text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
-                Apply to Join →
-              </a>
+              <span class="bg-gpla-gold/20 text-gpla-gold border border-gpla-gold/40 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-block">
+                📄 Report Coming Soon
+              </span>
               <a href="#partner" class="border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-block hover:bg-white hover:text-gpla-navy transition-all">
                 Partner With Us
               </a>
             </div>
             <p class="text-gpla-gold text-sm font-mono">#TheGuildLeadersSummit2026 · #GPLASummit</p>
           </div>
-          <div class="hidden lg:block text-center relative">
-            <div class="font-display text-[200px] text-gpla-gold/20 leading-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">2026</div>
+          <div class="hidden lg:block relative">
+            <img src="/assets/chief-guest.webp" alt="" class="w-full max-w-sm rounded-2xl shadow-2xl border-4 border-gpla-gold/40 relative z-10" />
+            <div class="font-display text-[120px] text-gpla-gold/15 leading-none absolute -bottom-4 -right-4 z-0">2026</div>
           </div>
         </div>
       </div>
     </section>
 
+    <PatternDivider bold />
+
     <!-- Countdown Timer -->
-    <section class="px-4 md:px-12 py-12 bg-gpla-navy">
-      <div class="max-w-4xl mx-auto">
+    <section class="px-4 md:px-12 py-12 bg-gpla-navy relative overflow-hidden">
+      <PatternBackdrop variant="navy" />
+      <div class="max-w-4xl mx-auto relative z-10">
         <p class="text-gpla-green text-sm font-semibold uppercase tracking-widest mb-8 text-center">COUNTDOWN TO THE SUMMIT</p>
         <div class="countdown-grid">
           <div class="countdown-unit">
@@ -97,22 +107,23 @@ import Footer from '../../components/Footer.astro';
     </section>
 
     <!-- Summit Details -->
-    <section class="px-4 md:px-12 py-16 md:py-24 bg-[var(--bg-section-alt)]">
-      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
+    <section class="px-4 md:px-12 py-16 md:py-24 bg-gpla-cream/90 section-kente-surface relative overflow-hidden">
+      <PatternBackdrop variant="cream" />
+      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 relative z-10">
         <div>
           <h2 class="font-display text-gpla-navy text-[32px] md:text-[48px] mb-8">EVENT DETAILS</h2>
           <div class="space-y-6">
             <div class="border-l-4 border-gpla-green pl-4">
               <h4 class="font-semibold text-gpla-navy text-lg">Date</h4>
-              <p class="text-[var(--text-muted)]">23rd – 24th July 2026</p>
+              <p class="text-gray-600">23rd – 24th July 2026</p>
             </div>
             <div class="border-l-4 border-gpla-green pl-4">
               <h4 class="font-semibold text-gpla-navy text-lg">Venue</h4>
-              <p class="text-[var(--text-muted)]">Freedom Square, Makerere University, Kampala</p>
+              <p class="text-gray-600">Freedom Square, Makerere University, Kampala</p>
             </div>
             <div class="border-l-4 border-gpla-green pl-4">
               <h4 class="font-semibold text-gpla-navy text-lg">Chief Guest</h4>
-              <p class="text-[var(--text-muted)]">H.E. Yoweri Kaguta Museveni<br/>President of the Republic of Uganda & Chairperson of the EAC</p>
+              <p class="text-gray-600">H.E. Yoweri Kaguta Museveni<br/>President of the Republic of Uganda & Chairperson of the EAC</p>
             </div>
             <div class="border-l-4 border-gpla-green pl-4">
               <h4 class="font-semibold text-gpla-navy text-lg">Partners</h4>
@@ -124,7 +135,7 @@ import Footer from '../../components/Footer.astro';
           </div>
         </div>
         <div class="flex items-center">
-          <div class="bg-gpla-navy p-8 md:p-12 rounded-xl w-full">
+          <div class="bg-gpla-navy p-8 md:p-12 rounded-2xl w-full shadow-xl">
             <p class="text-gpla-gold font-display text-2xl md:text-3xl italic leading-relaxed">
               "Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order"
             </p>
@@ -133,81 +144,66 @@ import Footer from '../../components/Footer.astro';
       </div>
     </section>
 
+    <PatternDivider />
+
     <!-- Focus Areas -->
-    <section class="px-4 md:px-12 py-16 md:py-24">
+    <section class="px-4 md:px-12 py-16 md:py-24 section-light section-kente-surface">
       <div class="max-w-6xl mx-auto">
-        <h2 class="font-display text-gpla-navy text-[32px] md:text-[48px] text-center mb-12">FOCUS AREAS</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="focus-card bg-[var(--bg-section-alt)] p-6 md:p-8 rounded-xl hover:shadow-xl transition-all" data-animate data-delay="0">
-            <span class="text-gpla-green font-display text-3xl">01</span>
-            <h4 class="font-semibold text-gpla-navy text-lg mt-3">Political and Economic Integration</h4>
+        <h2 class="font-display text-gpla-navy text-[32px] md:text-[48px] text-center mb-12" data-animate>FOCUS AREAS</h2>
+        <div class="focus-bento">
+          <div class="focus-bento__item focus-bento__wide" data-animate data-delay="0">
+            <span class="focus-bento__num">01</span>
+            <h4 class="focus-bento__title">Political and Economic Integration</h4>
           </div>
-          <div class="focus-card bg-[var(--bg-section-alt)] p-6 md:p-8 rounded-xl hover:shadow-xl transition-all" data-animate data-delay="100">
-            <span class="text-gpla-green font-display text-3xl">02</span>
-            <h4 class="font-semibold text-gpla-navy text-lg mt-3">Youth, Production and Industrial Transformation</h4>
+          <div class="focus-bento__item" data-animate data-delay="50">
+            <span class="focus-bento__num">02</span>
+            <h4 class="focus-bento__title">Youth, Production and Industrial Transformation</h4>
           </div>
-          <div class="focus-card bg-[var(--bg-section-alt)] p-6 md:p-8 rounded-xl hover:shadow-xl transition-all" data-animate data-delay="200">
-            <span class="text-gpla-green font-display text-3xl">03</span>
-            <h4 class="font-semibold text-gpla-navy text-lg mt-3">Regional Markets, Trade and Economic Opportunities</h4>
+          <div class="focus-bento__item" data-animate data-delay="100">
+            <span class="focus-bento__num">03</span>
+            <h4 class="focus-bento__title">Regional Markets, Trade and Economic Opportunities</h4>
           </div>
-          <div class="focus-card bg-[var(--bg-section-alt)] p-6 md:p-8 rounded-xl hover:shadow-xl transition-all" data-animate data-delay="300">
-            <span class="text-gpla-green font-display text-3xl">04</span>
-            <h4 class="font-semibold text-gpla-navy text-lg mt-3">Sports Diplomacy and Regional Integration (AFCON 2027)</h4>
+          <div class="focus-bento__item" data-animate data-delay="150">
+            <span class="focus-bento__num">04</span>
+            <h4 class="focus-bento__title">Sports Diplomacy and Regional Integration (AFCON 2027)</h4>
           </div>
-          <div class="focus-card bg-[var(--bg-section-alt)] p-6 md:p-8 rounded-xl hover:shadow-xl transition-all" data-animate data-delay="400">
-            <span class="text-gpla-green font-display text-3xl">05</span>
-            <h4 class="font-semibold text-gpla-navy text-lg mt-3">Technology, Innovation and the Digital Economy</h4>
+          <div class="focus-bento__item" data-animate data-delay="200">
+            <span class="focus-bento__num">05</span>
+            <h4 class="focus-bento__title">Technology, Innovation and the Digital Economy</h4>
           </div>
-          <div class="focus-card bg-[var(--bg-section-alt)] p-6 md:p-8 rounded-xl hover:shadow-xl transition-all" data-animate data-delay="500">
-            <span class="text-gpla-green font-display text-3xl">06</span>
-            <h4 class="font-semibold text-gpla-navy text-lg mt-3">Education, Mobility and Knowledge Integration</h4>
+          <div class="focus-bento__item" data-animate data-delay="250">
+            <span class="focus-bento__num">06</span>
+            <h4 class="focus-bento__title">Education, Mobility and Knowledge Integration</h4>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Luma Event Embed — centered, nicely sized -->
-    <section class="bg-gpla-navy px-4 md:px-12 py-16 md:py-24">
-      <div class="max-w-5xl mx-auto text-center">
-        <span class="bg-gpla-gold text-gpla-navy text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full inline-block mb-4">Register on Luma</span>
-        <h2 class="font-display text-white text-[32px] md:text-[48px] mb-3">SECURE YOUR SPOT</h2>
-        <p class="text-white/60 text-base mb-8 max-w-xl mx-auto">
-          Confirm your participation for the 3rd Annual East African Guild Leaders' Summit. Registration is via Luma.
+    <!-- Report Coming Soon -->
+    <section class="bg-gpla-navy px-4 md:px-12 py-16 md:py-24 relative overflow-hidden">
+      <PatternBackdrop variant="navy" />
+      <div class="max-w-3xl mx-auto text-center relative z-10">
+        <span class="bg-gpla-gold text-gpla-navy text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full inline-block mb-4">Post-Summit</span>
+        <h2 class="font-display text-white text-[32px] md:text-[48px] mb-3">SUMMIT REPORT</h2>
+        <p class="text-white/60 text-base mb-8 max-w-xl mx-auto font-body">
+          The full summit report including proceedings, resolutions, and photo gallery is being compiled and will be available shortly.
         </p>
-        <div class="luma-embed-wrapper bg-white/5 rounded-xl overflow-hidden border border-white/10">
-          <iframe
-            src="https://luma.com/embed/event/evt-jz3DM2lZIpMEaV1/simple"
-            frameborder="0"
-            style="display: block; border: none; width: 100%; height: 520px !important;"
-            allow="fullscreen; payment"
-            aria-hidden="false"
-            tabindex="0"
-          ></iframe>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-12">
+          <p class="text-gpla-gold text-5xl mb-4">📄</p>
+          <p class="font-display text-white text-xl">Report Coming Soon</p>
+          <p class="text-white/50 text-sm mt-2 font-body">Check back for the full proceedings and outcomes document.</p>
         </div>
       </div>
     </section>
 
-    <!-- Speaker Applications CTA -->
-    <section class="bg-gpla-navy py-20 px-4 md:px-12">
-      <div class="container mx-auto text-center">
-        <h2 class="font-display text-white text-[40px] md:text-[56px] mb-4">
-          APPLY TO SPEAK
-        </h2>
-        <p class="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-          Are you a policymaker, entrepreneur, academic, or regional leader with a message for East Africa's next generation? Apply to address the 3rd Annual East African Guild Leaders' Summit.
-        </p>
-        <a href="https://luma.com/5tuheo2m" target="_blank" rel="noopener noreferrer" class="bg-gpla-gold text-gpla-navy px-8 py-4 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
-          Apply via Luma →
-        </a>
-      </div>
-    </section>
+    <PatternDivider />
 
     <!-- Partner With Us -->
     <section id="partner" class="bg-gpla-navy py-20 px-4 md:px-12">
       <div class="container mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-start">
           <div>
-            <h2 class="font-display text-white text-[40px] md:text-[56px] mb-6">
+            <h2 class="font-display text-white text-[28px] md:text-[56px] mb-6">
               PARTNER WITH US
             </h2>
             <p class="text-white/70 text-lg mb-6">
@@ -219,16 +215,6 @@ import Footer from '../../components/Footer.astro';
               <li class="flex items-center gap-3"><span class="text-gpla-green text-xl">✓</span> Co-branding on Summit materials and reports</li>
               <li class="flex items-center gap-3"><span class="text-gpla-green text-xl">✓</span> Panel and speaking opportunities</li>
             </ul>
-            <div class="partner-embed bg-white/5 rounded-xl overflow-hidden border border-white/10 max-w-[500px]">
-              <iframe
-                src="https://luma.com/embed/event/evt-jz3DM2lZIpMEaV1/simple"
-                frameborder="0"
-                style="display: block; border: none; width: 100%; height: 400px !important;"
-                allow="fullscreen; payment"
-                aria-hidden="false"
-                tabindex="0"
-              ></iframe>
-            </div>
           </div>
           <div class="bg-white/5 p-6 md:p-8 rounded-xl">
             <h3 class="text-white font-display text-2xl mb-6">
@@ -256,19 +242,6 @@ import Footer from '../../components/Footer.astro';
             </form>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Register Interest CTA -->
-    <section id="register" class="bg-gpla-green px-4 md:px-12 py-16 md:py-24">
-      <div class="max-w-6xl mx-auto text-center">
-        <h2 class="font-display text-white text-[40px] md:text-[56px] mb-4">REGISTER ON LUMA</h2>
-        <p class="text-white/80 text-lg mb-8 max-w-xl mx-auto">
-          Click the button below to register for the 3rd Annual East African Guild Leaders' Summit via Luma.
-        </p>
-        <a href="https://luma.com/5tuheo2m" target="_blank" rel="noopener noreferrer" class="bg-white text-gpla-navy px-10 py-5 rounded-full font-bold text-lg inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
-          Apply to Join on Luma →
-        </a>
       </div>
     </section>
 

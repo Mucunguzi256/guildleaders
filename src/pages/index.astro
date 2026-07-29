@@ -2,6 +2,10 @@
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import PatternBackdrop from '../components/PatternBackdrop.astro';
+import PatternDivider from '../components/PatternDivider.astro';
+import SummitYearCard from '../components/SummitYearCard.astro';
+import { executiveDirector } from '../data/site';
 ---
 
 <style is:global>
@@ -25,7 +29,7 @@ import Footer from '../components/Footer.astro';
     content: '';
     position: absolute;
     top: -30%; right: -10%;
-    width: 800px; height: 800px;
+    width: min(800px, 100vw); height: min(800px, 100vw);
     background: radial-gradient(circle, rgba(56,154,41,0.08) 0%, transparent 60%);
     pointer-events: none;
   }
@@ -36,260 +40,280 @@ import Footer from '../components/Footer.astro';
     z-index: 1;
   }
 
-  /* ===== SUMMIT 2026 COUNTDOWN ===== */
-  .summit-2026-banner {
-    background: linear-gradient(135deg, #0a1628 0%, #132d82 50%, #0a1628 100%);
-    position: relative;
-    overflow: hidden;
-  }
-  .summit-2026-banner::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 70% 50%, rgba(245,166,35,0.06) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .summit-hero-countdown {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    max-width: 440px;
-  }
-  .summit-hero-countdown .cd-item {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    padding: 14px 6px;
-    text-align: center;
-    backdrop-filter: blur(6px);
-  }
-  .summit-hero-countdown .cd-num {
-    font-family: 'Oswald', sans-serif;
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-    line-height: 1;
-    display: block;
-    color: var(--gpla-gold, #F5A623);
-  }
-  .summit-hero-countdown .cd-label {
-    font-family: 'Oswald', sans-serif;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    opacity: 0.5;
-    display: block;
-    margin-top: 4px;
-    color: #fff;
-  }
-  @media (max-width: 400px) {
-    .summit-hero-countdown { grid-template-columns: repeat(2, 1fr); max-width: 220px; }
-  }
 
   /* ===== STATS STRIP ===== */
+  @keyframes stats-gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
   .stats-strip {
-    background: linear-gradient(135deg, #389a29 0%, #2d7a20 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 25%, #f0fff4 50%, #fffbf0 75%, #ffffff 100%);
+    background-size: 400% 400%;
+    animation: stats-gradient-shift 12s ease infinite;
     position: relative;
     overflow: hidden;
+    border-top: 3px solid transparent;
+    border-image: linear-gradient(90deg, #132d82, #389a29, #F5A623, #132d82) 1;
   }
-  .stats-strip::before {
+  .stat-item {
+    position: relative;
+    padding: 2rem 1rem;
+  }
+  .stat-item::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, #132d82/12, transparent);
+  }
+  .stat-item:last-child::after { display: none; }
+  @media (max-width: 767px) {
+    .stat-item:nth-child(2)::after { display: none; }
+  }
+  .stat-number {
+    font-family: var(--font-display, 'Sora', sans-serif);
+    font-size: clamp(2rem, 7vw, 5rem);
+    line-height: 1;
+    color: #132d82;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .stat-number { white-space: nowrap; }
+  .stat-number .ani-counter {
+    background: linear-gradient(135deg, #132d82 0%, #389a29 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label {
+    color: #4b5563;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+  .stat-accent {
+    display: block;
+    width: 32px;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #389a29, #E8A33D);
+    margin: 0 auto 1rem;
+  }
+
+  /* ===== PROGRAMS BENTO GRID ===== */
+  .programs-section {
+    position: relative;
+    background: rgba(255, 255, 255, 0.92);
+    overflow: hidden;
+  }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 768px) {
+    .programs-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .program-card { padding: 36px 32px 28px; }
+  }
+
+  /* ---- Card base ---- */
+  .program-card {
+    position: relative;
+    border-radius: 20px;
+    padding: 24px 20px 20px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease;
+    will-change: transform;
+  }
+  /* Vibrant gradient backgrounds */
+  .program-card--navy  { background: linear-gradient(135deg, #0a1a4a 0%, #1e40af 100%); }
+  .program-card--green { background: linear-gradient(135deg, #14532d 0%, #0d9488 100%); }
+  .program-card--gold  { background: linear-gradient(135deg, #b8801a 0%, #ea580c 100%); }
+  .program-card--purple{ background: linear-gradient(135deg, #581c87 0%, #4338ca 100%); }
+
+  /* Shimmer sweep pseudo-element */
+  .program-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 50%, transparent 60%);
+    transform: translateX(-100%);
+    transition: none;
+    z-index: 2;
+    pointer-events: none;
   }
-  .stat-number {
-    font-family: 'Oswald', sans-serif;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+  .program-card:hover::before {
+    transform: translateX(100%);
+    transition: transform 0.7s ease;
+  }
+
+  /* Hover states */
+  .program-card:hover {
+    transform: translateY(-8px) scale(1.05);
+  }
+  .program-card--navy:hover  {
+    box-shadow: 0 20px 60px rgba(19,45,130,0.5), 0 0 30px rgba(30,64,175,0.4);
+    border-color: rgba(96,165,250,0.5);
+  }
+  .program-card--green:hover {
+    box-shadow: 0 20px 60px rgba(56,154,41,0.45), 0 0 30px rgba(13,148,136,0.4);
+    border-color: rgba(52,211,153,0.5);
+  }
+  .program-card--gold:hover  {
+    box-shadow: 0 20px 60px rgba(245,166,35,0.45), 0 0 30px rgba(234,88,12,0.35);
+    border-color: rgba(251,191,36,0.5);
+  }
+  .program-card--purple:hover{
+    box-shadow: 0 20px 60px rgba(124,58,237,0.45), 0 0 30px rgba(67,56,202,0.4);
+    border-color: rgba(167,139,250,0.5);
+  }
+
+  /* Animated glowing border keyframes */
+  @keyframes border-glow-navy   { 0%,100%{border-color:rgba(96,165,250,0.3)} 50%{border-color:rgba(96,165,250,0.7)} }
+  @keyframes border-glow-green  { 0%,100%{border-color:rgba(52,211,153,0.3)} 50%{border-color:rgba(52,211,153,0.7)} }
+  @keyframes border-glow-gold   { 0%,100%{border-color:rgba(251,191,36,0.3)} 50%{border-color:rgba(251,191,36,0.7)} }
+  @keyframes border-glow-purple { 0%,100%{border-color:rgba(167,139,250,0.3)} 50%{border-color:rgba(167,139,250,0.7)} }
+  .program-card--navy:hover  { animation: border-glow-navy 2s ease-in-out infinite; }
+  .program-card--green:hover { animation: border-glow-green 2s ease-in-out infinite; }
+  .program-card--gold:hover  { animation: border-glow-gold 2s ease-in-out infinite; }
+  .program-card--purple:hover{ animation: border-glow-purple 2s ease-in-out infinite; }
+
+  /* Click press */
+  .program-card.card-pressed {
+    transform: scale(0.97) !important;
+    transition: transform 0.1s ease !important;
+  }
+
+  /* Watermark number */
+  .program-card__number {
+    position: absolute;
+    top: -8px; right: 16px;
+    font-family: var(--font-display, 'Sora', sans-serif);
+    font-size: clamp(80px, 8vw, 120px);
+    font-weight: 800;
     line-height: 1;
-    color: white;
-    font-weight: 700;
+    color: rgba(255,255,255,0.06);
+    pointer-events: none;
+    user-select: none;
+    transition: color 0.4s ease, transform 0.4s ease;
   }
+  .program-card:hover .program-card__number {
+    color: rgba(255,255,255,0.14);
+    transform: translateX(-8px);
+  }
+  .program-card--gold .program-card__number { color: rgba(0,0,0,0.06); }
+  .program-card--gold:hover .program-card__number { color: rgba(0,0,0,0.14); }
 
-  /* ===== PARALLAX SUMMIT CARDS ===== */
-  .parallax-card {
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
-    transition: transform 0.6s var(--transition-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+  /* Floating icon animation */
+  @keyframes icon-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
   }
-  .parallax-card.sticky {
-    position: sticky;
-    top: 100px;
-    min-height: 560px;
+  @keyframes icon-pulse-glow {
+    0%, 100% { box-shadow: 0 0 12px rgba(255,255,255,0.1); }
+    50% { box-shadow: 0 0 24px rgba(255,255,255,0.25); }
   }
-  @media (min-width: 1024px) {
-    .parallax-card.sticky { min-height: 600px; }
-  }
-  .parallax-card--2026 { background: linear-gradient(135deg, #0a1628 0%, #132d82 50%, #1a3d5c 100%); }
-  .parallax-card--2025 { background: linear-gradient(135deg, #0d2818 0%, #1a4d2e 50%, #2d6b3f 100%); }
-  .parallax-card--2024 { background: linear-gradient(135deg, #2d1f0d 0%, #5c3d12 50%, #8b5a2b 100%); }
-
-  .parallax-card-grid { display: flex; flex-direction: column; gap: 24px; }
-  .parallax-card-inner { display: flex; flex-direction: column; }
-  @media (min-width: 1024px) {
-    .parallax-card-inner { flex-direction: row; align-items: center; min-height: 600px; }
-  }
-
-  .parallax-media { position: relative; display: flex; align-items: center; justify-content: center; order: -1; }
-  @media (min-width: 1024px) { .parallax-media { width: 42%; order: 2; padding: 24px 40px 24px 0; } }
-
-  .parallax-media-badge {
-    position: relative;
-    width: 100%;
-    max-width: 300px;
-    aspect-ratio: 1;
+  .program-card__icon {
+    font-size: 36px;
+    line-height: 1;
+    width: 56px;
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
-  }
-  .parallax-media-badge .year-number {
-    font-family: 'Oswald', sans-serif;
-    font-size: clamp(80px, 10vw, 130px);
-    line-height: 1;
-    color: rgba(255,255,255,0.06);
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: 700;
-  }
-  .parallax-media-badge .program-icon {
-    font-size: clamp(48px, 6vw, 72px);
-    line-height: 1;
+    border-radius: 14px;
     position: relative;
-    z-index: 1;
-    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.2));
+    z-index: 3;
+    background: rgba(255,255,255,0.12);
+    animation: icon-float 3s ease-in-out infinite, icon-pulse-glow 3s ease-in-out infinite;
   }
-  .parallax-media-badge .badge-ring {
-    position: absolute;
-    inset: 0;
-    border: 2px solid rgba(255,255,255,0.06);
-    border-radius: 50%;
+  .program-card:hover .program-card__icon {
+    transform: scale(1.1) rotate(-4deg);
   }
-  .parallax-media-badge .badge-ring:nth-child(2) { transform: scale(0.75); }
-  .parallax-media-badge .badge-ring:nth-child(3) { transform: scale(0.5); border-color: rgba(245,166,35,0.12); }
 
-  .parallax-content { padding: 32px; display: flex; flex-direction: column; justify-content: center; flex: 1; }
-  .parallax-content .tagline {
-    font-family: 'Oswald', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gpla-gold, #F5A623);
-    display: inline-block;
-    margin-bottom: 12px;
+  .program-card__body { position: relative; z-index: 3; flex: 1; }
+  .program-card__title {
+    font-family: var(--font-display, 'Sora', sans-serif);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: #fff;
+    margin-bottom: 8px;
   }
-  .parallax-content h2 {
-    font-family: 'Oswald', sans-serif;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    line-height: 1.1;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    margin-bottom: 12px;
-  }
-  .parallax-content .desc {
-    font-family: 'Book Antiqua', 'Georgia', serif;
-    color: rgba(255,255,255,0.75);
-    font-size: 1rem;
+  .program-card--gold .program-card__title { color: #1a1a1a; }
+  .program-card__desc {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 0.925rem;
     line-height: 1.6;
-    margin-bottom: 20px;
+    color: rgba(255,255,255,0.75);
   }
-  .parallax-content .meta-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .parallax-content .meta-label {
-    font-family: 'Oswald', sans-serif;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.35);
-    display: block;
-    margin-bottom: 2px;
-  }
-  .parallax-content .meta-value {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1rem;
-    color: white;
-    display: block;
-  }
-  .parallax-content .meta-sub {
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-    display: block;
-  }
-  .parallax-content .panel-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-  .parallax-content .panel-cta {
+  .program-card--gold .program-card__desc { color: rgba(0,0,0,0.65); }
+
+  .program-card__link {
+    position: relative;
+    z-index: 3;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
-    border-radius: 999px;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
+    gap: 6px;
+    font-family: var(--font-display, 'Sora', sans-serif);
     font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    font-weight: 600;
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
-    background: var(--gpla-gold, #F5A623);
-    color: #132d82;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.9);
+    transition: gap 0.3s ease, color 0.3s ease;
   }
-  .parallax-content .panel-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-  .parallax-content .panel-cta.ghost { background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.3); color: #fff; }
-  .parallax-content .panel-cta.ghost:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+  .program-card--gold .program-card__link { color: rgba(0,0,0,0.8); }
+  .program-card__link:hover { gap: 12px; color: #fff; }
+  .program-card--gold .program-card__link:hover { color: #000; }
+  .program-card__link span {
+    transition: transform 0.3s ease;
+  }
+  .program-card__link:hover span { transform: translateX(4px); }
 
-  @media (max-width: 1023px) {
-    .parallax-content .meta-grid { grid-template-columns: 1fr; }
-    .parallax-content .panel-actions { flex-direction: column; }
-    .parallax-content .panel-cta { width: 100%; text-align: center; }
-    .parallax-card.sticky { position: relative; top: auto !important; min-height: auto; margin-bottom: 24px; }
-    .parallax-card-inner { min-height: auto; }
-    .parallax-card {
-      transform: translateY(32px);
-      opacity: 0;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Staggered entrance animations */
+  .program-card[data-entrance="left"] {
+    opacity: 0;
+    transform: translateX(-80px);
+  }
+  .program-card[data-entrance="right"] {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+  .program-card.program-entered {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .program-card, .program-card::before, .program-card__icon,
+    .program-card__number, .programs-bg-blob {
+      animation: none !important;
+      transition: none !important;
     }
-    .parallax-card.mobile-visible { transform: translateY(0); opacity: 1; }
-    .parallax-media { padding: 28px 28px 0; }
-    .parallax-media-badge { max-width: 160px; }
-    .parallax-media-badge .year-number { font-size: 56px; }
-    .parallax-media-badge .program-icon { font-size: 40px; }
+    .program-card[data-entrance="left"],
+    .program-card[data-entrance="right"] {
+      opacity: 1;
+      transform: none;
+    }
   }
 
-  /* ===== PATTERN DIVIDER ===== */
-  .pattern-divider {
-    height: 12px;
-    width: 100%;
-    background: linear-gradient(90deg, 
-      var(--gpla-green, #389a29) 0%, var(--gpla-green, #389a29) 16%, 
-      var(--gpla-navy, #132d82) 16%, var(--gpla-navy, #132d82) 32%, 
-      var(--gpla-gold, #F5A623) 32%, var(--gpla-gold, #F5A623) 48%, 
-      #ffffff 48%, #ffffff 64%, 
-      var(--gpla-green, #389a29) 64%, var(--gpla-green, #389a29) 80%, 
-      var(--gpla-navy, #132d82) 80%, var(--gpla-navy, #132d82) 100%
-    );
-  }
-  @media (min-width: 768px) {
-    .pattern-divider { height: 16px; }
-  }
-
-  /* ===== LUMA EMBED ===== */
-  .luma-embed-section {
-    background: linear-gradient(180deg, #132d82 0%, #0a1628 100%);
-    position: relative;
-    overflow: hidden;
-  }
-  .luma-embed-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 30% 50%, rgba(56,154,41,0.06) 0%, transparent 50%);
-    pointer-events: none;
-  }
 
   /* ===== PARTNER LOGOS ===== */
   .partner-logo-grid {
@@ -304,8 +328,8 @@ import Footer from '../components/Footer.astro';
     .partner-logo-grid { grid-template-columns: repeat(5, 1fr); }
   }
   .partner-logo-item {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.06);
+    background: #f8fafb;
+    border: 1px solid rgba(19,45,130,0.08);
     border-radius: 12px;
     padding: 20px;
     display: flex;
@@ -315,15 +339,16 @@ import Footer from '../components/Footer.astro';
     transition: all 0.3s ease;
   }
   .partner-logo-item:hover {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.12);
+    background: #f0f4f8;
+    border-color: rgba(19,45,130,0.15);
+    box-shadow: 0 2px 12px rgba(19,45,130,0.06);
   }
   .partner-logo-placeholder {
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--font-display, 'Sora', sans-serif);
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.25);
+    color: rgba(19,45,130,0.2);
     text-align: center;
   }
 </style>
@@ -333,79 +358,37 @@ import Footer from '../components/Footer.astro';
 
   <!-- ===== HERO ===== -->
   <section class="hero-home">
+
     <!-- Hero Video Background -->
     <div class="absolute inset-0 z-0 overflow-hidden">
-      <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-25" poster="/assets/hero-poster.jpg">
+      <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-40" poster="/assets/hero-poster.jpg">
         <source src="/assets/hero-bg-compressed.mp4" type="video/mp4">
         <source src="/assets/GLP Short Video.mp4" type="video/mp4">
       </video>
     </div>
     <div class="hero-gradient-mask"></div>
+    <div class="african-hero-overlay"></div>
+    <div class="hero-cursor-glow"><div class="hero-cursor-glow__dot" id="hero-glow-dot"></div></div>
     <div class="relative z-10 w-full">
-      <div class="section-container py-20 md:py-32">
-        <div class="max-w-4xl">
-          <p class="section-label section-label--gold" data-animate>Guild Presidents Leadership Academy</p>
-          <h1 class="font-display text-white text-[clamp(3rem,8vw,6rem)] leading-[0.95] mb-6" data-animate data-delay="100">
-            NURTURING ETHICAL,<br />
-            <span class="text-gpla-gold">VISIONARY</span><br />
-            LEADERS
-          </h1>
-          <p class="text-white/75 text-lg md:text-xl max-w-[600px] leading-relaxed mb-10 font-body" data-animate data-delay="200" style="text-align: justify;">
-            Empowering ethical youth leaders for democratic transformation in East Africa through leadership training, mentorship, policy dialogue and regional summits.
-          </p>
-          <div class="flex flex-wrap gap-4" data-animate data-delay="300">
-            <a href="/programs" class="btn btn-primary btn-lg">
-              Our Programs
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </a>
-            <a href="/summit" class="btn btn-outline btn-lg">
-              View Summit
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SUMMIT 2026 COUNTDOWN BANNER ===== -->
-  <section class="summit-2026-banner section-padding" data-animate>
-    <div class="section-container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-        <div>
-          <span class="badge badge-gold mb-4 inline-block">SUMMIT 2026 · 23–24 JULY</span>
-          <h2 class="font-display text-white text-[clamp(2rem,4vw,3.5rem)] leading-[1] mb-4">
-            3RD ANNUAL EAST AFRICAN<br />
-            <span class="text-gpla-gold">GUILD LEADERS' SUMMIT</span>
-          </h2>
-          <p class="text-white/70 text-base md:text-lg leading-relaxed mb-6 max-w-xl font-body" style="text-align: justify;">
-            <em>"Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order"</em>
-          </p>
-          <div class="summit-hero-countdown mb-6">
-            <div class="cd-item"><span class="cd-num" id="hp-days">00</span><span class="cd-label">Days</span></div>
-            <div class="cd-item"><span class="cd-num" id="hp-hours">00</span><span class="cd-label">Hours</span></div>
-            <div class="cd-item"><span class="cd-num" id="hp-mins">00</span><span class="cd-label">Minutes</span></div>
-            <div class="cd-item"><span class="cd-num" id="hp-secs">00</span><span class="cd-label">Seconds</span></div>
-          </div>
-          <p class="text-white/40 text-xs md:text-sm mb-5 font-body">Chief Guest: H.E. Yoweri Kaguta Museveni · Freedom Square, Makerere University</p>
-          <div class="flex flex-wrap gap-3">
-            <a href="https://luma.com/5tuheo2m" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
-              Register Now
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </a>
-            <a href="/summit/2026" class="btn btn-outline">Learn More</a>
-          </div>
-        </div>
-        <div class="hidden lg:flex justify-center items-center">
-          <div class="text-center relative">
-            <div class="w-[280px] h-[300px] mx-auto relative">
-              <div class="absolute inset-0 border-2 border-gpla-gold/40 rounded-xl transform rotate-3 translate-x-2 translate-y-2"></div>
-              <div class="absolute inset-0 border-2 border-gpla-gold/40 rounded-xl transform -rotate-3 -translate-x-2 -translate-y-2"></div>
-              <img src="/assets/chief-guest.webp" alt="H.E. Yoweri Kaguta Museveni" class="w-full h-full object-cover rounded-xl relative z-10 shadow-2xl" />
-            </div>
-            <div class="mt-4">
-              <p class="font-display text-gpla-gold text-lg font-semibold tracking-wider">CHIEF GUEST</p>
-              <p class="text-white/80 text-sm font-body">H.E. Yoweri Kaguta Museveni</p>
-              <p class="text-white/40 text-xs font-body">President of Uganda &amp; EAC Chairperson</p>
+      <div class="min-h-[90vh] flex items-center">
+        <div class="w-full md:w-[55%] bg-black/15 backdrop-blur-[2px] pl-6 md:pl-12 pr-8 md:pr-16 py-10 md:py-14 min-h-[90vh] flex items-center overflow-hidden">
+          <div>
+            <h1 class="font-display text-white text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[1.05] mb-6">
+              <span class="hero-line">Ethical Leaders</span>
+              <span class="hero-line"><span class="text-gpla-gold">Transforming</span></span>
+              <span class="hero-line">East Africa</span>
+            </h1>
+            <p class="text-white/75 text-base md:text-lg max-w-[500px] leading-relaxed mb-10 font-body" data-animate data-delay="200" style="text-align: justify;">
+              Empowering ethical youth leaders for democratic transformation in East Africa through leadership training, mentorship, policy dialogue and regional summits.
+            </p>
+            <div class="flex flex-wrap gap-4" data-animate data-delay="300">
+              <a href="/programs" class="btn btn-primary btn-lg">
+                Our Programs
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
+              <a href="/summit" class="btn btn-outline btn-lg">
+                View Summit
+              </a>
             </div>
           </div>
         </div>
@@ -414,48 +397,81 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <!-- ===== STATS STRIP ===== -->
-  <section class="stats-strip section-padding" data-animate>
+  <section class="stats-strip section-padding african-diamond-lattice" data-animate>
     <div class="section-container">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 text-center">
-        <div>
-          <div class="stat-number"><span data-count="1000" data-suffix="+" class="stat-counter">0+</span></div>
-          <div class="text-white/85 text-sm md:text-base font-body uppercase tracking-wider">Former Leaders Convened</div>
+      <div class="grid grid-cols-2 md:grid-cols-4 text-center">
+        <div class="stat-item">
+          <span class="stat-accent"></span>
+          <div class="stat-number"><span data-target="10000" data-suffix="+" class="ani-counter">0+</span></div>
+          <div class="stat-label font-body uppercase tracking-widest">Former Leaders Convened</div>
         </div>
-        <div>
-          <div class="stat-number"><span data-count="8" class="stat-counter">0</span></div>
-          <div class="text-white/85 text-sm md:text-base font-body uppercase tracking-wider">Countries Represented</div>
+        <div class="stat-item">
+          <span class="stat-accent"></span>
+          <div class="stat-number"><span data-target="8" class="ani-counter">0</span></div>
+          <div class="stat-label font-body uppercase tracking-widest">Countries Represented</div>
         </div>
-        <div>
-          <div class="stat-number"><span data-count="4" class="stat-counter">0</span></div>
-          <div class="text-white/85 text-sm md:text-base font-body uppercase tracking-wider">Flagship Programs</div>
+        <div class="stat-item">
+          <span class="stat-accent"></span>
+          <div class="stat-number"><span data-target="4" class="ani-counter">0</span></div>
+          <div class="stat-label font-body uppercase tracking-widest">Flagship Programs</div>
         </div>
-        <div>
-          <div class="stat-number"><span data-count="3" class="stat-counter">0</span></div>
-          <div class="text-white/85 text-sm md:text-base font-body uppercase tracking-wider">Regional Summits Held</div>
+        <div class="stat-item">
+          <span class="stat-accent"></span>
+          <div class="stat-number"><span data-target="3" class="ani-counter">0</span></div>
+          <div class="stat-label font-body uppercase tracking-widest">Regional Summits Held</div>
         </div>
       </div>
     </div>
   </section>
 
+  <PatternDivider />
+
+  <!-- ===== MARQUEE STRIP ===== -->
+  <div class="marquee-strip african-kente-band" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Leadership</span><span class="marquee-dot">·</span>
+      <span>Innovation</span><span class="marquee-dot">·</span>
+      <span>Integration</span><span class="marquee-dot">·</span>
+      <span>Governance</span><span class="marquee-dot">·</span>
+      <span>Youth</span><span class="marquee-dot">·</span>
+      <span>East Africa</span><span class="marquee-dot">·</span>
+      <span>Ethical Leaders</span><span class="marquee-dot">·</span>
+      <span>Leadership</span><span class="marquee-dot">·</span>
+      <span>Innovation</span><span class="marquee-dot">·</span>
+      <span>Integration</span><span class="marquee-dot">·</span>
+      <span>Governance</span><span class="marquee-dot">·</span>
+      <span>Youth</span><span class="marquee-dot">·</span>
+      <span>East Africa</span><span class="marquee-dot">·</span>
+      <span>Ethical Leaders</span><span class="marquee-dot">·</span>
+    </div>
+  </div>
+
   <!-- ===== ABOUT PREVIEW ===== -->
-  <section class="section-padding section-alt" data-animate>
+  <section class="section-padding" data-animate>
     <div class="section-container">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-        <div class="bg-gpla-navy p-10 md:p-14 relative rounded-xl" data-animate>
+        <div class="bg-gpla-navy p-8 md:p-12 relative rounded-2xl overflow-hidden african-quote-frame" data-animate>
           <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-gpla-green rounded-full"></div>
-          <!-- CEO Quote Placeholder -->
-          <div class="flex items-start gap-5 mb-8">
-            <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/10 flex-shrink-0 flex items-center justify-center border border-white/10">
-              <svg class="w-8 h-8 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-            </div>
-            <div>
-              <p class="text-white text-xl md:text-2xl italic leading-relaxed font-body">"History has been made."</p>
-              <cite class="block mt-4 text-gpla-gold text-base not-italic font-display tracking-wider">— Demiano Masesa, Executive Director, GPLA</cite>
-              <p class="text-white/40 text-sm mt-1 font-body italic">[CEO photo &amp; quote to be updated]</p>
+          <div class="flex flex-col sm:flex-row gap-6 items-start">
+            <img
+              src={executiveDirector.photo}
+              alt={executiveDirector.photoAlt}
+              width="160"
+              height="200"
+              class="w-32 sm:w-36 md:w-40 flex-shrink-0 rounded-xl object-cover object-top shadow-lg border-2 border-gpla-gold/30"
+              loading="lazy"
+            />
+            <div class="min-w-0">
+              <p class="text-white text-lg md:text-xl italic leading-relaxed font-body">
+                &ldquo;{executiveDirector.quote}&rdquo;
+              </p>
+              <cite class="block mt-5 text-gpla-gold text-sm md:text-base not-italic font-display tracking-wide leading-snug">
+                — {executiveDirector.attribution}
+              </cite>
             </div>
           </div>
         </div>
-        <div data-animate data-delay="100">
+        <div data-animate="slide-right" data-delay="100">
           <span class="section-label">About Us</span>
           <span class="accent-line"></span>
           <h2 class="section-title text-gpla-navy mb-6">Nurturing Ethical, Visionary Leaders</h2>
@@ -473,124 +489,92 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
-  <!-- ===== PATTERN DIVIDER ===== -->
-  <div class="pattern-divider"></div>
-
   <!-- ===== SUMMITS SECTION ===== -->
-  <section class="section-padding section-navy">
-    <div class="section-container">
+  <section class="section-padding section-navy relative overflow-hidden">
+    <PatternBackdrop variant="navy" />
+    <div class="section-container relative z-10">
       <div class="text-center mb-12" data-animate>
         <span class="section-label section-label--gold">Our Summits</span>
-        <h2 class="section-title section-title--centered text-white">Three Years. One Movement.</h2>
+        <h2 class="section-title section-title--centered text-white animated-gradient-bg" style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Three Years. One Movement.</h2>
       </div>
-      <div class="parallax-card-grid">
-        <!-- 2026 -->
-        <div class="parallax-card sticky parallax-card--2026" style="top: 100px;" data-animate>
-          <div class="parallax-card-inner">
-            <div class="parallax-content">
-              <span class="tagline">Upcoming · 23–24 July 2026</span>
-              <h2>3RD ANNUAL EAST AFRICAN GUILD LEADERS' SUMMIT</h2>
-              <p class="desc"><em>"Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order"</em></p>
-              <div class="meta-grid">
-                <div><span class="meta-label">Chief Guest</span><span class="meta-value">H.E. Yoweri Kaguta Museveni</span><span class="meta-sub">President of Uganda & EAC Chairperson</span></div>
-                <div><span class="meta-label">Venue</span><span class="meta-value">Freedom Square</span><span class="meta-sub">Makerere University, Kampala</span></div>
-              </div>
-              <div class="panel-actions">
-                <a href="https://luma.com/5tuheo2m" target="_blank" rel="noopener noreferrer" class="panel-cta">Register Now →</a>
-                <a href="/summit/2026" class="panel-cta ghost">Learn More →</a>
-              </div>
-            </div>
-            <div class="parallax-media">
-              <div class="parallax-media-badge">
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <span class="year-number">2026</span>
-                <span class="program-icon">🎤</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 2025 -->
-        <div class="parallax-card sticky parallax-card--2025" style="top: 120px;" data-animate>
-          <div class="parallax-card-inner">
-            <div class="parallax-content">
-              <span class="tagline">2025 · Makerere University</span>
-              <h2>2ND ANNUAL GUILD LEADERS' SUMMIT</h2>
-              <p class="desc"><em>"Democratic Governance and People-to-People Integration"</em></p>
-              <div class="meta-grid">
-                <div><span class="meta-label">Chief Guest</span><span class="meta-value">HE. Uhuru Kenyatta</span><span class="meta-sub">Former President, Republic of Kenya</span></div>
-                <div><span class="meta-label">Attendees</span><span class="meta-value">700+</span><span class="meta-sub">Leaders from 6 countries</span></div>
-              </div>
-              <div class="panel-actions">
-                <a href="/summit/2025" class="panel-cta">View Full Report →</a>
-              </div>
-            </div>
-            <div class="parallax-media">
-              <div class="parallax-media-badge">
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <span class="year-number">2025</span>
-                <span class="program-icon">🎤</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 2024 -->
-        <div class="parallax-card sticky parallax-card--2024" style="top: 140px;" data-animate>
-          <div class="parallax-card-inner">
-            <div class="parallax-content">
-              <span class="tagline">April 15, 2024 · Makerere University</span>
-              <h2>INAUGURAL GUILD LEADERS' SUMMIT</h2>
-              <p class="desc"><em>"Legacy and Leadership Continuum: The Power of Knowledge and Cross-Generational Learning"</em></p>
-              <div class="meta-grid">
-                <div><span class="meta-label">Chief Guest</span><span class="meta-value">HE. Jakaya Mrisho Kikwete</span><span class="meta-sub">Former President, Tanzania · Summit Patron</span></div>
-                <div><span class="meta-label">Attendees</span><span class="meta-value">700+</span><span class="meta-sub">Historic first convening</span></div>
-              </div>
-              <div class="panel-actions">
-                <a href="/summit/2024" class="panel-cta">View Full Report →</a>
-              </div>
-            </div>
-            <div class="parallax-media">
-              <div class="parallax-media-badge">
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <span class="year-number">2024</span>
-                <span class="program-icon">🎤</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="summit-bento-grid summit-bento-grid--summits">
+        <SummitYearCard
+          class="summit-bento-card--featured"
+          year="2026"
+          variant="2026"
+          featured
+          tagline="23–24 July 2026 · Completed"
+          title="3rd Annual East African Guild Leaders' Summit"
+          theme="Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order"
+          imageSrc="/assets/images/gallery/020.jpg"
+          meta={[
+            { label: 'Chief Guest', value: 'H.E. Yoweri Kaguta Museveni', sub: 'President of Uganda & EAC Chairperson' },
+            { label: 'Venue', value: 'Freedom Square', sub: 'Makerere University, Kampala' },
+          ]}
+          primaryCta={{ href: '/summit/2026', label: 'Report Coming Soon →' }}
+        />
+        <SummitYearCard
+          year="2025"
+          variant="2025"
+          tagline="2025 · Makerere University"
+          title="2nd Annual Guild Leaders' Summit"
+          theme="Democratic Governance and People-to-People Integration"
+          imageSrc="/assets/images/gallery/008.jpg"
+          meta={[
+            { label: 'Chief Guest', value: 'HE. Uhuru Kenyatta', sub: 'Former President, Kenya' },
+            { label: 'Attendees', value: '700+', sub: 'Leaders from 6 countries' },
+          ]}
+          primaryCta={{ href: '/summit/2025', label: 'View Full Report →' }}
+        />
+        <SummitYearCard
+          year="2024"
+          variant="2024"
+          tagline="April 15, 2024 · Makerere"
+          title="Inaugural Guild Leaders' Summit"
+          theme="Legacy and Leadership Continuum: The Power of Knowledge and Cross-Generational Learning"
+          imageSrc="/assets/images/gallery/001.jpg"
+          meta={[
+            { label: 'Chief Guest', value: 'HE. Jakaya Mrisho Kikwete', sub: 'Former President, Tanzania' },
+            { label: 'Attendees', value: '700+', sub: 'Historic first convening' },
+          ]}
+          primaryCta={{ href: '/summit/2024', label: 'View Full Report →' }}
+        />
       </div>
+      <p class="text-center mt-10" data-animate>
+        <a href="/summit" class="btn btn-outline">View All Summits</a>
+      </p>
     </div>
   </section>
 
   <!-- ===== GALLERY STRIP ===== -->
-  <section class="section-padding section-alt" data-animate>
+  <section class="section-padding african-gallery-weave section-kente-surface" data-animate>
     <div class="section-container">
       <div class="text-center mb-10">
         <span class="section-label">Moments from Our Summits</span>
         <h2 class="section-title section-title--centered text-gpla-navy">Gallery</h2>
       </div>
       <div class="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
-        <a href="/gallery" class="group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#132d82] to-[#389a29]">
-          <img src="/assets/images/gallery/001.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <a href="/gallery" class="gallery-item group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#132d82] to-[#389a29]" data-animate="scale">
+          <img src="/assets/images/gallery/001.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover" />
+          <div class="gallery-overlay"><span>View Gallery</span></div>
         </a>
-        <a href="/gallery" class="group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#389a29] to-[#132d82]">
-          <img src="/assets/images/gallery/008.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <a href="/gallery" class="gallery-item group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#389a29] to-[#132d82]" data-animate="scale" data-delay="50">
+          <img src="/assets/images/gallery/008.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover" />
+          <div class="gallery-overlay"><span>View Gallery</span></div>
         </a>
-        <a href="/gallery" class="group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#F5A623] to-[#132d82]">
-          <img src="/assets/images/gallery/017.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <a href="/gallery" class="gallery-item group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#F5A623] to-[#132d82]" data-animate="scale" data-delay="100">
+          <img src="/assets/images/gallery/017.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover" />
+          <div class="gallery-overlay"><span>View Gallery</span></div>
         </a>
-        <a href="/gallery" class="group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#132d82] to-[#F5A623]">
-          <img src="/assets/images/gallery/020.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <a href="/gallery" class="gallery-item group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#132d82] to-[#F5A623]" data-animate="scale" data-delay="150">
+          <img src="/assets/images/gallery/020.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover" />
+          <div class="gallery-overlay"><span>View Gallery</span></div>
         </a>
-        <a href="/gallery" class="group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#389a29] to-[#F5A623]">
-          <img src="/assets/images/gallery/023.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <a href="/gallery" class="gallery-item group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#389a29] to-[#F5A623]" data-animate="scale" data-delay="200">
+          <img src="/assets/images/gallery/023.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover" />
+          <div class="gallery-overlay"><span>View Gallery</span></div>
         </a>
-        <a href="/gallery" class="group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#F5A623] to-[#389a29]">
+        <a href="/gallery" class="group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#F5A623] to-[#389a29]" data-animate="scale" data-delay="250">
           <div class="w-full h-full flex items-center justify-center bg-gpla-navy/10 transition-colors group-hover:bg-gpla-navy/20 rounded-xl">
             <div class="text-center">
               <span class="text-gpla-navy text-2xl md:text-3xl font-display font-bold block">+16</span>
@@ -602,106 +586,71 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
-  <!-- ===== PATTERN DIVIDER ===== -->
-  <div class="pattern-divider"></div>
+  <PatternDivider />
 
   <!-- ===== PROGRAMS SECTION ===== -->
-  <section class="section-padding section-navy">
-    <div class="section-container">
-      <div class="text-center mb-12" data-animate>
-        <span class="section-label section-label--gold">Our Programmes</span>
-        <h2 class="section-title section-title--centered text-white">Four Flagship Programmes</h2>
+  <section class="section-padding programs-section section-kente-surface" id="programs">
+    <div class="section-container relative z-10">
+      <div class="text-center mb-16" data-animate>
+        <span class="section-label">What We Do</span>
+        <h2 class="section-title section-title--centered text-gpla-navy">Our Programs</h2>
+        <p class="section-subtitle mx-auto mt-4 font-body" style="max-width: 600px; text-align: center;">Four flagship programmes shaping the next generation of ethical, transformational leaders across East Africa.</p>
       </div>
-      <div class="parallax-card-grid">
-        <!-- GLD Programme -->
-        <div class="parallax-card sticky" style="top: 100px; background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #132d82 100%);" data-animate>
-          <div class="parallax-card-inner">
-            <div class="parallax-content">
-              <span class="tagline">Foundational Programme</span>
-              <h2>Guild Leadership Development & Mentorship Programme</h2>
-              <p class="desc">Preparing Student Leaders for Responsible Service and Future Leadership through practical training in ethical leadership, financial accountability, negotiation, communication, conflict resolution, policy engagement and responsible representation.</p>
-              <a href="/programs" class="panel-cta" style="align-self: flex-start;">Learn More →</a>
-            </div>
-            <div class="parallax-media">
-              <div class="parallax-media-badge">
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <span class="year-number" style="color:rgba(255,255,255,0.06);">01</span>
-                <span class="program-icon">🎓</span>
-              </div>
-            </div>
+      <div class="programs-grid">
+        <!-- Card 01 -->
+        <div class="program-card program-card--navy african-corner-accent" data-entrance="left" data-card-delay="0">
+          <span class="program-card__number" data-counter-target="01">00</span>
+          <div class="program-card__icon">🎓</div>
+          <div class="program-card__body">
+            <h3 class="program-card__title">Guild Leadership Development & Mentorship Programme</h3>
+            <p class="program-card__desc">Preparing Student Leaders for Responsible Service and Future Leadership through practical training in ethical leadership, financial accountability, and responsible representation.</p>
           </div>
+          <a href="/programs" class="program-card__link">Learn More <span>→</span></a>
         </div>
-        <!-- Summit -->
-        <div class="parallax-card sticky" style="top: 115px; background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #10b981 100%);" data-animate>
-          <div class="parallax-card-inner">
-            <div class="parallax-content">
-              <span class="tagline">Flagship Programme</span>
-              <h2>East African Guild Leaders Summit</h2>
-              <p class="desc">Advancing Youth Leadership and East African Integration — the premier regional convening platform bringing together guild leaders, policymakers, and statespersons from across East Africa.</p>
-              <a href="/programs" class="panel-cta" style="align-self: flex-start;">Learn More →</a>
-            </div>
-            <div class="parallax-media">
-              <div class="parallax-media-badge">
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <span class="year-number" style="color:rgba(255,255,255,0.06);">02</span>
-                <span class="program-icon">🌍</span>
-              </div>
-            </div>
+        <!-- Card 02 -->
+        <div class="program-card program-card--green african-corner-accent" data-entrance="right" data-card-delay="150">
+          <span class="program-card__number" data-counter-target="02">00</span>
+          <div class="program-card__icon">🌍</div>
+          <div class="program-card__body">
+            <h3 class="program-card__title">East African Guild Leaders Summit</h3>
+            <p class="program-card__desc">Advancing Youth Leadership and East African Integration — the premier regional convening platform bringing together guild leaders, policymakers, and statespersons.</p>
           </div>
+          <a href="/programs" class="program-card__link">Learn More <span>→</span></a>
         </div>
-        <!-- Science Park -->
-        <div class="parallax-card sticky" style="top: 130px; background: linear-gradient(135deg, #14532d 0%, #15803d 50%, #22c55e 100%);" data-animate>
-          <div class="parallax-card-inner">
-            <div class="parallax-content">
-              <span class="tagline">Flagship Programme</span>
-              <h2>Uganda National Science Park & Innovation Area Initiative</h2>
-              <p class="desc">Harnessing Youth Innovation for Production and National Transformation — establishing an ecosystem where universities, researchers, innovators and industries collaborate to transform ideas into commercially viable products.</p>
-              <a href="/programs" class="panel-cta" style="align-self: flex-start;">Learn More →</a>
-            </div>
-            <div class="parallax-media">
-              <div class="parallax-media-badge">
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <span class="year-number" style="color:rgba(255,255,255,0.06);">03</span>
-                <span class="program-icon">🔬</span>
-              </div>
-            </div>
+        <!-- Card 03 -->
+        <div class="program-card program-card--gold african-corner-accent" data-entrance="left" data-card-delay="300">
+          <span class="program-card__number" data-counter-target="03">00</span>
+          <div class="program-card__icon">🔬</div>
+          <div class="program-card__body">
+            <h3 class="program-card__title">Uganda National Science Park & Innovation Area Initiative</h3>
+            <p class="program-card__desc">Harnessing Youth Innovation for Production and National Transformation — an ecosystem where universities, researchers, and industries collaborate.</p>
           </div>
+          <a href="/programs" class="program-card__link">Learn More <span>→</span></a>
         </div>
-        <!-- Master Classes -->
-        <div class="parallax-card sticky" style="top: 145px; background: linear-gradient(135deg, #4a1d4e 0%, #7c3aed 50%, #a855f7 100%);" data-animate>
-          <div class="parallax-card-inner">
-            <div class="parallax-content">
-              <span class="tagline">Flagship Programme</span>
-              <h2>GPLA Executive Master Classes</h2>
-              <p class="desc">Developing Ethical, Strategic and Transformational Leaders through high-level leadership programmes designed for public officials, institutional administrators, political leaders and emerging leaders.</p>
-              <a href="/programs" class="panel-cta" style="align-self: flex-start;">Learn More →</a>
-            </div>
-            <div class="parallax-media">
-              <div class="parallax-media-badge">
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <div class="badge-ring"></div>
-                <span class="year-number" style="color:rgba(255,255,255,0.06);">04</span>
-                <span class="program-icon">📜</span>
-              </div>
-            </div>
+        <!-- Card 04 -->
+        <div class="program-card program-card--purple african-corner-accent" data-entrance="right" data-card-delay="450">
+          <span class="program-card__number" data-counter-target="04">00</span>
+          <div class="program-card__icon">📜</div>
+          <div class="program-card__body">
+            <h3 class="program-card__title">GPLA Executive Master Classes</h3>
+            <p class="program-card__desc">Developing Ethical, Strategic and Transformational Leaders through high-level programmes for public officials, institutional administrators, and emerging leaders.</p>
           </div>
+          <a href="/programs" class="program-card__link">Learn More <span>→</span></a>
         </div>
+      </div>
+      <div class="text-center mt-12" data-animate data-delay="400">
+        <a href="/programs" class="btn btn-primary btn-lg">
+          Explore All Programs
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ===== PATTERN DIVIDER ===== -->
-  <div class="pattern-divider"></div>
+  <PatternDivider />
 
   <!-- ===== PARTNERS SECTION ===== -->
-  <section class="section-padding section-alt" data-animate>
+  <section class="section-padding" data-animate>
     <div class="section-container">
       <div class="text-center mb-10">
         <span class="section-label">Our Partners</span>
@@ -720,71 +669,33 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
-  <!-- ===== PATTERN DIVIDER ===== -->
-  <div class="pattern-divider"></div>
-
-  <!-- ===== LUMA EMBED / REGISTRATION ===== -->
-  <section class="luma-embed-section section-padding">
-    <div class="section-container" data-animate>
-      <div class="text-center mb-10">
-        <span class="section-label section-label--gold">Join the Movement</span>
-        <h2 class="section-title section-title--centered text-white">Register for the Summit</h2>
-      </div>
-      <div class="max-w-3xl mx-auto">
-        <div class="luma-container bg-white/5 border border-white/10 rounded-xl p-4 md:p-8">
-          <iframe src="https://lu.ma/embed/5tuheo2m" width="100%" height="520" frameborder="0" allowfullscreen class="rounded-lg" style="border: none;"></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <Footer />
 </Base>
 
 <script>
-  // ===== COUNTDOWN TIMER =====
-  function updateHPCountdown() {
-    const target = new Date('2026-07-23T08:00:00').getTime();
-    const now = Date.now();
-    const diff = target - now;
-    if (diff <= 0) {
-      document.querySelectorAll('.cd-num').forEach(el => { el.textContent = '00'; });
-      return;
-    }
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins = Math.floor((diff % 3600000) / 60000);
-    const secs = Math.floor((diff % 60000) / 1000);
-    const update = (id, val) => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = String(val).padStart(2, '0');
-    };
-    update('hp-days', days);
-    update('hp-hours', hours);
-    update('hp-mins', mins);
-    update('hp-secs', secs);
-  }
-  setInterval(updateHPCountdown, 1000);
-  updateHPCountdown();
-
-  // ===== STATS COUNTER =====
+  // ===== STATS COUNTER WITH BOUNCE =====
   const animateStats = () => {
-    const stats = document.querySelectorAll('.stat-counter');
+    const stats = document.querySelectorAll('.ani-counter');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !entry.target.dataset.animated) {
           entry.target.dataset.animated = 'true';
-          const target = parseInt(entry.target.dataset.count);
-          const suffix = entry.target.dataset.suffix || '';
+          const el = entry.target;
+          const target = parseInt(el.dataset.target || '0', 10);
+          const suffix = el.dataset.suffix || '';
           const duration = 1800;
           const startTime = performance.now();
-          const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
+          const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
           const tick = (now) => {
             const elapsed = now - startTime;
             const progress = Math.min(elapsed / duration, 1);
             const current = Math.floor(easeOutQuart(progress) * target);
-            entry.target.textContent = current + suffix;
-            if (progress < 1) requestAnimationFrame(tick);
+            el.textContent = current + suffix;
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              el.classList.add('counter-done');
+            }
           };
           requestAnimationFrame(tick);
         }
@@ -806,7 +717,6 @@ import Footer from '../components/Footer.astro';
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
   document.querySelectorAll('[data-animate]').forEach(el => animateOnScroll.observe(el));
 
   // ===== MOBILE CARD SLIDE-IN =====
@@ -822,10 +732,119 @@ import Footer from '../components/Footer.astro';
         }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.parallax-card').forEach((el, i) => {
-      el.dataset.delay = String(i * 100);
+    document.querySelectorAll('.program-card').forEach((el, i) => {
+      if (!el.dataset.delay) el.dataset.delay = String(i * 100);
       cardObserver.observe(el);
     });
   }
+
+  // ===== SCROLL PARALLAX =====
+  const parallaxEls = [];
+  const heroVideo = document.querySelector('.hero-home video');
+  if (heroVideo) parallaxEls.push({ el: heroVideo, factor: 0.2 });
+  document.querySelectorAll('.gallery-item img').forEach(img => {
+    parallaxEls.push({ el: img, factor: 0.1 });
+  });
+  if (parallaxEls.length) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          parallaxEls.forEach(({ el, factor }) => {
+            const rect = el.getBoundingClientRect();
+            const center = rect.top + rect.height / 2;
+            const viewH = window.innerHeight;
+            if (center > -rect.height && center < viewH + rect.height) {
+              const offset = (center - viewH / 2) * factor;
+              el.style.transform = `translateY(${offset}px)`;
+            }
+          });
+          ticking = false;
+        });
+      }
+    }, { passive: true });
+  }
+
+  // ===== CARD HOVER TILT =====
+  const tiltCards = document.querySelectorAll('.summit-bento-card');
+  tiltCards.forEach(card => {
+    card.classList.add('tilt-card');
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      const rotateX = ((y - cy) / cy) * -6;
+      const rotateY = ((x - cx) / cx) * 6;
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      card.style.boxShadow = `${-rotateY * 2}px ${rotateX * 2}px 30px rgba(0,0,0,0.2)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.boxShadow = '';
+    });
+  });
+
+  // ===== CURSOR GLOW =====
+  const heroSection = document.querySelector('.hero-home');
+  const glowDot = document.getElementById('hero-glow-dot');
+  if (heroSection && glowDot) {
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      glowDot.style.left = (e.clientX - rect.left) + 'px';
+      glowDot.style.top = (e.clientY - rect.top) + 'px';
+    });
+  }
+
+  // ===== PROGRAM CARDS: STAGGERED ENTRANCE =====
+  const entranceObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const card = entry.target;
+        const delay = parseInt(card.dataset.cardDelay || '0', 10);
+        setTimeout(() => card.classList.add('program-entered'), delay);
+        entranceObserver.unobserve(card);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.program-card[data-entrance]').forEach(c => entranceObserver.observe(c));
+
+  // ===== PROGRAM CARDS: NUMBER COUNTER =====
+  const numObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = 'true';
+        const el = entry.target;
+        const target = el.dataset.counterTarget || '00';
+        const targetNum = parseInt(target, 10);
+        const duration = 800;
+        const start = performance.now();
+        const tick = (now) => {
+          const p = Math.min((now - start) / duration, 1);
+          const cur = Math.round(p * targetNum);
+          el.textContent = String(cur).padStart(2, '0');
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        numObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.program-card__number[data-counter-target]').forEach(n => numObserver.observe(n));
+
+  // ===== PROGRAM CARDS: CLICK PRESS =====
+  document.querySelectorAll('.program-card').forEach(card => {
+    card.addEventListener('mousedown', () => card.classList.add('card-pressed'));
+    card.addEventListener('mouseup', () => {
+      setTimeout(() => {
+        card.classList.remove('card-pressed');
+        const link = card.querySelector('.program-card__link');
+        if (link) link.click();
+      }, 120);
+    });
+    card.addEventListener('mouseleave', () => card.classList.remove('card-pressed'));
+  });
 </script>

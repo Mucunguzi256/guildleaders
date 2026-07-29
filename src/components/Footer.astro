@@ -1,78 +1,58 @@
 ---
-const base = '';
-const socialLinks = [
-  {
-    href: 'https://x.com/guildleaders',
-    label: 'X (Twitter)',
-    svg: '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'
-  },
-  {
-    href: 'https://linkedin.com/company/guildleaders',
-    label: 'LinkedIn',
-    svg: '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>'
-  },
-  {
-    href: 'https://instagram.com/guildleaders',
-    label: 'Instagram',
-    svg: '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>'
-  },
-  {
-    href: 'https://youtube.com/@guildleaders',
-    label: 'YouTube',
-    svg: '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98" fill="currentColor"/></svg>'
-  },
-];
----
+import PatternRibbon from './PatternRibbon.astro';
+import { socialLinks } from '../data/site';
+import { socialLinkIcons } from '../data/social-icons';
 
-<footer class="bg-[#0A0F1E] text-white pt-20 md:pt-28 pb-8 border-t border-white/5">
-  <div class="section-container">
+const currentYear = new Date().getFullYear();
+---
+<PatternRibbon height={40} class="opacity-90" />
+
+<footer class="footer-kente-bg relative overflow-hidden bg-[#0A0F1E] text-white pt-16 md:pt-24 pb-8">
+  <div class="section-container relative z-[1]">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16 mb-12">
-      <!-- Brand Column -->
       <div class="md:col-span-2">
-        <img src="/images/gpla-logo-new.png" alt="Guild Leaders" class="h-16 md:h-20 w-auto mb-6" style="width: auto; height: 80px; background: white; border-radius: 8px; padding: 4px;" />
-        <p class="text-white/55 text-base leading-8 font-body max-w-md">
+        <img src="/assets/images/logo-large.png" alt="Guild Leaders" class="h-14 md:h-[72px] w-auto mb-5" style="width: auto; height: 72px; background: white; border-radius: 8px; padding: 4px;" />
+        <p class="text-white/50 text-sm leading-7 font-body max-w-md">
           Empowering ethical youth leaders for democratic transformation in East Africa through leadership training, mentorship, policy dialogue and regional summits.
         </p>
-        <div class="flex gap-4 mt-8">
-          {socialLinks.map(social => (
-            <a href={social.href} target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-white/8 flex items-center justify-center hover:bg-gpla-green hover:scale-110 transition-all duration-300" aria-label={social.label}>
-              <Fragment set:html={social.svg} />
+        <div class="flex gap-3 mt-6">
+          {socialLinks.map((social) => (
+            <a href={social.href} target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/[0.06] flex items-center justify-center hover:bg-gpla-green hover:scale-110 transition-all duration-300" aria-label={social.label}>
+              <Fragment set:html={socialLinkIcons[social.label]} />
             </a>
           ))}
         </div>
       </div>
 
-      <!-- Quick Links -->
       <div>
-        <h5 class="font-display text-xl text-white mb-8 tracking-wider">Quick Links</h5>
-        <div class="flex flex-col gap-4">
-          <a href="/about" class="text-white/50 text-base hover:text-gpla-green transition-colors font-body">About</a>
-          <a href="/programs" class="text-white/50 text-base hover:text-gpla-green transition-colors font-body">Programs</a>
-          <a href="/summit" class="text-white/50 text-base hover:text-gpla-green transition-colors font-body">Summit</a>
-          <a href="/gallery" class="text-white/50 text-base hover:text-gpla-green transition-colors font-body">Gallery</a>
-          <a href="/news" class="text-white/50 text-base hover:text-gpla-green transition-colors font-body">News</a>
-          <a href="/contact" class="text-white/50 text-base hover:text-gpla-green transition-colors font-body">Contact</a>
+        <h5 class="font-display text-base text-white mb-6 tracking-wider">Quick Links</h5>
+        <div class="flex flex-col gap-3">
+          <a href="/about" class="text-white/45 text-sm hover:text-gpla-green transition-colors font-body">About</a>
+          <a href="/programs" class="text-white/45 text-sm hover:text-gpla-green transition-colors font-body">Programs</a>
+          <a href="/summit" class="text-white/45 text-sm hover:text-gpla-green transition-colors font-body">Summit</a>
+          <a href="/gallery" class="text-white/45 text-sm hover:text-gpla-green transition-colors font-body">Gallery</a>
+          <a href="/news" class="text-white/45 text-sm hover:text-gpla-green transition-colors font-body">News</a>
+          <a href="/contact" class="text-white/45 text-sm hover:text-gpla-green transition-colors font-body">Contact</a>
         </div>
       </div>
 
-      <!-- Contact -->
       <div>
-        <h5 class="font-display text-xl text-white mb-8 tracking-wider">Contact</h5>
-        <p class="text-white/50 text-base leading-8 font-body">
+        <h5 class="font-display text-base text-white mb-6 tracking-wider">Contact</h5>
+        <p class="text-white/45 text-sm leading-7 font-body">
           Plot 158 Observatory Hill<br />
           Makerere University, Kampala
         </p>
-        <p class="text-white/50 text-base mt-4 font-body">info@guildleaders.academy</p>
-        <div class="mt-8">
-          <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 border border-gpla-green text-gpla-green rounded-full text-base font-display tracking-wider hover:bg-gpla-green hover:text-white transition-all duration-300">
+        <p class="text-white/45 text-sm mt-3 font-body">info@guildleaders.academy</p>
+        <div class="mt-6">
+          <a href="/contact" class="inline-flex items-center gap-2 px-5 py-2.5 border border-gpla-green/50 text-gpla-green rounded-full text-sm font-display tracking-wider hover:bg-gpla-green hover:text-white transition-all duration-300">
             Get In Touch
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         </div>
       </div>
     </div>
-    <div class="border-t border-white/5 pt-8 text-center text-white/25 text-base font-body flex flex-col md:flex-row items-center justify-between gap-4">
-      <span>© {new Date().getFullYear()} Guild Presidents Leadership Academy. All rights reserved.</span>
+    <div class="border-t border-white/[0.04] pt-6 text-center text-white/20 text-xs font-body flex flex-col md:flex-row items-center justify-between gap-3">
+      <span>© {currentYear} Guild Presidents Leadership Academy. All rights reserved.</span>
       <a href="https://guildleaders.academy" class="hover:text-gpla-green transition-colors">guildleaders.academy</a>
     </div>
   </div>

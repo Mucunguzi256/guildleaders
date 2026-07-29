@@ -1,0 +1,66 @@
+---
+interface Props {
+  className?: string;
+}
+---
+
+<div class={`pattern-rail ${Astro.props.className || ''}`} aria-hidden="true" style="position: absolute; top: 0; left: 0; width: 48px; height: 100%; overflow: hidden; z-index: 5;">
+  <svg width="48" height="100%" viewBox="0 0 48 600" preserveAspectRatio="xMinYMin meet" style="display: block; height: 100%;">
+    <defs>
+      <!-- Petal/arch tile -->
+      <g id="rail-petal">
+        <rect width="48" height="48" fill="#132d82" />
+        <path d="M 24,46 A 22,22 0 0,0 24,4" fill="#E8A33D" opacity="0.8" />
+        <circle cx="24" cy="22" r="3" fill="#ffffff" />
+      </g>
+      <!-- Chevron zigzag -->
+      <g id="rail-chevron">
+        <rect width="48" height="48" fill="#FAF6EE" />
+        <polyline points="6,4 24,20 42,4" fill="none" stroke="#389a29" stroke-width="3" stroke-linecap="round" />
+        <polyline points="6,28 24,44 42,28" fill="none" stroke="#389a29" stroke-width="3" stroke-linecap="round" />
+      </g>
+      <!-- Dotted grid -->
+      <g id="rail-dots">
+        <rect width="48" height="48" fill="#389a29" />
+        <circle cx="12" cy="12" r="3" fill="#ffffff" />
+        <circle cx="36" cy="12" r="3" fill="#ffffff" />
+        <circle cx="24" cy="24" r="4" fill="#E8A33D" />
+        <circle cx="12" cy="36" r="3" fill="#ffffff" />
+        <circle cx="36" cy="36" r="3" fill="#ffffff" />
+      </g>
+      <!-- Nested squares / window -->
+      <g id="rail-window">
+        <rect width="48" height="48" fill="#ffffff" />
+        <rect x="6" y="6" width="36" height="36" fill="none" stroke="#132d82" stroke-width="3" />
+        <rect x="12" y="12" width="24" height="24" fill="none" stroke="#132d82" stroke-width="2" />
+        <rect x="18" y="18" width="12" height="12" fill="#389a29" />
+      </g>
+      <!-- Diamond -->
+      <g id="rail-diamond">
+        <rect width="48" height="48" fill="#132d82" />
+        <polygon points="24,2 46,24 24,46 2,24" fill="#ffffff" opacity="0.9" />
+        <polygon points="24,2 46,24 24,2" fill="#389a29" />
+      </g>
+      <!-- Half-sun -->
+      <g id="rail-sun">
+        <rect width="48" height="48" fill="#FAF6EE" />
+        <circle cx="24" cy="24" r="20" fill="#E8A33D" opacity="0.7" />
+        <circle cx="24" cy="24" r="8" fill="#ffffff" />
+      </g>
+    </defs>
+    <g>
+      <use href="#rail-petal" x="0" y="0" />
+      <use href="#rail-chevron" x="0" y="48" />
+      <use href="#rail-dots" x="0" y="96" />
+      <use href="#rail-window" x="0" y="144" />
+      <use href="#rail-diamond" x="0" y="192" />
+      <use href="#rail-sun" x="0" y="240" />
+      <use href="#rail-petal" x="0" y="288" />
+      <use href="#rail-chevron" x="0" y="336" />
+      <use href="#rail-dots" x="0" y="384" />
+      <use href="#rail-window" x="0" y="432" />
+      <use href="#rail-diamond" x="0" y="480" />
+      <use href="#rail-sun" x="0" y="528" />
+    </g>
+  </svg>
+</div>

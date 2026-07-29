@@ -2,14 +2,10 @@
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import PatternRibbon from '../components/PatternRibbon.astro';
+import { socialLinks } from '../data/site';
+import { socialLinkIcons } from '../data/social-icons';
 
-const teamFields = [
-  { name: 'team_member_1_name', role: 'team_member_1_role', photo: 'team_member_1_photo' },
-  { name: 'team_member_2_name', role: 'team_member_2_role', photo: 'team_member_2_photo' },
-  { name: 'team_member_3_name', role: 'team_member_3_role', photo: 'team_member_3_photo' },
-  { name: 'team_member_4_name', role: 'team_member_4_role', photo: 'team_member_4_photo' },
-  { name: 'team_member_5_name', role: 'team_member_5_role', photo: 'team_member_5_photo' },
-];
 ---
 
 <Base title="Contact" description="Get in touch or partner with the Guild Presidents Leadership Academy.">
@@ -19,141 +15,66 @@ const teamFields = [
     .form-input {
       width: 100%;
       padding: 0.875rem 1.125rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #f8f9fa;
+      border: 1px solid #e2e5ea;
       border-radius: 10px;
-      color: white;
-      font-family: 'Book Antiqua', 'Georgia', serif;
+      color: #132d82;
+      font-family: var(--font-body, 'Inter', sans-serif);
       font-size: 1rem;
       transition: all 0.3s ease;
       outline: none;
     }
-    .form-input::placeholder { color: rgba(255,255,255,0.3); }
+    .form-input::placeholder { color: #9ca3af; }
     .form-input:focus {
       border-color: var(--gpla-green, #389a29);
-      box-shadow: 0 0 0 3px rgba(56,154,41,0.15);
+      box-shadow: 0 0 0 3px rgba(56,154,41,0.12);
+      background: #fff;
     }
-    .form-input.error { border-color: #ef4444; }
     .form-label {
       display: block;
-      font-family: 'Oswald', sans-serif;
+      font-family: var(--font-display, 'Sora', sans-serif);
       font-size: 0.875rem;
       font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.04em;
+      color: #132d82;
       margin-bottom: 0.5rem;
     }
     .form-select {
       width: 100%;
       padding: 0.875rem 1.125rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #f8f9fa;
+      border: 1px solid #e2e5ea;
       border-radius: 10px;
-      color: white;
-      font-family: 'Book Antiqua', 'Georgia', serif;
+      color: #132d82;
+      font-family: var(--font-body, 'Inter', sans-serif);
       font-size: 1rem;
       transition: all 0.3s ease;
       outline: none;
       appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(255,255,255,0.4)'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23132d82'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 1rem center;
       background-size: 1.25rem;
     }
-    .form-select option { background: #0A0F1E; color: white; }
     .form-select:focus {
       border-color: var(--gpla-green, #389a29);
-      box-shadow: 0 0 0 3px rgba(56,154,41,0.15);
-    }
-    .form-file-input {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px dashed rgba(255,255,255,0.15);
-      border-radius: 10px;
-      color: rgba(255,255,255,0.5);
-      font-family: 'Book Antiqua', 'Georgia', serif;
-      font-size: 0.875rem;
-      cursor: pointer;
-    }
-    .form-file-input::file-selector-button {
-      background: rgba(255,255,255,0.1);
-      border: none;
-      border-radius: 6px;
-      padding: 0.375rem 0.875rem;
-      color: white;
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-right: 0.75rem;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .form-file-input::file-selector-button:hover { background: rgba(255,255,255,0.2); }
-
-    .social-input-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-    }
-    .social-input-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .social-input-wrapper .social-icon {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .social-input-wrapper .social-icon svg { width: 1.125rem; height: 1.125rem; opacity: 0.5; }
-    .social-input-wrapper .form-input { flex: 1; }
-
-    .team-member-entry {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
-      padding: 1.25rem;
-    }
-    .team-member-entry .member-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-    }
-    @media (max-width: 640px) {
-      .team-member-entry .member-grid { grid-template-columns: 1fr; }
+      box-shadow: 0 0 0 3px rgba(56,154,41,0.12);
+      background: #fff;
     }
   </style>
 
-  <!-- Hero -->
-  <section class="min-h-[50vh] md:min-h-[55vh] bg-gpla-navy section-padding relative overflow-hidden flex items-center" style="padding-top: 8rem;">
-    <div class="absolute bottom-0 right-0 w-[45%] h-full bg-gpla-green" style="clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);"></div>
-    <div class="section-container relative z-10 w-full">
-      <p class="section-label section-label--gold" data-animate>Contact</p>
-      <h1 class="font-display text-white text-[clamp(2.5rem,7vw,5rem)] leading-[0.95]" data-animate data-delay="100">
-        Get In<br />Touch
-      </h1>
-    </div>
-  </section>
 
   <!-- Contact Section -->
-  <section class="section-padding section-dark">
+  <section class="section-padding section-light section-kente-surface" style="padding-top: 10rem;">
     <div class="section-container">
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20">
         <!-- Form Column -->
         <div class="lg:col-span-3">
           <span class="section-label" data-animate>Send Us a Message</span>
           <span class="accent-line" data-animate></span>
-          <h2 class="section-title text-white mb-8" data-animate data-delay="100">Let's Work Together</h2>
+          <h2 class="section-title text-gpla-navy mb-8" data-animate data-delay="100">Let's Work Together</h2>
           
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data" class="space-y-6" data-animate data-delay="150">
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data" class="space-y-6 african-quote-frame rounded-2xl p-6 md:p-8" data-animate data-delay="150">
             <!-- Basic Info -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
@@ -184,86 +105,13 @@ const teamFields = [
               <textarea id="message" name="message" rows="5" required class="form-input" placeholder="Tell us about yourself and how we can work together..."></textarea>
             </div>
 
-            <!-- Divider -->
-            <div class="border-t border-white/5 pt-6">
-              <h3 class="font-display text-white text-xl tracking-wider mb-4">Organization Details</h3>
-              
-              <!-- SVG Logo Upload -->
-              <div class="mb-5">
-                <label for="org_logo" class="form-label">Organization Logo (SVG preferred)</label>
-                <input type="file" id="org_logo" name="org_logo" accept=".svg,.png,.jpg,.webp" class="form-file-input" />
-                <p class="text-white/30 text-xs mt-1.5 font-body">Upload your logo. SVG format recommended for best quality.</p>
-              </div>
-
-              <!-- Social Media Handles -->
-              <div class="mb-2">
-                <label class="form-label">Social Media Handles</label>
-                <div class="social-input-grid">
-                  <div class="social-input-wrapper">
-                    <div class="social-icon">
-                      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    </div>
-                    <input type="text" id="social_x" name="social_x" class="form-input" placeholder="https://x.com/yourhandle" />
-                  </div>
-                  <div class="social-input-wrapper">
-                    <div class="social-icon">
-                      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                    </div>
-                    <input type="text" id="social_linkedin" name="social_linkedin" class="form-input" placeholder="https://linkedin.com/company/yourpage" />
-                  </div>
-                  <div class="social-input-wrapper">
-                    <div class="social-icon">
-                      <svg fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                    </div>
-                    <input type="text" id="social_instagram" name="social_instagram" class="form-input" placeholder="https://instagram.com/yourhandle" />
-                  </div>
-                  <div class="social-input-wrapper">
-                    <div class="social-icon">
-                      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98" fill="currentColor"/></svg>
-                    </div>
-                    <input type="text" id="social_other" name="social_other" class="form-input" placeholder="Other (website, TikTok, etc.)" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Team Section -->
-            <div class="border-t border-white/5 pt-6">
-              <h3 class="font-display text-white text-xl tracking-wider mb-1">Your Team</h3>
-              <p class="text-white/40 text-sm mb-4 font-body">Add key team members who will be involved (Name, Role, Photo).</p>
-              
-              <div class="space-y-4">
-                {teamFields.map((member, i) => (
-                  <div class="team-member-entry" id={`team-member-${i + 1}`}>
-                    <div class="flex items-center justify-between mb-3">
-                      <span class="form-label mb-0" style="color: rgba(255,255,255,0.5);">Team Member {i + 1}</span>
-                    </div>
-                    <div class="member-grid">
-                      <div>
-                        <label for={member.name} class="form-label">Full Name</label>
-                        <input type="text" id={member.name} name={member.name} class="form-input" placeholder="e.g. Jane Doe" />
-                      </div>
-                      <div>
-                        <label for={member.role} class="form-label">Role / Title</label>
-                        <input type="text" id={member.role} name={member.role} class="form-input" placeholder="e.g. Executive Director" />
-                      </div>
-                      <div class="md:col-span-2">
-                        <label for={member.photo} class="form-label">Photo</label>
-                        <input type="file" id={member.photo} name={member.photo} accept=".jpg,.png,.webp" class="form-file-input" />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
 
             <button type="submit" class="btn btn-primary btn-lg w-full justify-center mt-4">
               Send Message
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
 
-            <p class="text-white/25 text-xs text-center font-body">
-              <!-- TODO: Replace with actual Formspree form ID from formspree.io -->
+            <p class="text-gpla-navy/30 text-xs text-center font-body">
               Note: Form submission requires a Formspree ID to be configured.
             </p>
           </form>
@@ -272,22 +120,22 @@ const teamFields = [
         <!-- Contact Info Column -->
         <div class="lg:col-span-2" data-animate data-delay="100">
           <div class="sticky top-32">
-            <span class="section-label section-label--gold">Contact Information</span>
+            <span class="section-label">Contact Information</span>
             <span class="accent-line accent-line--green"></span>
-            <h2 class="section-title text-white mb-8">Reach Out to Us</h2>
+            <h2 class="section-title text-gpla-navy mb-8">Reach Out to Us</h2>
             
             <div class="space-y-8">
               <!-- Logo -->
               <div>
-                <img src="/images/gpla-logo-new.png" alt="GPLA Logo" class="h-14 w-auto mb-4" style="width: auto; height: 56px; background: white; border-radius: 6px; padding: 3px;" />
-                <p class="text-white/50 text-base leading-7 font-body">
+                <img src="/assets/images/logo-medium.png" alt="GPLA Logo" class="h-14 w-auto mb-4" />
+                <p class="text-gpla-navy/60 text-base leading-7 font-body">
                   We'd love to hear from you. Whether you're interested in partnership, participation, or just want to learn more — reach out.
                 </p>
               </div>
 
               <div>
-                <h3 class="font-display text-white text-lg tracking-wider mb-2">Address</h3>
-                <p class="text-white/55 text-base leading-7 font-body">
+                <h3 class="font-display text-gpla-navy text-lg tracking-wider mb-2">Address</h3>
+                <p class="text-gpla-navy/60 text-base leading-7 font-body">
                   Plot 158 Observatory Hill<br />
                   Makerere University, Kampala<br />
                   Uganda
@@ -295,13 +143,13 @@ const teamFields = [
               </div>
 
               <div>
-                <h3 class="font-display text-white text-lg tracking-wider mb-2">Email</h3>
-                <p class="text-white/55 text-base font-body">info@guildleaders.academy</p>
+                <h3 class="font-display text-gpla-navy text-lg tracking-wider mb-2">Email</h3>
+                <p class="text-gpla-navy/60 text-base font-body">info@guildleaders.academy</p>
               </div>
 
               <div>
-                <h3 class="font-display text-white text-lg tracking-wider mb-2">Office Hours</h3>
-                <p class="text-white/55 text-base leading-7 font-body">
+                <h3 class="font-display text-gpla-navy text-lg tracking-wider mb-2">Office Hours</h3>
+                <p class="text-gpla-navy/60 text-base leading-7 font-body">
                   Monday - Friday: 8:00 AM - 5:00 PM<br />
                   Saturday: 9:00 AM - 1:00 PM
                 </p>
@@ -309,20 +157,13 @@ const teamFields = [
 
               <!-- Social Links -->
               <div>
-                <h3 class="font-display text-white text-lg tracking-wider mb-3">Follow Us</h3>
-                <div class="flex gap-3">
-                  <a href="https://x.com/guildleaders" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-white/8 flex items-center justify-center hover:bg-gpla-green hover:scale-110 transition-all duration-300" aria-label="X (Twitter)">
-                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                  </a>
-                  <a href="https://linkedin.com/company/guildleaders" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-white/8 flex items-center justify-center hover:bg-gpla-green hover:scale-110 transition-all duration-300" aria-label="LinkedIn">
-                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                  </a>
-                  <a href="https://instagram.com/guildleaders" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-white/8 flex items-center justify-center hover:bg-gpla-green hover:scale-110 transition-all duration-300" aria-label="Instagram">
-                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                  </a>
-                  <a href="https://youtube.com/@guildleaders" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-white/8 flex items-center justify-center hover:bg-gpla-green hover:scale-110 transition-all duration-300" aria-label="YouTube">
-                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98" fill="currentColor"/></svg>
-                  </a>
+                <h3 class="font-display text-gpla-navy text-lg tracking-wider mb-3">Follow Us</h3>
+                <div class="flex gap-3 flex-wrap">
+                  {socialLinks.map((social) => (
+                    <a href={social.href} target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-gpla-navy/8 flex items-center justify-center hover:bg-gpla-green hover:text-white hover:scale-110 transition-all duration-300 text-gpla-navy" aria-label={social.label}>
+                      <Fragment set:html={socialLinkIcons[social.label]} />
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>

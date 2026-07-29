@@ -1,0 +1,87 @@
+---
+interface Cta {
+  href: string;
+  label: string;
+  external?: boolean;
+}
+
+interface Props {
+  year: string;
+  variant: '2026' | '2025' | '2024';
+  tagline: string;
+  title: string;
+  theme: string;
+  imageSrc: string;
+  imageAlt?: string;
+  featured?: boolean;
+  meta?: { label: string; value: string; sub?: string }[];
+  primaryCta?: Cta;
+  secondaryCta?: Cta;
+  class?: string;
+}
+
+const {
+  year,
+  variant,
+  tagline,
+  title,
+  theme,
+  imageSrc,
+  imageAlt = `Guild Leaders Summit ${year}`,
+  featured = false,
+  meta = [],
+  primaryCta,
+  secondaryCta,
+  class: className = '',
+} = Astro.props;
+---
+
+<article
+  class:list={[
+    'summit-bento-card',
+    `summit-bento-card--${variant}`,
+    featured && 'summit-bento-card--featured',
+    'african-zigzag-top',
+    className,
+  ]}
+  data-animate
+>
+  <div class="summit-bento-card__media">
+    <img src={imageSrc} alt={imageAlt} loading="lazy" class="summit-bento-card__img" />
+    <div class="summit-bento-card__media-overlay" />
+    <span class="summit-bento-card__year" aria-hidden="true">{year}</span>
+  </div>
+  <div class="summit-bento-card__body">
+    <span class="summit-bento-card__tag">{tagline}</span>
+    <h3 class="summit-bento-card__title">{title}</h3>
+    <p class="summit-bento-card__theme"><em>{theme}</em></p>
+    {meta.length > 0 && (
+      <dl class="summit-bento-card__meta">
+        {meta.map((item) => (
+          <div class="summit-bento-card__meta-item">
+            <dt>{item.label}</dt>
+            <dd>{item.value}</dd>
+            {item.sub && <dd class="summit-bento-card__meta-sub">{item.sub}</dd>}
+          </div>
+        ))}
+      </dl>
+    )}
+    <div class="summit-bento-card__actions">
+      {primaryCta && (
+        <a
+          href={primaryCta.href}
+          class="summit-bento-card__cta summit-bento-card__cta--primary"
+          target={primaryCta.external ? '_blank' : undefined}
+          rel={primaryCta.external ? 'noopener noreferrer' : undefined}
+        >
+          {primaryCta.label}
+        </a>
+      )}
+      {secondaryCta && (
+        <a href={secondaryCta.href} class="summit-bento-card__cta summit-bento-card__cta--ghost">
+          {secondaryCta.label}
+        </a>
+      )}
+    </div>
+  </div>
+</article>

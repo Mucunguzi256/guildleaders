@@ -1,0 +1,69 @@
+---
+/** Atmospheric African-print dots & arcs (Program Book / concept style) */
+interface Props {
+  variant?: 'navy' | 'cream' | 'green';
+  class?: string;
+}
+const { variant = 'navy', class: className = '' } = Astro.props;
+const stroke = variant === 'cream' ? '#132d82' : '#ffffff';
+const fillAccent = variant === 'cream' ? '#389a29' : '#E8A33D';
+const opacity = variant === 'cream' ? '0.12' : '0.08';
+---
+
+<div class={`pattern-backdrop pattern-backdrop--${variant} ${className}`} aria-hidden="true">
+  <svg class="pattern-backdrop__svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="gpla-dot-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+        <circle cx="4" cy="4" r="1.5" fill={fillAccent} opacity="0.35" />
+        <circle cx="16" cy="16" r="1" fill={stroke} opacity="0.2" />
+      </pattern>
+      <radialGradient id="gpla-sun-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#F5A623" stop-opacity="0.15" />
+        <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#gpla-dot-grid)" opacity={opacity} />
+    <circle cx="85%" cy="20%" r="280" fill="url(#gpla-sun-glow)" />
+    <circle cx="10%" cy="75%" r="200" fill="url(#gpla-sun-glow)" opacity="0.6" />
+    <g opacity="0.14" stroke={fillAccent} stroke-width="1.5" fill="none">
+      <path d="M 0 120 Q 200 80 400 120 T 800 120" />
+      <path d="M 0 280 Q 250 240 500 280 T 1000 280" />
+    </g>
+  </svg>
+</div>
+
+<style>
+  .pattern-backdrop {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .pattern-backdrop__svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .pattern-backdrop--cream {
+    background: var(--gpla-cream, #faf6ee);
+  }
+  .pattern-backdrop--navy {
+    background: transparent;
+  }
+  .pattern-backdrop--green {
+    background: transparent;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .pattern-backdrop__svg {
+      animation: pattern-drift 48s ease-in-out infinite alternate;
+    }
+  }
+  @keyframes pattern-drift {
+    from { transform: scale(1) translate(0, 0); }
+    to { transform: scale(1.03) translate(-1%, 1%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pattern-backdrop__svg { animation: none; }
+  }
+</style>

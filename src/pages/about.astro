@@ -2,74 +2,85 @@
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-
-const title = "About";
-const description = "Learn about the Guild Presidents Leadership Academy - East Africa's premier youth leadership institution.";
+import PatternDivider from '../components/PatternDivider.astro';
+import PatternBackdrop from '../components/PatternBackdrop.astro';
+import { executiveDirector } from '../data/site';
 ---
 
-<Base title={title} description={description}>
+<Base title="About" description="Learn about the Guild Presidents Leadership Academy - East Africa's premier youth leadership institution.">
   <Navbar />
   
-  <!-- Hero -->
-  <section class="min-h-[50vh] md:min-h-[55vh] bg-gpla-navy section-padding relative overflow-hidden flex items-center" style="padding-top: 8rem;">
-    <div class="absolute bottom-0 right-0 w-[45%] h-full bg-gpla-green" style="clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);"></div>
+  <!-- Hero — light with image -->
+  <section class="min-h-[40vh] bg-gpla-navy section-padding relative overflow-hidden flex items-center" style="padding-top: 8rem;">
+    <div class="absolute inset-0 z-0">
+      <img src="/assets/images/gallery/025.jpg" alt="" class="w-full h-full object-cover opacity-25" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-gpla-navy/90 via-gpla-navy/70 to-gpla-navy/50"></div>
+    <div class="african-hero-overlay"></div>
     <div class="section-container relative z-10 w-full">
       <p class="section-label section-label--gold" data-animate>About Us</p>
-      <h1 class="font-display text-white text-[clamp(2.5rem,7vw,5rem)] leading-[0.95]" data-animate data-delay="100">
+      <h1 class="font-display text-white text-[clamp(2.5rem,7vw,4.5rem)] leading-[0.95]" data-animate data-delay="100">
         Ethical Leaders<br />
         Transforming East Africa
       </h1>
     </div>
   </section>
 
-  <!-- Content -->
-  <section class="section-padding section-dark">
+  <PatternDivider />
+
+  <!-- About Content -->
+  <section class="section-padding section-light section-kente-surface">
     <div class="section-container">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
-        <div>
-          <span class="section-label section-label--gold" data-animate>About Us</span>
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20">
+        <div class="lg:col-span-3" data-animate>
+          <span class="section-label" data-animate>Who We Are</span>
           <span class="accent-line" data-animate></span>
-          <h2 class="section-title text-white mb-6" data-animate data-delay="100">Shaping East Africa's Future Leaders</h2>
-          <div class="content-text" style="text-align: justify;" data-animate data-delay="150">
-          The Guild Presidents Leadership Academy (GPLA) is a non-partisan leadership development and regional convening platform committed to nurturing ethical, visionary and transformational leaders across East Africa.
-        </p>
-        <p class="text-gray-600 leading-relaxed mb-6" style="text-align: justify;">
-          Established from the recognition that university guild leaders are an important foundation for future public, private and civic leadership, GPLA equips emerging leaders with the knowledge, values, networks and practical skills required to serve society responsibly and effectively.
-        </p>
-        <p class="text-gray-600 leading-relaxed" style="text-align: justify;">
-          Through leadership training, mentorship, policy dialogue, regional summits, research, institutional partnerships and community-based initiatives, GPLA brings together young leaders, governments, universities, development partners, the private sector and experienced statespersons to address critical governance and development challenges.
-        </p>
-        <p class="text-gray-600 leading-relaxed mt-6" style="text-align: justify;">
-          While university and student leadership remain central to our identity, GPLA's work has expanded to include public leadership, regional integration, innovation, entrepreneurship, civic participation, institutional development and sustainable socio-economic transformation.
-        </p>
-        <p class="text-gray-600 leading-relaxed mt-6" style="text-align: justify;">
-          GPLA is headquartered in Uganda and works across East Africa to build bridges between generations, institutions and countries, transforming youthful leadership potential into responsible service, practical solutions and lasting regional impact.
-        </p>
-      </div>
-      <div>
-        <div class="bg-gpla-navy p-8 md:p-10 rounded-xl">
-          <p class="text-white text-lg md:text-2xl italic mb-6">"History has been made."</p>
-          <cite class="text-gpla-gold not-italic block">— Demiano Masesa<br />Executive Director, GPLA</cite>
+          <h2 class="section-title text-gpla-navy mb-6" data-animate data-delay="100">Shaping East Africa's Future Leaders</h2>
+          <div class="space-y-5 text-gpla-navy/75 text-base leading-relaxed font-body" style="text-align: justify;" data-animate data-delay="150">
+            <p>The Guild Presidents Leadership Academy (GPLA) is a non-partisan leadership development and regional convening platform committed to nurturing ethical, visionary and transformational leaders across East Africa.</p>
+            <p>Established from the recognition that university guild leaders are an important foundation for future public, private and civic leadership, GPLA equips emerging leaders with the knowledge, values, networks and practical skills required to serve society responsibly and effectively.</p>
+            <p>Through leadership training, mentorship, policy dialogue, regional summits, research, institutional partnerships and community-based initiatives, GPLA brings together young leaders, governments, universities, development partners, the private sector and experienced statespersons to address critical governance and development challenges.</p>
+            <p>While university and student leadership remain central to our identity, GPLA's work has expanded to include public leadership, regional integration, innovation, entrepreneurship, civic participation, institutional development and sustainable socio-economic transformation.</p>
+            <p>GPLA is headquartered in Uganda and works across East Africa to build bridges between generations, institutions and countries, transforming youthful leadership potential into responsible service, practical solutions and lasting regional impact.</p>
+          </div>
+        </div>
+        <div class="lg:col-span-2" data-animate data-delay="100">
+          <div class="bg-gradient-to-br from-gpla-navy to-[#1a3d6e] p-8 md:p-10 rounded-2xl african-quote-frame">
+            <img
+              src={executiveDirector.photo}
+              alt={executiveDirector.photoAlt}
+              width="160"
+              height="200"
+              class="w-32 sm:w-36 rounded-xl object-cover object-top border-2 border-gpla-gold/30 mb-6"
+              loading="lazy"
+            />
+            <p class="text-white text-base md:text-lg italic leading-relaxed font-body">
+              &ldquo;{executiveDirector.quote}&rdquo;
+            </p>
+            <cite class="block mt-5 text-gpla-gold text-sm not-italic font-display tracking-wide leading-snug">
+              — {executiveDirector.attribution}
+            </cite>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Vision & Mission -->
-  <section class="section-padding section-alt border-t border-white/5">
+  <section class="section-padding section-dark section-kente-surface">
     <div class="section-container section-container--narrow">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
         <div data-animate>
           <div class="w-16 h-1.5 bg-gpla-green rounded-full mb-6"></div>
-          <h2 class="font-display text-white text-2xl md:text-[32px] mb-4 tracking-wider">Our Vision</h2>
-          <p class="content-text text-lg" style="text-align: justify;">
+          <h2 class="font-display text-gpla-navy text-2xl md:text-[32px] mb-4 tracking-wider">Our Vision</h2>
+          <p class="text-gpla-navy/70 text-lg font-body" style="text-align: justify;">
             A generation of ethical and visionary leaders transforming East Africa.
           </p>
         </div>
         <div data-animate data-delay="100">
           <div class="w-16 h-1.5 bg-gpla-gold rounded-full mb-6"></div>
-          <h2 class="font-display text-white text-2xl md:text-[32px] mb-4 tracking-wider">Our Mission</h2>
-          <p class="content-text text-lg" style="text-align: justify;">
+          <h2 class="font-display text-gpla-navy text-2xl md:text-[32px] mb-4 tracking-wider">Our Mission</h2>
+          <p class="text-gpla-navy/70 text-lg font-body" style="text-align: justify;">
             To develop, connect and inspire young leaders while advancing good governance, regional integration, innovation and sustainable development.
           </p>
         </div>
@@ -77,119 +88,126 @@ const description = "Learn about the Guild Presidents Leadership Academy - East 
     </div>
   </section>
 
+  <PatternDivider />
+
   <!-- Strategic Objectives -->
-  <section class="section-padding section-dark border-t border-white/5">
+  <section class="section-padding section-light section-kente-surface">
     <div class="section-container">
       <div class="text-center mb-12" data-animate>
-        <span class="section-label section-label--gold">Our Focus</span>
-        <h2 class="section-title section-title--centered text-white">Strategic Objectives</h2>
+        <span class="section-label">Our Focus</span>
+        <h2 class="section-title section-title--centered text-gpla-navy">Strategic Objectives</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" data-animate data-delay="100">
-        <div class="card p-6 md:p-8">
+        <div class="bg-[#f8fafb] border border-gpla-navy/8 p-6 md:p-8 rounded-xl">
           <div class="text-gpla-green text-2xl mb-3">🌍</div>
-          <p class="text-gray-700 leading-relaxed">Promote youth participation in the East African integration agenda.</p>
+          <p class="text-gpla-navy/70 leading-relaxed font-body">Promote youth participation in the East African integration agenda.</p>
         </div>
-        <div class="card p-6 md:p-8">
+        <div class="bg-[#f8fafb] border border-gpla-navy/8 p-6 md:p-8 rounded-xl">
           <div class="text-gpla-gold text-2xl mb-3">🤝</div>
-          <p class="text-white/70 leading-relaxed">Strengthen cooperation among university student leaders across the region.</p>
+          <p class="text-gpla-navy/70 leading-relaxed font-body">Strengthen cooperation among university student leaders across the region.</p>
         </div>
-        <div class="card p-6 md:p-8">
+        <div class="bg-[#f8fafb] border border-gpla-navy/8 p-6 md:p-8 rounded-xl">
           <div class="text-gpla-gold text-2xl mb-3">🎓</div>
-          <p class="text-white/70 leading-relaxed">Build young leaders' understanding of regional institutions, diplomacy and governance.</p>
+          <p class="text-gpla-navy/70 leading-relaxed font-body">Build young leaders' understanding of regional institutions, diplomacy and governance.</p>
         </div>
-        <div class="card p-6 md:p-8">
+        <div class="bg-[#f8fafb] border border-gpla-navy/8 p-6 md:p-8 rounded-xl">
           <div class="text-gpla-gold text-2xl mb-3">💬</div>
-          <p class="text-white/70 leading-relaxed">Facilitate dialogue between young people, governments, universities and the private sector.</p>
+          <p class="text-gpla-navy/70 leading-relaxed font-body">Facilitate dialogue between young people, governments, universities and the private sector.</p>
         </div>
-        <div class="card p-6 md:p-8">
+        <div class="bg-[#f8fafb] border border-gpla-navy/8 p-6 md:p-8 rounded-xl">
           <div class="text-gpla-gold text-2xl mb-3">🔗</div>
-          <p class="text-white/70 leading-relaxed">Develop a sustainable network of emerging East African leaders.</p>
+          <p class="text-gpla-navy/70 leading-relaxed font-body">Develop a sustainable network of emerging East African leaders.</p>
         </div>
-        <div class="card p-6 md:p-8">
+        <div class="bg-[#f8fafb] border border-gpla-navy/8 p-6 md:p-8 rounded-xl">
           <div class="text-gpla-gold text-2xl mb-3">📋</div>
-          <p class="text-white/70 leading-relaxed">Generate youth-led recommendations on regional policy and development.</p>
+          <p class="text-gpla-navy/70 leading-relaxed font-body">Generate youth-led recommendations on regional policy and development.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Key Activities -->
-  <section class="section-padding section-alt border-t border-white/5">
+  <section class="section-padding section-dark section-kente-surface">
     <div class="section-container">
       <div class="text-center mb-12" data-animate>
-        <span class="section-label section-label--gold">What We Do</span>
-        <h2 class="section-title section-title--centered text-white">Key Activities</h2>
+        <span class="section-label">What We Do</span>
+        <h2 class="section-title section-title--centered text-gpla-navy">Key Activities</h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" data-animate data-delay="100">
-        <div class="card p-6 md:p-8 text-center">
+      <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6" data-animate data-delay="100">
+        <div class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl text-center shadow-sm">
           <div class="text-gpla-gold text-3xl mb-4">🎤</div>
-          <h3 class="font-display text-white text-xl mb-2">Annual Summit</h3>
-          <p class="text-white/70 text-sm">Annual East African Guild Leaders Summit</p>
+          <h3 class="font-display text-gpla-navy text-xl mb-2">Annual Summit</h3>
+          <p class="text-gpla-navy/60 text-sm font-body">Annual East African Guild Leaders Summit</p>
         </div>
-        <div class="bg-white/10 backdrop-blur-sm p-6 md:p-8 rounded-xl border border-white/10 text-center">
+        <div class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl text-center shadow-sm">
           <div class="text-gpla-gold text-3xl mb-4">🗣️</div>
-          <h3 class="font-display text-white text-xl mb-2">Leaders' Dialogues</h3>
-          <p class="text-white/70 text-sm">University leaders' dialogues</p>
+          <h3 class="font-display text-gpla-navy text-xl mb-2">Leaders' Dialogues</h3>
+          <p class="text-gpla-navy/60 text-sm font-body">University leaders' dialogues</p>
         </div>
-        <div class="bg-white/10 backdrop-blur-sm p-6 md:p-8 rounded-xl border border-white/10 text-center">
+        <div class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl text-center shadow-sm">
           <div class="text-gpla-gold text-3xl mb-4">🏛️</div>
-          <h3 class="font-display text-white text-xl mb-2">Policy Panels</h3>
-          <p class="text-white/70 text-sm">High-level policy panels</p>
+          <h3 class="font-display text-gpla-navy text-xl mb-2">Policy Panels</h3>
+          <p class="text-gpla-navy/60 text-sm font-body">High-level policy panels</p>
         </div>
-        <div class="bg-white/10 backdrop-blur-sm p-6 md:p-8 rounded-xl border border-white/10 text-center">
+        <div class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl text-center shadow-sm">
           <div class="text-gpla-gold text-3xl mb-4">🔄</div>
-          <h3 class="font-display text-white text-xl mb-2">Leadership Exchanges</h3>
-          <p class="text-white/70 text-sm">Regional student leadership exchanges</p>
+          <h3 class="font-display text-gpla-navy text-xl mb-2">Leadership Exchanges</h3>
+          <p class="text-gpla-navy/60 text-sm font-body">Regional student leadership exchanges</p>
         </div>
       </div>
     </div>
   </section>
 
+  <PatternDivider bold />
+
   <!-- Team -->
-  <section class="section-padding section-dark border-t border-white/5">
+  <section class="section-padding section-light section-kente-surface">
     <div class="section-container">
       <div class="text-center mb-12" data-animate>
-        <span class="section-label section-label--gold">Leadership</span>
-        <h2 class="section-title section-title--centered text-white">Our Team</h2>
+        <span class="section-label">Leadership</span>
+        <h2 class="section-title section-title--centered text-gpla-navy">Our Team</h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div class="group">
-          <div class="aspect-[3/4] bg-gradient-to-br from-gpla-navy to-gpla-green rounded-2xl mb-5 overflow-hidden relative">
-            <div class="w-full h-full flex items-center justify-center">
-              <span class="font-display text-white/20 text-6xl">DM</span>
-            </div>
-            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all"></div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10">
+        <div class="group african-zigzag-top" data-animate>
+          <div class="aspect-[3/4] rounded-2xl mb-5 overflow-hidden relative bg-gray-100">
+            <img
+              src={executiveDirector.photo}
+              alt={executiveDirector.photoAlt}
+              class="w-full h-full object-cover object-top"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
           </div>
           <div>
-            <h3 class="font-display text-2xl text-gpla-navy">Demiano Masesa</h3>
-            <p class="text-gray-500 text-sm font-body">Executive Director</p>
-            <p class="text-gray-400 text-xs mt-2 font-body leading-relaxed">"History has been made. We are building the next generation of ethical leaders."</p>
+            <h3 class="font-display text-2xl text-gpla-navy">{executiveDirector.name}</h3>
+            <p class="text-gpla-navy/60 text-sm font-body">{executiveDirector.title}</p>
+            <p class="text-gpla-navy/40 text-xs mt-2 font-body leading-relaxed">
+              Guild Presidents Leadership Academy
+            </p>
           </div>
         </div>
-        <div class="group">
-          <div class="aspect-[3/4] bg-gradient-to-br from-gpla-green to-gpla-navy rounded-2xl mb-5 overflow-hidden relative">
+        <div class="group african-zigzag-top" data-animate data-delay="100">
+          <div class="aspect-[3/4] bg-gradient-to-br from-gpla-green/20 to-gpla-navy/10 rounded-2xl mb-5 overflow-hidden relative">
             <div class="w-full h-full flex items-center justify-center">
-              <span class="font-display text-white/20 text-6xl">SK</span>
+              <span class="font-display text-gpla-navy/15 text-6xl">SK</span>
             </div>
-            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all"></div>
           </div>
           <div>
             <h3 class="font-display text-2xl text-gpla-navy">Dr. Sarah Kemigisa</h3>
-            <p class="text-gray-500 text-sm font-body">Programs Director</p>
-            <p class="text-gray-400 text-xs mt-2 font-body leading-relaxed">Equipping young leaders with the skills to transform governance.</p>
+            <p class="text-gpla-navy/60 text-sm font-body">Programs Director</p>
+            <p class="text-gpla-navy/40 text-xs mt-2 font-body leading-relaxed">Equipping young leaders with the skills to transform governance.</p>
           </div>
         </div>
-        <div class="group">
-          <div class="aspect-[3/4] bg-gradient-to-br from-gpla-navy to-gpla-gold rounded-2xl mb-5 overflow-hidden relative">
+        <div class="group african-zigzag-top" data-animate data-delay="200">
+          <div class="aspect-[3/4] bg-gradient-to-br from-gpla-navy/10 to-gpla-gold/15 rounded-2xl mb-5 overflow-hidden relative">
             <div class="w-full h-full flex items-center justify-center">
-              <span class="font-display text-white/20 text-6xl">JO</span>
+              <span class="font-display text-gpla-navy/15 text-6xl">JO</span>
             </div>
-            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all"></div>
           </div>
           <div>
             <h3 class="font-display text-2xl text-gpla-navy">James Ochieng</h3>
-            <p class="text-gray-500 text-sm font-body">Operations Manager</p>
-            <p class="text-gray-400 text-xs mt-2 font-body leading-relaxed">Ensuring excellence in delivery across all programs.</p>
+            <p class="text-gpla-navy/60 text-sm font-body">Operations Manager</p>
+            <p class="text-gpla-navy/40 text-xs mt-2 font-body leading-relaxed">Ensuring excellence in delivery across all programs.</p>
           </div>
         </div>
       </div>

@@ -29,47 +29,52 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
     
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Book+Antiqua&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style is:global>
       :root {
-        /* === Brand Colors === */
-        --gpla-navy: #132d82;
-        --gpla-navy-dark: #0A1628;
+        /* === GPLA Brand Colors — official extract === */
+        --gpla-white: #ffffff;
         --gpla-green: #389a29;
-        --gpla-green-bright: #4BC43A;
+        --gpla-navy: #132d82;
+        --gpla-black: #000000;
+        /* === Supporting web tones === */
         --gpla-gold: #F5A623;
+        --gpla-ochre: #E8A33D;
+        --gpla-cream: #FAF6EE;
+        --gpla-teal: #1a7a7a;
+        --gpla-red: #c0392b;
+        --gpla-green-bright: #4BC43A;
         --gpla-gold-bright: #FFB83D;
-        --gpla-white: #F1F5F9;
         
         /* === Backgrounds === */
-        --bg-base: #0A0F1E;
-        --bg-section-alt: #111827;
+        --bg-base: #f4f7fb;
+        --bg-section-alt: #f0f4ff;
         --bg-dark: #132d82;
         --bg-green: #389a29;
-        --bg-card: rgba(255,255,255,0.04);
-        --bg-card-hover: rgba(255,255,255,0.08);
+        --bg-card: rgba(19,45,130,0.04);
+        --bg-card-hover: rgba(19,45,130,0.08);
         
         /* === Text === */
-        --text-primary: #F1F5F9;
-        --text-muted: #94A3B8;
-        --text-dim: rgba(255,255,255,0.5);
+        --text-primary: #1a2744;
+        --text-muted: #4b5563;
+        --text-dim: rgba(19,45,130,0.5);
         
         /* === Typography === */
-        --font-display: 'Oswald', sans-serif;
-        --font-body: 'Book Antiqua', 'Georgia', serif;
+        --font-display: 'Sora', sans-serif;
+        --font-body: 'Inter', system-ui, sans-serif;
         
-        /* === Typography Scale (BIGGER) === */
-        --text-xs: 0.875rem;    /* 14px */
-        --text-sm: 1rem;         /* 16px */
-        --text-base: 1.125rem;   /* 18px */
-        --text-lg: 1.25rem;      /* 20px */
-        --text-xl: 1.5rem;       /* 24px */
-        --text-2xl: 2rem;        /* 32px */
-        --text-3xl: 2.5rem;      /* 40px */
-        --text-4xl: 3.5rem;      /* 56px */
-        --text-5xl: 4.5rem;      /* 72px */
-        --text-6xl: 5.5rem;      /* 88px */
-        --text-7xl: 7rem;        /* 112px */
+        /* === Typography Scale === */
+        --text-xs: 0.875rem;
+        --text-sm: 1rem;
+        --text-base: 1.125rem;
+        --text-lg: 1.25rem;
+        --text-xl: 1.5rem;
+        --text-2xl: 2rem;
+        --text-3xl: 2.5rem;
+        --text-4xl: 3.5rem;
+        --text-5xl: 4.5rem;
+        --text-6xl: 5.5rem;
+        --text-7xl: 7rem;
         
         /* === Spacing === */
         --section-py: clamp(4rem, 8vw, 8rem);
@@ -92,12 +97,25 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
 
       html { scroll-behavior: smooth; }
 
+      @keyframes body-gradient-shift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        body { animation: none; }
+      }
+
       body {
-        background-color: var(--bg-base);
+        position: relative;
+        background: linear-gradient(135deg, #f4f7fb 0%, #f0f4ff 25%, #f0fff4 50%, #fffbf0 75%, #f4f7fb 100%);
+        background-size: 400% 400%;
+        animation: body-gradient-shift 20s ease infinite;
+        background-attachment: fixed;
         color: var(--text-primary);
         font-family: var(--font-body);
         font-size: var(--text-base);
-        line-height: 1.75;
+        line-height: 1.7;
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -107,16 +125,16 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       .font-display {
         font-family: var(--font-display);
         text-transform: uppercase;
-        letter-spacing: 0.03em;
+        letter-spacing: 0.02em;
       }
       .font-body { font-family: var(--font-body); }
 
       h1, h2, h3, h4, h5, h6 {
         font-family: var(--font-display);
         text-transform: uppercase;
-        letter-spacing: 0.03em;
-        line-height: 1.05;
-        font-weight: 600;
+        letter-spacing: 0.02em;
+        line-height: 1.08;
+        font-weight: 700;
       }
 
       /* === Section Container === */
@@ -181,12 +199,193 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       /* === Reveal Animation === */
       [data-animate] {
         opacity: 0;
-        transform: translateY(24px);
+        transform: translateY(30px);
         transition: opacity 0.7s var(--transition-smooth), transform 0.7s var(--transition-smooth);
       }
       [data-animate].animate-in {
         opacity: 1;
         transform: translateY(0);
+      }
+
+      /* --- Enhanced section reveals --- */
+      [data-animate="slide-up"] {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.7s var(--transition-smooth), transform 0.7s var(--transition-smooth);
+      }
+      [data-animate="slide-up"].animate-in { opacity: 1; transform: translateY(0); }
+
+      [data-animate="slide-left"] {
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: opacity 0.7s var(--transition-smooth), transform 0.7s var(--transition-smooth);
+      }
+      [data-animate="slide-left"].animate-in { opacity: 1; transform: translateX(0); }
+
+      [data-animate="slide-right"] {
+        opacity: 0;
+        transform: translateX(40px);
+        transition: opacity 0.7s var(--transition-smooth), transform 0.7s var(--transition-smooth);
+      }
+      [data-animate="slide-right"].animate-in { opacity: 1; transform: translateX(0); }
+
+      [data-animate="scale"] {
+        opacity: 0;
+        transform: scale(0.92);
+        transition: opacity 0.7s var(--transition-smooth), transform 0.7s var(--transition-smooth);
+      }
+      [data-animate="scale"].animate-in { opacity: 1; transform: scale(1); }
+
+      /* --- Hero text stagger --- */
+      @keyframes hero-stagger-in {
+        0% { opacity: 0; transform: translateY(40px); }
+        70% { opacity: 1; transform: translateY(-4px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      .hero-line {
+        display: block;
+        opacity: 0;
+        animation: hero-stagger-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+      .hero-line:nth-child(1) { animation-delay: 0.15s; }
+      .hero-line:nth-child(2) { animation-delay: 0.3s; }
+      .hero-line:nth-child(3) { animation-delay: 0.45s; }
+
+      /* --- Stats counter bounce --- */
+      @keyframes counter-bounce {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.15); }
+        100% { transform: scale(1); }
+      }
+      .ani-counter.counter-done {
+        animation: counter-bounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      /* --- Card hover tilt --- */
+      .tilt-card {
+        transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+
+      /* --- Marquee strip --- */
+      .marquee-strip {
+        overflow: hidden;
+        background: #f8fafb;
+        border-top: 1px solid rgba(19,45,130,0.06);
+        border-bottom: 1px solid rgba(19,45,130,0.06);
+        padding: 1rem 0;
+        white-space: nowrap;
+        position: relative;
+      }
+      .marquee-track {
+        display: inline-flex;
+        animation: marquee-scroll 25s linear infinite;
+      }
+      .marquee-track span {
+        display: inline-block;
+        padding: 0 1.5rem;
+        font-family: var(--font-display);
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(19,45,130,0.3);
+      }
+      .marquee-track .marquee-dot {
+        color: var(--gpla-gold);
+        padding: 0 0.5rem;
+      }
+      @keyframes marquee-scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+
+      /* --- Gallery hover zoom overlay --- */
+      .gallery-item { position: relative; }
+      .gallery-item .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(19,45,130,0.45);
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        pointer-events: none;
+        border-radius: inherit;
+      }
+      .gallery-item .gallery-overlay span {
+        font-family: var(--font-display);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border: 1.5px solid rgba(255,255,255,0.6);
+        border-radius: 999px;
+      }
+      .gallery-item:hover .gallery-overlay { opacity: 1; }
+      .gallery-item:hover img {
+        transform: scale(1.08) !important;
+        filter: brightness(1.05);
+      }
+      .gallery-item img {
+        transition: transform 0.5s var(--transition-smooth), filter 0.5s ease;
+      }
+
+      /* --- Animated gradient background --- */
+      @keyframes gradient-shift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .animated-gradient-bg {
+        background: linear-gradient(135deg, #132d82, #389a29, #F5A623, #132d82);
+        background-size: 300% 300%;
+        animation: gradient-shift 8s ease infinite;
+      }
+
+      /* --- Cursor glow --- */
+      .hero-cursor-glow {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .hero-cursor-glow__dot {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(circle 300px, rgba(56,154,41,0.08), transparent);
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .hero-home:hover .hero-cursor-glow__dot { opacity: 1; }
+
+      /* --- Reduced motion --- */
+      @media (prefers-reduced-motion: reduce) {
+        .hero-line { animation: none !important; opacity: 1 !important; }
+        .ani-counter.counter-done { animation: none !important; }
+        .tilt-card { transition: none !important; }
+        .marquee-track { animation: none !important; }
+        .gallery-item img { transition: none !important; }
+        .animated-gradient-bg { animation: none !important; }
+        .stats-strip { animation: none !important; }
+        .hero-cursor-glow { display: none !important; }
+        [data-animate="slide-up"],
+        [data-animate="slide-left"],
+        [data-animate="slide-right"],
+        [data-animate="scale"] {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
       }
 
       /* === Text Align === */
@@ -263,9 +462,16 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
         background-size: 40px 40px;
       }
 
-      /* === Section Alternating BGs === */
-      .section-dark { background: var(--bg-base); }
-      .section-alt { background: var(--bg-section-alt); }
+      /* === Section Alternating BGs (frosted — body kente visible) === */
+      .section-dark {
+        background: rgba(244, 247, 251, 0.88);
+      }
+      .section-alt {
+        background: rgba(240, 244, 255, 0.88);
+      }
+      .section-light {
+        background: rgba(255, 255, 255, 0.92);
+      }
       .section-navy { background: var(--gpla-navy); }
       .section-green { background: var(--gpla-green); }
 
@@ -340,8 +546,86 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
         }
       }
     </style>
+
+    <!-- Global scroll-trigger animations -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // data-animate elements
+        const animateEls = document.querySelectorAll('[data-animate]');
+        if (animateEls.length) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
+                setTimeout(() => entry.target.classList.add('animate-in'), delay);
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+          animateEls.forEach(el => observer.observe(el));
+        }
+
+        // ani-fade-up elements (used by the new animation utilities)
+        const fadeEls = document.querySelectorAll('.ani-fade-up');
+        if (fadeEls.length) {
+          const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('ani-visible');
+                fadeObserver.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+          fadeEls.forEach(el => fadeObserver.observe(el));
+        }
+
+        // Animated counters
+        const counterEls = document.querySelectorAll('.ani-counter');
+        if (counterEls.length) {
+          const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.getAttribute('data-target')) || 0;
+                const duration = parseInt(el.getAttribute('data-duration')) || 1500;
+                const start = parseInt(el.getAttribute('data-start')) || 0;
+                const suffix = el.getAttribute('data-suffix') || '';
+                const prefix = el.getAttribute('data-prefix') || '';
+                let current = start;
+                const step = Math.max(1, Math.floor((target - start) / (duration / 16)));
+                const update = () => {
+                  current += step;
+                  if (current >= target) {
+                    el.textContent = prefix + target + suffix;
+                    return;
+                  }
+                  el.textContent = prefix + current + suffix;
+                  requestAnimationFrame(update);
+                };
+                update();
+                counterObserver.unobserve(el);
+              }
+            });
+          }, { threshold: 0.5 });
+          counterEls.forEach(el => counterObserver.observe(el));
+        }
+      });
+
+      // Mobile menu toggle
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (btn && menu) {
+          btn.addEventListener('click', () => {
+            const isOpen = menu.classList.contains('open');
+            menu.classList.toggle('open');
+            btn.setAttribute('aria-expanded', !isOpen);
+          });
+        }
+      });
+    </script>
   </head>
-  <body>
+  <body class="site-body-kente">
     <slot />
   </body>
 </html>

@@ -7,11 +7,14 @@ export default {
 				'gpla-green': '#389a29',
 				'gpla-navy': '#132d82',
 				'gpla-gold': '#F5A623',
+				'gpla-gold-dark': '#E8A33D',
+				'gpla-cream': '#FAF6EE',
 				'gpla-light': '#f0f4ff',
+				'gpla-black': '#000000',
 			},
 			fontFamily: {
-				display: ['Bebas Neue', 'sans-serif'],
-				body: ['DM Sans', 'sans-serif'],
+				display: ['Sora', 'sans-serif'],
+				body: ['Inter', 'system-ui', 'sans-serif'],
 			}
 		},
 	},
