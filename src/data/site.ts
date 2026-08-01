@@ -56,6 +56,8 @@ export const teamMembers: TeamMember[] = [
     name: 'Natasha Kaitesi',
     title: 'Operations Officer',
     initials: 'NK',
+    photo: '/assets/images/team/natasha.jpg',
+    photoAlt: 'Natasha Kaitesi, Operations Officer at the Guild Presidents Leadership Academy',
     bio: 'Natasha Kaitesi is an Operations Officer at the Guild Presidents Leadership Academy with experience in project coordination, operational management, and team support for effective program delivery. She is passionate about youth participation and has worked with young people at different levels, championing mentorship, capacity building, and opportunities that equip them to lead with purpose.',
     email: 'natashakaitesi1@gmail.com',
     socials: [
