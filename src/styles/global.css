@@ -612,6 +612,80 @@ body.site-body-kente > * {
     );
 }
 
+/* Strategic Objectives cards — kente left strip + corner accent */
+.objective-card {
+  position: relative;
+  background: rgba(248, 250, 251, 0.92);
+  border: 1px solid rgba(19, 45, 130, 0.08);
+  border-radius: 0.75rem;
+  padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+  overflow: hidden;
+}
+.objective-card__kente {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      #132d82 0px,
+      #132d82 8px,
+      #389a29 8px,
+      #389a29 16px,
+      #E8A33D 16px,
+      #E8A33D 24px,
+      #ffffff 24px,
+      #ffffff 28px
+    );
+}
+.objective-card.accent-navy .objective-card__kente {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      #132d82 0px,
+      #132d82 10px,
+      #E8A33D 10px,
+      #E8A33D 14px,
+      #389a29 14px,
+      #389a29 22px
+    );
+}
+.objective-card.accent-green .objective-card__kente {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      #389a29 0px,
+      #389a29 10px,
+      #132d82 10px,
+      #132d82 14px,
+      #E8A33D 14px,
+      #E8A33D 22px
+    );
+}
+.objective-card.accent-gold .objective-card__kente {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      #E8A33D 0px,
+      #E8A33D 10px,
+      #132d82 10px,
+      #132d82 14px,
+      #389a29 14px,
+      #389a29 22px
+    );
+}
+.objective-card__num {
+  display: block;
+  font-family: var(--font-display, inherit);
+  color: #132d82;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  opacity: 0.85;
+}
+
 /* Subtle corner accent triangle motif for cards */
 .african-corner-accent {
   position: relative;

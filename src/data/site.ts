@@ -52,8 +52,36 @@ export type TeamMember = {
 
 export const teamMembers: TeamMember[] = [
   { name: 'Kato Laban', title: 'Programs Manager', initials: 'KL' },
-  { name: 'Natasha Kaitesi', title: 'Operations Officer', initials: 'NK' },
-  { name: 'Muliisa Phillip', title: 'Communications Manager', initials: 'MP' },
+  {
+    name: 'Natasha Kaitesi',
+    title: 'Operations Officer',
+    initials: 'NK',
+    bio: 'Natasha Kaitesi is an Operations Officer at the Guild Presidents Leadership Academy with experience in project coordination, operational management, and team support for effective program delivery. She is passionate about youth participation and has worked with young people at different levels, championing mentorship, capacity building, and opportunities that equip them to lead with purpose.',
+    email: 'natashakaitesi1@gmail.com',
+    socials: [
+      { label: 'X (Twitter)', href: 'https://x.com/kaitesinatasha' },
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/kaitesi-natasha-021305204',
+      },
+    ],
+  },
+  {
+    name: 'Philip Muliisa',
+    title: 'Communications Officer',
+    initials: 'PM',
+    photo: '/assets/images/team/philip.jpg',
+    photoAlt: 'Philip Muliisa, Communications Officer at the Guild Presidents Leadership Academy',
+    bio: 'Philip serves at the Communications Desk at the GPLA. A practicing journalist hosting talk shows on COUFamily Television as well as an LLB student.',
+    email: 'phassanm9@gmail.com',
+    socials: [
+      { label: 'X (Twitter)', href: 'https://x.com/PHILIPMULIISA' },
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/philip-muliisa-305445223',
+      },
+    ],
+  },
   {
     name: 'Atuhaire Baseka Patience',
     title: 'Programs Officer',
@@ -67,6 +95,22 @@ export const teamMembers: TeamMember[] = [
       {
         label: 'LinkedIn',
         href: 'https://www.linkedin.com/in/atuhaire-baseka-patience-5ba211274',
+      },
+    ],
+  },
+  {
+    name: 'Semugabi Hamza Junior',
+    title: 'Branding Lead',
+    initials: 'SH',
+    photo: '/assets/images/team/hamza.jpg',
+    photoAlt: 'Semugabi Hamza Junior, Branding Lead at the Guild Presidents Leadership Academy',
+    bio: 'Semugabi Hamza Junior is a Bachelor of Commerce (Accounting) graduate from Makerere University with a strong foundation in accounting, finance, auditing, and business management. He is a dynamic young professional who blends analytical expertise with creativity, leadership, and a passion for building impactful brands.\n\nWith experience as a Branding Lead, he has played a key role in developing and strengthening organizational identities through strategic branding, creative direction, digital communication, and content development. He has a keen eye for design, storytelling, and audience engagement, using branding as a tool to enhance visibility, credibility, and connection between organizations and their communities.',
+    email: 'semugabihamza6@gmail.com',
+    socials: [
+      { label: 'X (Twitter)', href: 'https://x.com/semugabihjr' },
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/semugabihjr',
       },
     ],
   },

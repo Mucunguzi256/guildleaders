@@ -92,69 +92,70 @@ import { socialLinkIcons } from '../data/social-icons';
   <PatternDivider />
 
   <!-- Strategic Objectives -->
-  <section class="section-padding section-light section-kente-surface">
+  <section class="section-padding section-light section-kente-surface relative overflow-hidden">
+    <div class="absolute inset-x-0 top-0 african-kente-band pointer-events-none" style="height: 12px;" aria-hidden="true"></div>
+    <div class="absolute inset-x-0 bottom-0 african-kente-band pointer-events-none" style="height: 12px;" aria-hidden="true"></div>
     <div class="section-container">
       <div class="text-center mb-12" data-animate>
         <span class="section-label">Our Focus</span>
         <h2 class="section-title section-title--centered text-gpla-navy">Strategic Objectives</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" data-animate data-delay="100">
-        <div class="bg-[#f8fafb] border border-gpla-navy/8 p-6 md:p-8 rounded-xl">
-          <div class="text-gpla-green text-2xl mb-3">🌍</div>
-          <p class="text-gpla-navy/70 leading-relaxed font-body">Promote youth participation in the East African integration agenda.</p>
-        </div>
-        <div class="bg-[#f8fafb] border border-gpla-navy/8 p-6 md:p-8 rounded-xl">
-          <div class="text-gpla-gold text-2xl mb-3">🤝</div>
-          <p class="text-gpla-navy/70 leading-relaxed font-body">Strengthen cooperation among university student leaders across the region.</p>
-        </div>
-        <div class="bg-[#f8fafb] border border-gpla-navy/8 p-6 md:p-8 rounded-xl">
-          <div class="text-gpla-gold text-2xl mb-3">🎓</div>
-          <p class="text-gpla-navy/70 leading-relaxed font-body">Build young leaders' understanding of regional institutions, diplomacy and governance.</p>
-        </div>
-        <div class="bg-[#f8fafb] border border-gpla-navy/8 p-6 md:p-8 rounded-xl">
-          <div class="text-gpla-gold text-2xl mb-3">💬</div>
-          <p class="text-gpla-navy/70 leading-relaxed font-body">Facilitate dialogue between young people, governments, universities and the private sector.</p>
-        </div>
-        <div class="bg-[#f8fafb] border border-gpla-navy/8 p-6 md:p-8 rounded-xl">
-          <div class="text-gpla-gold text-2xl mb-3">🔗</div>
-          <p class="text-gpla-navy/70 leading-relaxed font-body">Develop a sustainable network of emerging East African leaders.</p>
-        </div>
-        <div class="bg-[#f8fafb] border border-gpla-navy/8 p-6 md:p-8 rounded-xl">
-          <div class="text-gpla-gold text-2xl mb-3">📋</div>
-          <p class="text-gpla-navy/70 leading-relaxed font-body">Generate youth-led recommendations on regional policy and development.</p>
-        </div>
+        {[
+          'Promote youth participation in the East African integration agenda.',
+          'Strengthen cooperation among university student leaders across the region.',
+          "Build young leaders' understanding of regional institutions, diplomacy and governance.",
+          'Facilitate dialogue between young people, governments, universities and the private sector.',
+          'Develop a sustainable network of emerging East African leaders.',
+          'Generate youth-led recommendations on regional policy and development.',
+        ].map((text, i) => (
+          <div class={`objective-card african-corner-accent accent-${['navy', 'green', 'gold', 'green', 'gold', 'navy'][i]}`}>
+            <div class="objective-card__kente" aria-hidden="true"></div>
+            <span class="objective-card__num">{String(i + 1).padStart(2, '0')}</span>
+            <p class="text-gpla-navy/70 leading-relaxed font-body">{text}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Key Activities -->
+  <PatternDivider />
+
+  <!-- Programs summary (formerly Key Activities) -->
   <section class="section-padding section-dark section-kente-surface">
     <div class="section-container">
       <div class="text-center mb-12" data-animate>
         <span class="section-label">What We Do</span>
-        <h2 class="section-title section-title--centered text-gpla-navy">Key Activities</h2>
+        <h2 class="section-title section-title--centered text-gpla-navy">Our Programs</h2>
+        <p class="section-subtitle mx-auto mt-4 font-body" style="max-width: 600px; text-align: center;">
+          Four flagship programmes shaping the next generation of ethical, transformational leaders across East Africa.
+        </p>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6" data-animate data-delay="100">
-        <div class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl text-center shadow-sm">
-          <div class="text-gpla-gold text-3xl mb-4">🎤</div>
-          <h3 class="font-display text-gpla-navy text-xl mb-2">Annual Summit</h3>
-          <p class="text-gpla-navy/60 text-sm font-body">Annual East African Guild Leaders Summit</p>
-        </div>
-        <div class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl text-center shadow-sm">
-          <div class="text-gpla-gold text-3xl mb-4">🗣️</div>
-          <h3 class="font-display text-gpla-navy text-xl mb-2">Leaders' Dialogues</h3>
-          <p class="text-gpla-navy/60 text-sm font-body">University leaders' dialogues</p>
-        </div>
-        <div class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl text-center shadow-sm">
-          <div class="text-gpla-gold text-3xl mb-4">🏛️</div>
-          <h3 class="font-display text-gpla-navy text-xl mb-2">Policy Panels</h3>
-          <p class="text-gpla-navy/60 text-sm font-body">High-level policy panels</p>
-        </div>
-        <div class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl text-center shadow-sm">
-          <div class="text-gpla-gold text-3xl mb-4">🔄</div>
-          <h3 class="font-display text-gpla-navy text-xl mb-2">Leadership Exchanges</h3>
-          <p class="text-gpla-navy/60 text-sm font-body">Regional student leadership exchanges</p>
-        </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" data-animate data-delay="100">
+        <a href="/programs" class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl shadow-sm african-corner-accent card-lift block group">
+          <span class="font-display text-gpla-green text-sm tracking-wider mb-3 block">01</span>
+          <h3 class="font-display text-gpla-navy text-lg md:text-xl mb-3 leading-snug">East African Guild Leaders Summit</h3>
+          <p class="text-gpla-navy/60 text-sm font-body leading-relaxed">Advancing youth leadership and East African integration through the premier regional convening platform.</p>
+          <span class="text-gpla-green font-semibold text-sm mt-4 inline-block group-hover:translate-x-1 transition-transform">Learn more →</span>
+        </a>
+        <a href="/programs" class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl shadow-sm african-corner-accent card-lift block group">
+          <span class="font-display text-gpla-green text-sm tracking-wider mb-3 block">02</span>
+          <h3 class="font-display text-gpla-navy text-lg md:text-xl mb-3 leading-snug">Uganda National Science Park &amp; Innovation Area Initiative</h3>
+          <p class="text-gpla-navy/60 text-sm font-body leading-relaxed">Harnessing youth innovation for production and national transformation.</p>
+          <span class="text-gpla-green font-semibold text-sm mt-4 inline-block group-hover:translate-x-1 transition-transform">Learn more →</span>
+        </a>
+        <a href="/programs" class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl shadow-sm african-corner-accent card-lift block group">
+          <span class="font-display text-gpla-green text-sm tracking-wider mb-3 block">03</span>
+          <h3 class="font-display text-gpla-navy text-lg md:text-xl mb-3 leading-snug">GPLA Executive Master Classes</h3>
+          <p class="text-gpla-navy/60 text-sm font-body leading-relaxed">Developing ethical, strategic and transformational leaders through high-level programmes.</p>
+          <span class="text-gpla-green font-semibold text-sm mt-4 inline-block group-hover:translate-x-1 transition-transform">Learn more →</span>
+        </a>
+        <a href="/programs" class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl shadow-sm african-corner-accent card-lift block group">
+          <span class="font-display text-gpla-green text-sm tracking-wider mb-3 block">04</span>
+          <h3 class="font-display text-gpla-navy text-lg md:text-xl mb-3 leading-snug">Guild Leadership Development &amp; Mentorship Programme</h3>
+          <p class="text-gpla-navy/60 text-sm font-body leading-relaxed">Preparing student leaders for responsible service and future leadership.</p>
+          <span class="text-gpla-green font-semibold text-sm mt-4 inline-block group-hover:translate-x-1 transition-transform">Learn more →</span>
+        </a>
       </div>
     </div>
   </section>
