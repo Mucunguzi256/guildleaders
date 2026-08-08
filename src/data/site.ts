@@ -23,6 +23,17 @@ export const socialLinks = [
 
 export const contactEmail = 'guildacadem@gmail.com' as const;
 
+/**
+ * Formspree endpoints. `contactFormEndpoint` is still a placeholder: until it is
+ * replaced with a real form ID, submissions cannot be delivered, so the form
+ * tells visitors so and offers the email fallback instead of failing silently.
+ */
+export const contactFormEndpoint = 'https://formspree.io/f/YOUR_FORM_ID' as const;
+export const partnerFormEndpoint = 'https://formspree.io/f/mrbpnnaz' as const;
+
+export const isFormEndpointConfigured = (endpoint: string): boolean =>
+  endpoint.startsWith('https://') && !endpoint.includes('YOUR_FORM_ID');
+
 export const executiveDirector = {
   name: 'Demiano Masesa',
   title: 'Executive Director',
