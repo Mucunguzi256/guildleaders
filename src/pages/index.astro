@@ -1,11 +1,65 @@
 ---
-import Base from '../layouts/Base.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import Page from '../layouts/Page.astro';
 import PatternBackdrop from '../components/PatternBackdrop.astro';
 import PatternDivider from '../components/PatternDivider.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 import SummitYearCard from '../components/SummitYearCard.astro';
 import { executiveDirector } from '../data/site';
+import { summitCards } from '../data/summits';
+
+const stats = [
+  { target: '10000', suffix: '+', initial: '0+', label: 'Former Leaders Convened' },
+  { target: '8', initial: '0', label: 'Countries Represented' },
+  { target: '4', initial: '0', label: 'Flagship Programs' },
+  { target: '3', initial: '0', label: 'Regional Summits Held' },
+];
+
+const galleryStrip = [
+  { src: '/assets/images/gallery/001.jpg', gradient: 'from-[#132d82] to-[#389a29]' },
+  { src: '/assets/images/gallery/008.jpg', gradient: 'from-[#389a29] to-[#132d82]' },
+  { src: '/assets/images/gallery/017.jpg', gradient: 'from-[#F5A623] to-[#132d82]' },
+  { src: '/assets/images/gallery/020.jpg', gradient: 'from-[#132d82] to-[#F5A623]' },
+  { src: '/assets/images/gallery/023.jpg', gradient: 'from-[#389a29] to-[#F5A623]' },
+];
+
+const programCards = [
+  {
+    number: '01',
+    variant: 'navy',
+    entrance: 'left',
+    icon: '🎓',
+    title: 'Guild Leadership Development & Mentorship Programme',
+    description:
+      'Preparing Student Leaders for Responsible Service and Future Leadership through practical training in ethical leadership, financial accountability, and responsible representation.',
+  },
+  {
+    number: '02',
+    variant: 'green',
+    entrance: 'right',
+    icon: '🌍',
+    title: 'East African Guild Leaders Summit',
+    description:
+      'Advancing Youth Leadership and East African Integration — the premier regional convening platform bringing together guild leaders, policymakers, and statespersons.',
+  },
+  {
+    number: '03',
+    variant: 'gold',
+    entrance: 'left',
+    icon: '🔬',
+    title: 'Uganda National Science Park & Innovation Area Initiative',
+    description:
+      'Harnessing Youth Innovation for Production and National Transformation — an ecosystem where universities, researchers, and industries collaborate.',
+  },
+  {
+    number: '04',
+    variant: 'purple',
+    entrance: 'right',
+    icon: '📜',
+    title: 'GPLA Executive Master Classes',
+    description:
+      'Developing Ethical, Strategic and Transformational Leaders through high-level programmes for public officials, institutional administrators, and emerging leaders.',
+  },
+];
 ---
 
 <style is:global>
@@ -353,9 +407,7 @@ import { executiveDirector } from '../data/site';
   }
 </style>
 
-<Base title="Home" description="Guild Presidents Leadership Academy - Nurturing ethical, visionary and transformational leaders across East Africa.">
-  <Navbar />
-
+<Page title="Home" description="Guild Presidents Leadership Academy - Nurturing ethical, visionary and transformational leaders across East Africa.">
   <!-- ===== HERO ===== -->
   <section class="hero-home">
 
@@ -400,26 +452,15 @@ import { executiveDirector } from '../data/site';
   <section class="stats-strip section-padding african-diamond-lattice" data-animate>
     <div class="section-container">
       <div class="grid grid-cols-2 md:grid-cols-4 text-center">
-        <div class="stat-item">
-          <span class="stat-accent"></span>
-          <div class="stat-number"><span data-target="10000" data-suffix="+" class="ani-counter">0+</span></div>
-          <div class="stat-label font-body uppercase tracking-widest">Former Leaders Convened</div>
-        </div>
-        <div class="stat-item">
-          <span class="stat-accent"></span>
-          <div class="stat-number"><span data-target="8" class="ani-counter">0</span></div>
-          <div class="stat-label font-body uppercase tracking-widest">Countries Represented</div>
-        </div>
-        <div class="stat-item">
-          <span class="stat-accent"></span>
-          <div class="stat-number"><span data-target="4" class="ani-counter">0</span></div>
-          <div class="stat-label font-body uppercase tracking-widest">Flagship Programs</div>
-        </div>
-        <div class="stat-item">
-          <span class="stat-accent"></span>
-          <div class="stat-number"><span data-target="3" class="ani-counter">0</span></div>
-          <div class="stat-label font-body uppercase tracking-widest">Regional Summits Held</div>
-        </div>
+        {stats.map((stat) => (
+          <div class="stat-item">
+            <span class="stat-accent"></span>
+            <div class="stat-number">
+              <span data-target={stat.target} data-suffix={stat.suffix} class="ani-counter">{stat.initial}</span>
+            </div>
+            <div class="stat-label font-body uppercase tracking-widest">{stat.label}</div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -493,51 +534,26 @@ import { executiveDirector } from '../data/site';
   <section class="section-padding section-navy relative overflow-hidden">
     <PatternBackdrop variant="navy" />
     <div class="section-container relative z-10">
-      <div class="text-center mb-12" data-animate>
-        <span class="section-label section-label--gold">Our Summits</span>
-        <h2 class="section-title section-title--centered text-white animated-gradient-bg" style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Three Years. One Movement.</h2>
-      </div>
+      <SectionHeading
+        label="Our Summits"
+        labelClass="section-label section-label--gold"
+        title="Three Years. One Movement."
+        titleClass="section-title section-title--centered text-white animated-gradient-bg"
+        titleStyle="-webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"
+      />
       <div class="summit-bento-grid summit-bento-grid--summits">
         <SummitYearCard
-          class="summit-bento-card--featured"
-          year="2026"
-          variant="2026"
-          featured
-          tagline="23–24 July 2026 · Completed"
-          title="3rd Annual East African Guild Leaders' Summit"
-          theme="Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order"
-          imageSrc="/assets/images/gallery/020.jpg"
-          meta={[
-            { label: 'Chief Guest', value: 'H.E. Yoweri Kaguta Museveni', sub: 'President of Uganda & EAC Chairperson' },
-            { label: 'Venue', value: 'Freedom Square', sub: 'Makerere University, Kampala' },
-          ]}
+          {...summitCards['2026']}
           primaryCta={{ href: '/summit/2026', label: 'Report Coming Soon →' }}
         />
+        <SummitYearCard {...summitCards['2025']} />
         <SummitYearCard
-          year="2025"
-          variant="2025"
-          tagline="24 April 2025 · Makerere University"
-          title="2nd Annual Guild Leaders' Summit"
-          theme="Leadership with Integrity; Building Foundations for Good Governance in East Africa"
-          imageSrc="/assets/images/gallery/008.jpg"
-          meta={[
-            { label: 'Chief Guest', value: 'H.E. Uhuru Kenyatta', sub: '4th President, Republic of Kenya' },
-            { label: 'Attendees', value: '1,000+', sub: 'Youth leaders · 920 registered' },
-          ]}
-          primaryCta={{ href: '/summit/2025', label: 'View Full Report →' }}
-        />
-        <SummitYearCard
-          year="2024"
-          variant="2024"
+          {...summitCards['2024']}
           tagline="April 15, 2024 · Makerere"
-          title="Inaugural Guild Leaders' Summit"
-          theme="Legacy and Leadership Continuum: The Power of Knowledge and Cross-Generational Learning"
-          imageSrc="/assets/images/gallery/001.jpg"
           meta={[
             { label: 'Chief Guest', value: 'HE. Jakaya Mrisho Kikwete', sub: 'Former President, Tanzania' },
-            { label: 'Attendees', value: '700+', sub: 'Historic first convening' },
+            ...summitCards['2024'].meta.slice(1),
           ]}
-          primaryCta={{ href: '/summit/2024', label: 'View Full Report →' }}
         />
       </div>
       <p class="text-center mt-10" data-animate>
@@ -549,31 +565,27 @@ import { executiveDirector } from '../data/site';
   <!-- ===== GALLERY STRIP ===== -->
   <section class="section-padding african-gallery-weave section-kente-surface" data-animate>
     <div class="section-container">
-      <div class="text-center mb-10">
-        <span class="section-label">Moments from Our Summits</span>
-        <h2 class="section-title section-title--centered text-gpla-navy">Gallery</h2>
-      </div>
+      <SectionHeading
+        label="Moments from Our Summits"
+        title="Gallery"
+        class="text-center mb-10"
+        animate={false}
+      />
       <div class="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
-        <a href="/gallery" class="gallery-item group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#132d82] to-[#389a29]" data-animate="scale">
-          <img src="/assets/images/gallery/001.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover" />
-          <div class="gallery-overlay"><span>GPLA</span></div>
-        </a>
-        <a href="/gallery" class="gallery-item group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#389a29] to-[#132d82]" data-animate="scale" data-delay="50">
-          <img src="/assets/images/gallery/008.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover" />
-          <div class="gallery-overlay"><span>GPLA</span></div>
-        </a>
-        <a href="/gallery" class="gallery-item group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#F5A623] to-[#132d82]" data-animate="scale" data-delay="100">
-          <img src="/assets/images/gallery/017.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover" />
-          <div class="gallery-overlay"><span>GPLA</span></div>
-        </a>
-        <a href="/gallery" class="gallery-item group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#132d82] to-[#F5A623]" data-animate="scale" data-delay="150">
-          <img src="/assets/images/gallery/020.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover" />
-          <div class="gallery-overlay"><span>GPLA</span></div>
-        </a>
-        <a href="/gallery" class="gallery-item group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#389a29] to-[#F5A623]" data-animate="scale" data-delay="200">
-          <img src="/assets/images/gallery/023.jpg" alt="Summit" loading="lazy" class="w-full h-full object-cover" />
-          <div class="gallery-overlay"><span>GPLA</span></div>
-        </a>
+        {galleryStrip.map((tile, index) => (
+          <a
+            href="/gallery"
+            class:list={[
+              'gallery-item group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br',
+              tile.gradient,
+            ]}
+            data-animate="scale"
+            data-delay={index > 0 ? index * 50 : undefined}
+          >
+            <img src={tile.src} alt="Summit" loading="lazy" class="w-full h-full object-cover" />
+            <div class="gallery-overlay"><span>GPLA</span></div>
+          </a>
+        ))}
         <a href="/gallery" class="group relative rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-[#F5A623] to-[#389a29]" data-animate="scale" data-delay="250">
           <div class="w-full h-full flex items-center justify-center bg-gpla-navy/10 transition-colors group-hover:bg-gpla-navy/20 rounded-xl">
             <div class="text-center">
@@ -591,52 +603,28 @@ import { executiveDirector } from '../data/site';
   <!-- ===== PROGRAMS SECTION ===== -->
   <section class="section-padding programs-section section-kente-surface" id="programs">
     <div class="section-container relative z-10">
-      <div class="text-center mb-16" data-animate>
-        <span class="section-label">What We Do</span>
-        <h2 class="section-title section-title--centered text-gpla-navy">Our Programs</h2>
-        <p class="section-subtitle mx-auto mt-4 font-body" style="max-width: 600px; text-align: center;">Four flagship programmes shaping the next generation of ethical, transformational leaders across East Africa.</p>
-      </div>
+      <SectionHeading
+        label="What We Do"
+        title="Our Programs"
+        subtitle="Four flagship programmes shaping the next generation of ethical, transformational leaders across East Africa."
+        class="text-center mb-16"
+      />
       <div class="programs-grid">
-        <!-- Card 01 -->
-        <div class="program-card program-card--navy african-corner-accent" data-entrance="left" data-card-delay="0">
-          <span class="program-card__number" data-counter-target="01">00</span>
-          <div class="program-card__icon">🎓</div>
-          <div class="program-card__body">
-            <h3 class="program-card__title">Guild Leadership Development & Mentorship Programme</h3>
-            <p class="program-card__desc">Preparing Student Leaders for Responsible Service and Future Leadership through practical training in ethical leadership, financial accountability, and responsible representation.</p>
+        {programCards.map((card, index) => (
+          <div
+            class={`program-card program-card--${card.variant} african-corner-accent`}
+            data-entrance={card.entrance}
+            data-card-delay={index * 150}
+          >
+            <span class="program-card__number" data-counter-target={card.number}>00</span>
+            <div class="program-card__icon">{card.icon}</div>
+            <div class="program-card__body">
+              <h3 class="program-card__title">{card.title}</h3>
+              <p class="program-card__desc">{card.description}</p>
+            </div>
+            <a href="/programs" class="program-card__link">Learn More <span>→</span></a>
           </div>
-          <a href="/programs" class="program-card__link">Learn More <span>→</span></a>
-        </div>
-        <!-- Card 02 -->
-        <div class="program-card program-card--green african-corner-accent" data-entrance="right" data-card-delay="150">
-          <span class="program-card__number" data-counter-target="02">00</span>
-          <div class="program-card__icon">🌍</div>
-          <div class="program-card__body">
-            <h3 class="program-card__title">East African Guild Leaders Summit</h3>
-            <p class="program-card__desc">Advancing Youth Leadership and East African Integration — the premier regional convening platform bringing together guild leaders, policymakers, and statespersons.</p>
-          </div>
-          <a href="/programs" class="program-card__link">Learn More <span>→</span></a>
-        </div>
-        <!-- Card 03 -->
-        <div class="program-card program-card--gold african-corner-accent" data-entrance="left" data-card-delay="300">
-          <span class="program-card__number" data-counter-target="03">00</span>
-          <div class="program-card__icon">🔬</div>
-          <div class="program-card__body">
-            <h3 class="program-card__title">Uganda National Science Park & Innovation Area Initiative</h3>
-            <p class="program-card__desc">Harnessing Youth Innovation for Production and National Transformation — an ecosystem where universities, researchers, and industries collaborate.</p>
-          </div>
-          <a href="/programs" class="program-card__link">Learn More <span>→</span></a>
-        </div>
-        <!-- Card 04 -->
-        <div class="program-card program-card--purple african-corner-accent" data-entrance="right" data-card-delay="450">
-          <span class="program-card__number" data-counter-target="04">00</span>
-          <div class="program-card__icon">📜</div>
-          <div class="program-card__body">
-            <h3 class="program-card__title">GPLA Executive Master Classes</h3>
-            <p class="program-card__desc">Developing Ethical, Strategic and Transformational Leaders through high-level programmes for public officials, institutional administrators, and emerging leaders.</p>
-          </div>
-          <a href="/programs" class="program-card__link">Learn More <span>→</span></a>
-        </div>
+        ))}
       </div>
       <div class="text-center mt-12" data-animate data-delay="400">
         <a href="/programs" class="btn btn-primary btn-lg">
@@ -652,13 +640,14 @@ import { executiveDirector } from '../data/site';
   <!-- ===== PARTNERS SECTION ===== -->
   <section class="section-padding" data-animate>
     <div class="section-container">
-      <div class="text-center mb-10">
-        <span class="section-label">Our Partners</span>
-        <h2 class="section-title section-title--centered text-gpla-navy">Trusted by Leading Institutions</h2>
-        <p class="section-subtitle mx-auto mt-4 font-body" style="text-align: justify;">
-          GPLA works with governments, universities, development partners, and the private sector across East Africa to advance youth leadership and regional integration.
-        </p>
-      </div>
+      <SectionHeading
+        label="Our Partners"
+        title="Trusted by Leading Institutions"
+        subtitle="GPLA works with governments, universities, development partners, and the private sector across East Africa to advance youth leadership and regional integration."
+        subtitleStyle="text-align: justify;"
+        class="text-center mb-10"
+        animate={false}
+      />
       <div class="partner-logo-grid">
         {[1,2,3,4,5,6,7,8,9,10].map(i => (
           <div class="partner-logo-item">
@@ -669,73 +658,18 @@ import { executiveDirector } from '../data/site';
     </div>
   </section>
 
-  <Footer />
-</Base>
+</Page>
 
 <script>
-  // ===== STATS COUNTER WITH BOUNCE =====
-  const animateStats = () => {
-    const stats = document.querySelectorAll('.ani-counter');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.dataset.animated) {
-          entry.target.dataset.animated = 'true';
-          const el = entry.target;
-          const target = parseInt(el.dataset.target || '0', 10);
-          const suffix = el.dataset.suffix || '';
-          const duration = 1800;
-          const startTime = performance.now();
-          const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
-          const tick = (now) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const current = Math.floor(easeOutQuart(progress) * target);
-            el.textContent = current + suffix;
-            if (progress < 1) {
-              requestAnimationFrame(tick);
-            } else {
-              el.classList.add('counter-done');
-            }
-          };
-          requestAnimationFrame(tick);
-        }
-      });
-    }, { threshold: 0.3 });
-    stats.forEach(stat => observer.observe(stat));
-  };
-  animateStats();
-
-  // ===== SCROLL ANIMATIONS =====
-  const animateOnScroll = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = parseInt(entry.target.dataset.delay) || 0;
-        setTimeout(() => {
-          entry.target.classList.add('animate-in');
-        }, delay);
-        animateOnScroll.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('[data-animate]').forEach(el => animateOnScroll.observe(el));
+  import { revealOnScroll, revealWithClass } from '../scripts/reveal';
+  import { twoDigits } from '../utils/format';
 
   // ===== MOBILE CARD SLIDE-IN =====
   if (window.innerWidth < 1024) {
-    const cardObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const delay = parseInt(entry.target.dataset.delay) || 0;
-          setTimeout(() => {
-            entry.target.classList.add('mobile-visible');
-          }, delay);
-          cardObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.program-card').forEach((el, i) => {
       if (!el.dataset.delay) el.dataset.delay = String(i * 100);
-      cardObserver.observe(el);
     });
+    revealWithClass('.program-card', 'mobile-visible', { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   }
 
   // ===== SCROLL PARALLAX =====
@@ -800,40 +734,31 @@ import { executiveDirector } from '../data/site';
   }
 
   // ===== PROGRAM CARDS: STAGGERED ENTRANCE =====
-  const entranceObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const card = entry.target;
-        const delay = parseInt(card.dataset.cardDelay || '0', 10);
-        setTimeout(() => card.classList.add('program-entered'), delay);
-        entranceObserver.unobserve(card);
-      }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.program-card[data-entrance]').forEach(c => entranceObserver.observe(c));
+  revealOnScroll(
+    '.program-card[data-entrance]',
+    (card) => {
+      const delay = Number(card.dataset.cardDelay) || 0;
+      setTimeout(() => card.classList.add('program-entered'), delay);
+    },
+    { threshold: 0.15 },
+  );
 
   // ===== PROGRAM CARDS: NUMBER COUNTER =====
-  const numObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.dataset.counted) {
-        entry.target.dataset.counted = 'true';
-        const el = entry.target;
-        const target = el.dataset.counterTarget || '00';
-        const targetNum = parseInt(target, 10);
-        const duration = 800;
-        const start = performance.now();
-        const tick = (now) => {
-          const p = Math.min((now - start) / duration, 1);
-          const cur = Math.round(p * targetNum);
-          el.textContent = String(cur).padStart(2, '0');
-          if (p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-        numObserver.unobserve(el);
-      }
-    });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('.program-card__number[data-counter-target]').forEach(n => numObserver.observe(n));
+  revealOnScroll(
+    '.program-card__number[data-counter-target]',
+    (el) => {
+      const target = Number(el.dataset.counterTarget) || 0;
+      const duration = 800;
+      const start = performance.now();
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        el.textContent = twoDigits(Math.round(progress * target));
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    },
+    { threshold: 0.3 },
+  );
 
   // ===== PROGRAM CARDS: CLICK PRESS =====
   document.querySelectorAll('.program-card').forEach(card => {

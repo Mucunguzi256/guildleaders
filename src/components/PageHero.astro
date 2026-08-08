@@ -1,0 +1,106 @@
+---
+interface Props {
+  /** A single line, or several lines separated by `<br />`. */
+  title: string | string[];
+  label?: string;
+  subtitle?: string;
+  /** Small supporting line under the subtitle. */
+  note?: string;
+  imageSrc?: string;
+  imageOpacity?: string;
+  /** Colour wash above the image; pass `null` for heroes with their own backdrop. */
+  overlay?: string | null;
+  /** Adds the shared kente overlay texture. */
+  patternOverlay?: boolean;
+  minHeight?: string;
+  titleSize?: string;
+  titleDelay?: number;
+  subtitleDelay?: number;
+  noteDelay?: number;
+  subtitleClass?: string;
+  align?: 'left' | 'center';
+  /** Oversized year watermark shown from `md` up. */
+  watermark?: string;
+}
+
+const {
+  title,
+  label,
+  subtitle,
+  note,
+  imageSrc,
+  imageOpacity = 'opacity-30',
+  overlay = 'bg-gradient-to-r from-gpla-navy/90 via-gpla-navy/70 to-gpla-navy/50',
+  patternOverlay = true,
+  minHeight = 'min-h-[50vh] md:min-h-[55vh]',
+  titleSize = 'text-[clamp(2.5rem,7vw,5rem)]',
+  titleDelay = 100,
+  subtitleDelay = 150,
+  noteDelay = 200,
+  subtitleClass = 'text-white/85 text-lg md:text-xl mt-4 md:mt-6 max-w-[640px] relative z-10 font-body',
+  align = 'left',
+  watermark,
+} = Astro.props;
+
+const lines = Array.isArray(title) ? title : [title];
+const centered = align === 'center';
+---
+
+<section
+  class:list={[
+    minHeight,
+    'bg-gpla-navy section-padding relative overflow-hidden flex items-center',
+  ]}
+  style="padding-top: 8rem;"
+>
+  {imageSrc && (
+    <div class="absolute inset-0 z-0">
+      <img src={imageSrc} alt="" class:list={['w-full h-full object-cover', imageOpacity]} />
+    </div>
+  )}
+  {overlay && <div class:list={['absolute inset-0', overlay]}></div>}
+  {patternOverlay && <div class="african-hero-overlay"></div>}
+  <slot name="backdrop" />
+  <div class:list={['section-container relative z-10 w-full', centered && 'text-center']}>
+    {label && <p class="section-label section-label--gold" data-animate>{label}</p>}
+    <h1
+      class:list={['font-display text-white leading-[0.95]', titleSize]}
+      data-animate
+      data-delay={titleDelay}
+    >
+      {lines.map((line, index) => (
+        <Fragment>{index > 0 && <br />}{line}</Fragment>
+      ))}
+    </h1>
+    {watermark && (
+      <div
+        class="font-display text-[100px] md:text-[180px] text-gpla-gold/20 absolute right-[5%] md:right-[15%] top-[30%] z-10 leading-none hidden md:block font-bold"
+        aria-hidden="true"
+      >
+        {watermark}
+      </div>
+    )}
+    {subtitle && (
+      <p
+        class:list={[subtitleClass, centered && 'mx-auto']}
+        data-animate
+        data-delay={subtitleDelay}
+      >
+        {subtitle}
+      </p>
+    )}
+    {note && (
+      <p
+        class:list={[
+          'text-white/60 text-sm md:text-base mt-3 relative z-10 font-body',
+          centered && 'mx-auto',
+        ]}
+        data-animate
+        data-delay={noteDelay}
+      >
+        {note}
+      </p>
+    )}
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,19 @@
+---
+interface Props {
+  heading: string;
+  href: string;
+  label: string;
+}
+
+const { heading, href, label } = Astro.props;
+---
+
+<section class="bg-gpla-navy px-4 md:px-12 py-12 md:py-16 text-center">
+  <h3 class="font-display text-white text-[28px] md:text-[48px] mb-5">{heading}</h3>
+  <a
+    href={href}
+    class="bg-gpla-green text-white px-10 py-5 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all"
+  >
+    {label}
+  </a>
+</section>

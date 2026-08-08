@@ -248,6 +248,8 @@ import PatternRail from '../../components/PatternRail.astro';
 </Base>
 
 <script>
+  import { twoDigits } from '../../utils/format';
+
   // Countdown to July 23, 2026 08:00 EAT (UTC+3)
   const target = new Date('2026-07-23T05:00:00Z');
   function updateCountdown() {
@@ -263,7 +265,7 @@ import PatternRail from '../../components/PatternRail.astro';
     const secs = Math.floor((diff % 60000) / 1000);
     const update = (id, val) => {
       const el = document.getElementById(id);
-      if (el) el.textContent = String(val).padStart(2, '0');
+      if (el) el.textContent = twoDigits(val);
     };
     update('count-days', days);
     update('count-hours', hours);
@@ -272,18 +274,4 @@ import PatternRail from '../../components/PatternRail.astro';
   }
   setInterval(updateCountdown, 1000);
   updateCountdown();
-
-  // Scroll animations
-  const animateOnScroll = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = parseInt(entry.target.dataset.delay) || 0;
-        setTimeout(() => {
-          entry.target.classList.add('animate-in');
-        }, delay);
-        animateOnScroll.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('[data-animate]').forEach(el => animateOnScroll.observe(el));
 </script>

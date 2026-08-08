@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  label?: string;
+  subtitle?: string;
+  /** Inline style for the subtitle paragraph. */
+  subtitleStyle?: string;
+  labelClass?: string;
+  titleClass?: string;
+  /** Inline style for the title, e.g. gradient text clipping. */
+  titleStyle?: string;
+  /** Wrapper classes, typically the bottom margin. */
+  class?: string;
+  /** Set false when an ancestor already carries `data-animate`. */
+  animate?: boolean;
+}
+
+const {
+  title,
+  label,
+  subtitle,
+  subtitleStyle = 'max-width: 600px; text-align: center;',
+  labelClass = 'section-label',
+  titleClass = 'section-title section-title--centered text-gpla-navy',
+  titleStyle,
+  class: className = 'text-center mb-12',
+  animate = true,
+} = Astro.props;
+---
+
+<div class={className} data-animate={animate ? true : undefined}>
+  {label && <span class={labelClass}>{label}</span>}
+  <h2 class={titleClass} style={titleStyle}>{title}</h2>
+  {subtitle && (
+    <p class="section-subtitle mx-auto mt-4 font-body" style={subtitleStyle}>{subtitle}</p>
+  )}
+</div>

@@ -1,0 +1,63 @@
+---
+export interface Outcome {
+  num: string;
+  text: string;
+}
+
+interface Props {
+  outcomes: Outcome[];
+  heading: string;
+  intro?: string;
+  /** `green` cards on a light surface, or `navy` cards on the alternate surface. */
+  tone?: 'green' | 'navy';
+  columns?: string;
+  sectionClass?: string;
+}
+
+const {
+  outcomes,
+  heading,
+  intro,
+  tone = 'green',
+  columns = 'sm:grid-cols-2 md:grid-cols-5',
+  sectionClass = 'px-4 md:px-12 py-12 md:py-24',
+} = Astro.props;
+
+const isGreen = tone === 'green';
+---
+
+<section class={sectionClass}>
+  <div class="max-w-6xl mx-auto">
+    <h2
+      class:list={[
+        'font-display text-gpla-navy text-[28px] md:text-[48px]',
+        intro ? 'mb-4' : 'mb-8 md:mb-12',
+      ]}
+    >
+      {heading}
+    </h2>
+    {intro && <p class="text-gpla-navy/60 font-body mb-8 md:mb-12 max-w-2xl">{intro}</p>}
+    <div class:list={['grid grid-cols-1 gap-4 md:gap-6', columns]}>
+      {outcomes.map((outcome) => (
+        <div class:list={['p-6 rounded-lg', isGreen ? 'bg-gpla-green text-center' : 'bg-gpla-navy']}>
+          <div
+            class:list={[
+              'font-display',
+              isGreen ? 'text-[48px] text-white' : 'text-[36px] text-gpla-gold',
+            ]}
+          >
+            {outcome.num}
+          </div>
+          <p
+            class:list={[
+              'text-white text-sm mt-2',
+              !isGreen && 'font-body leading-relaxed',
+            ]}
+          >
+            {outcome.text}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

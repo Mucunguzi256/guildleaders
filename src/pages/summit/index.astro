@@ -1,37 +1,28 @@
 ---
-import Base from '../../layouts/Base.astro';
-import Navbar from '../../components/Navbar.astro';
-import Footer from '../../components/Footer.astro';
-import PatternRail from '../../components/PatternRail.astro';
+import Page from '../../layouts/Page.astro';
+import PageHero from '../../components/PageHero.astro';
 import PatternBackdrop from '../../components/PatternBackdrop.astro';
 import PatternDivider from '../../components/PatternDivider.astro';
 import SummitYearCard from '../../components/SummitYearCard.astro';
+import { summitCards } from '../../data/summits';
 ---
 
-<Base title="Summit" description="The Guild Leaders' Annual Summit - East Africa's premier youth leadership gathering.">
-  <Navbar />
-
-  <section class="min-h-[45vh] md:min-h-[50vh] bg-gpla-navy section-padding relative overflow-hidden flex items-center" style="padding-top: 8rem;">
-    <div class="absolute inset-0 z-0">
-      <img src="/assets/images/gallery/023.jpg" alt="" class="w-full h-full object-cover opacity-25" />
+<Page title="Summit" description="The Guild Leaders' Annual Summit - East Africa's premier youth leadership gathering.">
+  <PageHero
+    label="Summit"
+    title={["Guild Leaders'", 'Annual Summit']}
+    minHeight="min-h-[45vh] md:min-h-[50vh]"
+    imageSrc="/assets/images/gallery/023.jpg"
+    imageOpacity="opacity-25"
+    subtitleClass="text-white/80 text-lg md:text-xl max-w-[640px] mt-6 relative z-10 font-body leading-relaxed"
+    subtitle="From 700 student leaders in 2024 to a growing East African regional movement — the continent's premier youth leadership convening at Makerere University."
+  >
+    <PatternBackdrop slot="backdrop" variant="navy" />
+    <div class="flex flex-wrap gap-3 mt-8" data-animate data-delay="200">
+      <a href="/summit/2026" class="btn btn-primary">Summit 2026 →</a>
+      <a href="/summit/2025" class="btn btn-outline">Past Summits</a>
     </div>
-    <div class="absolute inset-0 bg-gradient-to-r from-gpla-navy/90 via-gpla-navy/70 to-gpla-navy/50"></div>
-    <div class="african-hero-overlay"></div>
-    <PatternBackdrop variant="navy" />
-    <div class="section-container relative z-10 w-full">
-      <p class="section-label section-label--gold" data-animate>Summit</p>
-      <h1 class="font-display text-white text-[clamp(2.5rem,7vw,5rem)] leading-[0.95]" data-animate data-delay="100">
-        Guild Leaders'<br />Annual Summit
-      </h1>
-      <p class="text-white/80 text-lg md:text-xl max-w-[640px] mt-6 font-body leading-relaxed" data-animate data-delay="150">
-        From 700 student leaders in 2024 to a growing East African regional movement — the continent's premier youth leadership convening at Makerere University.
-      </p>
-      <div class="flex flex-wrap gap-3 mt-8" data-animate data-delay="200">
-        <a href="/summit/2026" class="btn btn-primary">Summit 2026 →</a>
-        <a href="/summit/2025" class="btn btn-outline">Past Summits</a>
-      </div>
-    </div>
-  </section>
+  </PageHero>
 
   <PatternDivider bold />
 
@@ -44,50 +35,14 @@ import SummitYearCard from '../../components/SummitYearCard.astro';
       </div>
       <div class="summit-bento-grid summit-bento-grid--summits">
         <SummitYearCard
-          class="summit-bento-card--featured"
-          year="2026"
-          variant="2026"
-          featured
+          {...summitCards['2026']}
           tagline="Upcoming · 23–24 July 2026"
-          title="3rd Annual East African Guild Leaders' Summit"
-          theme="Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order"
-          imageSrc="/assets/images/gallery/020.jpg"
-          meta={[
-            { label: 'Chief Guest', value: 'H.E. Yoweri Kaguta Museveni', sub: 'President of Uganda & EAC Chairperson' },
-            { label: 'Venue', value: 'Freedom Square', sub: 'Makerere University, Kampala' },
-          ]}
           primaryCta={{ href: 'https://luma.com/5tuheo2m', label: 'Apply to Join →', external: true }}
           secondaryCta={{ href: '/summit/2026', label: 'Learn More →' }}
         />
-        <SummitYearCard
-          year="2025"
-          variant="2025"
-          tagline="24 April 2025 · Makerere University"
-          title="2nd Annual Guild Leaders' Summit"
-          theme="Leadership with Integrity; Building Foundations for Good Governance in East Africa"
-          imageSrc="/assets/images/gallery/008.jpg"
-          meta={[
-            { label: 'Chief Guest', value: 'H.E. Uhuru Kenyatta', sub: '4th President, Republic of Kenya' },
-            { label: 'Attendees', value: '1,000+', sub: 'Youth leaders · 920 registered' },
-          ]}
-          primaryCta={{ href: '/summit/2025', label: 'View Full Report →' }}
-        />
-        <SummitYearCard
-          year="2024"
-          variant="2024"
-          tagline="April 15, 2024 · Makerere University"
-          title="Inaugural Guild Leaders' Summit"
-          theme="Legacy and Leadership Continuum: The Power of Knowledge and Cross-Generational Learning"
-          imageSrc="/assets/images/gallery/001.jpg"
-          meta={[
-            { label: 'Chief Guest', value: 'HE. Jakaya Mrisho Kikwete', sub: 'Former President, Tanzania · Summit Patron' },
-            { label: 'Attendees', value: '700+', sub: 'Historic first convening' },
-          ]}
-          primaryCta={{ href: '/summit/2024', label: 'View Full Report →' }}
-        />
+        <SummitYearCard {...summitCards['2025']} />
+        <SummitYearCard {...summitCards['2024']} />
       </div>
     </div>
   </section>
-
-  <Footer />
-</Base>
+</Page>

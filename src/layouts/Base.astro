@@ -555,66 +555,12 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
 
     <!-- Global scroll-trigger animations -->
     <script>
+      import { animateCounters, revealWithClass } from '../scripts/reveal';
+
       document.addEventListener('DOMContentLoaded', () => {
-        // data-animate elements
-        const animateEls = document.querySelectorAll('[data-animate]');
-        if (animateEls.length) {
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                const delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
-                setTimeout(() => entry.target.classList.add('animate-in'), delay);
-                observer.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-          animateEls.forEach(el => observer.observe(el));
-        }
-
-        // ani-fade-up elements (used by the new animation utilities)
-        const fadeEls = document.querySelectorAll('.ani-fade-up');
-        if (fadeEls.length) {
-          const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('ani-visible');
-                fadeObserver.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-          fadeEls.forEach(el => fadeObserver.observe(el));
-        }
-
-        // Animated counters
-        const counterEls = document.querySelectorAll('.ani-counter');
-        if (counterEls.length) {
-          const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                const el = entry.target;
-                const target = parseInt(el.getAttribute('data-target')) || 0;
-                const duration = parseInt(el.getAttribute('data-duration')) || 1500;
-                const start = parseInt(el.getAttribute('data-start')) || 0;
-                const suffix = el.getAttribute('data-suffix') || '';
-                const prefix = el.getAttribute('data-prefix') || '';
-                let current = start;
-                const step = Math.max(1, Math.floor((target - start) / (duration / 16)));
-                const update = () => {
-                  current += step;
-                  if (current >= target) {
-                    el.textContent = prefix + target + suffix;
-                    return;
-                  }
-                  el.textContent = prefix + current + suffix;
-                  requestAnimationFrame(update);
-                };
-                update();
-                counterObserver.unobserve(el);
-              }
-            });
-          }, { threshold: 0.5 });
-          counterEls.forEach(el => counterObserver.observe(el));
-        }
+        revealWithClass('[data-animate]', 'animate-in');
+        revealWithClass('.ani-fade-up', 'ani-visible');
+        animateCounters();
       });
 
       // Mobile menu toggle

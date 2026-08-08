@@ -1,7 +1,6 @@
 ---
-import Base from '../layouts/Base.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import Page from '../layouts/Page.astro';
+import PageHero from '../components/PageHero.astro';
 import PatternRibbon from '../components/PatternRibbon.astro';
 
 // Gallery images sorted by number (filenames like 001.jpg, 002.jpg etc.)
@@ -33,24 +32,18 @@ const galleryImages = [
 const IMG_6439 = { src: "/assets/images/gallery/IMG_6439.JPG", alt: "Summit group photo" };
 ---
 
-<Base title="Gallery" description="View moments from the Guild Leaders' Summits across East Africa.">
-  <Navbar />
-
-  <!-- Hero -->
-  <section class="min-h-[50vh] bg-gpla-navy section-padding relative overflow-hidden flex items-center" style="padding-top: 8rem;">
-    <div class="absolute inset-0 bg-gradient-to-r from-[#132d82]/95 via-[#132d82]/80 to-[#389a29]/60"></div>
-    <div class="relative z-10 w-full">
-      <div class="section-container text-center">
-        <p class="section-label section-label--gold" data-animate>GPLA Gallery</p>
-      <h1 class="font-display text-white text-[clamp(2.5rem,8vw,6rem)] leading-[0.95]" data-animate data-delay="100">
-        Our Gallery
-      </h1>
-      <p class="text-white/80 text-lg md:text-xl max-w-2xl mx-auto font-body" data-animate data-delay="150">
-        700+ leaders. 6 countries. 3 summits. Witness the moments that shaped a movement.
-      </p>
-      </div>
-    </div>
-  </section>
+<Page title="Gallery" description="View moments from the Guild Leaders' Summits across East Africa.">
+  <PageHero
+    label="GPLA Gallery"
+    title="Our Gallery"
+    align="center"
+    minHeight="min-h-[50vh]"
+    titleSize="text-[clamp(2.5rem,8vw,6rem)]"
+    overlay="bg-gradient-to-r from-[#132d82]/95 via-[#132d82]/80 to-[#389a29]/60"
+    patternOverlay={false}
+    subtitleClass="text-white/80 text-lg md:text-xl max-w-2xl font-body"
+    subtitle="700+ leaders. 6 countries. 3 summits. Witness the moments that shaped a movement."
+  />
 
   <PatternRibbon height={24} />
 
@@ -79,10 +72,11 @@ const IMG_6439 = { src: "/assets/images/gallery/IMG_6439.JPG", alt: "Summit grou
     <img id="lightbox-img" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg" src="" alt="" />
   </div>
 
-  <Footer />
-</Base>
+</Page>
 
 <script>
+  import { revealOnScroll } from '../scripts/reveal';
+
   // Lightbox
   function openLightbox(src) {
     const lb = document.getElementById('lightbox');
@@ -121,22 +115,20 @@ const IMG_6439 = { src: "/assets/images/gallery/IMG_6439.JPG", alt: "Summit grou
     }
   });
 
-  // Scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        (entry.target).style.opacity = '1';
-        (entry.target).style.transform = 'translateY(0)';
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
+  // Staggered reveal for gallery tiles
   document.querySelectorAll('.gallery-item').forEach((el, i) => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(24px)';
     el.style.transition = 'opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)';
     el.style.transitionDelay = `${(i % 6) * 0.08}s`;
-    observer.observe(el);
   });
+
+  revealOnScroll(
+    '.gallery-item',
+    (el) => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    },
+    { threshold: 0.1 },
+  );
 </script>
