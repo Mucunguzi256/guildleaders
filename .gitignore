@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local agent tooling state (machine-specific, not for distribution)
+.opencode/user.db
+.opencode/user.db-shm
+.opencode/user.db-wal
+.opencode/vision/
+.sisyphus/
