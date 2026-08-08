@@ -37,6 +37,16 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+| `npm run test`            | Run the unit tests once                          |
+| `npm run test:watch`      | Run the unit tests in watch mode                 |
+| `npm run test:coverage`   | Run the unit tests with a coverage report        |
+
+## 🧪 Tests
+
+Unit tests live in `tests/` and run on [Vitest](https://vitest.dev). Components,
+layouts and pages are rendered server-side with Astro's container API through the
+`tests/helpers/render.ts` helper, which strips the dev-only `data-astro-source-*`
+attributes so assertions match the shipped markup.
 
 ## 👀 Want to learn more?
 
