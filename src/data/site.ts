@@ -51,7 +51,22 @@ export type TeamMember = {
 };
 
 export const teamMembers: TeamMember[] = [
-  { name: 'Kato Laban', title: 'Programs Manager', initials: 'KL' },
+  {
+    name: 'Kato Laban',
+    title: 'Head of Programs',
+    initials: 'KL',
+    photo: '/assets/images/team/kato.jpg',
+    photoAlt: 'Kato Laban, Head of Programs at the Guild Presidents Leadership Academy',
+    bio: 'Kato Laban holds a Bachelor\'s degree in Commerce (Second Class Upper) from Makerere University. A former student leader at Makerere, he has served as a member of the National Youth Council of Uganda. He is an alumnus of the Young Leaders Forum and the Uganda Democracy Academy Fellowship, and is passionate about youth leadership, governance, civic engagement, and regional integration.',
+    email: 'katolaban003@gmail.com',
+    socials: [
+      { label: 'X (Twitter)', href: 'https://x.com/Katolaban3' },
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/Katolaban',
+      },
+    ],
+  },
   {
     name: 'Natasha Kaitesi',
     title: 'Operations Officer',
