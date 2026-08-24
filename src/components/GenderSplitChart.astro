@@ -1,0 +1,69 @@
+---
+interface Props {
+  heading: string;
+  cardHeading: string;
+  malePercent: number;
+  femalePercent: number;
+  /** Optional line under the card heading, e.g. the sample size. */
+  cardNote?: string;
+  /** Optional source note beside the pie chart. */
+  source?: string;
+  sectionClass?: string;
+}
+
+const {
+  heading,
+  cardHeading,
+  malePercent,
+  femalePercent,
+  cardNote,
+  source,
+  sectionClass = 'px-4 md:px-12 py-12 md:py-24 section-alt section-kente-surface',
+} = Astro.props;
+
+const cardClass = 'bg-white p-5 md:p-8 rounded-lg border border-gpla-navy/8 shadow-sm';
+const bars = [
+  { label: 'Male', percent: malePercent, fill: 'bg-gpla-navy' },
+  { label: 'Female', percent: femalePercent, fill: 'bg-gpla-green' },
+];
+---
+
+<section class={sectionClass}>
+  <div class="max-w-6xl mx-auto">
+    <h2 class="font-display text-gpla-navy text-[28px] md:text-[48px] mb-8 md:mb-12">{heading}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+      <div class={cardClass}>
+        <h4 class:list={['font-display text-2xl text-gpla-navy', cardNote ? 'mb-2' : 'mb-6']}>
+          {cardHeading}
+        </h4>
+        {cardNote && <p class="text-gpla-navy/55 text-sm font-body mb-6">{cardNote}</p>}
+        <div class="space-y-4">
+          {bars.map((bar) => (
+            <div class="flex items-center gap-4">
+              <span class="w-24 text-sm text-gpla-navy/70">{bar.label}</span>
+              <div class="flex-1 h-8 bg-gray-100 rounded overflow-hidden">
+                <div class:list={['h-full rounded', bar.fill]} style={`width: ${bar.percent}%`}></div>
+              </div>
+              <span class="text-sm font-medium text-gpla-navy w-14 text-right">{bar.percent}%</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class:list={[cardClass, 'flex flex-col sm:flex-row items-center gap-6 md:gap-8']}>
+        <div
+          class="w-28 h-28 md:w-36 md:h-36 rounded-full flex-shrink-0"
+          style={`background: conic-gradient(#132d82 0% ${malePercent}%, #389a29 ${malePercent}% 100%);`}
+        ></div>
+        <div class="space-y-3">
+          {bars.map((bar) => (
+            <div class="flex items-center gap-3">
+              <div class:list={['w-4 h-4 rounded-full', bar.fill]}></div>
+              <span class="text-sm text-gpla-navy/70">{bar.label}: {bar.percent}%</span>
+            </div>
+          ))}
+          {source && <p class="text-gpla-navy/50 text-xs font-body pt-2">{source}</p>}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

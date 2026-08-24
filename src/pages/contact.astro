@@ -1,10 +1,7 @@
 ---
-import Base from '../layouts/Base.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import PatternRibbon from '../components/PatternRibbon.astro';
+import Page from '../layouts/Page.astro';
+import SocialIconLink from '../components/SocialIconLink.astro';
 import { contactEmail, contactFormEndpoint, isFormEndpointConfigured, socialLinks } from '../data/site';
-import { socialLinkIcons } from '../data/social-icons';
 
 const formEndpointConfigured = isFormEndpointConfigured(contactFormEndpoint);
 if (!formEndpointConfigured) {
@@ -14,9 +11,7 @@ if (!formEndpointConfigured) {
 }
 ---
 
-<Base title="Contact" description="Get in touch or partner with the Guild Presidents Leadership Academy.">
-  <Navbar />
-
+<Page title="Contact" description="Get in touch or partner with the Guild Presidents Leadership Academy.">
   <style is:global>
     .form-input {
       width: 100%;
@@ -207,9 +202,12 @@ if (!formEndpointConfigured) {
                 <h3 class="font-display text-gpla-navy text-lg tracking-wider mb-3">Follow Us</h3>
                 <div class="flex gap-3 flex-wrap">
                   {socialLinks.map((social) => (
-                    <a href={social.href} target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-gpla-navy/8 flex items-center justify-center hover:bg-gpla-green hover:text-white hover:scale-110 transition-all duration-300 text-gpla-navy" aria-label={social.label}>
-                      <Fragment set:html={socialLinkIcons[social.label]} />
-                    </a>
+                    <SocialIconLink
+                      href={social.href}
+                      icon={social.label}
+                      label={social.label}
+                      class="w-11 h-11 rounded-full bg-gpla-navy/8 flex items-center justify-center hover:bg-gpla-green hover:text-white hover:scale-110 transition-all duration-300 text-gpla-navy"
+                    />
                   ))}
                 </div>
               </div>
@@ -220,8 +218,7 @@ if (!formEndpointConfigured) {
     </div>
   </section>
  
-  <Footer />
-</Base>
+</Page>
 
 <script>
   import { initAjaxForms } from '../scripts/form';

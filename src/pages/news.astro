@@ -1,67 +1,67 @@
 ---
-import Base from '../layouts/Base.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import Page from '../layouts/Page.astro';
+import PageHero from '../components/PageHero.astro';
 import PatternRibbon from '../components/PatternRibbon.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const publications = [
+  {
+    gradient: 'linear-gradient(135deg, #132d82, #389a29)',
+    badgeClass: 'badge badge-green',
+    category: 'Summit',
+    date: 'January 15, 2026',
+    title: '2026 Summit Dates Announced',
+    summary: 'Mark your calendars for the biggest gathering of East African youth leaders.',
+  },
+  {
+    gradient: 'linear-gradient(135deg, #389a29, #E8A33D)',
+    badgeClass: 'badge badge-gold',
+    category: 'Fellowship',
+    date: 'December 10, 2025',
+    title: 'HERPower Fellowship Opens',
+    summary: "Applications now open for our flagship women's leadership program.",
+  },
+  {
+    gradient: 'linear-gradient(135deg, #132d82, #E8A33D)',
+    badgeClass: 'badge badge-outline',
+    category: 'Partnership',
+    date: 'November 22, 2025',
+    title: 'Partnership with GIZ',
+    summary: 'New partnership to expand our leadership programs regionally.',
+  },
+];
 ---
 
-<Base title="Publications & Updates" description="Publications and updates from the Guild Presidents Leadership Academy.">
-  <Navbar />
-  
-  <!-- Hero -->
-  <section class="min-h-[50vh] md:min-h-[55vh] bg-gpla-navy section-padding relative overflow-hidden flex items-center" style="padding-top: 8rem;">
-    <div class="absolute bottom-0 right-0 w-[45%] h-full bg-gpla-green" style="clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);"></div>
-    <div class="section-container relative z-10 w-full">
-      <p class="section-label section-label--gold" data-animate>Publications & Updates</p>
-      <h1 class="font-display text-white text-[clamp(2.5rem,7vw,5rem)] leading-[0.95]" data-animate data-delay="100">
-        Latest Updates<br />From GPLA
-      </h1>
+<Page title="Publications & Updates" description="Publications and updates from the Guild Presidents Leadership Academy.">
+  <PageHero label="Publications & Updates" title={['Latest Updates', 'From GPLA']} overlay={null} patternOverlay={false}>
+    <div
+      slot="backdrop"
+      class="absolute bottom-0 right-0 w-[45%] h-full bg-gpla-green"
+      style="clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);"
+    >
     </div>
-  </section>
+  </PageHero>
 
   <PatternRibbon height={24} />
 
   <!-- Publications Grid -->
   <section class="section-padding section-dark section-kente-surface">
     <div class="section-container">
-      <div class="text-center mb-12" data-animate>
-        <span class="section-label">Stay Informed</span>
-        <h2 class="section-title section-title--centered text-gpla-navy">Publications &amp; Updates</h2>
-      </div>
+      <SectionHeading label="Stay Informed" title="Publications & Updates" />
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8" data-animate data-delay="100">
-        <article class="card-lift bg-white border border-gpla-navy/8 rounded-2xl overflow-hidden shadow-sm">
-          <div class="h-40 md:h-48" style="background: linear-gradient(135deg, #132d82, #389a29);"></div>
-          <div class="p-6 md:p-8">
-            <span class="badge badge-green text-xs mb-2 inline-block">Summit</span>
-            <p class="text-gpla-navy/55 text-xs font-body mb-2">January 15, 2026</p>
-            <h3 class="font-display text-lg md:text-xl text-gpla-navy mb-3">2026 Summit Dates Announced</h3>
-            <p class="text-gpla-navy/65 text-sm font-body mb-4">Mark your calendars for the biggest gathering of East African youth leaders.</p>
-            <span class="text-gpla-green font-semibold text-sm">Read More →</span>
-          </div>
-        </article>
-        <article class="card-lift bg-white border border-gpla-navy/8 rounded-2xl overflow-hidden shadow-sm">
-          <div class="h-40 md:h-48" style="background: linear-gradient(135deg, #389a29, #E8A33D);"></div>
-          <div class="p-6 md:p-8">
-            <span class="badge badge-gold text-xs mb-2 inline-block">Fellowship</span>
-            <p class="text-gpla-navy/55 text-xs font-body mb-2">December 10, 2025</p>
-            <h3 class="font-display text-lg md:text-xl text-gpla-navy mb-3">HERPower Fellowship Opens</h3>
-            <p class="text-gpla-navy/65 text-sm font-body mb-4">Applications now open for our flagship women's leadership program.</p>
-            <span class="text-gpla-green font-semibold text-sm">Read More →</span>
-          </div>
-        </article>
-        <article class="card-lift bg-white border border-gpla-navy/8 rounded-2xl overflow-hidden shadow-sm">
-          <div class="h-40 md:h-48" style="background: linear-gradient(135deg, #132d82, #E8A33D);"></div>
-          <div class="p-6 md:p-8">
-            <span class="badge badge-outline text-xs mb-2 inline-block">Partnership</span>
-            <p class="text-gpla-navy/55 text-xs font-body mb-2">November 22, 2025</p>
-            <h3 class="font-display text-lg md:text-xl text-gpla-navy mb-3">Partnership with GIZ</h3>
-            <p class="text-gpla-navy/65 text-sm font-body mb-4">New partnership to expand our leadership programs regionally.</p>
-            <span class="text-gpla-green font-semibold text-sm">Read More →</span>
-          </div>
-        </article>
+        {publications.map((item) => (
+          <article class="card-lift bg-white border border-gpla-navy/8 rounded-2xl overflow-hidden shadow-sm">
+            <div class="h-40 md:h-48" style={`background: ${item.gradient};`}></div>
+            <div class="p-6 md:p-8">
+              <span class:list={[item.badgeClass, 'text-xs mb-2 inline-block']}>{item.category}</span>
+              <p class="text-gpla-navy/55 text-xs font-body mb-2">{item.date}</p>
+              <h3 class="font-display text-lg md:text-xl text-gpla-navy mb-3">{item.title}</h3>
+              <p class="text-gpla-navy/65 text-sm font-body mb-4">{item.summary}</p>
+              <span class="text-gpla-green font-semibold text-sm">Read More →</span>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
-
-  <Footer />
-</Base>
+</Page>

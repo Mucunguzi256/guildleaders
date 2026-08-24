@@ -277,6 +277,7 @@ import { contactEmail, partnerFormEndpoint } from '../../data/site';
 </Base>
 
 <script>
+  import { twoDigits } from '../../utils/format';
   import { safeInit } from '../../scripts/errors';
   import { observeReveal, revealAll } from '../../scripts/reveal';
   import { initAjaxForms } from '../../scripts/form';
@@ -298,7 +299,7 @@ import { contactEmail, partnerFormEndpoint } from '../../data/site';
     const secs = Math.floor((diff % 60000) / 1000);
     const update = (id, val) => {
       const el = document.getElementById(id);
-      if (el) el.textContent = String(val).padStart(2, '0');
+      if (el) el.textContent = twoDigits(val);
     };
     update('count-days', days);
     update('count-hours', hours);

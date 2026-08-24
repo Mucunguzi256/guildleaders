@@ -1,31 +1,35 @@
 ---
-import Base from '../layouts/Base.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import Page from '../layouts/Page.astro';
+import PageHero from '../components/PageHero.astro';
 import PatternDivider from '../components/PatternDivider.astro';
-import PatternBackdrop from '../components/PatternBackdrop.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SocialIconLink from '../components/SocialIconLink.astro';
 import { executiveDirector, teamMembers } from '../data/site';
-import { socialLinkIcons } from '../data/social-icons';
+import { programHighlights } from '../data/programs';
+import { twoDigits } from '../utils/format';
+
+const strategicObjectives = [
+  'Promote youth participation in the East African integration agenda.',
+  'Strengthen cooperation among university student leaders across the region.',
+  "Build young leaders' understanding of regional institutions, diplomacy and governance.",
+  'Facilitate dialogue between young people, governments, universities and the private sector.',
+  'Develop a sustainable network of emerging East African leaders.',
+  'Generate youth-led recommendations on regional policy and development.',
+];
+const objectiveAccents = ['navy', 'green', 'gold', 'green', 'gold', 'navy'];
+const iconButtonClass =
+  'w-9 h-9 rounded-full bg-gpla-navy/8 text-gpla-navy flex items-center justify-center hover:bg-gpla-green hover:text-white transition-all duration-300';
 ---
 
-<Base title="About" description="Learn about the Guild Presidents Leadership Academy - East Africa's premier youth leadership institution.">
-  <Navbar />
-  
-  <!-- Hero — light with image -->
-  <section class="min-h-[40vh] bg-gpla-navy section-padding relative overflow-hidden flex items-center" style="padding-top: 8rem;">
-    <div class="absolute inset-0 z-0">
-      <img src="/assets/images/gallery/025.jpg" alt="" class="w-full h-full object-cover opacity-25" />
-    </div>
-    <div class="absolute inset-0 bg-gradient-to-r from-gpla-navy/90 via-gpla-navy/70 to-gpla-navy/50"></div>
-    <div class="african-hero-overlay"></div>
-    <div class="section-container relative z-10 w-full">
-      <p class="section-label section-label--gold" data-animate>About Us</p>
-      <h1 class="font-display text-white text-[clamp(2.5rem,7vw,4.5rem)] leading-[0.95]" data-animate data-delay="100">
-        Ethical Leaders<br />
-        Transforming East Africa
-      </h1>
-    </div>
-  </section>
+<Page title="About" description="Learn about the Guild Presidents Leadership Academy - East Africa's premier youth leadership institution.">
+  <PageHero
+    label="About Us"
+    title={['Ethical Leaders', 'Transforming East Africa']}
+    minHeight="min-h-[40vh]"
+    titleSize="text-[clamp(2.5rem,7vw,4.5rem)]"
+    imageSrc="/assets/images/gallery/025.jpg"
+    imageOpacity="opacity-25"
+  />
 
   <PatternDivider />
 
@@ -96,22 +100,12 @@ import { socialLinkIcons } from '../data/social-icons';
     <div class="absolute inset-x-0 top-0 african-kente-band pointer-events-none" style="height: 12px;" aria-hidden="true"></div>
     <div class="absolute inset-x-0 bottom-0 african-kente-band pointer-events-none" style="height: 12px;" aria-hidden="true"></div>
     <div class="section-container">
-      <div class="text-center mb-12" data-animate>
-        <span class="section-label">Our Focus</span>
-        <h2 class="section-title section-title--centered text-gpla-navy">Strategic Objectives</h2>
-      </div>
+      <SectionHeading label="Our Focus" title="Strategic Objectives" />
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" data-animate data-delay="100">
-        {[
-          'Promote youth participation in the East African integration agenda.',
-          'Strengthen cooperation among university student leaders across the region.',
-          "Build young leaders' understanding of regional institutions, diplomacy and governance.",
-          'Facilitate dialogue between young people, governments, universities and the private sector.',
-          'Develop a sustainable network of emerging East African leaders.',
-          'Generate youth-led recommendations on regional policy and development.',
-        ].map((text, i) => (
-          <div class={`objective-card african-corner-accent accent-${['navy', 'green', 'gold', 'green', 'gold', 'navy'][i]}`}>
+        {strategicObjectives.map((text, i) => (
+          <div class={`objective-card african-corner-accent accent-${objectiveAccents[i]}`}>
             <div class="objective-card__kente" aria-hidden="true"></div>
-            <span class="objective-card__num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="objective-card__num">{twoDigits(i + 1)}</span>
             <p class="text-gpla-navy/70 leading-relaxed font-body">{text}</p>
           </div>
         ))}
@@ -124,38 +118,20 @@ import { socialLinkIcons } from '../data/social-icons';
   <!-- Programs summary (formerly Key Activities) -->
   <section class="section-padding section-dark section-kente-surface">
     <div class="section-container">
-      <div class="text-center mb-12" data-animate>
-        <span class="section-label">What We Do</span>
-        <h2 class="section-title section-title--centered text-gpla-navy">Our Programs</h2>
-        <p class="section-subtitle mx-auto mt-4 font-body" style="max-width: 600px; text-align: center;">
-          Four flagship programmes shaping the next generation of ethical, transformational leaders across East Africa.
-        </p>
-      </div>
+      <SectionHeading
+        label="What We Do"
+        title="Our Programs"
+        subtitle="Four flagship programmes shaping the next generation of ethical, transformational leaders across East Africa."
+      />
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" data-animate data-delay="100">
-        <a href="/programs" class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl shadow-sm african-corner-accent card-lift block group">
-          <span class="font-display text-gpla-green text-sm tracking-wider mb-3 block">01</span>
-          <h3 class="font-display text-gpla-navy text-lg md:text-xl mb-3 leading-snug">East African Guild Leaders Summit</h3>
-          <p class="text-gpla-navy/60 text-sm font-body leading-relaxed">Advancing youth leadership and East African integration through the premier regional convening platform.</p>
-          <span class="text-gpla-green font-semibold text-sm mt-4 inline-block group-hover:translate-x-1 transition-transform">Learn more →</span>
-        </a>
-        <a href="/programs" class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl shadow-sm african-corner-accent card-lift block group">
-          <span class="font-display text-gpla-green text-sm tracking-wider mb-3 block">02</span>
-          <h3 class="font-display text-gpla-navy text-lg md:text-xl mb-3 leading-snug">Uganda National Science Park &amp; Innovation Area Initiative</h3>
-          <p class="text-gpla-navy/60 text-sm font-body leading-relaxed">Harnessing youth innovation for production and national transformation.</p>
-          <span class="text-gpla-green font-semibold text-sm mt-4 inline-block group-hover:translate-x-1 transition-transform">Learn more →</span>
-        </a>
-        <a href="/programs" class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl shadow-sm african-corner-accent card-lift block group">
-          <span class="font-display text-gpla-green text-sm tracking-wider mb-3 block">03</span>
-          <h3 class="font-display text-gpla-navy text-lg md:text-xl mb-3 leading-snug">GPLA Executive Master Classes</h3>
-          <p class="text-gpla-navy/60 text-sm font-body leading-relaxed">Developing ethical, strategic and transformational leaders through high-level programmes.</p>
-          <span class="text-gpla-green font-semibold text-sm mt-4 inline-block group-hover:translate-x-1 transition-transform">Learn more →</span>
-        </a>
-        <a href="/programs" class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl shadow-sm african-corner-accent card-lift block group">
-          <span class="font-display text-gpla-green text-sm tracking-wider mb-3 block">04</span>
-          <h3 class="font-display text-gpla-navy text-lg md:text-xl mb-3 leading-snug">Guild Leadership Development &amp; Mentorship Programme</h3>
-          <p class="text-gpla-navy/60 text-sm font-body leading-relaxed">Preparing student leaders for responsible service and future leadership.</p>
-          <span class="text-gpla-green font-semibold text-sm mt-4 inline-block group-hover:translate-x-1 transition-transform">Learn more →</span>
-        </a>
+        {programHighlights.map((program) => (
+          <a href="/programs" class="bg-white border border-gpla-navy/8 p-6 md:p-8 rounded-xl shadow-sm african-corner-accent card-lift block group">
+            <span class="font-display text-gpla-green text-sm tracking-wider mb-3 block">{program.number}</span>
+            <h3 class="font-display text-gpla-navy text-lg md:text-xl mb-3 leading-snug">{program.title}</h3>
+            <p class="text-gpla-navy/60 text-sm font-body leading-relaxed">{program.summary}</p>
+            <span class="text-gpla-green font-semibold text-sm mt-4 inline-block group-hover:translate-x-1 transition-transform">Learn more →</span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -165,10 +141,7 @@ import { socialLinkIcons } from '../data/social-icons';
   <!-- Team -->
   <section class="section-padding section-light section-kente-surface">
     <div class="section-container">
-      <div class="text-center mb-12" data-animate>
-        <span class="section-label">Leadership</span>
-        <h2 class="section-title section-title--centered text-gpla-navy">Our Team</h2>
-      </div>
+      <SectionHeading label="Leadership" title="Our Team" />
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10">
         <div class="group african-zigzag-top" data-animate>
           <div class="aspect-[3/4] rounded-2xl mb-5 overflow-hidden relative bg-gray-100">
@@ -223,24 +196,21 @@ import { socialLinkIcons } from '../data/social-icons';
               {((member.socials && member.socials.length > 0) || member.email) && (
                 <div class="flex flex-wrap items-center gap-2 mt-4">
                   {member.socials?.map((social) => (
-                    <a
+                    <SocialIconLink
                       href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="w-9 h-9 rounded-full bg-gpla-navy/8 text-gpla-navy flex items-center justify-center hover:bg-gpla-green hover:text-white transition-all duration-300"
-                      aria-label={`${member.name} on ${social.label}`}
-                    >
-                      <Fragment set:html={socialLinkIcons[social.label]} />
-                    </a>
+                      icon={social.label}
+                      label={`${member.name} on ${social.label}`}
+                      class={iconButtonClass}
+                    />
                   ))}
                   {member.email && (
-                    <a
+                    <SocialIconLink
                       href={`mailto:${member.email}`}
-                      class="w-9 h-9 rounded-full bg-gpla-navy/8 text-gpla-navy flex items-center justify-center hover:bg-gpla-green hover:text-white transition-all duration-300"
-                      aria-label={`Email ${member.name}`}
-                    >
-                      <Fragment set:html={socialLinkIcons.Email} />
-                    </a>
+                      icon="Email"
+                      label={`Email ${member.name}`}
+                      external={false}
+                      class={iconButtonClass}
+                    />
                   )}
                 </div>
               )}
@@ -251,5 +221,4 @@ import { socialLinkIcons } from '../data/social-icons';
     </div>
   </section>
 
-  <Footer />
-</Base>
+</Page>

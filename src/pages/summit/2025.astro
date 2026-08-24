@@ -1,17 +1,22 @@
 ---
-import Base from '../../layouts/Base.astro';
-import Navbar from '../../components/Navbar.astro';
-import Footer from '../../components/Footer.astro';
+import Page from '../../layouts/Page.astro';
+import PageHero from '../../components/PageHero.astro';
 import PatternRibbon from '../../components/PatternRibbon.astro';
+import SpeakerGrid from '../../components/SpeakerGrid.astro';
+import OutcomeGrid from '../../components/OutcomeGrid.astro';
+import GenderSplitChart from '../../components/GenderSplitChart.astro';
+import ReportDownload from '../../components/ReportDownload.astro';
+import SummitCta from '../../components/SummitCta.astro';
+import { twoDigits } from '../../utils/format';
 
-const speakers2025 = [
+const speakers = [
   { name: 'H.E. Uhuru Muigai Kenyatta', title: 'Chief Guest', subtitle: '4th President, Republic of Kenya' },
   { name: 'H.E. Jessica Alupo', title: 'Guest of Honor', subtitle: 'Vice President, Uganda' },
   { name: 'Justice Simon Byabakama', title: 'Keynote Speaker', subtitle: 'Chairperson, Electoral Commission of Uganda' },
   { name: 'Hon. Matthew Rukikaire', title: 'Advisory Council', subtitle: 'Guild Leaders Summit' },
   { name: 'Rt. Hon. Ruhakana Rugunda', title: 'Patron', subtitle: 'GPLA' },
   { name: 'Prof. Sarah Ssali', title: 'Host Chairperson', subtitle: 'Makerere University' },
-  { name: 'H.E. Jakaya Mrisho Kikwete', title: 'Summit Patron', subtitle: 'Former President, Tanzania' },
+  { name: 'H.E. Jakaya Mrishi Kikwete', title: 'Summit Patron', subtitle: 'Former President, Tanzania' },
   { name: 'Demiano Masesa', title: 'Executive Director', subtitle: 'GPLA' },
 ];
 
@@ -23,39 +28,36 @@ const objectives = [
 ];
 
 const outcomes = [
-  { num: '01', text: 'Instituting a rotational Annual Summit among East African member states' },
-  { num: '02', text: 'Students to take the lead on the quest for East African integration' },
-  { num: '03', text: 'Request regional governments to contribute to the resource envelope of the Annual Summit and GPLA activities' },
-  { num: '04', text: 'Young people to take on leadership roles in their communities to effect the changes they desire' },
-  { num: '05', text: 'Promote East African integration and strengthen collaboration among regional Guild Leaders' },
-  { num: '06', text: 'Seek government financial support and gazetting of the Summit' },
+  'Instituting a rotational Annual Summit among East African member states',
+  'Students to take the lead on the quest for East African integration',
+  'Request regional governments to contribute to the resource envelope of the Annual Summit and GPLA activities',
+  'Young people to take on leadership roles in their communities to effect the changes they desire',
+  'Promote East African integration and strengthen collaboration among regional Guild Leaders',
+  'Seek government financial support and gazetting of the Summit',
+].map((text, index) => ({ num: twoDigits(index + 1), text }));
+
+const overviewStats = [
+  { value: '1,000+', label: 'Youth leaders' },
+  { value: '920', label: 'Registered participants' },
+  { value: '6', label: 'East African countries' },
+  { value: '3', label: 'Panel discussions' },
 ];
 ---
 
-<Base title="Summit 2025" description="2nd Annual Guild Leaders Summit 2025 — Leadership with Integrity; Building Foundations for Good Governance in East Africa.">
-  <Navbar />
-  
-  <!-- Hero -->
-  <section class="min-h-[50vh] md:min-h-[55vh] bg-gpla-navy section-padding relative overflow-hidden flex items-center" style="padding-top: 8rem;">
-    <div class="absolute inset-0 z-0">
-      <img src="/assets/images/gallery/016.jpg" alt="" class="w-full h-full object-cover opacity-30" />
-    </div>
-    <div class="absolute inset-0 bg-gradient-to-r from-gpla-navy/90 via-gpla-navy/75 to-gpla-navy/50"></div>
-    <div class="african-hero-overlay"></div>
-    <div class="section-container relative z-10 w-full">
-      <p class="section-label section-label--gold" data-animate>24 April 2025 · Makerere University</p>
-      <h1 class="font-display text-white text-[clamp(2rem,6vw,4rem)] leading-[0.95]" data-animate data-delay="50">
-        2nd Annual Guild<br />Leaders Summit
-      </h1>
-      <div class="font-display text-[100px] md:text-[180px] text-gpla-gold/20 absolute right-[5%] md:right-[15%] top-[30%] z-10 leading-none hidden md:block font-bold">2025</div>
-      <p class="text-white/85 text-lg md:text-xl mt-4 md:mt-6 max-w-[640px] relative z-10 font-body" data-animate data-delay="100">
-        "Leadership with Integrity; Building Foundations for Good Governance in East Africa"
-      </p>
-      <p class="text-white/60 text-sm md:text-base mt-3 relative z-10 font-body" data-animate data-delay="150">
-        CTF2, Yusuf Lule Auditorium · Makerere University, Kampala
-      </p>
-    </div>
-  </section>
+<Page title="Summit 2025" description="2nd Annual Guild Leaders Summit 2025 — Leadership with Integrity; Building Foundations for Good Governance in East Africa.">
+  <PageHero
+    label="24 April 2025 · Makerere University"
+    title={['2nd Annual Guild', 'Leaders Summit']}
+    titleSize="text-[clamp(2rem,6vw,4rem)]"
+    titleDelay={50}
+    subtitleDelay={100}
+    noteDelay={150}
+    imageSrc="/assets/images/gallery/016.jpg"
+    overlay="bg-gradient-to-r from-gpla-navy/90 via-gpla-navy/75 to-gpla-navy/50"
+    watermark="2025"
+    subtitle='"Leadership with Integrity; Building Foundations for Good Governance in East Africa"'
+    note="CTF2, Yusuf Lule Auditorium · Makerere University, Kampala"
+  />
 
   <PatternRibbon height={28} />
 
@@ -75,22 +77,12 @@ const outcomes = [
         </p>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
-        <div class="bg-white border border-gpla-navy/8 rounded-xl p-5 text-center shadow-sm">
-          <div class="font-display text-3xl text-gpla-navy">1,000+</div>
-          <p class="text-gpla-navy/55 text-xs mt-1 font-body">Youth leaders</p>
-        </div>
-        <div class="bg-white border border-gpla-navy/8 rounded-xl p-5 text-center shadow-sm">
-          <div class="font-display text-3xl text-gpla-navy">920</div>
-          <p class="text-gpla-navy/55 text-xs mt-1 font-body">Registered participants</p>
-        </div>
-        <div class="bg-white border border-gpla-navy/8 rounded-xl p-5 text-center shadow-sm">
-          <div class="font-display text-3xl text-gpla-navy">6</div>
-          <p class="text-gpla-navy/55 text-xs mt-1 font-body">East African countries</p>
-        </div>
-        <div class="bg-white border border-gpla-navy/8 rounded-xl p-5 text-center shadow-sm">
-          <div class="font-display text-3xl text-gpla-navy">3</div>
-          <p class="text-gpla-navy/55 text-xs mt-1 font-body">Panel discussions</p>
-        </div>
+        {overviewStats.map((stat) => (
+          <div class="bg-white border border-gpla-navy/8 rounded-xl p-5 text-center shadow-sm">
+            <div class="font-display text-3xl text-gpla-navy">{stat.value}</div>
+            <p class="text-gpla-navy/55 text-xs mt-1 font-body">{stat.label}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -102,7 +94,7 @@ const outcomes = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         {objectives.map((text, i) => (
           <div class="border border-white/15 rounded-xl p-6 flex gap-4">
-            <span class="font-display text-gpla-gold text-2xl shrink-0">{String(i + 1).padStart(2, '0')}</span>
+            <span class="font-display text-gpla-gold text-2xl shrink-0">{twoDigits(i + 1)}</span>
             <p class="text-white/80 text-sm md:text-base font-body leading-relaxed">{text}</p>
           </div>
         ))}
@@ -110,115 +102,33 @@ const outcomes = [
     </div>
   </section>
 
-  <!-- Key Speakers -->
-  <section class="px-4 md:px-12 py-12 md:py-24 bg-gpla-navy border-t border-white/10">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="font-display text-white text-[28px] md:text-[48px] mb-8 md:mb-12">KEY SPEAKERS</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-        {speakers2025.map(speaker => (
-          <div class="text-center">
-            <div class="w-20 md:w-36 h-20 md:h-36 rounded-full bg-gradient-to-br from-gpla-gold to-gpla-green mx-auto mb-4"></div>
-            <h4 class="font-display text-sm md:text-xl text-white">{speaker.name}</h4>
-            <p class="text-gpla-gold text-sm">{speaker.title}</p>
-            <span class="text-white/60 text-xs">{speaker.subtitle}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <SpeakerGrid speakers={speakers} class="border-t border-white/10" />
 
-  <!-- Key Outcomes / Action Points -->
-  <section class="px-4 md:px-12 py-12 md:py-24 section-alt section-kente-surface">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="font-display text-gpla-navy text-[28px] md:text-[48px] mb-4">RECOMMENDATIONS &amp; ACTION POINTS</h2>
-      <p class="text-gpla-navy/60 font-body mb-8 md:mb-12 max-w-2xl">From the Summit report — recommendations and advice notes adopted by participants.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-        {outcomes.map(outcome => (
-          <div class="bg-gpla-navy p-6 rounded-lg">
-            <div class="font-display text-[36px] text-gpla-gold">{outcome.num}</div>
-            <p class="text-white text-sm mt-2 font-body leading-relaxed">{outcome.text}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <OutcomeGrid
+    heading="RECOMMENDATIONS & ACTION POINTS"
+    intro="From the Summit report — recommendations and advice notes adopted by participants."
+    outcomes={outcomes}
+    tone="navy"
+    columns="sm:grid-cols-2 md:grid-cols-3"
+    sectionClass="px-4 md:px-12 py-12 md:py-24 section-alt section-kente-surface"
+  />
 
-  <!-- Participant Demographics -->
-  <section class="px-4 md:px-12 py-12 md:py-24 section-light section-kente-surface">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="font-display text-gpla-navy text-[28px] md:text-[48px] mb-8 md:mb-12">PARTICIPANT DEMOGRAPHICS</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-        <div class="bg-white p-5 md:p-8 rounded-lg border border-gpla-navy/8 shadow-sm">
-          <h4 class="font-display text-2xl text-gpla-navy mb-2">Gender Distribution</h4>
-          <p class="text-gpla-navy/55 text-sm font-body mb-6">Overall gender distribution at the Second Annual Guild Leaders Summit (Total: 920)</p>
-          <div class="space-y-4">
-            <div class="flex items-center gap-4">
-              <span class="w-24 text-sm text-gpla-navy/70">Male</span>
-              <div class="flex-1 h-8 bg-gray-100 rounded overflow-hidden">
-                <div class="h-full bg-gpla-navy rounded" style="width: 61.2%"></div>
-              </div>
-              <span class="text-sm font-medium text-gpla-navy w-14 text-right">61.2%</span>
-            </div>
-            <div class="flex items-center gap-4">
-              <span class="w-24 text-sm text-gpla-navy/70">Female</span>
-              <div class="flex-1 h-8 bg-gray-100 rounded overflow-hidden">
-                <div class="h-full bg-gpla-green rounded" style="width: 38.8%"></div>
-              </div>
-              <span class="text-sm font-medium text-gpla-navy w-14 text-right">38.8%</span>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white p-5 md:p-8 rounded-lg border border-gpla-navy/8 shadow-sm flex flex-col sm:flex-row items-center gap-6 md:gap-8">
-          <div class="w-28 h-28 md:w-36 md:h-36 rounded-full flex-shrink-0" style="background: conic-gradient(#132d82 0% 61.2%, #389a29 61.2% 100%);"></div>
-          <div class="space-y-3">
-            <div class="flex items-center gap-3">
-              <div class="w-4 h-4 rounded-full bg-gpla-navy"></div>
-              <span class="text-sm text-gpla-navy/70">Male: 61.2%</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-4 h-4 rounded-full bg-gpla-green"></div>
-              <span class="text-sm text-gpla-navy/70">Female: 38.8%</span>
-            </div>
-            <p class="text-gpla-navy/50 text-xs font-body pt-2">Source: Summit Report 2025</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <GenderSplitChart
+    heading="PARTICIPANT DEMOGRAPHICS"
+    cardHeading="Gender Distribution"
+    cardNote="Overall gender distribution at the Second Annual Guild Leaders Summit (Total: 920)"
+    malePercent={61.2}
+    femalePercent={38.8}
+    source="Source: Summit Report 2025"
+    sectionClass="px-4 md:px-12 py-12 md:py-24 section-light section-kente-surface"
+  />
 
-  <!-- PDF Download Section -->
-  <section class="px-4 md:px-12 py-12 md:py-24 section-alt section-kente-surface">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="font-display text-gpla-navy text-[28px] md:text-[48px] mb-6 md:mb-8">SUMMIT REPORT 2025</h2>
-      <div class="bg-white p-5 md:p-8 rounded-xl shadow-lg">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 mb-6">
-          <div class="w-16 h-16 bg-gpla-navy rounded-lg flex items-center justify-center">
-            <span class="text-white font-display text-2xl">PDF</span>
-          </div>
-          <div>
-            <h3 class="font-display text-2xl text-gpla-navy">Guild Leaders Summit Report 2025</h3>
-            <p class="text-gpla-navy/55 text-sm">PDF Document • 2.4 MB · 2nd Annual Guild Leaders Summit</p>
-          </div>
-        </div>
-        <div class="flex flex-col sm:flex-row gap-3 md:gap-4">
-          <a href="/reports/summit-2025.pdf" download class="bg-gpla-green text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-flex items-center justify-center gap-2 hover:shadow-xl hover:-translate-y-0.5 transition-all text-sm md:text-base">
-            ↓ Download Report
-          </a>
-          <a href="/reports/summit-2025.pdf" target="_blank" rel="noopener noreferrer" class="border-2 border-gpla-navy text-gpla-navy px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-flex items-center justify-center gap-2 hover:bg-gpla-navy hover:text-white transition-all text-sm md:text-base">
-            ↗ Open in New Tab
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <ReportDownload
+    heading="SUMMIT REPORT 2025"
+    title="Guild Leaders Summit Report 2025"
+    meta="PDF Document • 2.4 MB · 2nd Annual Guild Leaders Summit"
+    href="/reports/summit-2025.pdf"
+  />
 
-  <!-- CTA -->
-  <section class="bg-gpla-navy px-4 md:px-12 py-12 md:py-16 text-center">
-    <h3 class="font-display text-white text-[28px] md:text-[48px] mb-5">View 2026 Summit</h3>
-    <a href="/summit/2026" class="bg-gpla-green text-white px-10 py-5 rounded-full font-semibold inline-block hover:shadow-xl hover:-translate-y-0.5 transition-all">
-      View 2026 Summit →
-    </a>
-  </section>
-
-  <Footer />
-</Base>
+  <SummitCta heading="View 2026 Summit" href="/summit/2026" label="View 2026 Summit →" />
+</Page>

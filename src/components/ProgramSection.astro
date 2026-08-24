@@ -1,0 +1,87 @@
+---
+import type { Program } from '../data/programs';
+
+interface Props {
+  program: Program;
+}
+
+const { program } = Astro.props;
+const cardClass = 'card-lift bg-white rounded-xl p-6 md:p-8 border border-gray-200 shadow-sm';
+const itemClass = 'text-gpla-navy/70 text-sm font-body flex items-start gap-3';
+---
+
+<section class:list={['section-padding section-kente-surface', program.surface]}>
+  <div class="section-container section-container--narrow">
+    <div class="flex items-start gap-3 md:gap-5 mb-6" data-animate>
+      <span class="program-number">{program.number}</span>
+      <div class="min-w-0">
+        <span class="section-label mb-2">{program.label}</span>
+        <h2 class="font-display text-gpla-navy text-[clamp(1.5rem,4vw,3rem)] leading-tight african-underline">
+          {program.title}
+        </h2>
+        <p class="text-gpla-navy/70 font-display text-base md:text-2xl mt-3 tracking-wider">
+          {program.subtitle}
+        </p>
+      </div>
+    </div>
+
+    <div class="content-text mt-8 space-y-5" style="text-align: justify;" data-animate data-delay="100">
+      {program.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+      {program.panels.map((panel) => (
+        <div class={cardClass}>
+          <h3 class="font-display text-gpla-navy text-lg mb-4 tracking-wider">{panel.title}</h3>
+          {panel.style === 'chip' ? (
+            <div class="flex flex-wrap gap-2">
+              {panel.items.map((item) => (
+                <span class="text-xs bg-gpla-navy/5 text-gpla-navy/80 px-3 py-1.5 rounded-full font-body">
+                  {item}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <ul class={panel.style === 'check' ? 'space-y-3' : 'space-y-2'}>
+              {panel.items.map((item) => (
+                <li class={itemClass}>
+                  <span class="text-gpla-green mt-1">{panel.style === 'check' ? '✓' : '•'}</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div
+      class:list={[
+        'mt-6',
+        program.extraPanel && 'grid grid-cols-1 md:grid-cols-2 gap-6',
+      ]}
+    >
+      {program.extraPanel && (
+        <div class={cardClass}>
+          <h3 class="font-display text-gpla-navy text-lg mb-4 tracking-wider">
+            {program.extraPanel.title}
+          </h3>
+          <ul class="space-y-2">
+            {program.extraPanel.items.map((item) => (
+              <li class={itemClass}>
+                <span class="text-gpla-green mt-1">•</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <div class={cardClass}>
+        <h3 class="font-display text-gpla-navy text-lg mb-4 tracking-wider">Primary Beneficiaries</h3>
+        <p class="text-gpla-navy/70 text-sm font-body leading-relaxed" style="text-align: justify;">
+          {program.beneficiaries}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+import { socialLinkIcons } from '../data/social-icons';
+
+interface Props {
+  href: string;
+  /** Key into the shared icon map. */
+  icon: string;
+  label: string;
+  class?: string;
+  /** Internal links (e.g. mailto:) skip target/rel. */
+  external?: boolean;
+}
+
+const { href, icon, label, class: className, external = true } = Astro.props;
+---
+
+<a
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  class={className}
+  aria-label={label}
+>
+  <Fragment set:html={socialLinkIcons[icon]} />
+</a>

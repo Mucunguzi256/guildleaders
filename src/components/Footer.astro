@@ -1,7 +1,7 @@
 ---
 import PatternRibbon from './PatternRibbon.astro';
+import SocialIconLink from './SocialIconLink.astro';
 import { contactEmail, socialLinks } from '../data/site';
-import { socialLinkIcons } from '../data/social-icons';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -17,9 +17,12 @@ const currentYear = new Date().getFullYear();
         </p>
         <div class="flex gap-3 mt-6">
           {socialLinks.map((social) => (
-            <a href={social.href} target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/[0.06] flex items-center justify-center hover:bg-gpla-green hover:scale-110 transition-all duration-300" aria-label={social.label}>
-              <Fragment set:html={socialLinkIcons[social.label]} />
-            </a>
+            <SocialIconLink
+              href={social.href}
+              icon={social.label}
+              label={social.label}
+              class="w-10 h-10 rounded-full bg-white/[0.06] flex items-center justify-center hover:bg-gpla-green hover:scale-110 transition-all duration-300"
+            />
           ))}
         </div>
       </div>
