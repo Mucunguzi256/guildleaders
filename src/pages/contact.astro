@@ -1,7 +1,14 @@
 ---
 import Page from '../layouts/Page.astro';
 import SocialIconLink from '../components/SocialIconLink.astro';
-import { contactEmail, socialLinks } from '../data/site';
+import { contactEmail, contactFormEndpoint, isFormEndpointConfigured, socialLinks } from '../data/site';
+
+const formEndpointConfigured = isFormEndpointConfigured(contactFormEndpoint);
+if (!formEndpointConfigured) {
+  console.warn(
+    `[gpla] contact form endpoint is not configured (${contactFormEndpoint}); submissions cannot be delivered. Set contactFormEndpoint in src/data/site.ts.`,
+  );
+}
 ---
 
 <Page title="Contact" description="Get in touch or partner with the Guild Presidents Leadership Academy.">
@@ -55,6 +62,29 @@ import { contactEmail, socialLinks } from '../data/site';
       box-shadow: 0 0 0 3px rgba(56,154,41,0.12);
       background: #fff;
     }
+    .form-status {
+      padding: 0.875rem 1.125rem;
+      border-radius: 10px;
+      font-family: var(--font-body, 'Inter', sans-serif);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      border: 1px solid transparent;
+    }
+    .form-status[data-state='pending'] {
+      background: rgba(19,45,130,0.06);
+      border-color: rgba(19,45,130,0.15);
+      color: #132d82;
+    }
+    .form-status[data-state='success'] {
+      background: rgba(56,154,41,0.1);
+      border-color: rgba(56,154,41,0.35);
+      color: #1f5c17;
+    }
+    .form-status[data-state='error'] {
+      background: rgba(190,30,30,0.08);
+      border-color: rgba(190,30,30,0.35);
+      color: #8c1c1c;
+    }
   </style>
 
 
@@ -68,7 +98,25 @@ import { contactEmail, socialLinks } from '../data/site';
           <span class="accent-line" data-animate></span>
           <h2 class="section-title text-gpla-navy mb-8" data-animate data-delay="100">Let's Work Together</h2>
           
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data" class="space-y-6 african-quote-frame rounded-2xl p-6 md:p-8" data-animate data-delay="150">
+          {!formEndpointConfigured && (
+            <p class="form-status mb-6" data-state="error" role="alert">
+              Our message form is temporarily unavailable. Please email us directly at{' '}
+              <a class="underline" href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+            </p>
+          )}
+
+          <form
+            action={contactFormEndpoint}
+            method="POST"
+            enctype="multipart/form-data"
+            class="space-y-6 african-quote-frame rounded-2xl p-6 md:p-8"
+            data-animate
+            data-delay="150"
+            data-ajax-form
+            data-fallback-email={contactEmail}
+            data-fallback-subject="Website enquiry"
+            data-success-message="Thank you — your message has been sent. We will be in touch shortly."
+          >
             <!-- Basic Info -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
@@ -99,6 +147,8 @@ import { contactEmail, socialLinks } from '../data/site';
               <textarea id="message" name="message" rows="5" required class="form-input" placeholder="Tell us about yourself and how we can work together..."></textarea>
             </div>
 
+
+            <p class="form-status" data-form-status role="status" aria-live="polite" hidden></p>
 
             <button type="submit" class="btn btn-primary btn-lg w-full justify-center mt-4">
               Send Message
@@ -169,3 +219,9 @@ import { contactEmail, socialLinks } from '../data/site';
   </section>
  
 </Page>
+
+<script>
+  import { initAjaxForms } from '../scripts/form';
+
+  initAjaxForms();
+</script>

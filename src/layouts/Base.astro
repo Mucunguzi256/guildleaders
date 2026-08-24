@@ -16,6 +16,11 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; form-action https://formspree.io; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests"
+    />
     <title>{title} | Guild Presidents Leadership Academy</title>
     
     <!-- Favicons -->
@@ -553,28 +558,55 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       }
     </style>
 
+    <!-- Content stays hidden until JS reveals it, so restore it when JS is off -->
+    <noscript>
+      <style>
+        [data-animate], .ani-fade-up {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+
     <!-- Global scroll-trigger animations -->
     <script>
-      import { animateCounters, revealWithClass } from '../scripts/reveal';
+      import { installGlobalErrorLogging, onReady, safeInit } from '../scripts/errors';
+      import { observeReveal, revealAll } from '../scripts/reveal';
 
-      document.addEventListener('DOMContentLoaded', () => {
-        revealWithClass('[data-animate]', 'animate-in');
-        revealWithClass('.ani-fade-up', 'ani-visible');
-        animateCounters();
-      });
+      installGlobalErrorLogging();
 
-      // Mobile menu toggle
-      document.addEventListener('DOMContentLoaded', () => {
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        if (btn && menu) {
-          btn.addEventListener('click', () => {
-            const isOpen = menu.classList.contains('open');
-            menu.classList.toggle('open');
-            btn.setAttribute('aria-expanded', !isOpen);
+      onReady(
+        'global reveal animations',
+        () => {
+          const revealOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+          observeReveal('[data-animate]', 'animate-in', revealOptions);
+          observeReveal('.ani-fade-up', 'ani-visible', revealOptions);
+
+          observeReveal('.ani-counter', 'ani-counted', { threshold: 0.5 }, (el) => {
+            const target = Number.parseInt(el.getAttribute('data-target') ?? '', 10) || 0;
+            const duration = Number.parseInt(el.getAttribute('data-duration') ?? '', 10) || 1500;
+            const start = Number.parseInt(el.getAttribute('data-start') ?? '', 10) || 0;
+            const suffix = el.getAttribute('data-suffix') || '';
+            const prefix = el.getAttribute('data-prefix') || '';
+            let current = start;
+            const step = Math.max(1, Math.floor((target - start) / (duration / 16)));
+            const update = () => {
+              current += step;
+              if (current >= target) {
+                el.textContent = prefix + target + suffix;
+                return;
+              }
+              el.textContent = prefix + current + suffix;
+              requestAnimationFrame(() => safeInit('counter tick', update));
+            };
+            update();
           });
-        }
-      });
+        },
+        () => {
+          revealAll('[data-animate]', 'animate-in');
+          revealAll('.ani-fade-up', 'ani-visible');
+        },
+      );
     </script>
   </head>
   <body class="site-body-kente">
