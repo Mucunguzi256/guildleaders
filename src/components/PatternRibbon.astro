@@ -12,19 +12,19 @@ const halfHeight = Math.round(height / 2);
   <svg width="100%" height={height} viewBox={`0 0 400 ${height}`} preserveAspectRatio="none" style="display: block;">
     <defs>
       <!-- Tile: Ringed circle -->
-      <g id="tile-circle-{height}">
+      <g id={`tile-circle-${height}`}>
         <rect width="40" height={height} fill="#132d82" />
         <circle cx="20" cy={halfHeight} r="8" fill="none" stroke="#ffffff" stroke-width="2" />
         <circle cx="20" cy={halfHeight} r="3" fill="#389a29" />
       </g>
       <!-- Tile: Chevron zigzag -->
-      <g id="tile-chevron-{height}">
+      <g id={`tile-chevron-${height}`}>
         <rect width="40" height={height} fill="#ffffff" />
-        <polyline points="5,2 20,{halfHeight-2} 35,2" fill="none" stroke="#389a29" stroke-width="3" stroke-linecap="round" />
-        <polyline points="5,{height-2} 20,{halfHeight+2} 35,{height-2}" fill="none" stroke="#389a29" stroke-width="3" stroke-linecap="round" />
+        <polyline points={`5,2 20,${halfHeight - 2} 35,2`} fill="none" stroke="#389a29" stroke-width="3" stroke-linecap="round" />
+        <polyline points={`5,${height - 2} 20,${halfHeight + 2} 35,${height - 2}`} fill="none" stroke="#389a29" stroke-width="3" stroke-linecap="round" />
       </g>
       <!-- Tile: Vertical pinstripes -->
-      <g id="tile-stripe-{height}">
+      <g id={`tile-stripe-${height}`}>
         <rect width="40" height={height} fill="#132d82" />
         <line x1="8" y1="0" x2="8" y2={height} stroke="#E8A33D" stroke-width="2" />
         <line x1="16" y1="0" x2="16" y2={height} stroke="#ffffff" stroke-width="1.5" />
@@ -32,19 +32,19 @@ const halfHeight = Math.round(height / 2);
         <line x1="32" y1="0" x2="32" y2={height} stroke="#ffffff" stroke-width="1.5" />
       </g>
       <!-- Tile: Split diamond -->
-      <g id="tile-diamond-{height}">
+      <g id={`tile-diamond-${height}`}>
         <rect width="40" height={height} fill="#389a29" />
         <polygon points="20,2 38,20 20,38 2,20" fill="#ffffff" opacity="0.9" />
         <polygon points="20,2 38,20 20,2" fill="#E8A33D" />
       </g>
       <!-- Tile: Arch/hut -->
-      <g id="tile-arch-{height}">
+      <g id={`tile-arch-${height}`}>
         <rect width="40" height={height} fill="#FAF6EE" />
         <path d={`M 5,${height-2} Q 20,3 35,${height-2}`} fill="none" stroke="#132d82" stroke-width="3" />
         <line x1="20" y1="4" x2="20" y2={height-2} stroke="#132d82" stroke-width="2.5" />
       </g>
       <!-- Tile: Dotted grid -->
-      <g id="tile-dots-{height}">
+      <g id={`tile-dots-${height}`}>
         <rect width="40" height={height} fill="#132d82" />
         <circle cx="10" cy="8" r="2.5" fill="#389a29" />
         <circle cx="30" cy="8" r="2.5" fill="#389a29" />
@@ -53,7 +53,7 @@ const halfHeight = Math.round(height / 2);
         <circle cx="30" cy={height-8} r="2.5" fill="#389a29" />
       </g>
       <!-- Tile: Half-sun / petal -->
-      <g id="tile-sun-{height}">
+      <g id={`tile-sun-${height}`}>
         <rect width="40" height={height} fill="#389a29" />
         <path d={`M 20,${height-2} A 18,18 0 0,1 20,4`} fill="#E8A33D" opacity="0.85" />
         <circle cx="20" cy={halfHeight-4} r="4" fill="#ffffff" />

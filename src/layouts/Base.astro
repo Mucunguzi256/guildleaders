@@ -16,6 +16,11 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; form-action https://formspree.io; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests"
+    />
     <title>{title} | Guild Presidents Leadership Academy</title>
     
     <!-- Favicons -->
@@ -553,82 +558,55 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
       }
     </style>
 
+    <!-- Content stays hidden until JS reveals it, so restore it when JS is off -->
+    <noscript>
+      <style>
+        [data-animate], .ani-fade-up {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+
     <!-- Global scroll-trigger animations -->
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        // data-animate elements
-        const animateEls = document.querySelectorAll('[data-animate]');
-        if (animateEls.length) {
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                const delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
-                setTimeout(() => entry.target.classList.add('animate-in'), delay);
-                observer.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-          animateEls.forEach(el => observer.observe(el));
-        }
+      import { installGlobalErrorLogging, onReady, safeInit } from '../scripts/errors';
+      import { observeReveal, revealAll } from '../scripts/reveal';
 
-        // ani-fade-up elements (used by the new animation utilities)
-        const fadeEls = document.querySelectorAll('.ani-fade-up');
-        if (fadeEls.length) {
-          const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('ani-visible');
-                fadeObserver.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-          fadeEls.forEach(el => fadeObserver.observe(el));
-        }
+      installGlobalErrorLogging();
 
-        // Animated counters
-        const counterEls = document.querySelectorAll('.ani-counter');
-        if (counterEls.length) {
-          const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                const el = entry.target;
-                const target = parseInt(el.getAttribute('data-target')) || 0;
-                const duration = parseInt(el.getAttribute('data-duration')) || 1500;
-                const start = parseInt(el.getAttribute('data-start')) || 0;
-                const suffix = el.getAttribute('data-suffix') || '';
-                const prefix = el.getAttribute('data-prefix') || '';
-                let current = start;
-                const step = Math.max(1, Math.floor((target - start) / (duration / 16)));
-                const update = () => {
-                  current += step;
-                  if (current >= target) {
-                    el.textContent = prefix + target + suffix;
-                    return;
-                  }
-                  el.textContent = prefix + current + suffix;
-                  requestAnimationFrame(update);
-                };
-                update();
-                counterObserver.unobserve(el);
-              }
-            });
-          }, { threshold: 0.5 });
-          counterEls.forEach(el => counterObserver.observe(el));
-        }
-      });
+      onReady(
+        'global reveal animations',
+        () => {
+          const revealOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+          observeReveal('[data-animate]', 'animate-in', revealOptions);
+          observeReveal('.ani-fade-up', 'ani-visible', revealOptions);
 
-      // Mobile menu toggle
-      document.addEventListener('DOMContentLoaded', () => {
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        if (btn && menu) {
-          btn.addEventListener('click', () => {
-            const isOpen = menu.classList.contains('open');
-            menu.classList.toggle('open');
-            btn.setAttribute('aria-expanded', !isOpen);
+          observeReveal('.ani-counter', 'ani-counted', { threshold: 0.5 }, (el) => {
+            const target = Number.parseInt(el.getAttribute('data-target') ?? '', 10) || 0;
+            const duration = Number.parseInt(el.getAttribute('data-duration') ?? '', 10) || 1500;
+            const start = Number.parseInt(el.getAttribute('data-start') ?? '', 10) || 0;
+            const suffix = el.getAttribute('data-suffix') || '';
+            const prefix = el.getAttribute('data-prefix') || '';
+            let current = start;
+            const step = Math.max(1, Math.floor((target - start) / (duration / 16)));
+            const update = () => {
+              current += step;
+              if (current >= target) {
+                el.textContent = prefix + target + suffix;
+                return;
+              }
+              el.textContent = prefix + current + suffix;
+              requestAnimationFrame(() => safeInit('counter tick', update));
+            };
+            update();
           });
-        }
-      });
+        },
+        () => {
+          revealAll('[data-animate]', 'animate-in');
+          revealAll('.ani-fade-up', 'ani-visible');
+        },
+      );
     </script>
   </head>
   <body class="site-body-kente">

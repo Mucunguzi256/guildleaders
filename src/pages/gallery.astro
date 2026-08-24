@@ -59,13 +59,13 @@ const IMG_6439 = { src: "/assets/images/gallery/IMG_6439.JPG", alt: "Summit grou
     <div class="max-w-6xl mx-auto">
       <div class="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
         {galleryImages.map((img) => (
-          <div class="card-lift gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#132d82] to-[#389a29] cursor-pointer" onclick={`openLightbox('${img.src}')`}>
+          <div class="card-lift gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#132d82] to-[#389a29] cursor-pointer" data-lightbox-src={img.src} data-lightbox-alt={img.alt}>
             <img src={img.src} alt={img.alt} loading="lazy" class="w-full h-56 md:h-72 object-cover transition-transform duration-500 group-hover:scale-105" />
             <div class="gallery-overlay"><span>GPLA</span></div>
           </div>
         ))}
         <!-- Large group photo -->
-        <div class="gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#389a29] to-[#132d82] cursor-pointer sm:col-span-2 lg:col-span-2" onclick={`openLightbox('${IMG_6439.src}')`}>
+        <div class="gallery-item group relative rounded-xl overflow-hidden bg-gradient-to-br from-[#389a29] to-[#132d82] cursor-pointer sm:col-span-2 lg:col-span-2" data-lightbox-src={IMG_6439.src} data-lightbox-alt={IMG_6439.alt}>
           <img src={IMG_6439.src} alt={IMG_6439.alt} loading="lazy" class="w-full h-56 md:h-80 object-cover transition-transform duration-500 group-hover:scale-105" />
           <div class="gallery-overlay"><span>GPLA</span></div>
         </div>
@@ -74,69 +74,106 @@ const IMG_6439 = { src: "/assets/images/gallery/IMG_6439.JPG", alt: "Summit grou
   </section>
 
   <!-- Lightbox -->
-  <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center" onclick="closeLightbox(event)">
-    <button class="absolute top-6 right-6 text-white text-3xl hover:text-gpla-gold transition-colors z-10" onclick="closeLightbox()">&times;</button>
+  <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center flex-col gap-4" data-lightbox role="dialog" aria-modal="true" aria-label="Gallery image">
+    <button type="button" class="absolute top-6 right-6 text-white text-3xl hover:text-gpla-gold transition-colors z-10" data-lightbox-close aria-label="Close image">&times;</button>
     <img id="lightbox-img" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg" src="" alt="" />
+    <p id="lightbox-error" class="text-white/80 font-body text-center px-6" role="alert" hidden>This image could not be loaded. Please try again later.</p>
   </div>
 
   <Footer />
 </Base>
 
 <script>
-  // Lightbox
-  function openLightbox(src) {
+  import { onReady, reportError, safeInit } from '../scripts/errors';
+
+  const lightbox = () => {
     const lb = document.getElementById('lightbox');
-    const img = document.getElementById('lightbox-img');
-    if (lb && img) {
+    const img = document.getElementById('lightbox-img') as HTMLImageElement | null;
+    const error = document.getElementById('lightbox-error');
+    if (!lb || !img || !error) {
+      throw new Error('lightbox markup is missing');
+    }
+
+    const close = () => {
+      lb.classList.add('hidden');
+      lb.classList.remove('flex');
+      document.body.style.overflow = '';
+      img.removeAttribute('src');
+      error.hidden = true;
+      img.hidden = false;
+    };
+
+    const open = (src: string, alt: string) => {
+      error.hidden = true;
+      img.hidden = false;
+      img.alt = alt;
       img.src = src;
       lb.classList.remove('hidden');
       lb.classList.add('flex');
       document.body.style.overflow = 'hidden';
-    }
-  }
+    };
 
-  window.openLightbox = openLightbox;
-
-  function closeLightbox(e) {
-    if (e && e.target !== e.currentTarget) return;
-    const lb = document.getElementById('lightbox');
-    if (lb) {
-      lb.classList.add('hidden');
-      lb.classList.remove('flex');
-      document.body.style.overflow = '';
-    }
-  }
-
-  window.closeLightbox = closeLightbox;
-
-  // Keyboard escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      const lb = document.getElementById('lightbox');
-      if (lb && !lb.classList.contains('hidden')) {
-        lb.classList.add('hidden');
-        lb.classList.remove('flex');
-        document.body.style.overflow = '';
-      }
-    }
-  });
-
-  // Scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        (entry.target).style.opacity = '1';
-        (entry.target).style.transform = 'translateY(0)';
-        observer.unobserve(entry.target);
-      }
+    // A failed image used to leave an empty black overlay with no explanation.
+    img.addEventListener('error', () => {
+      if (!img.getAttribute('src')) return;
+      reportError('lightbox image load', new Error(`could not load ${img.src}`));
+      img.hidden = true;
+      error.hidden = false;
     });
-  }, { threshold: 0.1 });
 
-  document.querySelectorAll('.gallery-item').forEach((el, i) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)';
-    el.style.transitionDelay = `${(i % 6) * 0.08}s`;
-    observer.observe(el);
-  });
+    document.querySelectorAll<HTMLElement>('[data-lightbox-src]').forEach((item) => {
+      item.addEventListener('click', () => {
+        open(item.dataset.lightboxSrc || '', item.dataset.lightboxAlt || '');
+      });
+    });
+
+    lb.addEventListener('click', (event) => {
+      if (event.target === lb || (event.target as HTMLElement).closest('[data-lightbox-close]')) close();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !lb.classList.contains('hidden')) close();
+    });
+  };
+
+  onReady('gallery lightbox', lightbox);
+
+  // Scroll animations — items are hidden inline, so reveal them if observation fails.
+  onReady(
+    'gallery scroll animations',
+    () => {
+      const items = Array.from(document.querySelectorAll<HTMLElement>('.gallery-item'));
+      if (!items.length) return;
+
+      const reveal = (el: HTMLElement) => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      };
+
+      if (typeof IntersectionObserver === 'undefined') return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            safeInit('gallery item reveal', () => reveal(entry.target as HTMLElement));
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      items.forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)';
+        el.style.transitionDelay = `${(i % 6) * 0.08}s`;
+        observer.observe(el);
+      });
+    },
+    () => {
+      document.querySelectorAll<HTMLElement>('.gallery-item').forEach((el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    },
+  );
 </script>
