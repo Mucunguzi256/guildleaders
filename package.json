@@ -9,7 +9,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.5",
@@ -17,6 +20,8 @@
     "tailwindcss": "^3.4.19"
   },
   "devDependencies": {
-    "playwright": "^1.61.0"
+    "@vitest/coverage-v8": "^3.2.7",
+    "playwright": "^1.61.0",
+    "vitest": "^3.2.7"
   }
 }

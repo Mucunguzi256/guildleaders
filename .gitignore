@@ -23,6 +23,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# test coverage output
+coverage/
+
 # local agent tooling state (machine-specific, not for distribution)
 .opencode/user.db
 .opencode/user.db-shm
