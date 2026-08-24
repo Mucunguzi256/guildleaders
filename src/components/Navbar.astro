@@ -89,19 +89,25 @@ const links = [
 </style>
 
 <script>
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener('click', () => {
-      const isHidden = mobileMenu.classList.contains('hidden');
-      mobileMenu.classList.toggle('hidden', !isHidden);
-      document.body.style.overflow = isHidden ? 'hidden' : '';
-    });
+  import { onReady, reportError } from '../scripts/errors';
+
+  onReady('navbar mobile menu', () => {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (!menuBtn || !mobileMenu) {
+      reportError('navbar mobile menu', new Error('mobile menu button or panel is missing'));
+      return;
+    }
+
+    const setOpen = (open: boolean) => {
+      mobileMenu.classList.toggle('hidden', !open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+
+    menuBtn.addEventListener('click', () => setOpen(mobileMenu.classList.contains('hidden')));
     mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', () => setOpen(false));
     });
-  }
+  });
 </script>
