@@ -5,10 +5,7 @@ on:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
+permissions: {}
 
 concurrency:
   group: pages
@@ -17,29 +14,31 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install deps
-        run: npm install --legacy-peer-deps
+        run: npm ci --legacy-peer-deps
 
       - name: Build
         run: npm run build
-        env:
-          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: false
-          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 
       - name: Create nojekyll
         run: touch dist/.nojekyll
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
+        # peaceiris/actions-gh-pages@v4.1.0 pinned to a commit SHA
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
