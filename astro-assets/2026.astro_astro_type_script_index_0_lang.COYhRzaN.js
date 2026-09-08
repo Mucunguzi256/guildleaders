@@ -1,1 +1,0 @@
-import{s as a}from"./errors.DHs-_44l.js";import{o as i,r as m}from"./reveal.DZY0pORt.js";import{i as t}from"./form.B7QaZY09.js";t();a("summit 2026 scroll animations",()=>i("[data-animate]","animate-in",{threshold:.1}),()=>m("[data-animate]","animate-in"));
