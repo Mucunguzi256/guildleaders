@@ -9,6 +9,15 @@ const publications = [
     gradient: 'linear-gradient(135deg, #132d82, #389a29)',
     badgeClass: 'badge badge-green',
     category: 'Summit',
+    date: 'July 24, 2026',
+    title: '3RD ANNUAL EAST AFRICAN GUILD LEADERS SUMMIT REPORT 2026',
+    summary: 'The official report of the 3rd Annual East African Guild Leaders\' Summit at Makerere University is now available.',
+    href: '/summit/2026',
+  },
+  {
+    gradient: 'linear-gradient(135deg, #132d82, #389a29)',
+    badgeClass: 'badge badge-green',
+    category: 'Summit',
     date: 'January 15, 2026',
     title: '2026 Summit Dates Announced',
     summary: 'Mark your calendars for the biggest gathering of East African youth leaders.',
@@ -57,7 +66,11 @@ const publications = [
               <p class="text-gpla-navy/55 text-xs font-body mb-2">{item.date}</p>
               <h3 class="font-display text-lg md:text-xl text-gpla-navy mb-3">{item.title}</h3>
               <p class="text-gpla-navy/65 text-sm font-body mb-4">{item.summary}</p>
-              <span class="text-gpla-green font-semibold text-sm">Read More →</span>
+              {item.href ? (
+                <a href={item.href} class="text-gpla-green font-semibold text-sm hover:underline">Read More →</a>
+              ) : (
+                <span class="text-gpla-navy/40 font-semibold text-sm">Coming Soon</span>
+              )}
             </div>
           </article>
         ))}

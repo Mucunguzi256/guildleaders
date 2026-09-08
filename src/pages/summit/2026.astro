@@ -5,10 +5,42 @@ import Footer from '../../components/Footer.astro';
 import PatternDivider from '../../components/PatternDivider.astro';
 import PatternBackdrop from '../../components/PatternBackdrop.astro';
 import PatternRail from '../../components/PatternRail.astro';
+import { twoDigits } from '../../utils/format';
 import { contactEmail, partnerFormEndpoint } from '../../data/site';
+
+const outcomes = [
+  'Institutionalise the East African Guild Leaders&rsquo; Summit as an annual regional youth leadership convening.',
+  'Establish a permanent GPLA / EAGLS Secretariat to coordinate Summit planning and follow-up across partner states.',
+  'Strengthen formal linkage with EAC structures to embed youth voice in regional integration policy.',
+  'Rotate the Summit annually across East African Community Partner States.',
+  'Create an East African Young Leaders Integration Fund to resource student-led regional projects.',
+].map((text, index) => ({ num: twoDigits(index + 1), text }));
+
+const overviewStats = [
+  { value: '1,500', label: 'Participants' },
+  { value: '6', label: 'East African countries' },
+  { value: '28', label: 'Universities represented' },
+  { value: '5', label: 'Plenary sessions' },
+];
 ---
 
-<Base title="Summit 2026" description="3rd Annual East African Guild Leaders' Summit - July 23-24, 2026">
+<Base
+  title="3RD ANNUAL EAST AFRICAN GUILD LEADERS SUMMIT REPORT 2026"
+  description="Official report of the 3rd Annual East African Guild Leaders&rsquo; Summit at Makerere University, 23&ndash;24 July 2026. Theme: Youth Leadership, Production and Regional Integration."
+  og={{
+    type: 'article',
+    url: 'https://guildleaders.academy/summit/2026',
+    image: 'https://guildleaders.academy/assets/images/summit-2026-og.jpg',
+    imageWidth: '1200',
+    imageHeight: '630',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    image: 'https://guildleaders.academy/assets/images/summit-2026-og.jpg',
+  }}
+>
+  <!-- Canonical -->
+
   <Navbar />
   
   <style is:global>
@@ -53,6 +85,16 @@ import { contactEmail, partnerFormEndpoint } from '../../data/site';
       background: rgba(220,60,60,0.2);
       border-color: rgba(220,60,60,0.6);
     }
+    .report-cover-thumb {
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      max-width: 240px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .report-cover-thumb:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.28);
+    }
   </style>
 
   <div class="summit-2026-layout">
@@ -69,22 +111,22 @@ import { contactEmail, partnerFormEndpoint } from '../../data/site';
       <div class="relative z-10 max-w-6xl mx-auto px-4 md:px-12 py-20 md:py-32 w-full">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>
-            <p class="bg-gpla-gold text-gpla-navy text-sm font-semibold uppercase tracking-widest px-4 py-2 rounded-full inline-block mb-6">COMPLETED · 23–24 JULY 2026</p>
+            <p class="bg-gpla-gold text-gpla-navy text-sm font-semibold uppercase tracking-widest px-4 py-2 rounded-full inline-block mb-6">COMPLETED · 23&ndash;24 JULY 2026</p>
             <h1 class="font-display text-white text-[28px] sm:text-[42px] md:text-[56px] lg:text-[72px] leading-[0.95] mb-6">
               <span class="block" data-animate>3RD ANNUAL</span>
               <span class="block" data-animate data-delay="100">EAST AFRICAN</span>
-              <span class="block" data-animate data-delay="200">GUILD LEADERS'</span>
+              <span class="block" data-animate data-delay="200">GUILD LEADERS&rsquo;</span>
               <span class="block text-gpla-green" data-animate data-delay="300">SUMMIT</span>
             </h1>
             <p class="text-white/80 text-lg md:text-xl italic mb-6 font-body">
               Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order
             </p>
             <div class="flex flex-wrap gap-4 mb-6">
-              <span class="bg-gpla-gold/20 text-gpla-gold border border-gpla-gold/40 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-block">
-                📄 Report Coming Soon
-              </span>
-              <a href="#partner" class="border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-block hover:bg-white hover:text-gpla-navy transition-all">
-                Partner With Us
+              <a href="/publications/3rd-annual-east-african-guild-leaders-summit-report-2026.pdf" target="_blank" rel="noopener noreferrer" class="bg-gpla-gold text-gpla-navy px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-flex items-center gap-2 hover:bg-gpla-gold-bright hover:-translate-y-0.5 transition-all">
+                📄 View Report ↗
+              </a>
+              <a href="/publications/3rd-annual-east-african-guild-leaders-summit-report-2026.pdf" download class="border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-flex items-center gap-2 hover:bg-white hover:text-gpla-navy transition-all">
+                ↓ Download PDF
               </a>
             </div>
             <p class="text-gpla-gold text-sm font-mono">#TheGuildLeadersSummit2026 · #GPLASummit</p>
@@ -99,66 +141,69 @@ import { contactEmail, partnerFormEndpoint } from '../../data/site';
 
     <PatternDivider bold />
 
-    <!-- Countdown Timer -->
-    <section class="px-4 md:px-12 py-12 bg-gpla-navy relative overflow-hidden">
-      <PatternBackdrop variant="navy" />
-      <div class="max-w-4xl mx-auto relative z-10">
-        <p class="text-gpla-green text-sm font-semibold uppercase tracking-widest mb-8 text-center">COUNTDOWN TO THE SUMMIT</p>
-        <div class="countdown-grid">
-          <div class="countdown-unit">
-            <span id="count-days" class="countdown-number">00</span>
-            <span class="countdown-label">Days</span>
+    <!-- Summit Overview -->
+    <section class="px-4 md:px-12 py-16 md:py-24 bg-gpla-cream/90 section-kente-surface relative overflow-hidden">
+      <PatternBackdrop variant="cream" />
+      <div class="max-w-6xl mx-auto relative z-10">
+        <h2 class="font-display text-gpla-navy text-[28px] md:text-[48px] mb-8">ABOUT THE SUMMIT</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
+          <div class="space-y-5 text-gpla-navy/70 text-base md:text-lg leading-relaxed font-body" style="text-align: justify;">
+            <p>
+              The 3rd Annual East African Guild Leaders&rsquo; Summit convened about 1,500 university student leaders, government leaders, university leaders, development partners, private sector actors and youth representatives from across East Africa at Makerere University, Kampala, on 23&ndash;24 July 2026.
+            </p>
+            <p>
+              Chief Guest H.E. Yoweri Kaguta Museveni, President of the Republic of Uganda and Chairperson of the EAC, delivered a keynote address on youth leadership and the role of young people in building a competitive, integrated East Africa.
+            </p>
+            <p>
+              A key outcome of the Summit is the <strong>Makerere Declaration and Youth Compact 2026</strong>, which sets out a shared agenda for youth-led regional integration, institutionalising the annual Summit, and creating formal linkages with East African Community structures.
+            </p>
           </div>
-          <div class="countdown-unit">
-            <span id="count-hours" class="countdown-number">00</span>
-            <span class="countdown-label">Hours</span>
-          </div>
-          <div class="countdown-unit">
-            <span id="count-mins" class="countdown-number">00</span>
-            <span class="countdown-label">Minutes</span>
-          </div>
-          <div class="countdown-unit">
-            <span id="count-secs" class="countdown-number">00</span>
-            <span class="countdown-label">Seconds</span>
+          <div class="flex flex-col gap-6">
+            <div class="space-y-5">
+              <div class="border-l-4 border-gpla-green pl-4">
+                <h4 class="font-semibold text-gpla-navy text-lg">Date</h4>
+                <p class="text-gpla-navy/70">23rd &ndash; 24th July 2026</p>
+              </div>
+              <div class="border-l-4 border-gpla-green pl-4">
+                <h4 class="font-semibold text-gpla-navy text-lg">Venue</h4>
+                <p class="text-gpla-navy/70">Freedom Square, Makerere University, Kampala</p>
+              </div>
+              <div class="border-l-4 border-gpla-green pl-4">
+                <h4 class="font-semibold text-gpla-navy text-lg">Chief Guest</h4>
+                <p class="text-gpla-navy/70">H.E. Yoweri Kaguta Museveni<br/>President of the Republic of Uganda &amp; Chairperson of the EAC</p>
+              </div>
+              <div class="border-l-4 border-gpla-green pl-4">
+                <h4 class="font-semibold text-gpla-navy text-lg">Partners</h4>
+                <div class="flex flex-wrap gap-3 mt-2">
+                  <div class="bg-gpla-navy text-white px-4 py-2 rounded font-display text-sm">IGDS</div>
+                  <div class="bg-gpla-navy text-white px-4 py-2 rounded font-display text-sm">UNiFOG</div>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
+              {overviewStats.map((stat) => (
+                <div class="bg-white border border-gpla-navy/8 rounded-xl p-4 text-center shadow-sm">
+                  <div class="font-display text-2xl text-gpla-navy">{stat.value}</div>
+                  <p class="text-gpla-navy/55 text-xs mt-1 font-body">{stat.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Summit Details -->
-    <section class="px-4 md:px-12 py-16 md:py-24 bg-gpla-cream/90 section-kente-surface relative overflow-hidden">
-      <PatternBackdrop variant="cream" />
-      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 relative z-10">
-        <div>
-          <h2 class="font-display text-gpla-navy text-[32px] md:text-[48px] mb-8">EVENT DETAILS</h2>
-          <div class="space-y-6">
-            <div class="border-l-4 border-gpla-green pl-4">
-              <h4 class="font-semibold text-gpla-navy text-lg">Date</h4>
-              <p class="text-gpla-navy/70">23rd – 24th July 2026</p>
-            </div>
-            <div class="border-l-4 border-gpla-green pl-4">
-              <h4 class="font-semibold text-gpla-navy text-lg">Venue</h4>
-              <p class="text-gpla-navy/70">Freedom Square, Makerere University, Kampala</p>
-            </div>
-            <div class="border-l-4 border-gpla-green pl-4">
-              <h4 class="font-semibold text-gpla-navy text-lg">Chief Guest</h4>
-              <p class="text-gpla-navy/70">H.E. Yoweri Kaguta Museveni<br/>President of the Republic of Uganda & Chairperson of the EAC</p>
-            </div>
-            <div class="border-l-4 border-gpla-green pl-4">
-              <h4 class="font-semibold text-gpla-navy text-lg">Partners</h4>
-              <div class="flex gap-4 mt-2">
-                <div class="bg-gpla-navy text-white px-4 py-2 rounded font-display text-sm">IGDS</div>
-                <div class="bg-gpla-navy text-white px-4 py-2 rounded font-display text-sm">UNiFOG</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex items-center">
-          <div class="bg-gpla-navy p-8 md:p-12 rounded-2xl w-full shadow-xl">
-            <p class="text-gpla-gold font-display text-2xl md:text-3xl italic leading-relaxed">
-              "Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order"
-            </p>
-          </div>
+    <PatternDivider />
+
+    <!-- Theme Quote -->
+    <section class="px-4 md:px-12 py-12 md:py-20 bg-gpla-navy relative overflow-hidden">
+      <PatternBackdrop variant="navy" />
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-12">
+          <p class="text-gpla-gold font-display text-xl md:text-2xl italic leading-relaxed">
+            &ldquo;Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order&rdquo;
+          </p>
+          <p class="text-white/50 text-sm mt-4 font-body">Summit Theme · Makerere University, July 2026</p>
         </div>
       </div>
     </section>
@@ -168,7 +213,7 @@ import { contactEmail, partnerFormEndpoint } from '../../data/site';
     <!-- Focus Areas -->
     <section class="px-4 md:px-12 py-16 md:py-24 section-light section-kente-surface">
       <div class="max-w-6xl mx-auto">
-        <h2 class="font-display text-gpla-navy text-[32px] md:text-[48px] text-center mb-12" data-animate>FOCUS AREAS</h2>
+        <h2 class="font-display text-gpla-navy text-[28px] md:text-[48px] text-center mb-12" data-animate>FOCUS AREAS</h2>
         <div class="focus-bento">
           <div class="focus-bento__item focus-bento__wide" data-animate data-delay="0">
             <span class="focus-bento__num">01</span>
@@ -198,19 +243,69 @@ import { contactEmail, partnerFormEndpoint } from '../../data/site';
       </div>
     </section>
 
-    <!-- Report Coming Soon -->
-    <section class="bg-gpla-navy px-4 md:px-12 py-16 md:py-24 relative overflow-hidden">
+    <PatternDivider />
+
+    <!-- Key Outcomes -->
+    <section class="px-4 md:px-12 py-16 md:py-24 bg-gpla-navy relative overflow-hidden">
       <PatternBackdrop variant="navy" />
-      <div class="max-w-3xl mx-auto text-center relative z-10">
-        <span class="bg-gpla-gold text-gpla-navy text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full inline-block mb-4">Post-Summit</span>
-        <h2 class="font-display text-white text-[32px] md:text-[48px] mb-3">SUMMIT REPORT</h2>
-        <p class="text-white/60 text-base mb-8 max-w-xl mx-auto font-body">
-          The full summit report including proceedings, resolutions, and photo gallery is being compiled and will be available shortly.
+      <div class="max-w-6xl mx-auto relative z-10">
+        <h2 class="font-display text-white text-[28px] md:text-[48px] mb-2">KEY OUTCOMES</h2>
+        <p class="text-white/60 text-base md:text-lg mb-8 md:mb-10 max-w-[640px] font-body">
+          From the Makerere Declaration and Youth Compact 2026 &mdash; outcomes adopted by Summit participants.
         </p>
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-12">
-          <p class="text-gpla-gold text-5xl mb-4">📄</p>
-          <p class="font-display text-white text-xl">Report Coming Soon</p>
-          <p class="text-white/50 text-sm mt-2 font-body">Check back for the full proceedings and outcomes document.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+          {outcomes.map((o) => (
+            <div class="border border-white/15 rounded-xl p-5 md:p-6 flex gap-4">
+              <span class="font-display text-gpla-gold text-xl shrink-0">{o.num}</span>
+              <p class="text-white/80 text-sm md:text-base font-body leading-relaxed" set:html={o.text}></p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <PatternDivider />
+
+    <!-- Summit Report -->
+    <section class="px-4 md:px-12 py-16 md:py-24 section-alt section-kente-surface relative overflow-hidden">
+      <PatternBackdrop variant="cream" />
+      <div class="max-w-4xl mx-auto relative z-10">
+        <span class="section-label text-gpla-green">Post-Summit</span>
+        <h2 class="font-display text-gpla-navy text-[28px] md:text-[48px] mb-3">3RD ANNUAL EAST AFRICAN GUILD LEADERS SUMMIT REPORT 2026</h2>
+        <p class="text-gpla-navy/55 text-base md:text-lg mb-8 max-w-[640px] font-body">
+          The full summit report including proceedings, resolutions, the Makerere Declaration, participant demographics, and photo gallery.
+        </p>
+        <div class="bg-white p-5 md:p-8 rounded-xl shadow-lg border border-gpla-navy/6">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-8 mb-6">
+            <a href="/publications/3rd-annual-east-african-guild-leaders-summit-report-2026.pdf" target="_blank" rel="noopener noreferrer" class="shrink-0">
+              <img
+                src="/assets/images/summit-2026-og.jpg"
+                alt="3RD ANNUAL EAST AFRICAN GUILD LEADERS SUMMIT REPORT 2026 cover"
+                class="report-cover-thumb w-36 md:w-44"
+              />
+            </a>
+            <div>
+              <h3 class="font-display text-xl md:text-2xl text-gpla-navy">3RD ANNUAL EAST AFRICAN GUILD LEADERS SUMMIT REPORT 2026</h3>
+              <p class="text-gpla-navy/55 text-sm mt-1 font-body">PDF Document · 4.7 MB · 28 pages · Makerere University, 23&ndash;24 July 2026</p>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 md:gap-4">
+            <a
+              href="/publications/3rd-annual-east-african-guild-leaders-summit-report-2026.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-flex items-center justify-center gap-2 transition-all text-sm md:text-base bg-gpla-green text-white hover:shadow-xl hover:-translate-y-0.5"
+            >
+              ↗ View Report
+            </a>
+            <a
+              href="/publications/3rd-annual-east-african-guild-leaders-summit-report-2026.pdf"
+              download
+              class="px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold inline-flex items-center justify-center gap-2 transition-all text-sm md:text-base border-2 border-gpla-navy text-gpla-navy hover:bg-gpla-navy hover:text-white"
+            >
+              ↓ Download PDF
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -226,10 +321,10 @@ import { contactEmail, partnerFormEndpoint } from '../../data/site';
               PARTNER WITH US
             </h2>
             <p class="text-white/70 text-lg mb-6">
-              Align your organisation with East Africa's premier youth leadership platform. The 2026 Summit will convene heads of state, regional institutions, and 700+ student leaders from across the EAC.
+              Align your organisation with East Africa&rsquo;s premier youth leadership platform. Future Summits will convene heads of state, regional institutions, and student leaders from across the EAC.
             </p>
             <ul class="space-y-3 text-white/80 mb-8">
-              <li class="flex items-center gap-3"><span class="text-gpla-green text-xl">✓</span> Brand visibility across 6 East African countries</li>
+              <li class="flex items-center gap-3"><span class="text-gpla-green text-xl">✓</span> Brand visibility across East African countries</li>
               <li class="flex items-center gap-3"><span class="text-gpla-green text-xl">✓</span> Direct access to emerging youth leaders</li>
               <li class="flex items-center gap-3"><span class="text-gpla-green text-xl">✓</span> Co-branding on Summit materials and reports</li>
               <li class="flex items-center gap-3"><span class="text-gpla-green text-xl">✓</span> Panel and speaking opportunities</li>
@@ -283,31 +378,6 @@ import { contactEmail, partnerFormEndpoint } from '../../data/site';
   import { initAjaxForms } from '../../scripts/form';
 
   initAjaxForms();
-
-  // Countdown to July 23, 2026 08:00 EAT (UTC+3)
-  const target = new Date('2026-07-23T05:00:00Z');
-  function updateCountdown() {
-    const now = new Date();
-    const diff = target - now;
-    if (diff <= 0) {
-      document.querySelectorAll('.countdown-number').forEach(el => { el.textContent = '00'; });
-      return;
-    }
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins = Math.floor((diff % 3600000) / 60000);
-    const secs = Math.floor((diff % 60000) / 1000);
-    const update = (id, val) => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = twoDigits(val);
-    };
-    update('count-days', days);
-    update('count-hours', hours);
-    update('count-mins', mins);
-    update('count-secs', secs);
-  }
-  setInterval(() => safeInit('summit 2026 countdown', updateCountdown), 1000);
-  safeInit('summit 2026 countdown', updateCountdown);
 
   // Scroll animations
   safeInit(

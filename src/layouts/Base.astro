@@ -4,9 +4,20 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  og?: {
+    type?: string;
+    image?: string;
+    imageWidth?: string;
+    imageHeight?: string;
+    url?: string;
+  };
+  twitter?: {
+    card?: string;
+    image?: string;
+  };
 }
 
-const { title, description = "Empowering ethical youth leaders for democratic transformation in East Africa." } = Astro.props;
+const { title, description = "Empowering ethical youth leaders for democratic transformation in East Africa.", og, twitter } = Astro.props;
 ---
 
 <!doctype html>
@@ -608,6 +619,21 @@ const { title, description = "Empowering ethical youth leaders for democratic tr
         },
       );
     </script>
+
+    <!-- Open Graph / Social -->
+    {og?.type && <meta property="og:type" content={og.type} />}
+    {og?.url && <meta property="og:url" content={og.url} />}
+    {og?.image && <meta property="og:image" content={og.image} />}
+    {og?.imageWidth && <meta property="og:image:width" content={og.imageWidth} />}
+    {og?.imageHeight && <meta property="og:image:height" content={og.imageHeight} />}
+    <meta property="og:title" content={title + ' | GPLA'} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Guild Presidents Leadership Academy" />
+    {og?.url && <link rel="canonical" href={og.url} />}
+    <meta name="twitter:card" content={twitter?.card || 'summary'} />
+    <meta name="twitter:title" content={title + ' | GPLA'} />
+    <meta name="twitter:description" content={description} />
+    {twitter?.image && <meta name="twitter:image" content={twitter.image} />}
   </head>
   <body class="site-body-kente">
     <slot />
