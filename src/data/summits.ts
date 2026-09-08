@@ -36,7 +36,7 @@ export const summitCards: Record<'2026' | '2025' | '2024', SummitCard> = {
     variant: '2026',
     featured: true,
     class: 'summit-bento-card--featured',
-    tagline: '23–24 July 2026 · Completed',
+    tagline: '23–24 July 2026 · Makerere University',
     title: "3rd Annual East African Guild Leaders' Summit",
     theme:
       'Youth Leadership, Production, and Regional Integration: Building a Competitive East Africa in a Changing Global Order',
@@ -49,6 +49,7 @@ export const summitCards: Record<'2026' | '2025' | '2024', SummitCard> = {
       },
       { label: 'Venue', value: 'Freedom Square', sub: 'Makerere University, Kampala' },
     ],
+    primaryCta: { href: '/summit/2026', label: 'View Full Report →' },
   },
   '2025': {
     year: '2025',
